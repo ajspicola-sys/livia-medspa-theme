@@ -79,11 +79,19 @@ add_action('after_setup_theme', 'livia_theme_setup');
    ────────────────────────────────────────────────────────────────────────── */
 
 function livia_enqueue_assets() {
+    // --- Google Fonts ---
+    wp_enqueue_style(
+        'livia-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap',
+        [],
+        null
+    );
+
     // --- CSS ---
     wp_enqueue_style(
         'livia-variables',
         LIVIA_URI . '/assets/css/variables.css',
-        [],
+        ['livia-google-fonts'],
         LIVIA_VERSION
     );
 
@@ -129,11 +137,19 @@ function livia_enqueue_assets() {
         LIVIA_VERSION
     );
 
+    // Enhancement styles (all the premium visual polish)
+    wp_enqueue_style(
+        'livia-enhancements',
+        LIVIA_URI . '/assets/css/preview-enhancements.css',
+        ['livia-responsive'],
+        LIVIA_VERSION
+    );
+
     // Main theme stylesheet (must load last)
     wp_enqueue_style(
         'livia-style',
         get_stylesheet_uri(),
-        ['livia-variables', 'livia-components', 'livia-animations', 'livia-responsive'],
+        ['livia-enhancements'],
         LIVIA_VERSION
     );
 
@@ -172,6 +188,15 @@ function livia_enqueue_assets() {
             true
         );
     }
+
+    // Enhancement scripts (interactions, animations, etc.)
+    wp_enqueue_script(
+        'livia-enhancements',
+        LIVIA_URI . '/assets/js/enhancements.js',
+        ['livia-main'],
+        LIVIA_VERSION,
+        true
+    );
 
     // Pass data to JS
     wp_localize_script('livia-main', 'liviaData', [
