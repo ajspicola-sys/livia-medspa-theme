@@ -84,7 +84,7 @@
                     <li class="nav__item"><a href="<?php echo esc_url(get_post_type_archive_link('before_after')); ?>" class="nav__link">Before & After</a></li>
                     <li class="nav__item"><a href="<?php echo esc_url(home_url('/about')); ?>" class="nav__link">About</a></li>
                     <li class="nav__item"><a href="<?php echo esc_url(home_url('/blog')); ?>" class="nav__link">Blog</a></li>
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact')); ?>" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact')); ?>" class="nav__link">REACH US</a></li>
                 </ul>
                 <?php
             }
