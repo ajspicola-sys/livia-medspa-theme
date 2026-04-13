@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVIA — Tampa's Premier Med Spa &amp; Aesthetics Studio</title>
+    <meta name="description" content="LIVIA Med Spa offers expert Botox, dermal fillers, laser treatments, and medical-grade skincare in Tampa, FL. Book your consultation today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/inner-pages.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/preview-enhancements.css">
+</head>
+<body class="is-home">
+
+<!-- Announcement Bar -->
+<div class="announcement-bar" id="announcementBar">
+    <div class="announcement-bar__inner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>New clients receive <strong>15% off</strong> their first treatment + complimentary skin analysis → <a href="#book">Book Now</a></span>
+    </div>
+    <button class="announcement-bar__close" id="announcementBarClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+</div>
+
+<!-- Cursor Glow (desktop only) -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE HEADER
+     ═══════════════════════════════════════════════════════════════════════ -->
+<header class="site-header" id="siteHeader">
+    <div class="site-header__inner container">
+        <div class="site-header__logo">
+            <a href="#" class="site-logo site-logo--text" aria-label="Home">
+                <span class="site-logo__name">LIVIA</span>
+                <span class="site-logo__tagline">MED SPA</span>
+            </a>
+        </div>
+        <nav class="site-header__nav" id="primaryNav">
+            <ul class="nav__links">
+                <li class="nav__item nav__item--active"><a href="#hero" class="nav__link">Home</a></li>
+                <li class="nav__item nav__item--has-mega">
+                    <a href="#services" class="nav__link">
+                        Services
+                        <svg class="nav__arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <!-- ═══ MEGA MENU ═══ -->
+                    <div class="mega-menu">
+                        <div class="mega-menu__inner">
+                            <!-- Column 1: Injectables -->
+                            <div class="mega-menu__column">
+                                <h3 class="mega-menu__heading">Injectables</h3>
+                                <div class="mega-menu__items">
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#faf8f5,#f4e8e1);">💉</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Botox</span>
+                                            <span class="mega-menu__item-desc">Smooth fine lines & wrinkles</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#f0eef4,#e8e0f0);">✨</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Dermal Fillers</span>
+                                            <span class="mega-menu__item-desc">Restore volume & contours</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#fef9f0,#fdf0dd);">💧</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Lip Enhancement</span>
+                                            <span class="mega-menu__item-desc">Natural, plump results</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Skin Rejuvenation -->
+                            <div class="mega-menu__column">
+                                <h3 class="mega-menu__heading">Skin Rejuvenation</h3>
+                                <div class="mega-menu__items">
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#faf5f0,#f0e6da);">🔬</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Microneedling</span>
+                                            <span class="mega-menu__item-desc">Collagen-boosting renewal</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#f5f0f0,#ede4e4);">🧪</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Chemical Peels</span>
+                                            <span class="mega-menu__item-desc">Medical-grade exfoliation</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#faf5f0,#f4e8d8);">🩸</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">PRP Facial</span>
+                                            <span class="mega-menu__item-desc">Platelet-rich plasma therapy</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Laser & Advanced -->
+                            <div class="mega-menu__column">
+                                <h3 class="mega-menu__heading">Laser & Advanced</h3>
+                                <div class="mega-menu__items">
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#f0f5f5,#e0eaea);">⚡</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">CO2 Laser</span>
+                                            <span class="mega-menu__item-desc">Deep skin resurfacing</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#f5f0f8,#e8e0f0);">💫</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Secret RF</span>
+                                            <span class="mega-menu__item-desc">RF microneedling tightening</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                    <a href="#" class="mega-menu__item">
+                                        <div class="mega-menu__item-icon" style="background:linear-gradient(135deg,#f5f5f0,#ede8d8);">💇</div>
+                                        <div class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Hair Restoration</span>
+                                            <span class="mega-menu__item-desc">Regrowth & vitality</span>
+                                        </div>
+                                        <svg class="mega-menu__item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Promo Panel -->
+                            <div class="mega-menu__promo">
+                                <div>
+                                    <span class="mega-menu__promo-label">Limited Offer</span>
+                                    <h4 class="mega-menu__promo-title">New Client<br>Special</h4>
+                                    <p class="mega-menu__promo-text">First-time patients receive a complimentary skin analysis + 15% off their first treatment.</p>
+                                </div>
+                                <a href="#book" class="mega-menu__promo-cta">
+                                    Claim Offer
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Bottom bar -->
+                        <div class="mega-menu__bottom">
+                            <div class="mega-menu__bottom-links">
+                                <a href="#" class="mega-menu__bottom-link">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    Find your treatment
+                                </a>
+                                <a href="#" class="mega-menu__bottom-link">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    Before & After Gallery
+                                </a>
+                                <a href="#" class="mega-menu__bottom-link">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    Pricing & Packages
+                                </a>
+                            </div>
+                            <a href="#services" class="mega-menu__bottom-cta">
+                                View All Services
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav__item"><a href="#results" class="nav__link">Before & After</a></li>
+                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Blog</a></li>
+                <li class="nav__item"><a href="#book" class="nav__link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="site-header__actions">
+            <a href="tel:8132302219" class="site-header__phone" aria-label="Call us">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <a href="#book" class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
+        </div>
+        <button class="nav__mobile-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+            <span class="hamburger">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </span>
+        </button>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu__overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu__drawer">
+        <div class="mobile-menu__header">
+            <a href="#" class="site-logo site-logo--text"><span class="site-logo__name">LIVIA</span></a>
+            <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <nav class="mobile-menu__nav">
+            <ul class="mobile-menu__links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#results">Before & After</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#book">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu__footer">
+            <a href="#book" class="btn btn--primary btn--lg" style="width: 100%;">Book a Consultation</a>
+            <div class="mobile-menu__contact">
+                <a href="tel:8132302219" class="mobile-menu__contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>(813) 230-2219</span>
+                </a>
+                <a href="mailto:support@liviamedspa.com" class="mobile-menu__contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>support@liviamedspa.com</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="site-main" id="main">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+    <div class="hero__bg">
+        <div class="hero__bg-overlay" style="background: linear-gradient(180deg, rgba(15,15,26,0.5) 0%, rgba(15,15,26,0.7) 50%, rgba(15,15,26,0.85) 100%);"></div>
+        <!-- Animated gradient mesh -->
+        <div class="hero__mesh"></div>
+        <!-- Floating orbs -->
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__orb hero__orb--3"></div>
+    </div>
+    <div class="hero__content container">
+        <div class="hero__badge animate-on-scroll">
+            <span class="hero__badge-dot"></span>
+            Tampa's Premier Aesthetics Studio
+        </div>
+        <h1 class="hero__title animate-on-scroll">Elevate your<br>natural beauty.</h1>
+        <p class="hero__subtitle animate-on-scroll">
+            Medical-grade aesthetic treatments tailored to your unique skin and goals. From precision injectables to advanced laser therapy — artistry meets science.
+        </p>
+        <div class="hero__cta-group animate-on-scroll">
+            <a href="#book" class="btn btn--primary btn--lg">
+                Book a Consultation
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#services" class="btn btn--glass btn--lg">Explore Services</a>
+        </div>
+        <div class="hero__stats animate-on-scroll">
+            <div class="hero__stat">
+                <span class="hero__stat-number" data-count="200">0</span><span class="hero__stat-plus">+</span>
+                <span class="hero__stat-label">Happy Clients</span>
+            </div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">5.0</span>
+                <span class="hero__stat-label">
+                    <span class="hero__stat-stars">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </span>
+                    Google Rating
+                </span>
+            </div>
+            <div class="hero__stat-divider"></div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">Medical</span>
+                <span class="hero__stat-label">Grade Treatments</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero__scroll-indicator">
+        <div class="hero__scroll-mouse"><div class="hero__scroll-wheel"></div></div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TRUST MARQUEE BAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="trust-marquee" aria-hidden="true">
+    <div class="trust-marquee__track">
+        <div class="trust-marquee__content">
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Board Certified Professionals</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>FDA-Approved Treatments</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>5.0 ★ Google Rating</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>200+ Happy Clients</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Personalized Care Plans</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Tampa's Elite Med Spa</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Complimentary Consultations</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Medical-Grade Results</span>
+        </div>
+        <div class="trust-marquee__content" aria-hidden="true">
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Board Certified Professionals</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>FDA-Approved Treatments</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>5.0 ★ Google Rating</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>200+ Happy Clients</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Personalized Care Plans</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Tampa's Elite Med Spa</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Complimentary Consultations</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span>Medical-Grade Results</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SERVICES SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section section--cream" id="services">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Our Services</span>
+            <h2 class="section-title">Expert Treatments,<br>Exceptional Results</h2>
+            <hr class="section-divider">
+            <p class="section-subtitle">From injectables and laser treatments to customized skincare solutions — every service is performed with precision and care.</p>
+        </div>
+        <div class="services-grid stagger-children">
+            <!-- Service Cards -->
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #faf8f5 0%, #f4e8e1 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">💉</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Botox</span>
+                    </div>
+                    <span class="service-card__category">Injectables</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Botox</h3>
+                    <p class="service-card__desc">Smooth fine lines and wrinkles with precision-placed neurotoxin injections for a refreshed, youthful look.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $12/unit</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 15-30 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #f0eef4 0%, #e8e0f0 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">✨</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Dermal Fillers</span>
+                    </div>
+                    <span class="service-card__category">Injectables</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Dermal Fillers</h3>
+                    <p class="service-card__desc">Restore volume and enhance contours with premium hyaluronic acid fillers for natural-looking definition.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $650</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30-60 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #faf5f0 0%, #f0e6da 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">🔬</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Microneedling</span>
+                    </div>
+                    <span class="service-card__category">Skin Rejuvenation</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Microneedling</h3>
+                    <p class="service-card__desc">Stimulate collagen production for smoother, firmer, and visibly younger-looking skin.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $300</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 45-60 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #f5f0f0 0%, #ede4e4 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">🧪</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Chemical Peels</span>
+                    </div>
+                    <span class="service-card__category">Skin Rejuvenation</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Chemical Peels</h3>
+                    <p class="service-card__desc">Reveal fresh, radiant skin with medical-grade exfoliation treatments customized to your skin type.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $175</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30-45 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #f0f5f5 0%, #e0eaea 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">⚡</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">CO2 Laser</span>
+                    </div>
+                    <span class="service-card__category">Laser</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">CO2 Laser</h3>
+                    <p class="service-card__desc">Advanced fractional CO2 laser for deep skin resurfacing, texture refinement, and total renewal.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $800</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 60-90 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #faf5f0 0%, #f4e8d8 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">🩸</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">PRP Facial</span>
+                    </div>
+                    <span class="service-card__category">Skin Rejuvenation</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">PRP Facial</h3>
+                    <p class="service-card__desc">Harness your body's natural healing with platelet-rich plasma for luminous, rejuvenated skin.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $500</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 60-90 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #f5f0f8 0%, #e8e0f0 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">💫</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Secret RF</span>
+                    </div>
+                    <span class="service-card__category">Skin Tightening</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Secret RF Microneedling</h3>
+                    <p class="service-card__desc">Combine microneedling with radiofrequency energy for superior skin tightening and contouring.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $750</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 45-60 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+
+            <a href="#" class="service-card animate-on-scroll hover-shine">
+                <div class="service-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #f5f5f0 0%, #ede8d8 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                        <span style="font-size:2.5rem;">💇</span>
+                        <span style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--color-gold);">Hair Restoration</span>
+                    </div>
+                    <span class="service-card__category">Restoration</span>
+                </div>
+                <div class="service-card__content">
+                    <h3 class="service-card__title">Hair Restoration</h3>
+                    <p class="service-card__desc">Advanced treatments to support hair health, regrowth, and renewed confidence.</p>
+                    <div class="service-card__meta">
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Starting at $400</span>
+                        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 60 min</span>
+                    </div>
+                </div>
+                <span class="service-card__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+        </div>
+        <div class="text-center" style="margin-top: var(--space-3xl);">
+            <a href="#" class="btn btn--secondary">View All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     WHY CHOOSE US SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section why-section" id="why">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">The Livia Difference</span>
+            <h2 class="section-title">Why Clients<br>Choose Livia</h2>
+            <hr class="section-divider">
+        </div>
+        <div class="why-grid stagger-children">
+            <div class="why-card animate-on-scroll">
+                <div class="why-card__icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3 class="why-card__title">Medical Expertise</h3>
+                <p class="why-card__text">All treatments performed by board-certified medical professionals with years of specialized aesthetic training.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <div class="why-card__icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <h3 class="why-card__title">Personalized Plans</h3>
+                <p class="why-card__text">Every treatment plan is uniquely tailored to your goals, skin type, and desired outcomes — never one-size-fits-all.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <div class="why-card__icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3 class="why-card__title">FDA Approved Only</h3>
+                <p class="why-card__text">We use only FDA-approved products and state-of-the-art equipment — your safety and results are non-negotiable.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <div class="why-card__icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                </div>
+                <h3 class="why-card__title">Premium Experience</h3>
+                <p class="why-card__text">From your first consultation to post-treatment care, every touchpoint is designed for comfort, luxury, and confidence.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     ABOUT SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section section--cream" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about__image animate-on-scroll from-left">
+                <div class="about__image-frame">
+                    <div class="about__photo-placeholder">
+                        <span style="font-family: var(--font-heading); font-size: 5rem; color: var(--color-gold); opacity: 0.6;">L</span>
+                    </div>
+                </div>
+                <div class="about__image-accent"></div>
+                <div class="about__experience-badge">
+                    <span class="about__experience-number">5.0</span>
+                    <span class="about__experience-stars" style="display:flex;justify-content:center;gap:2px;color:var(--color-gold);margin:4px 0;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </span>
+                    <span class="about__experience-text">67 Reviews</span>
+                </div>
+            </div>
+            <div class="about__content animate-on-scroll from-right">
+                <span class="section-label">About Livia</span>
+                <h2 class="section-title" style="text-align: left;">Where Science<br>Meets Artistry</h2>
+                <hr class="section-divider" style="margin-left: 0;">
+                <p>At Livia, we believe aesthetics should enhance your natural beauty while helping you feel confident in your own skin. Every treatment is an art form, guided by medical precision.</p>
+                <p>Located in Tampa, our boutique med spa blends advanced medical expertise with genuine, personalized care to deliver results that look refreshed, balanced, and authentically you.</p>
+                <div class="about__features">
+                    <div class="about__feature">
+                        <div class="about__feature-icon">✓</div>
+                        <div><strong>Board Certified</strong><span>Licensed medical professionals</span></div>
+                    </div>
+                    <div class="about__feature">
+                        <div class="about__feature-icon">✓</div>
+                        <div><strong>Personalized Care</strong><span>Treatment plans tailored to you</span></div>
+                    </div>
+                    <div class="about__feature">
+                        <div class="about__feature-icon">✓</div>
+                        <div><strong>Medical Grade</strong><span>FDA-approved treatments only</span></div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn--dark" style="margin-top: var(--space-xl);">Learn Our Story <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     BEFORE & AFTER RESULTS
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="results">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" style="color:var(--color-gold-light);">Results Gallery</span>
+            <h2 class="section-title">Before & After</h2>
+            <hr class="section-divider">
+            <p class="section-subtitle" style="color:var(--color-gray-400);">See the transformative results our clients have achieved with our expert treatments.</p>
+        </div>
+        <div class="results-gallery stagger-children">
+            <div class="result-card animate-on-scroll">
+                <div class="result-card__images">
+                    <div class="result-card__before">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#3a2e2e,#2a2020);">
+                            <span class="result-card__placeholder-text">Before</span>
+                        </div>
+                        <span class="result-card__label">Before</span>
+                    </div>
+                    <div class="result-card__after">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#4a3e2e,#3a3020);">
+                            <span class="result-card__placeholder-text">After</span>
+                        </div>
+                        <span class="result-card__label result-card__label--after">After</span>
+                    </div>
+                </div>
+                <div class="result-card__info">
+                    <h3 class="result-card__title">Botox — Forehead Lines</h3>
+                    <p class="result-card__detail">Treatment: 20 units Botox · Results shown at 2 weeks</p>
+                </div>
+            </div>
+            <div class="result-card animate-on-scroll">
+                <div class="result-card__images">
+                    <div class="result-card__before">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#2e2e3a,#202028);">
+                            <span class="result-card__placeholder-text">Before</span>
+                        </div>
+                        <span class="result-card__label">Before</span>
+                    </div>
+                    <div class="result-card__after">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#3a3e4a,#2a3038);">
+                            <span class="result-card__placeholder-text">After</span>
+                        </div>
+                        <span class="result-card__label result-card__label--after">After</span>
+                    </div>
+                </div>
+                <div class="result-card__info">
+                    <h3 class="result-card__title">Dermal Fillers — Cheeks</h3>
+                    <p class="result-card__detail">Treatment: 2 syringes Juvederm · Results shown at 1 week</p>
+                </div>
+            </div>
+            <div class="result-card animate-on-scroll">
+                <div class="result-card__images">
+                    <div class="result-card__before">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#2e3a2e,#203020);">
+                            <span class="result-card__placeholder-text">Before</span>
+                        </div>
+                        <span class="result-card__label">Before</span>
+                    </div>
+                    <div class="result-card__after">
+                        <div class="result-card__placeholder" style="background:linear-gradient(135deg,#3e4a3a,#283828);">
+                            <span class="result-card__placeholder-text">After</span>
+                        </div>
+                        <span class="result-card__label result-card__label--after">After</span>
+                    </div>
+                </div>
+                <div class="result-card__info">
+                    <h3 class="result-card__title">CO2 Laser — Skin Texture</h3>
+                    <p class="result-card__detail">Treatment: Fractional CO2 · Results shown at 6 weeks</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: var(--space-3xl);">
+            <a href="#" class="btn btn--glass">View Full Gallery <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     BRANDS WE TRUST
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="brands-bar">
+    <div class="container">
+        <p class="brands-bar__label">Trusted Products We Use</p>
+        <div class="brands-bar__logos">
+            <div class="brands-bar__logo">Allergan</div>
+            <div class="brands-bar__logo">Juvederm</div>
+            <div class="brands-bar__logo">Galderma</div>
+            <div class="brands-bar__logo">SkinCeuticals</div>
+            <div class="brands-bar__logo">ZO Skin Health</div>
+            <div class="brands-bar__logo">Restylane</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TESTIMONIALS SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Client Testimonials</span>
+            <h2 class="section-title">Real People,<br>Real Results</h2>
+            <hr class="section-divider">
+        </div>
+        <div class="testimonials-grid stagger-children">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-card__stars" style="color:var(--color-gold);">★★★★★</div>
+                <p class="testimonial-card__quote">"Livia is by far the best med spa in Tampa. The results exceeded my expectations and the staff made me feel so comfortable throughout the entire process."</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar-placeholder">S</div>
+                    <div>
+                        <div class="testimonial-card__name">Sarah M.</div>
+                        <div class="testimonial-card__role">Botox & Fillers Client</div>
+                    </div>
+                </div>
+                <span class="testimonial-card__icon">"</span>
+            </div>
+            <div class="testimonial-card testimonial-card--featured animate-on-scroll">
+                <div class="testimonial-card__stars" style="color:var(--color-gold);">★★★★★</div>
+                <p class="testimonial-card__quote">"I've been to many med spas but Livia is truly different. Their attention to detail and personalized approach made all the difference. My skin has never looked better!"</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar-placeholder">J</div>
+                    <div>
+                        <div class="testimonial-card__name">Jessica R.</div>
+                        <div class="testimonial-card__role">Facial Rejuvenation</div>
+                    </div>
+                </div>
+                <span class="testimonial-card__icon">"</span>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-card__stars" style="color:var(--color-gold);">★★★★★</div>
+                <p class="testimonial-card__quote">"The team at Livia is incredibly knowledgeable and professional. They took the time to understand exactly what I wanted and delivered natural-looking results."</p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar-placeholder">M</div>
+                    <div>
+                        <div class="testimonial-card__name">Michelle K.</div>
+                        <div class="testimonial-card__role">Laser Treatment Client</div>
+                    </div>
+                </div>
+                <span class="testimonial-card__icon">"</span>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: var(--space-3xl);">
+            <div class="google-reviews-badge animate-on-scroll">
+                <div class="google-reviews-badge__stars" style="display:flex;gap:2px;color:var(--color-gold);justify-content:center;">★★★★★</div>
+                <span class="google-reviews-badge__text">5.0 out of 5 · Based on 67 Google Reviews</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     HOW IT WORKS SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section section--cream" id="process">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Your Journey</span>
+            <h2 class="section-title">How It Works</h2>
+            <hr class="section-divider">
+            <p class="section-subtitle">From your first consultation to stunning results — here's what to expect when you visit Livia.</p>
+        </div>
+        <div class="process-steps stagger-children">
+            <div class="process-step animate-on-scroll">
+                <div class="process-step__number">01</div>
+                <div class="process-step__connector"></div>
+                <div class="process-step__content">
+                    <div class="process-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <h3 class="process-step__title">Book Your Consultation</h3>
+                    <p class="process-step__text">Schedule a complimentary consultation online or by phone. We'll find a time that works perfectly for you.</p>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-step__number">02</div>
+                <div class="process-step__connector"></div>
+                <div class="process-step__content">
+                    <div class="process-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h3 class="process-step__title">Personalized Assessment</h3>
+                    <p class="process-step__text">Our medical team analyzes your skin, discusses your goals, and creates a customized treatment plan unique to you.</p>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-step__number">03</div>
+                <div class="process-step__connector"></div>
+                <div class="process-step__content">
+                    <div class="process-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h3 class="process-step__title">Expert Treatment</h3>
+                    <p class="process-step__text">Relax in our luxury studio while our board-certified professionals perform your treatment with precision and care.</p>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-step__number">04</div>
+                <div class="process-step__connector process-step__connector--hidden"></div>
+                <div class="process-step__content">
+                    <div class="process-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="process-step__title">Ongoing Support</h3>
+                    <p class="process-step__text">We follow up to ensure optimal results and adjust your plan as needed. Your confidence journey is our priority.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MEMBERSHIP TIERS
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="membership">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Exclusive Memberships</span>
+            <h2 class="section-title">Save More with<br>Livia Memberships</h2>
+            <hr class="section-divider">
+            <p class="section-subtitle">Unlock exclusive pricing, priority booking, and member-only perks with our monthly membership plans.</p>
+        </div>
+        <div class="membership-grid stagger-children">
+            <div class="membership-card animate-on-scroll">
+                <div class="membership-card__header">
+                    <span class="membership-card__tier">Essentials</span>
+                    <div class="membership-card__price">
+                        <span class="membership-card__currency">$</span>
+                        <span class="membership-card__amount">99</span>
+                        <span class="membership-card__period">/mo</span>
+                    </div>
+                </div>
+                <ul class="membership-card__features">
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Monthly facial treatment</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 10% off all injectables</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 15% off skincare products</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Birthday bonus treatment</li>
+                </ul>
+                <a href="#book" class="btn btn--secondary membership-card__cta">Get Started</a>
+            </div>
+            <div class="membership-card membership-card--popular animate-on-scroll">
+                <div class="membership-card__popular-badge">Most Popular</div>
+                <div class="membership-card__header">
+                    <span class="membership-card__tier">Premium</span>
+                    <div class="membership-card__price">
+                        <span class="membership-card__currency">$</span>
+                        <span class="membership-card__amount">199</span>
+                        <span class="membership-card__period">/mo</span>
+                    </div>
+                </div>
+                <ul class="membership-card__features">
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Essentials</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 20% off all injectables</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 1 free laser treatment/quarter</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Priority scheduling</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Exclusive member events</li>
+                </ul>
+                <a href="#book" class="btn btn--primary membership-card__cta">Get Started</a>
+            </div>
+            <div class="membership-card animate-on-scroll">
+                <div class="membership-card__header">
+                    <span class="membership-card__tier">VIP</span>
+                    <div class="membership-card__price">
+                        <span class="membership-card__currency">$</span>
+                        <span class="membership-card__amount">349</span>
+                        <span class="membership-card__period">/mo</span>
+                    </div>
+                </div>
+                <ul class="membership-card__features">
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Premium</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 30% off all services</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Complimentary PRP facial/quarter</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Personal treatment concierge</li>
+                    <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Free guest pass each month</li>
+                </ul>
+                <a href="#book" class="btn btn--secondary membership-card__cta">Get Started</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     BLOG PREVIEW
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section section--cream" id="blog">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Beauty & Wellness Blog</span>
+            <h2 class="section-title">Expert Insights</h2>
+            <hr class="section-divider">
+            <p class="section-subtitle">Stay informed with the latest in aesthetic treatments, skincare tips, and wellness advice from our medical team.</p>
+        </div>
+        <div class="blog-preview-grid stagger-children">
+            <article class="blog-card blog-card--featured animate-on-scroll">
+                <div class="blog-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg,#2a2640,#1a1830);display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:3rem;opacity:0.3;">📝</span>
+                    </div>
+                    <span class="blog-card__category">Skincare</span>
+                </div>
+                <div class="blog-card__content">
+                    <span class="blog-card__date">April 8, 2026</span>
+                    <h3 class="blog-card__title">The Complete Guide to Medical-Grade Skincare: What Makes It Different</h3>
+                    <p class="blog-card__excerpt">Discover why dermatologist-recommended products outperform over-the-counter alternatives and how to build an effective routine...</p>
+                    <a href="#" class="blog-card__link">Read Article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
+            </article>
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5f0ea,#ebe4da);display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:2rem;opacity:0.4;">💉</span>
+                    </div>
+                    <span class="blog-card__category">Injectables</span>
+                </div>
+                <div class="blog-card__content">
+                    <span class="blog-card__date">March 29, 2026</span>
+                    <h3 class="blog-card__title">Botox vs. Fillers: Understanding the Difference</h3>
+                    <p class="blog-card__excerpt">A comprehensive breakdown of when to choose neurotoxins vs. dermal fillers for optimal results...</p>
+                    <a href="#" class="blog-card__link">Read Article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
+            </article>
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-card__image">
+                    <div style="width:100%;height:100%;background:linear-gradient(135deg,#eaf0f0,#dae8e8);display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:2rem;opacity:0.4;">⚡</span>
+                    </div>
+                    <span class="blog-card__category">Laser</span>
+                </div>
+                <div class="blog-card__content">
+                    <span class="blog-card__date">March 15, 2026</span>
+                    <h3 class="blog-card__title">What to Expect from Your First Laser Treatment</h3>
+                    <p class="blog-card__excerpt">Everything you need to know about preparing for, undergoing, and recovering from laser therapy...</p>
+                    <a href="#" class="blog-card__link">Read Article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     INSTAGRAM GALLERY
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="instagram-section">
+    <div class="container">
+        <div class="instagram-section__header animate-on-scroll">
+            <div>
+                <span class="section-label">Follow Us</span>
+                <h2 class="section-title" style="font-size:var(--text-3xl);">@liviamedspa</h2>
+            </div>
+            <a href="#" class="btn btn--secondary btn--sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Follow on Instagram
+            </a>
+        </div>
+    </div>
+    <div class="instagram-grid">
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#faf8f5,#f0e6da);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">💉</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 128</div>
+        </a>
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#f0eef4,#e0d8ea);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">✨</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 95</div>
+        </a>
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#eaf0f0,#d8e8e8);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">🔬</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 87</div>
+        </a>
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#f5f0f0,#ede4e4);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">🧪</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 112</div>
+        </a>
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#f5f5f0,#ede8d8);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">💫</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 74</div>
+        </a>
+        <a href="#" class="instagram-grid__item" aria-label="Instagram post">
+            <div style="background:linear-gradient(135deg,#faf5f0,#f4e8d8);width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="font-size:1.8rem;opacity:0.5;">💇</span></div>
+            <div class="instagram-grid__overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 63</div>
+        </a>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     FAQ SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="faq">
+    <div class="container container--narrow" style="max-width:800px;">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Common Questions</span>
+            <h2 class="section-title">Frequently Asked<br>Questions</h2>
+            <hr class="section-divider">
+        </div>
+        <div class="accordion animate-on-scroll" id="faqAccordion">
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>What should I expect during my first visit?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Your first visit begins with a complimentary consultation where we discuss your aesthetic goals, review your medical history, and perform a thorough skin analysis. We'll then create a personalized treatment plan and answer all of your questions before proceeding with any treatment.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>How long do Botox results last?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Botox results typically last 3-4 months. With regular maintenance treatments, many patients find their results lasting longer over time as the muscles become trained to relax. We recommend scheduling follow-up appointments to maintain your refreshed look.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>Are dermal fillers safe?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Yes, dermal fillers are FDA-approved and have an excellent safety profile when administered by qualified medical professionals. At Livia, all injectable treatments are performed by board-certified practitioners with extensive training in facial anatomy and aesthetics.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>How much downtime should I expect?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Downtime varies by treatment. Botox and fillers typically require no downtime — most patients return to normal activities immediately. Laser treatments and chemical peels may require 3-7 days of healing depending on intensity. We'll discuss specific recovery expectations during your consultation.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>Do you offer payment plans or financing?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Yes! We want our treatments to be accessible. We accept all major credit cards and offer financing options through CareCredit and Cherry, allowing you to break your treatment cost into manageable monthly payments with competitive interest rates.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion__item">
+                <button class="accordion__trigger">
+                    <span>What makes Livia different from other med spas?</span>
+                    <span class="accordion__icon">+</span>
+                </button>
+                <div class="accordion__panel">
+                    <div class="accordion__content">
+                        Livia is a boutique, physician-led med spa focused on natural-looking results. We never take a one-size-fits-all approach — every treatment is customized to your unique facial structure, skin type, and aesthetic goals. Our intimate setting means more personalized attention than larger clinics.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     CTA SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section cta-section" id="book">
+    <div class="cta-section__bg"></div>
+    <!-- Decorative elements -->
+    <div class="cta-section__decor-ring cta-section__decor-ring--1"></div>
+    <div class="cta-section__decor-ring cta-section__decor-ring--2"></div>
+    <div class="container">
+        <div class="cta-section__inner animate-on-scroll">
+            <span class="section-label" style="color: var(--color-gold-light);">Ready for Your Transformation?</span>
+            <h2 class="cta-section__title">Book Your<br>Consultation Today</h2>
+            <p class="cta-section__text">Take the first step towards looking and feeling your absolute best. Our expert team is ready to create a personalized treatment plan designed just for you.</p>
+            <div class="cta-section__actions">
+                <a href="#" class="btn btn--primary btn--lg">
+                    Book a Consultation
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="tel:8132302219" class="btn btn--glass btn--lg">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (813) 230-2219
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     LOCATION / MAP SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="section location-section" id="location">
+    <div class="container">
+        <div class="location-grid">
+            <div class="location__info animate-on-scroll">
+                <span class="section-label">Visit Us</span>
+                <h2 class="section-title" style="text-align:left;">Our Tampa<br>Studio</h2>
+                <hr class="section-divider" style="margin-left:0;">
+                <p>Located in the heart of Carrollwood, our boutique studio offers a serene, private environment where you can relax and focus on your aesthetic journey.</p>
+                <div class="location__details">
+                    <div class="location__detail">
+                        <div class="location__detail-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <strong>Address</strong>
+                            <span>10043 N Dale Mabry Hwy, Tampa, FL 33618</span>
+                        </div>
+                    </div>
+                    <div class="location__detail">
+                        <div class="location__detail-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div>
+                            <strong>Hours</strong>
+                            <span>Mon–Wed: 9am–7pm · Thu–Sat: 9am–4pm</span>
+                        </div>
+                    </div>
+                    <div class="location__detail">
+                        <div class="location__detail-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Phone</strong>
+                            <span><a href="tel:8132302219">(813) 230-2219</a></span>
+                        </div>
+                    </div>
+                    <div class="location__detail">
+                        <div class="location__detail-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div>
+                            <strong>Free Parking</strong>
+                            <span>Complimentary parking available on-site</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn--secondary" style="margin-top:var(--space-lg);">
+                    Get Directions
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </a>
+            </div>
+            <div class="location__map animate-on-scroll">
+                <div class="location__map-frame">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3520.8!2d-82.5037!3d28.0361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzEwLjAiTiA4MsKwMzAnMTMuMyJX!5e0!3m2!1sen!2sus!4v1"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Livia Med Spa Location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Floating New Client Promo -->
+<div class="floating-promo" id="floatingPromo">
+    <button class="floating-promo__close" id="floatingPromoClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="floating-promo__content">
+        <span class="floating-promo__badge">New Client</span>
+        <strong class="floating-promo__title">15% Off Your First Treatment</strong>
+        <p class="floating-promo__text">Plus a free skin analysis</p>
+        <a href="#book" class="btn btn--primary btn--sm floating-promo__cta">Claim Offer</a>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer" id="siteFooter">
+    <div class="footer__top">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <a href="#" class="site-logo site-logo--text"><span class="site-logo__name" style="-webkit-text-fill-color:var(--color-gold);">LIVIA</span><span class="site-logo__tagline" style="color:var(--color-gray-400);">MED SPA</span></a>
+                    </div>
+                    <p class="footer__tagline">Tampa's premier aesthetics studio. Expert treatments tailored to enhance your natural beauty with medical precision.</p>
+                    <div class="footer__reviews">
+                        <div class="footer__reviews-stars" style="color:var(--color-gold);">★★★★★</div>
+                        <span class="footer__reviews-text">5.0 · 67 Google Reviews</span>
+                    </div>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="TikTok">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Google">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </a>
+                    </div>
+                    <div class="footer__newsletter">
+                        <p class="footer__newsletter-text">Get exclusive offers & beauty tips delivered to your inbox.</p>
+                        <form class="footer__newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Subscribed ✓';">
+                            <input type="email" class="footer__newsletter-input" placeholder="Enter your email" required>
+                            <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Before & After</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__heading">Popular Services</h4>
+                    <ul class="footer__links">
+                        <li><a href="#">Botox</a></li>
+                        <li><a href="#">Dermal Fillers</a></li>
+                        <li><a href="#">Microneedling</a></li>
+                        <li><a href="#">Chemical Peels</a></li>
+                        <li><a href="#">CO2 Laser</a></li>
+                        <li><a href="#">PRP Facial</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__heading">Visit Our Studio</h4>
+                    <ul class="footer__contact">
+                        <li class="footer__contact-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-gold);flex-shrink:0;margin-top:2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div><span>10043 N Dale Mabry Hwy,<br>Tampa, FL 33618</span></div>
+                        </li>
+                        <li class="footer__contact-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-gold);flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <a href="tel:8132302219">(813) 230-2219</a>
+                        </li>
+                        <li class="footer__contact-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-gold);flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:support@liviamedspa.com">support@liviamedspa.com</a>
+                        </li>
+                    </ul>
+                    <h4 class="footer__heading" style="margin-top: var(--space-lg);">Studio Hours</h4>
+                    <ul class="footer__hours">
+                        <li><span>Mon – Wed</span><span>9am – 7pm</span></li>
+                        <li><span>Thu – Sat</span><span>9am – 4pm</span></li>
+                        <li><span>Sunday</span><span>Closed</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="footer__bottom-inner">
+                <p class="footer__copyright">&copy; 2026 Livia Med Spa. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="footer__legal-dot">·</span>
+                    <a href="#">Terms of Service</a>
+                    <span class="footer__legal-dot">·</span>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- Mobile Sticky CTA (visible on mobile only) -->
+<div class="mobile-sticky-cta" id="mobileStickyCtA">
+    <a href="#book" class="mobile-sticky-cta__btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Now
+    </a>
+    <a href="tel:8132302219" class="mobile-sticky-cta__phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call
+    </a>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-consent__content">
+        <p>We use cookies to enhance your browsing experience and provide personalized content. By continuing to use our site, you agree to our <a href="#">Privacy Policy</a>.</p>
+        <div class="cookie-consent__actions">
+            <button class="btn btn--primary btn--sm" id="cookieAccept">Accept All</button>
+            <button class="btn btn--glass btn--sm" id="cookieDecline" style="border:1px solid rgba(255,255,255,0.15);">Decline</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/mobile-menu.js"></script>
+<script src="assets/js/slider.js"></script>
+<script src="assets/js/enhancements.js"></script>
+</body>
+</html>

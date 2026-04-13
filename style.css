@@ -1,0 +1,378 @@
+/*
+Theme Name:       Livia Med Spa
+Theme URI:        https://liviamedspa.com
+Author:           Livia Med Spa
+Author URI:       https://liviamedspa.com
+Description:      A premium, hand-coded WordPress theme for Livia Med Spa — Tampa's elite aesthetics studio. Custom-built with no page builders for maximum performance and design control.
+Version:          1.0.0
+Requires at least: 6.0
+Tested up to:     6.7
+Requires PHP:     8.0
+License:          GNU General Public License v2 or later
+License URI:      http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:      livia-medspa
+Tags:             medspa, medical-spa, beauty, aesthetics, custom-theme, one-page, portfolio
+*/
+
+/* ==========================================================================
+   LIVIA MED SPA — Global Styles
+   ========================================================================== */
+
+/* ── Imports ─────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-charcoal);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+
+/* Remove body margin added by WP admin bar */
+body.admin-bar {
+  margin-top: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  color: var(--color-charcoal);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong, b {
+  font-weight: var(--weight-semibold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* ── WordPress Core Alignment Classes ────────────────────────────────────── */
+
+.alignwide {
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+}
+
+.alignfull {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.aligncenter {
+  display: block;
+  margin-inline: auto;
+}
+
+.alignleft {
+  float: left;
+  margin-right: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.alignright {
+  float: right;
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+/* ── WordPress Caption ───────────────────────────────────────────────────── */
+
+.wp-caption {
+  max-width: 100%;
+}
+
+.wp-caption img {
+  border-radius: var(--radius-md);
+}
+
+.wp-caption-text {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--space-xs);
+  text-align: center;
+}
+
+/* ── WordPress Gallery ───────────────────────────────────────────────────── */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-block: var(--space-xl);
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Blog / Content Typography ───────────────────────────────────────────── */
+
+.entry-content h2 {
+  font-size: var(--text-3xl);
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-lg);
+}
+
+.entry-content h3 {
+  font-size: var(--text-2xl);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.entry-content h4 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.entry-content p {
+  margin-bottom: var(--space-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.entry-content ul,
+.entry-content ol {
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-xl);
+}
+
+.entry-content ul {
+  list-style: disc;
+}
+
+.entry-content ol {
+  list-style: decimal;
+}
+
+.entry-content li {
+  margin-bottom: var(--space-xs);
+  line-height: var(--leading-normal);
+}
+
+.entry-content blockquote {
+  position: relative;
+  margin: var(--space-2xl) 0;
+  padding: var(--space-xl) var(--space-2xl);
+  background: var(--color-cream);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-charcoal);
+}
+
+.entry-content a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.entry-content a:hover {
+  color: var(--color-gold-dark);
+}
+
+.entry-content img {
+  border-radius: var(--radius-md);
+  margin-block: var(--space-xl);
+}
+
+.entry-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--space-xl);
+}
+
+.entry-content th,
+.entry-content td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-gray-200);
+  text-align: left;
+}
+
+.entry-content th {
+  font-weight: var(--weight-semibold);
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+}
+
+/* ── Screen Reader Text (Accessibility) ──────────────────────────────────── */
+
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+  background-color: var(--color-white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  clip: auto !important;
+  clip-path: none;
+  color: var(--color-charcoal);
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: var(--space-md) var(--space-lg);
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+
+/* ── Pagination ──────────────────────────────────────────────────────────── */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-3xl);
+}
+
+.pagination .page-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.pagination .page-numbers:hover,
+.pagination .page-numbers.current {
+  background: var(--color-gold);
+  color: var(--color-white);
+}
+
+.pagination .page-numbers.dots {
+  background: transparent;
+  cursor: default;
+}
+
+.pagination .page-numbers.prev,
+.pagination .page-numbers.next {
+  font-size: 1rem;
+}
+
+/* ── WordPress Admin Bar Offset ──────────────────────────────────────────── */
+
+body.admin-bar .site-header {
+  top: 32px;
+}
+
+@media (max-width: 782px) {
+  body.admin-bar .site-header {
+    top: 46px;
+  }
+}
