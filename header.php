@@ -21,6 +21,20 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<!-- Announcement Bar -->
+<div class="announcement-bar" id="announcementBar">
+    <div class="announcement-bar__inner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>New clients receive <strong>15% off</strong> their first treatment + complimentary skin analysis → <a href="#book">Book Now</a></span>
+    </div>
+    <button class="announcement-bar__close" id="announcementBarClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+</div>
+
+<!-- Cursor Glow (desktop only) -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 

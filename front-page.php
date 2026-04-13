@@ -31,6 +31,12 @@ $review_rating   = get_theme_mod('livia_review_rating', '5.0');
         <div class="hero__bg-overlay"></div>
     </div>
     
+    <!-- Animated mesh + orbs -->
+    <div class="hero__mesh"></div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__orb hero__orb--3"></div>
+    
     <div class="hero__content container">
         <div class="hero__badge animate-on-scroll">
             <span class="hero__badge-dot"></span>
@@ -84,6 +90,30 @@ $review_rating   = get_theme_mod('livia_review_rating', '5.0');
         </div>
     </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TRUST MARQUEE BAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="trust-marquee">
+    <div class="trust-marquee__track">
+        <div class="trust-marquee__content">
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Board Certified Providers</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> 200+ Happy Clients</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> 5.0 Google Rating</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Medical Grade Treatments</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Personalized Care Plans</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Tampa's Premier Med Spa</span>
+        </div>
+        <div class="trust-marquee__content" aria-hidden="true">
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Board Certified Providers</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> 200+ Happy Clients</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> 5.0 Google Rating</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Medical Grade Treatments</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Personalized Care Plans</span>
+            <span class="trust-marquee__item"><span class="trust-marquee__dot"></span> Tampa's Premier Med Spa</span>
+        </div>
+    </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
      SERVICES SECTION
