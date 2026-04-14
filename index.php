@@ -11,8 +11,19 @@
     <meta name="description" content="Tampa's elite aesthetics studio — expert Botox, fillers, and laser treatments tailored to enhance your natural beauty.">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class('has-announcement'); ?>>
 <?php wp_body_open(); ?>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-bar__inner">
+        <span class="announcement-bar__text"><strong>✦ New Client Special</strong> — 20% off your first treatment</span>
+        <a href="#book" class="announcement-bar__cta">Book Now</a>
+    </div>
+    <button class="announcement-bar__close" id="announcement-close" aria-label="Dismiss">✕</button>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      HEADER
@@ -175,8 +186,9 @@
         <!-- Actions -->
         <div class="site-header__actions">
             <a href="tel:8132302219" class="site-header__phone" aria-label="Call us">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </a>
+            <span class="header__divider"></span>
             <a href="#book" class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
         </div>
 
@@ -248,9 +260,23 @@
 <script>
 // Header scroll effect
 const header = document.getElementById('site-header');
+let scrollThreshold = 50;
 window.addEventListener('scroll', () => {
-    header.classList.toggle('is-scrolled', window.scrollY > 50);
+    header.classList.toggle('is-scrolled', window.scrollY > scrollThreshold);
 });
+
+// Announcement bar dismiss
+const announcementBar = document.getElementById('announcement-bar');
+const announcementClose = document.getElementById('announcement-close');
+if (announcementClose) {
+    announcementClose.addEventListener('click', () => {
+        announcementBar.style.transform = 'translateY(-100%)';
+        announcementBar.style.opacity = '0';
+        announcementBar.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
+        document.body.classList.remove('has-announcement');
+        setTimeout(() => { announcementBar.style.display = 'none'; }, 400);
+    });
+}
 
 // Mobile menu
 const toggle = document.getElementById('mobile-toggle');
