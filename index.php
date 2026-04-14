@@ -258,11 +258,19 @@
      SCRIPTS
      ═══════════════════════════════════════════════════════════════ -->
 <script>
-// Header scroll effect
+// Header scroll effect + auto-hide announcement gap on scroll
 const header = document.getElementById('site-header');
-let scrollThreshold = 50;
+const annoBar = document.getElementById('announcement-bar');
+const annoBarHeight = annoBar ? annoBar.offsetHeight : 0;
+
 window.addEventListener('scroll', () => {
-    header.classList.toggle('is-scrolled', window.scrollY > scrollThreshold);
+    const scrolled = window.scrollY > 50;
+    header.classList.toggle('is-scrolled', scrolled);
+    
+    // Remove announcement gap once user scrolls past the bar
+    if (annoBar && window.scrollY > annoBarHeight) {
+        document.body.classList.remove('has-announcement');
+    }
 });
 
 // Announcement bar dismiss
