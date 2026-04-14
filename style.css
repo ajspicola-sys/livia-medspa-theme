@@ -1587,6 +1587,223 @@ h1, h2, h3, h4, h5, h6 {
 .page-content { padding: clamp(4rem, 3rem + 4vw, 7rem) 0; }
 
 /* ==========================================================================
+   PAGE HERO (inner pages)
+   ========================================================================== */
+.page-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
+  padding: clamp(6rem, 5rem + 4vw, 8rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.page-hero__title {
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  color: #faf8f5;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.page-hero__desc {
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.1rem);
+  color: rgba(250, 248, 245, 0.55);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+.contact-section {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+  align-items: start;
+}
+
+/* Form */
+.contact-form__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form__subtitle {
+  font-size: 0.88rem;
+  color: #7a7a90;
+  margin-bottom: 2rem;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: #1a1a2e;
+  background: #faf8f5;
+  border: 1.5px solid #e8e8ed;
+  border-radius: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #b0b0c0;
+}
+
+.form-input:focus {
+  border-color: #c9a96e;
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%237a7a90' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form__submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Contact Cards */
+.contact-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-card {
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.contact-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(201, 169, 110, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9a96e;
+  margin-bottom: 1rem;
+}
+
+.contact-card__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.4rem;
+}
+
+.contact-card__text {
+  font-size: 0.88rem;
+  color: #55556a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.contact-card__text:hover { color: #c9a96e; }
+
+.contact-card__hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-card__hour-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #55556a;
+}
+
+.contact-social {
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 14px;
+}
+
+.contact-social__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7a90;
+  margin-bottom: 1rem;
+}
+
+.contact-social__links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1023px) {
@@ -1601,12 +1818,14 @@ h1, h2, h3, h4, h5, h6 {
   .why-us__visual { min-height: 340px; }
   .testimonials__grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 575px) {
   .announcement-bar__text { font-size: 0.65rem; }
   .announcement-bar__cta { display: none; }
   .services__grid { grid-template-columns: 1fr; }
+  .contact-form__row { grid-template-columns: 1fr; }
   .hero__title { font-size: clamp(2.5rem, 2rem + 3vw, 4rem); }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; }
