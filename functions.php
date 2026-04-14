@@ -82,123 +82,30 @@ function livia_enqueue_assets() {
     // --- Google Fonts ---
     wp_enqueue_style(
         'livia-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
         [],
         null
     );
 
-    // --- CSS ---
+    // --- Main stylesheet (ALL CSS merged) ---
     wp_enqueue_style(
-        'livia-variables',
-        LIVIA_URI . '/assets/css/variables.css',
+        'livia-style',
+        get_stylesheet_uri(),
         ['livia-google-fonts'],
         LIVIA_VERSION
     );
 
-    wp_enqueue_style(
-        'livia-components',
-        LIVIA_URI . '/assets/css/components.css',
-        ['livia-variables'],
-        LIVIA_VERSION
-    );
+    // --- JavaScript ---
+    wp_enqueue_script('livia-main', LIVIA_URI . '/js/main.js', [], LIVIA_VERSION, true);
+    wp_enqueue_script('livia-animations', LIVIA_URI . '/js/animations.js', [], LIVIA_VERSION, true);
+    wp_enqueue_script('livia-mobile-menu', LIVIA_URI . '/js/mobile-menu.js', [], LIVIA_VERSION, true);
 
-    wp_enqueue_style(
-        'livia-animations',
-        LIVIA_URI . '/assets/css/animations.css',
-        ['livia-variables'],
-        LIVIA_VERSION
-    );
-
-    wp_enqueue_style(
-        'livia-layout',
-        LIVIA_URI . '/assets/css/layout.css',
-        ['livia-components'],
-        LIVIA_VERSION
-    );
-
-    wp_enqueue_style(
-        'livia-pages',
-        LIVIA_URI . '/assets/css/pages.css',
-        ['livia-layout'],
-        LIVIA_VERSION
-    );
-
-    wp_enqueue_style(
-        'livia-inner-pages',
-        LIVIA_URI . '/assets/css/inner-pages.css',
-        ['livia-pages'],
-        LIVIA_VERSION
-    );
-
-    wp_enqueue_style(
-        'livia-responsive',
-        LIVIA_URI . '/assets/css/responsive.css',
-        ['livia-inner-pages'],
-        LIVIA_VERSION
-    );
-
-    // Enhancement styles (all the premium visual polish)
-    wp_enqueue_style(
-        'livia-enhancements',
-        LIVIA_URI . '/assets/css/preview-enhancements.css',
-        ['livia-responsive'],
-        LIVIA_VERSION
-    );
-
-    // Main theme stylesheet (must load last)
-    wp_enqueue_style(
-        'livia-style',
-        get_stylesheet_uri(),
-        ['livia-enhancements'],
-        LIVIA_VERSION
-    );
-
-    // --- JS ---
-    wp_enqueue_script(
-        'livia-main',
-        LIVIA_URI . '/assets/js/main.js',
-        [],
-        LIVIA_VERSION,
-        true
-    );
-
-    wp_enqueue_script(
-        'livia-animations',
-        LIVIA_URI . '/assets/js/animations.js',
-        [],
-        LIVIA_VERSION,
-        true
-    );
-
-    wp_enqueue_script(
-        'livia-mobile-menu',
-        LIVIA_URI . '/assets/js/mobile-menu.js',
-        [],
-        LIVIA_VERSION,
-        true
-    );
-
-    // Only load slider JS where needed
     if (is_front_page() || is_singular('before_after') || is_post_type_archive('before_after')) {
-        wp_enqueue_script(
-            'livia-slider',
-            LIVIA_URI . '/assets/js/slider.js',
-            [],
-            LIVIA_VERSION,
-            true
-        );
+        wp_enqueue_script('livia-slider', LIVIA_URI . '/js/slider.js', [], LIVIA_VERSION, true);
     }
 
-    // Enhancement scripts (interactions, animations, etc.)
-    wp_enqueue_script(
-        'livia-enhancements',
-        LIVIA_URI . '/assets/js/enhancements.js',
-        ['livia-main'],
-        LIVIA_VERSION,
-        true
-    );
+    wp_enqueue_script('livia-enhancements', LIVIA_URI . '/js/enhancements.js', ['livia-main'], LIVIA_VERSION, true);
 
-    // Pass data to JS
     wp_localize_script('livia-main', 'liviaData', [
         'ajaxUrl'  => admin_url('admin-ajax.php'),
         'themeUrl' => LIVIA_URI,
@@ -326,7 +233,7 @@ function livia_get_logo() {
         $logo_url = wp_get_attachment_image_url($logo_id, 'full');
         return '<a href="' . esc_url(home_url('/')) . '" class="site-logo" aria-label="Home"><img src="' . esc_url($logo_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '"></a>';
     }
-    return '<a href="' . esc_url(home_url('/')) . '" class="site-logo site-logo--text" aria-label="Home"><span class="site-logo__name">' . esc_html(get_bloginfo('name')) . '</span></a>';
+    return '<a href="' . esc_url(home_url('/')) . '" class="site-logo site-logo--text" aria-label="Home"><span class="site-logo__name">' . esc_html(get_bloginfo('name')) . '</span><span class="site-logo__tagline">MED SPA</span></a>';
 }
 
 /**
