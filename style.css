@@ -161,6 +161,19 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(180deg);
 }
 
+/* Invisible bridge so mega menu doesn't vanish when moving mouse down */
+.nav__item--has-mega > .nav__link {
+  position: relative;
+}
+.nav__item--has-mega > .nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
 /* ── Header Actions ────────────────────────────────────────────── */
 .site-header__actions {
   display: flex;
