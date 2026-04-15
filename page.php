@@ -1,8 +1,26 @@
 <?php
 /**
  * Livia Med Spa — Generic Page Template
- * Performance-optimized
+ * Auto-routes to custom templates based on page slug
  */
+
+// Auto-route to custom templates by slug
+$slug = get_post_field('post_name', get_post());
+$custom_templates = [
+    'team'        => 'page-team.php',
+    'about'       => 'page-about.php',
+    'contact'     => 'page-contact.php',
+    'memberships' => 'page-memberships.php',
+    'parties'     => 'page-parties.php',
+    'values'      => 'page-values.php',
+    'before-after'=> 'page-before-after.php',
+];
+
+if (isset($custom_templates[$slug]) && file_exists(get_template_directory() . '/' . $custom_templates[$slug])) {
+    include(get_template_directory() . '/' . $custom_templates[$slug]);
+    return;
+}
+
 get_header(); ?>
 
 <main class="site-main" id="main-content">
