@@ -151,8 +151,6 @@
 
     // ── Cache DOM lookups once ────────────────────────────────────
     var header      = document.getElementById('site-header');
-    var annoBar     = document.getElementById('announcement-bar');
-    var annoClose   = document.getElementById('announcement-close');
     var toggle      = document.getElementById('mobile-toggle');
     var mobileMenu  = document.getElementById('mobile-menu');
     var mobileOver  = document.getElementById('mobile-overlay');
@@ -160,29 +158,18 @@
     var scrollBtn   = document.getElementById('scroll-top');
     var adminBarEl  = document.getElementById('wpadminbar');
     var adminBarH   = adminBarEl ? adminBarEl.offsetHeight : 0;
-    var annoDismissed = false;
-    var annoBarH    = annoBar ? annoBar.offsetHeight : 0;
     var lastScrollY = 0;
     var ticking     = false;
 
     // ── Set initial positions ────────────────────────────────────
     function setPositions() {
         adminBarH = adminBarEl ? adminBarEl.offsetHeight : 0;
-        annoBarH  = (annoBar && !annoDismissed) ? annoBar.offsetHeight : 0;
+        header.style.top = adminBarH + 'px';
 
-        // Announcement bar at very top (below WP admin bar if present)
-        if (annoBar && !annoDismissed) {
-            annoBar.style.top = adminBarH + 'px';
-        }
-
-        // Header below announcement bar
-        header.style.top = (adminBarH + annoBarH) + 'px';
-
-        // Main content below both
         var mainEl = document.querySelector('.site-main');
         if (mainEl) {
             var headerH = header ? header.offsetHeight : 0;
-            mainEl.style.paddingTop = (adminBarH + annoBarH + headerH) + 'px';
+            mainEl.style.paddingTop = (adminBarH + headerH) + 'px';
         }
     }
 
@@ -199,13 +186,6 @@
         var y = lastScrollY;
         header.classList.toggle('is-scrolled', y > 50);
 
-        // Slide announcement bar up on scroll
-        if (annoBar && !annoDismissed) {
-            var shift = Math.min(y, annoBarH);
-            annoBar.style.transform = 'translateY(-' + shift + 'px)';
-            header.style.top = (adminBarH + annoBarH - shift) + 'px';
-        }
-
         if (scrollBtn) {
             scrollBtn.classList.toggle('is-visible', y > 600);
         }
@@ -216,26 +196,6 @@
     setPositions();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', setPositions, { passive: true });
-
-    // ── Announcement dismiss ─────────────────────────────────────
-    if (annoClose) {
-        annoClose.addEventListener('click', function() {
-            annoDismissed = true;
-            annoBar.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
-            annoBar.style.transform = 'translateY(-100%)';
-            annoBar.style.opacity = '0';
-            header.style.transition = 'top 0.4s ease, background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease';
-            header.style.top = adminBarH + 'px';
-
-            var mainEl = document.querySelector('.site-main');
-            if (mainEl) {
-                var headerH = header ? header.offsetHeight : 0;
-                mainEl.style.paddingTop = (adminBarH + headerH) + 'px';
-            }
-
-            setTimeout(function() { annoBar.style.display = 'none'; }, 400);
-        });
-    }
 
     // ── Mobile menu ──────────────────────────────────────────────
     function openMenu() {

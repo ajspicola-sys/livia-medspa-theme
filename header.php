@@ -38,15 +38,6 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement-bar" id="announcement-bar">
-    <div class="announcement-bar__inner">
-        <span class="announcement-bar__text"><strong>✦ New Client Special</strong> — 20% off your first treatment</span>
-        <a href="#book" class="announcement-bar__cta">Book Now</a>
-    </div>
-    <button class="announcement-bar__close" id="announcement-close" aria-label="Dismiss announcement">✕</button>
-</div>
-
 <!-- HEADER – uses will-change for GPU compositing during scroll -->
 <header class="site-header" id="site-header" role="banner">
     <div class="site-header__inner">
