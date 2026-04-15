@@ -195,26 +195,55 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     // Modular index helper
     function mod(n, m) { return ((n % m) + m) % m; }
 
+    // Track previous positions to detect wrapping
+    let prevPositions = {};
+
+    function getPosition(i) {
+        const diff = mod(i - current, total);
+        if (diff === 0) return 0;       // active
+        if (diff === 1) return 1;       // next
+        if (diff === total - 1) return -1; // prev
+        if (diff === 2) return 2;       // far-next
+        if (diff === total - 2) return -2; // far-prev
+        return 99;                      // hidden
+    }
+
     function updateSlides() {
         slides.forEach((slide, i) => {
-            slide.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next');
-            slide.style.opacity = '';
+            const newPos = getPosition(i);
+            const oldPos = prevPositions[i] !== undefined ? prevPositions[i] : newPos;
 
-            const diff = mod(i - current, total);
+            // Detect wrapping: large jump means it's looping around
+            const isWrapping = Math.abs(newPos - oldPos) > 3;
 
-            if (diff === 0) {
-                slide.classList.add('is-active');
-            } else if (diff === 1) {
-                slide.classList.add('is-next');
-            } else if (diff === total - 1) {
-                slide.classList.add('is-prev');
-            } else if (diff === 2) {
-                slide.classList.add('is-far-next');
-            } else if (diff === total - 2) {
-                slide.classList.add('is-far-prev');
-            } else {
+            if (isWrapping) {
+                // Teleport: disable transition, hide, move to new spot
+                slide.style.transition = 'none';
                 slide.style.opacity = '0';
             }
+
+            slide.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next');
+
+            if (newPos === 0) slide.classList.add('is-active');
+            else if (newPos === 1) slide.classList.add('is-next');
+            else if (newPos === -1) slide.classList.add('is-prev');
+            else if (newPos === 2) slide.classList.add('is-far-next');
+            else if (newPos === -2) slide.classList.add('is-far-prev');
+            else slide.style.opacity = '0';
+
+            if (isWrapping) {
+                // Re-enable transition on next frame so it fades in
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        slide.style.transition = '';
+                        slide.style.opacity = '';
+                    });
+                });
+            } else {
+                slide.style.opacity = '';
+            }
+
+            prevPositions[i] = newPos;
         });
 
         // Update dots
