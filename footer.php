@@ -73,11 +73,13 @@
             <div class="footer__col">
                 <h4 class="footer__heading">Quick Links</h4>
                 <ul class="footer__links">
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Before & After</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
                 </ul>
             </div>
 
@@ -85,11 +87,12 @@
             <div class="footer__col">
                 <h4 class="footer__heading">Popular Treatments</h4>
                 <ul class="footer__links">
-                    <li><a href="#">Botox & Dysport</a></li>
-                    <li><a href="#">Dermal Fillers</a></li>
-                    <li><a href="#">Microneedling</a></li>
-                    <li><a href="#">Chemical Peels</a></li>
-                    <li><a href="#">Laser Treatments</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Botox & Dysport</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Dermal Fillers</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Microneedling</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Chemical Peels</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Laser Treatments</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">IV Therapy</a></li>
                 </ul>
             </div>
 
@@ -110,7 +113,7 @@
                         <span>Mon–Sat: 9am – 6pm</span>
                     </div>
                 </div>
-                <a href="#book" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>
             </div>
         </div>
     </div>
@@ -126,6 +129,11 @@
         </div>
     </div>
 </footer>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scroll-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+</button>
 
 <!-- SCRIPTS -->
 <script>
@@ -324,6 +332,31 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     // Init
     goTo(0);
     resetAutoplay();
+})();
+
+// ── Scroll to Top ─────────────────────────────────────────────────
+(function() {
+    const btn = document.getElementById('scroll-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('is-visible', window.scrollY > 600);
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+
+// ── Active nav link ───────────────────────────────────────────────
+(function() {
+    const path = window.location.pathname;
+    document.querySelectorAll('.nav__link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && path.includes(href.replace(/\/$/, '').split('/').pop()) && href !== '/') {
+            link.classList.add('is-active');
+        }
+    });
 })();
 </script>
 

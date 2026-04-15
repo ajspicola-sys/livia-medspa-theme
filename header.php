@@ -9,7 +9,11 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tampa's elite aesthetics studio — expert Botox, fillers, and laser treatments tailored to enhance your natural beauty.">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <?php wp_head(); ?>
+    <style>html{scroll-behavior:smooth;}</style>
 </head>
 <body <?php body_class('has-announcement'); ?>>
 <?php wp_body_open(); ?>
