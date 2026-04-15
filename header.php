@@ -146,10 +146,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav__item"><a href="#" class="nav__link">Before &amp; After</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Blog</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                <li class="nav__item"><a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="nav__link">Before &amp; After</a></li>
+                <li class="nav__item"><a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About</a></li>
+                <li class="nav__item"><a href="<?php echo esc_url(home_url('/blog/')); ?>" class="nav__link">Blog</a></li>
+                <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="nav__link">Contact</a></li>
             </ul>
         </nav>
 
@@ -185,11 +185,11 @@
         <nav class="mobile-menu__nav">
             <ul class="mobile-menu__links">
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Before & After</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
+                <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
+                <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About</a></li>
+                <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
+                <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
             </ul>
         </nav>
         <div class="mobile-menu__footer">
