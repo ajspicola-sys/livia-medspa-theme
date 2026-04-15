@@ -198,10 +198,10 @@
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>
                                     <a href="<?php echo esc_url(home_url('/values/')); ?>" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(160,142,196,0.12);color:#a08ec4;">💎</span>
+                                        <span class="mega-menu__item-icon" style="background:rgba(143,170,143,0.12);color:#8faa8f;">🎯</span>
                                         <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Our Values</span>
-                                            <span class="mega-menu__item-desc">The principles we live by</span>
+                                            <span class="mega-menu__item-title">Our Mission</span>
+                                            <span class="mega-menu__item-desc">Our purpose & core values</span>
                                         </span>
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>

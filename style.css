@@ -4322,6 +4322,177 @@ a.contact-card__text:hover { color: #c9a96e; }
 }
 
 /* ==========================================================================
+   MISSION & VALUES PAGE
+   ========================================================================== */
+.mission-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+}
+
+/* Mission Statement Quote */
+.mission-statement {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.mission-statement__quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: #1a1a2e;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.mission-statement__quote::before,
+.mission-statement__quote::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+}
+
+.mission-statement__quote::before { top: 0; }
+.mission-statement__quote::after { bottom: 0; }
+
+.mission-statement__author {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a96e;
+}
+
+/* Mission Pillars */
+.mission-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.mission-pillar {
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-pillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a96e, #dbb978);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mission-pillar:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.mission-pillar:hover::before {
+  opacity: 1;
+}
+
+.mission-pillar__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.mission-pillar__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+  font-weight: 400;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.mission-pillar__text {
+  font-size: 0.85rem;
+  color: #55556a;
+  line-height: 1.7;
+}
+
+/* Section Divider */
+.section-divider {
+  padding: 0;
+}
+
+.section-divider__line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.25), transparent);
+}
+
+/* Values Full Page Styles */
+.values-full {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+}
+
+.values-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.value-detail {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid #f0f0f4;
+  align-items: start;
+}
+
+.value-detail:last-child {
+  border-bottom: none;
+}
+
+.value-detail__number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #c9a96e;
+  opacity: 0.5;
+  line-height: 1;
+  padding-top: 0.2rem;
+}
+
+.value-detail__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.65rem);
+  font-weight: 400;
+  color: #1a1a2e;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.value-detail__text {
+  font-size: 0.88rem;
+  color: #55556a;
+  line-height: 1.75;
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1023px) {
