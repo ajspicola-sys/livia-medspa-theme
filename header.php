@@ -154,6 +154,9 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
 
+    <!-- Skip to content (accessibility) -->
+    <a class="skip-to-content" href="#main-content">Skip to content</a>
+
     <!-- HEADER – uses will-change for GPU compositing during scroll -->
     <header class="site-header" id="site-header" role="banner">
         <div class="site-header__inner">
@@ -164,7 +167,7 @@
 
             <nav class="site-header__nav" aria-label="Main navigation">
                 <ul class="nav__links">
-                    <li class="nav__item nav__item--active">
+                    <li class="nav__item<?php if (is_front_page()) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="nav__link">Home</a>
                     </li>
                     <li class="nav__item nav__item--has-mega">
@@ -301,7 +304,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/before-after/')); ?>"
+                    <li class="nav__item<?php if (is_page('before-after')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/before-after/')); ?>"
                             class="nav__link">Before &amp; After</a></li>
 
                     <!-- Products with Mega Menu -->
@@ -411,13 +414,13 @@
                         </div>
                     </li>
 
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/memberships/')); ?>"
+                    <li class="nav__item<?php if (is_page('memberships')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/memberships/')); ?>"
                             class="nav__link">Memberships</a></li>
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/parties/')); ?>"
+                    <li class="nav__item<?php if (is_page('parties')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/parties/')); ?>"
                             class="nav__link">Parties</a></li>
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/blog/')); ?>"
+                    <li class="nav__item<?php if (is_home() || is_singular('post')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/blog/')); ?>"
                             class="nav__link">Blog</a></li>
-                    <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact/')); ?>"
+                    <li class="nav__item<?php if (is_page('contact')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/contact/')); ?>"
                             class="nav__link">Contact</a></li>
                 </ul>
             </nav>

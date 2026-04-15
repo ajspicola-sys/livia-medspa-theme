@@ -52,6 +52,15 @@ get_header(); ?>
                         </a>
                     </div>
                 </nav>
+
+                <!-- Search -->
+                <div class="error-404__search">
+                    <p class="error-404__search-text">Or try searching:</p>
+                    <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="error-404__search-form">
+                        <input type="search" name="s" class="error-404__search-input" placeholder="Search treatments, products..." aria-label="Search">
+                        <button type="submit" class="error-404__search-btn btn btn--primary">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

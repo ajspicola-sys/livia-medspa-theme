@@ -149,6 +149,48 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section" aria-label="Frequently asked questions">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Have Questions?</span>
+                <h2 class="section__title">Membership FAQ</h2>
+            </div>
+            <div class="faq-list reveal">
+                <details class="faq-item">
+                    <summary class="faq-item__question">Is there a minimum commitment?</summary>
+                    <div class="faq-item__answer">
+                        <p>We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-item__question">Do my credits expire?</summary>
+                    <div class="faq-item__answer">
+                        <p>No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-item__question">What can I use my credits on?</summary>
+                    <div class="faq-item__answer">
+                        <p>Your Beauty Bank credits can be used on any service or product we offer — Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-item__question">Can I share my credits with friends or family?</summary>
+                    <div class="faq-item__answer">
+                        <p>Absolutely! You can gift your credits to friends and family members. It's the perfect way to share the glow.</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary class="faq-item__question">How much should I set as my monthly deposit?</summary>
+                    <div class="faq-item__answer">
+                        <p>It depends on your goals! Most of our members choose between $100–$300/month. During your complimentary consultation, we'll help you find the perfect amount based on the treatments you're interested in.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section" aria-label="Join Beauty Bank">
         <div class="cta-section__inner reveal">
