@@ -88,8 +88,8 @@ add_action('wp_enqueue_scripts', 'livia_deregister_jquery', 100);
 
 // ── Enqueue Assets ─────────────────────────────────────────────────
 function livia_enqueue_styles() {
-    // Auto cache-bust: uses file modification time so CSS always refreshes on deploy
-    $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
+    // Force fresh CSS on every load (temporary — will optimize once deploy is stable)
+    $theme_version = time();
 
     // Google Fonts — single optimized request with display=swap
     wp_enqueue_style(
