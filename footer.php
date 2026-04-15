@@ -91,22 +91,43 @@
 // Header scroll + announcement
 const header = document.getElementById('site-header');
 const annoBar = document.getElementById('announcement-bar');
-const annoBarHeight = annoBar ? annoBar.offsetHeight : 0;
+let annoBarHeight = annoBar ? annoBar.offsetHeight : 0;
+let annoDismissed = false;
+const adminBarEl = document.getElementById('wpadminbar');
+const adminBarH = adminBarEl ? adminBarEl.offsetHeight : 0;
+
+// Set initial header position below announcement bar
+function updateHeaderPosition() {
+    const base = adminBarH;
+    if (annoBar && !annoDismissed) {
+        annoBarHeight = annoBar.offsetHeight;
+        if (window.scrollY <= annoBarHeight) {
+            header.style.top = (base + annoBarHeight - window.scrollY) + 'px';
+        } else {
+            header.style.top = base + 'px';
+        }
+    } else {
+        header.style.top = base + 'px';
+    }
+}
+
+updateHeaderPosition();
 
 window.addEventListener('scroll', () => {
     header.classList.toggle('is-scrolled', window.scrollY > 50);
-    if (annoBar && window.scrollY > annoBarHeight) {
-        document.body.classList.remove('has-announcement');
-    }
+    updateHeaderPosition();
 });
 
 // Announcement dismiss
 const annoClose = document.getElementById('announcement-close');
 if (annoClose) {
     annoClose.addEventListener('click', () => {
+        annoDismissed = true;
         annoBar.style.transform = 'translateY(-100%)';
         annoBar.style.opacity = '0';
         annoBar.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
+        header.style.transition = 'top 0.4s ease, background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease';
+        header.style.top = '0px';
         document.body.classList.remove('has-announcement');
         setTimeout(() => { annoBar.style.display = 'none'; }, 400);
     });
