@@ -104,6 +104,37 @@ function livia_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 
+// ── Performance: Make CSS non-render-blocking ──────────────────────
+// Critical CSS is already inlined in header.php, so we can safely
+// async-load both Google Fonts and the main stylesheet.
+function livia_async_styles($html, $handle) {
+    $async_handles = ['livia-google-fonts', 'livia-style'];
+    if (in_array($handle, $async_handles) && !is_admin()) {
+        // media="print" prevents render-blocking, onload swaps to "all"
+        // noscript fallback ensures CSS loads without JS
+        $html = str_replace(
+            "media='all'",
+            "media='print' onload=\"this.media='all'\"",
+            $html
+        );
+        // Also handle double-quote variant
+        $html = str_replace(
+            'media="all"',
+            'media="print" onload="this.media=\'all\'"',
+            $html
+        );
+        // Add noscript fallback
+        $noscript = '<noscript>' . str_replace(
+            ["media='print'", 'media="print"', " onload=\"this.media='all'\"", " onload=\"this.media='all'\""],
+            ["media='all'", 'media="all"', '', ''],
+            $html
+        ) . '</noscript>';
+        $html .= $noscript;
+    }
+    return $html;
+}
+add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
+
 // ── Performance: Preload critical fonts & add resource hints ───────
 function livia_resource_hints() {
     // DNS prefetch + preconnect for Google Fonts
