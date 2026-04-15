@@ -191,6 +191,15 @@
         }
     });
 
+    // ── Lazy image fade-in ──────────────────────────────────────
+    document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
+        if (img.complete) {
+            img.classList.add('is-loaded');
+        } else {
+            img.addEventListener('load', function() { this.classList.add('is-loaded'); });
+        }
+    });
+
     // ── Set initial positions ────────────────────────────────────
     function setPositions() {
         // Ensure header stays at top (admin bar is hidden via CSS)

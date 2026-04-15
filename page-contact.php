@@ -145,6 +145,35 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- Map Section -->
+    <section class="contact-map" aria-label="Our location">
+        <div class="contact-map__wrap reveal">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112539.75152973957!2d-82.5511647!3d27.9505669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c48aef610245%3A0xdea2de0661043e26!2sTampa%2C+FL!5e0!3m2!1sen!2sus!4v1"
+                width="100%"
+                height="400"
+                style="border:0;border-radius:16px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Livia Med Spa location in Tampa, FL">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-label="Get in touch">
+        <div class="cta-section__inner reveal">
+            <span class="cta-section__label">We're Here for You</span>
+            <h2 class="cta-section__title">Have Questions?<br>We Have Answers</h2>
+            <p class="cta-section__text">Our team is ready to help you find the perfect treatment. Don't hesitate to reach out.</p>
+            <div class="cta-section__actions">
+                <a href="tel:8132302219" class="btn btn--primary btn--lg">Call (813) 230-2219</a>
+                <a href="mailto:support@liviamedspa.com" class="btn btn--outline btn--lg">Email Us</a>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>
