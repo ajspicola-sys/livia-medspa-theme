@@ -192,6 +192,18 @@ h6 {
   will-change: background;
 }
 
+/* ── WordPress Admin Bar Fix ─────────────────────────────────────
+   When logged in, WP adds a 32px admin bar at top.
+   This hides it on the frontend so it doesn't break the layout.
+   ──────────────────────────────────────────────────────────────── */
+#wpadminbar {
+  display: none !important;
+}
+
+html {
+  margin-top: 0 !important;
+}
+
 .site-header::after {
   content: '';
   position: absolute;
