@@ -5,11 +5,11 @@
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Careers at Livia">
         <div class="page-hero__inner">
-            <span class="section__label">💼 Join Our Team</span>
+            <span class="section__label"><span aria-hidden="true">💼</span> Join Our Team</span>
             <h1 class="page-hero__title">Careers at Livia</h1>
             <p class="page-hero__desc">Join Tampa's premier aesthetics practice and help our clients look and feel their best.</p>
         </div>
@@ -25,22 +25,22 @@ get_header(); ?>
             </div>
             <div class="careers-perks reveal">
                 <div class="careers-perk">
-                    <div class="careers-perk__icon">💰</div>
+                    <div class="careers-perk__icon" aria-hidden="true">💰</div>
                     <h3 class="careers-perk__title">Competitive Pay</h3>
                     <p class="careers-perk__text">Above-market compensation with performance bonuses and commission opportunities.</p>
                 </div>
                 <div class="careers-perk">
-                    <div class="careers-perk__icon">📚</div>
+                    <div class="careers-perk__icon" aria-hidden="true">📚</div>
                     <h3 class="careers-perk__title">Continuing Education</h3>
                     <p class="careers-perk__text">We invest in your growth with paid training, conferences, and advanced certification programs.</p>
                 </div>
                 <div class="careers-perk">
-                    <div class="careers-perk__icon">🎁</div>
+                    <div class="careers-perk__icon" aria-hidden="true">🎁</div>
                     <h3 class="careers-perk__title">Amazing Perks</h3>
                     <p class="careers-perk__text">Complimentary treatments, product discounts, flexible scheduling, and a supportive team culture.</p>
                 </div>
                 <div class="careers-perk">
-                    <div class="careers-perk__icon">📈</div>
+                    <div class="careers-perk__icon" aria-hidden="true">📈</div>
                     <h3 class="careers-perk__title">Growth Path</h3>
                     <p class="careers-perk__text">Clear advancement opportunities as our practice grows. We promote from within whenever possible.</p>
                 </div>
@@ -56,7 +56,7 @@ get_header(); ?>
                 <h2 class="section__title">Current Openings</h2>
             </div>
             <div class="positions-list reveal">
-                <div class="position-card">
+                <article class="position-card">
                     <div class="position-card__info">
                         <h3 class="position-card__title">Aesthetic Nurse Injector</h3>
                         <div class="position-card__tags">
@@ -67,8 +67,8 @@ get_header(); ?>
                         <p class="position-card__desc">Join our injection team and help clients achieve natural, beautiful results. Requires RN license and injectable training.</p>
                     </div>
                     <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm">Apply Now →</a>
-                </div>
-                <div class="position-card">
+                </article>
+                <article class="position-card">
                     <div class="position-card__info">
                         <h3 class="position-card__title">Laser Technician</h3>
                         <div class="position-card__tags">
@@ -79,8 +79,8 @@ get_header(); ?>
                         <p class="position-card__desc">Operate our advanced laser systems for skin rejuvenation, hair removal, and pigment correction treatments.</p>
                     </div>
                     <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm">Apply Now →</a>
-                </div>
-                <div class="position-card">
+                </article>
+                <article class="position-card">
                     <div class="position-card__info">
                         <h3 class="position-card__title">Front Desk Coordinator</h3>
                         <div class="position-card__tags">
@@ -90,12 +90,12 @@ get_header(); ?>
                         <p class="position-card__desc">Be the first point of contact for our clients. Manage scheduling, patient flow, and create a warm, welcoming environment.</p>
                     </div>
                     <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm">Apply Now →</a>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section" aria-label="General applications">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Don't See Your Role?</span>
             <h2 class="cta-section__title">We're Always Looking<br>for Great People</h2>

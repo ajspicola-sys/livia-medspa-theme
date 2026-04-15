@@ -1,6 +1,7 @@
 <?php
 /**
  * Livia Med Spa — Theme Functions
+ * Performance-optimized build
  */
 
 // ── Theme Setup ────────────────────────────────────────────────────
@@ -8,12 +9,89 @@ function livia_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
+
+    // Register nav menus
+    register_nav_menus([
+        'primary' => 'Primary Navigation',
+        'footer'  => 'Footer Navigation',
+    ]);
 }
 add_action('after_setup_theme', 'livia_setup');
 
+// ── Performance: Disable WP Emoji Scripts ──────────────────────────
+function livia_disable_emojis() {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    add_filter('tiny_mce_plugins', function($plugins) {
+        return is_array($plugins) ? array_diff($plugins, ['wpemoji']) : [];
+    });
+    add_filter('wp_resource_hints', function($urls, $relation_type) {
+        if ('dns-prefetch' === $relation_type) {
+            $urls = array_filter($urls, function($url) {
+                return false === strpos($url, 'https://s.w.org/images/core/emoji/');
+            });
+        }
+        return $urls;
+    }, 10, 2);
+}
+add_action('init', 'livia_disable_emojis');
+
+// ── Performance: Remove unnecessary head clutter ───────────────────
+function livia_cleanup_head() {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+    remove_action('wp_head', 'feed_links', 2);
+    remove_action('wp_head', 'feed_links_extra', 3);
+}
+add_action('after_setup_theme', 'livia_cleanup_head');
+
+// ── Performance: Disable oEmbed ────────────────────────────────────
+function livia_disable_oembed() {
+    remove_action('rest_api_init', 'wp_oembed_register_route');
+    remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+}
+add_action('init', 'livia_disable_oembed', 9999);
+
+// ── Performance: Dequeue block library CSS on frontend ─────────────
+function livia_dequeue_block_styles() {
+    if (!is_admin()) {
+        wp_dequeue_style('wp-block-library');
+        wp_dequeue_style('wp-block-library-theme');
+        wp_dequeue_style('wc-blocks-style');
+        wp_dequeue_style('global-styles');
+        wp_dequeue_style('classic-theme-styles');
+    }
+}
+add_action('wp_enqueue_scripts', 'livia_dequeue_block_styles', 100);
+
+// ── Performance: Remove jQuery from frontend ───────────────────────
+function livia_deregister_jquery() {
+    if (!is_admin() && !is_customize_preview()) {
+        wp_deregister_script('jquery');
+        wp_deregister_script('jquery-core');
+        wp_deregister_script('jquery-migrate');
+    }
+}
+add_action('wp_enqueue_scripts', 'livia_deregister_jquery', 100);
+
 // ── Enqueue Assets ─────────────────────────────────────────────────
 function livia_enqueue_styles() {
-    // Google Fonts
+    // Stable version hash for cache busting (change on deploy, not every page load)
+    $theme_version = '2.1.0';
+
+    // Google Fonts — single optimized request with display=swap
     wp_enqueue_style(
         'livia-google-fonts',
         'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap',
@@ -21,10 +99,84 @@ function livia_enqueue_styles() {
         null
     );
 
-    // Main stylesheet with cache busting
-    wp_enqueue_style('livia-style', get_stylesheet_uri(), ['livia-google-fonts'], '2.0.' . time());
+    // Main stylesheet with stable version for caching
+    wp_enqueue_style('livia-style', get_stylesheet_uri(), ['livia-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
+
+// ── Performance: Preload critical fonts & add resource hints ───────
+function livia_resource_hints() {
+    // DNS prefetch + preconnect for Google Fonts
+    echo '<link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
+    echo '<link rel="dns-prefetch" href="//fonts.gstatic.com">' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+
+    // DNS prefetch for external image CDN
+    echo '<link rel="dns-prefetch" href="//liviamedspa.com">' . "\n";
+
+    // Preload the most critical font files (the weights used above the fold)
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+    echo '<link rel="preload" href="https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoET0.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+}
+add_action('wp_head', 'livia_resource_hints', 1);
+
+// ── Performance: Add async/defer to non-critical scripts ───────────
+function livia_script_loader_tag($tag, $handle) {
+    // Defer non-critical scripts
+    $defer_scripts = ['wp-embed'];
+    if (in_array($handle, $defer_scripts)) {
+        return str_replace(' src', ' defer src', $tag);
+    }
+    return $tag;
+}
+add_filter('script_loader_tag', 'livia_script_loader_tag', 10, 2);
+
+// ── Performance: Remove query strings from static resources ────────
+function livia_remove_script_version($src) {
+    if (strpos($src, 'ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('style_loader_src', 'livia_remove_script_version', 9999);
+add_filter('script_loader_src', 'livia_remove_script_version', 9999);
+
+// ── Performance: Limit post revisions ──────────────────────────────
+if (!defined('WP_POST_REVISIONS')) {
+    define('WP_POST_REVISIONS', 5);
+}
+
+// ── SEO: Add Schema.org structured data ────────────────────────────
+function livia_schema_markup() {
+    if (is_front_page()) : ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Livia Med Spa",
+    "description": "Tampa's premier destination for advanced aesthetics — expert Botox, fillers, laser treatments, and medical-grade skincare.",
+    "url": "<?php echo esc_url(home_url('/')); ?>",
+    "telephone": "+1-813-230-2219",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tampa",
+        "addressRegion": "FL",
+        "postalCode": "33606",
+        "addressCountry": "US"
+    },
+    "openingHours": "Mo-Sa 09:00-18:00",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "500"
+    },
+    "priceRange": "$$-$$$"
+}
+</script>
+    <?php endif;
+}
+add_action('wp_head', 'livia_schema_markup', 99);
 
 // ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
@@ -175,3 +327,32 @@ function livia_rewrite_flush() {
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'livia_rewrite_flush');
+
+// ── Performance: Add image optimization defaults ───────────────────
+function livia_image_size_defaults() {
+    update_option('thumbnail_size_w', 150);
+    update_option('thumbnail_size_h', 150);
+    update_option('medium_size_w', 480);
+    update_option('medium_size_h', 480);
+    update_option('large_size_w', 1024);
+    update_option('large_size_h', 1024);
+}
+add_action('after_switch_theme', 'livia_image_size_defaults');
+
+// ── Performance: Add WebP support ──────────────────────────────────
+function livia_allow_webp($mimes) {
+    $mimes['webp'] = 'image/webp';
+    $mimes['avif'] = 'image/avif';
+    return $mimes;
+}
+add_filter('upload_mimes', 'livia_allow_webp');
+
+// ── Security: Disable XML-RPC ──────────────────────────────────────
+add_filter('xmlrpc_enabled', '__return_false');
+
+// ── Performance: Reduce heartbeat interval ─────────────────────────
+function livia_heartbeat_settings($settings) {
+    $settings['interval'] = 60;
+    return $settings;
+}
+add_filter('heartbeat_settings', 'livia_heartbeat_settings');

@@ -1,19 +1,41 @@
 <?php
 /**
  * Livia Med Spa — Header Template
+ * Performance-optimized with critical CSS inlining
  */
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Tampa's elite aesthetics studio — expert Botox, fillers, and laser treatments tailored to enhance your natural beauty.">
-    <meta name="theme-color" content="#1a1a2e">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <?php wp_head(); ?>
-    <style>html{scroll-behavior:smooth;}</style>
+
+    <!-- Critical CSS: inlined to prevent render-blocking for above-the-fold content -->
+    <style id="livia-critical-css">
+        /* Prevent layout shift for header + hero */
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+        body{margin:0;font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;background:#faf8f5;overflow-x:hidden;}
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 0;transition:background .4s ease,padding .4s ease,box-shadow .4s ease,top .4s ease;}
+        .site-header__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+        .site-logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;flex-shrink:0;}
+        .site-logo__name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,1.3rem + 1.2vw,2.1rem);font-weight:300;letter-spacing:.06em;background:linear-gradient(135deg,#c9a96e 0%,#dbb978 40%,#a88b4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .site-logo__tagline{font-family:'DM Sans',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#b89960;margin-top:-3px;}
+        .announcement-bar{background:linear-gradient(135deg,#1a1a2e 0%,#252540 100%);padding:.5rem 0;text-align:center;position:relative;z-index:201;}
+        .hero{min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#252540 100%);padding:clamp(2rem,1.5rem + 3vw,4rem);overflow:hidden;}
+        .site-main{padding-top:120px;}
+        .has-announcement .site-main{padding-top:152px;}
+        /* Preload font-display for system fonts fallback */
+        @font-face{font-family:'Cormorant Garamond';font-display:swap;src:local('Cormorant Garamond');}
+        @font-face{font-family:'DM Sans';font-display:swap;src:local('DM Sans');}
+    </style>
 </head>
 <body <?php body_class('has-announcement'); ?>>
 <?php wp_body_open(); ?>
@@ -24,13 +46,13 @@
         <span class="announcement-bar__text"><strong>✦ New Client Special</strong> — 20% off your first treatment</span>
         <a href="#book" class="announcement-bar__cta">Book Now</a>
     </div>
-    <button class="announcement-bar__close" id="announcement-close" aria-label="Dismiss">✕</button>
+    <button class="announcement-bar__close" id="announcement-close" aria-label="Dismiss announcement">✕</button>
 </div>
 
-<!-- HEADER -->
-<header class="site-header" id="site-header">
+<!-- HEADER – uses will-change for GPU compositing during scroll -->
+<header class="site-header" id="site-header" role="banner">
     <div class="site-header__inner">
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Home">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa — Home">
             <span class="site-logo__name">Livia</span>
             <span class="site-logo__tagline">MED SPA</span>
         </a>
@@ -41,7 +63,7 @@
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="nav__link">Home</a>
                 </li>
                 <li class="nav__item nav__item--has-mega">
-                    <a href="#" class="nav__link">Services <span class="nav__arrow">▾</span></a>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="nav__link">Services <span class="nav__arrow">▾</span></a>
                     <div class="mega-menu">
                         <div class="mega-menu__inner">
                             <div class="mega-menu__column">
@@ -50,8 +72,8 @@
                                     <a href="#" class="mega-menu__item">
                                         <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">💉</span>
                                         <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Botox & Dysport</span>
-                                            <span class="mega-menu__item-desc">Smooth fine lines & wrinkles</span>
+                                            <span class="mega-menu__item-title">Botox &amp; Dysport</span>
+                                            <span class="mega-menu__item-desc">Smooth fine lines &amp; wrinkles</span>
                                         </span>
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>
@@ -59,7 +81,7 @@
                                         <span class="mega-menu__item-icon" style="background:rgba(201,169,110,0.12);color:#c9a96e;">✨</span>
                                         <span class="mega-menu__item-content">
                                             <span class="mega-menu__item-title">Dermal Fillers</span>
-                                            <span class="mega-menu__item-desc">Restore volume & contour</span>
+                                            <span class="mega-menu__item-desc">Restore volume &amp; contour</span>
                                         </span>
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>
@@ -103,7 +125,7 @@
                                 </div>
                             </div>
                             <div class="mega-menu__column">
-                                <span class="mega-menu__heading">Body & Hair</span>
+                                <span class="mega-menu__heading">Body &amp; Hair</span>
                                 <div class="mega-menu__items">
                                     <a href="#" class="mega-menu__item">
                                         <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">💆</span>
@@ -125,7 +147,7 @@
                                         <span class="mega-menu__item-icon" style="background:rgba(160,142,196,0.12);color:#a08ec4;">💎</span>
                                         <span class="mega-menu__item-content">
                                             <span class="mega-menu__item-title">IV Therapy</span>
-                                            <span class="mega-menu__item-desc">Wellness drips & vitamin boosts</span>
+                                            <span class="mega-menu__item-desc">Wellness drips &amp; vitamin boosts</span>
                                         </span>
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>
@@ -146,7 +168,7 @@
                                 <a href="#" class="mega-menu__bottom-link">💰 Pricing</a>
                                 <a href="#" class="mega-menu__bottom-link">❓ FAQ</a>
                             </div>
-                            <a href="#" class="mega-menu__bottom-cta">View All Services →</a>
+                            <a href="<?php echo esc_url(home_url('/services/')); ?>" class="mega-menu__bottom-cta">View All Services →</a>
                         </div>
                     </div>
                 </li>
@@ -227,14 +249,14 @@
         </nav>
 
         <div class="site-header__actions">
-            <a href="tel:8132302219" class="site-header__phone" aria-label="Call us">
+            <a href="tel:8132302219" class="site-header__phone" aria-label="Call us at (813) 230-2219">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </a>
             <span class="header__divider"></span>
-            <a href="#book" class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
         </div>
 
-        <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+        <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
             <span class="hamburger">
                 <span class="hamburger__line"></span>
                 <span class="hamburger__line"></span>
@@ -245,7 +267,7 @@
 </header>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
     <div class="mobile-menu__overlay" id="mobile-overlay"></div>
     <div class="mobile-menu__drawer">
         <div class="mobile-menu__header">
@@ -253,9 +275,9 @@
                 <span class="site-logo__name">Livia</span>
                 <span class="site-logo__tagline">MED SPA</span>
             </a>
-            <button class="mobile-menu__close" id="mobile-close" aria-label="Close menu">✕</button>
+            <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation menu">✕</button>
         </div>
-        <nav class="mobile-menu__nav">
+        <nav class="mobile-menu__nav" aria-label="Mobile navigation">
             <ul class="mobile-menu__links">
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                 <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
@@ -268,7 +290,7 @@
             </ul>
         </nav>
         <div class="mobile-menu__footer">
-            <a href="#book" class="btn btn--primary" style="width:100%;justify-content:center;">Book a Consultation</a>
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary" style="width:100%;justify-content:center;">Book a Consultation</a>
             <a href="tel:8132302219" class="mobile-menu__contact-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 (813) 230-2219

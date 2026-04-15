@@ -3,8 +3,8 @@ Theme Name:       Livia Med Spa
 Theme URI:        https://liviamedspa.com
 Author:           Livia Med Spa
 Author URI:       https://liviamedspa.com
-Description:      Premium theme for Livia Med Spa.
-Version:          2.0.0
+Description:      Premium, performance-optimized theme for Livia Med Spa.
+Version:          2.1.0
 Requires at least: 6.0
 Tested up to:     6.7
 Requires PHP:     8.0
@@ -12,7 +12,7 @@ License:          GPL v2 or later
 Text Domain:      livia-medspa
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+/* Fonts loaded via wp_enqueue_style in functions.php — no @import needed */
 
 /* ==========================================================================
    RESET & BASE
@@ -145,6 +145,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 200;
   padding: 0.85rem 0;
   transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease, top 0.4s ease;
+  will-change: transform, background;
+  contain: layout style;
 }
 
 .site-header::after {
@@ -900,15 +902,17 @@ h1, h2, h3, h4, h5, h6 {
   50%      { transform: translate(10px, -20px); opacity: 1; }
 }
 
-/* Scroll reveal */
+/* Scroll reveal — GPU-accelerated */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(30px) translateZ(0);
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
+  will-change: auto;
 }
 
 /* ── Section Shared ────────────────────────────────────────────── */
@@ -964,6 +968,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
   padding: clamp(2rem, 1.5rem + 3vw, 4rem);
   overflow: hidden;
+  contain: layout style;
 }
 
 .hero__bg-overlay {
@@ -1093,6 +1098,8 @@ h1, h2, h3, h4, h5, h6 {
 .services {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #faf8f5;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .services__grid {
@@ -1389,6 +1396,8 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 40%, #191930 100%);
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 .product-showcase__glow {
@@ -1561,6 +1570,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
   background: #f5f0ea;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .supplements__layout {
@@ -1682,6 +1693,8 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(160deg, #111125 0%, #1a1a2e 50%, #14142a 100%);
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .client-portal__bg-glow {
@@ -1783,6 +1796,8 @@ h1, h2, h3, h4, h5, h6 {
 .why-us {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #fff;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .why-us__grid {
@@ -1900,6 +1915,8 @@ h1, h2, h3, h4, h5, h6 {
 .testimonials {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #faf8f5;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 .testimonials__grid {
@@ -2060,6 +2077,160 @@ h1, h2, h3, h4, h5, h6 {
 .cta-section__actions .btn--outline:hover {
   border-color: #c9a96e;
   color: #c9a96e;
+}
+
+/* ==========================================================================
+   404 PAGE
+   ========================================================================== */
+.error-404 {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.error-404__code {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(6rem, 5rem + 6vw, 10rem);
+  font-weight: 300;
+  color: rgba(201,169,110,0.12);
+  line-height: 1;
+  display: block;
+  margin-bottom: -1rem;
+}
+
+.error-404__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.error-404__text {
+  font-size: 0.95rem;
+  color: #55556a;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.error-404__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.error-404__links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-404__links-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #9e9eb0;
+}
+
+.error-404__links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #c9a96e;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.error-404__links a:hover { color: #b8944f; }
+
+/* ==========================================================================
+   GENERIC PAGE CONTENT
+   ========================================================================== */
+.page-content__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 1.5rem;
+}
+
+.page-content__thumbnail {
+  margin-bottom: 2.5rem;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.page-content__thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-content__body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #3a3a50;
+}
+
+.page-content__body h2,
+.page-content__body h3,
+.page-content__body h4 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a2e;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.page-content__body p { margin-bottom: 1.25rem; }
+
+.page-content__body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.page-content__body ul, .page-content__body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.page-content__body li {
+  margin-bottom: 0.5rem;
+  color: #55556a;
+}
+
+/* ==========================================================================
+   ENHANCED BUTTON ANIMATIONS
+   ========================================================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn--primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn--primary:active {
+  transform: scale(0.97);
 }
 
 /* ==========================================================================
@@ -4221,3 +4392,37 @@ a.contact-card__text:hover { color: #c9a96e; }
 }
 
 /* WP Admin bar — handled dynamically via JS */
+
+/* ==========================================================================
+   PERFORMANCE: Reduce motion for users who prefer it
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero__particle { display: none; }
+  .product-showcase__ring { animation: none; }
+  .product-showcase__image { animation: none; }
+  .product-showcase__badge { animation: none; }
+  .client-portal__phone-img { animation: none; }
+}
+
+/* ==========================================================================
+   PERFORMANCE: Print styles
+   ========================================================================== */
+@media print {
+  .site-header, .announcement-bar, .scroll-top,
+  .mobile-menu, .mega-menu, .hero__particles,
+  .product-showcase__glow, .client-portal__bg-glow { display: none !important; }
+  body { background: #fff; color: #000; font-size: 12pt; }
+  .site-main { padding-top: 0 !important; }
+  a[href]::after { content: ' (' attr(href) ')'; font-size: 0.8em; color: #666; }
+}

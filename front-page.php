@@ -2,17 +2,18 @@
 /**
  * Template Name: Homepage
  * Livia Med Spa — Front Page
+ * Performance-optimized: lazy loading, fetchpriority, semantic HTML
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
     <!-- ═══════════════════════════════════════════════════════════════
-         HERO SECTION
+         HERO SECTION — above the fold, no lazy loading
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" aria-label="Welcome to Livia Med Spa">
         <div class="hero__bg-overlay"></div>
-        <div class="hero__particles">
+        <div class="hero__particles" aria-hidden="true">
             <span class="hero__particle" style="--x:10%;--y:20%;--delay:0s;--size:3px;"></span>
             <span class="hero__particle" style="--x:85%;--y:15%;--delay:1s;--size:2px;"></span>
             <span class="hero__particle" style="--x:70%;--y:60%;--delay:2s;--size:4px;"></span>
@@ -27,12 +28,12 @@ get_header(); ?>
             <div class="hero__actions">
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">
                     Book Consultation
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
                 <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
             </div>
-            <div class="hero__trust">
-                <div class="hero__trust-stars">★★★★★</div>
+            <div class="hero__trust" aria-label="Customer rating">
+                <div class="hero__trust-stars" aria-hidden="true">★★★★★</div>
                 <span class="hero__trust-text">500+ Five-Star Reviews</span>
             </div>
         </div>
@@ -41,7 +42,7 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          SERVICES CAROUSEL
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="services" id="services">
+    <section class="services" id="services" aria-label="Our treatments">
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Our Expertise</span>
@@ -56,6 +57,9 @@ get_header(); ?>
                 'posts_per_page' => 12,
                 'orderby'        => 'menu_order',
                 'order'          => 'ASC',
+                'no_found_rows'  => true, // Performance: skip pagination count
+                'update_post_meta_cache' => true,
+                'update_post_term_cache' => false, // We don't need terms
             ]);
 
             // Fallback services if none created yet
@@ -69,7 +73,7 @@ get_header(); ?>
             ];
             ?>
 
-            <div class="carousel reveal" id="services-carousel">
+            <div class="carousel reveal" id="services-carousel" role="region" aria-label="Services carousel" tabindex="0">
                 <div class="carousel__track">
                     <?php if ($services->have_posts()) : $i = 0; ?>
                         <?php while ($services->have_posts()) : $services->the_post();
@@ -77,11 +81,16 @@ get_header(); ?>
                             $price = get_post_meta(get_the_ID(), '_service_price', true);
                             $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                         ?>
-                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>">
+                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>" role="group" aria-label="Slide <?php echo $i + 1; ?>">
                                 <div class="carousel-card">
                                     <div class="carousel-card__image">
                                         <?php if ($thumb) : ?>
-                                            <img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>">
+                                            <img src="<?php echo esc_url($thumb); ?>"
+                                                 alt="<?php the_title_attribute(); ?>"
+                                                 loading="lazy"
+                                                 decoding="async"
+                                                 width="400"
+                                                 height="240">
                                         <?php else : ?>
                                             <div class="carousel-card__placeholder">
                                                 <span><?php echo esc_html($icon); ?></span>
@@ -102,7 +111,7 @@ get_header(); ?>
                         <?php $i++; endwhile; wp_reset_postdata(); ?>
                     <?php else : ?>
                         <?php foreach ($fallback as $i => $svc) : ?>
-                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>">
+                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>" role="group" aria-label="Slide <?php echo $i + 1; ?>">
                                 <div class="carousel-card">
                                     <div class="carousel-card__image">
                                         <div class="carousel-card__placeholder">
@@ -123,12 +132,12 @@ get_header(); ?>
 
                 <!-- Navigation -->
                 <div class="carousel__nav">
-                    <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
                     </button>
-                    <div class="carousel__dots" id="carousel-dots"></div>
-                    <button class="carousel__arrow carousel__arrow--next" aria-label="Next">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                    <div class="carousel__dots" id="carousel-dots" role="tablist" aria-label="Slide indicators"></div>
+                    <button class="carousel__arrow carousel__arrow--next" aria-label="Next slide">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
                 </div>
             </div>
@@ -138,8 +147,8 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          PRODUCT SHOWCASE
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="product-showcase">
-        <div class="product-showcase__glow"></div>
+    <section class="product-showcase" aria-label="Medical-grade skincare products">
+        <div class="product-showcase__glow" aria-hidden="true"></div>
         <div class="section__inner">
             <div class="product-showcase__layout">
                 <div class="product-showcase__content reveal">
@@ -148,15 +157,15 @@ get_header(); ?>
                     <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
                     <div class="product-showcase__features">
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon">🔬</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">🔬</span>
                             <span class="product-showcase__feature-text">Physician-Strength Formulas</span>
                         </div>
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon">✨</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">✨</span>
                             <span class="product-showcase__feature-text">Clinically Proven Results</span>
                         </div>
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon">🛡️</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">🛡️</span>
                             <span class="product-showcase__feature-text">FDA-Approved Ingredients</span>
                         </div>
                     </div>
@@ -167,13 +176,19 @@ get_header(); ?>
                 </div>
                 <div class="product-showcase__visual reveal">
                     <div class="product-showcase__image-wrapper">
-                        <div class="product-showcase__ring"></div>
-                        <img src="https://liviamedspa.com/wp-content/uploads/2025/03/1b5814_e3537a28776d47dbbe90ddc516aa73b3mv2-759x1024.avif" alt="ZO Skin Health Products" class="product-showcase__image">
-                        <div class="product-showcase__badge product-showcase__badge--1">
+                        <div class="product-showcase__ring" aria-hidden="true"></div>
+                        <img src="https://liviamedspa.com/wp-content/uploads/2025/03/1b5814_e3537a28776d47dbbe90ddc516aa73b3mv2-759x1024.avif"
+                             alt="ZO Skin Health Products — medical-grade skincare available at Livia Med Spa"
+                             class="product-showcase__image"
+                             loading="lazy"
+                             decoding="async"
+                             width="280"
+                             height="378">
+                        <div class="product-showcase__badge product-showcase__badge--1" aria-hidden="true">
                             <span class="product-showcase__badge-icon">⭐</span>
                             <span class="product-showcase__badge-text">Best Seller</span>
                         </div>
-                        <div class="product-showcase__badge product-showcase__badge--2">
+                        <div class="product-showcase__badge product-showcase__badge--2" aria-hidden="true">
                             <span class="product-showcase__badge-icon">👩‍⚕️</span>
                             <span class="product-showcase__badge-text">Dr. Recommended</span>
                         </div>
@@ -186,7 +201,7 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          SUPPLEMENTS (FULLSCRIPT)
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="supplements">
+    <section class="supplements" aria-label="Practitioner-curated supplements">
         <div class="section__inner">
             <div class="supplements__layout">
                 <!-- Left: Branding + CTA -->
@@ -209,21 +224,21 @@ get_header(); ?>
                 <!-- Right: Feature Cards -->
                 <div class="supplements__features reveal">
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon">🏆</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">🏆</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Pharmaceutical-Grade Quality</h3>
                             <p class="supplement-feature__text">Top-tier, certified brands hand-picked by our clinical team</p>
                         </div>
                     </div>
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon">🔬</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">🔬</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Third-Party Tested</h3>
                             <p class="supplement-feature__text">Every product verified for purity and potency</p>
                         </div>
                     </div>
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon">📦</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">📦</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Delivered to Your Door</h3>
                             <p class="supplement-feature__text">Fast shipping with 20% off retail for Livia patients</p>
@@ -237,7 +252,7 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          WHY LIVIA SECTION
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="why-us">
+    <section class="why-us" aria-label="Why choose Livia Med Spa">
         <div class="section__inner">
             <div class="why-us__grid">
                 <div class="why-us__content reveal">
@@ -246,21 +261,21 @@ get_header(); ?>
                     <p class="section__desc">We don't believe in one-size-fits-all. Every treatment plan is crafted around your unique anatomy, goals, and lifestyle.</p>
                     <div class="why-us__features">
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon">🏆</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">🏆</div>
                             <div>
                                 <h4 class="why-us__feature-title">Board-Certified Team</h4>
                                 <p class="why-us__feature-text">Our providers hold advanced certifications in aesthetic medicine.</p>
                             </div>
                         </div>
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon">🎯</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">🎯</div>
                             <div>
                                 <h4 class="why-us__feature-title">Precision Artistry</h4>
                                 <p class="why-us__feature-text">Subtle, natural-looking results that enhance — never overdo.</p>
                             </div>
                         </div>
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon">🔬</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">🔬</div>
                             <div>
                                 <h4 class="why-us__feature-title">Latest Technology</h4>
                                 <p class="why-us__feature-text">We invest in the newest FDA-approved devices and techniques.</p>
@@ -271,7 +286,7 @@ get_header(); ?>
                 </div>
                 <div class="why-us__visual reveal">
                     <div class="why-us__stat-card why-us__stat-card--1">
-                        <span class="why-us__stat-number">10K+</span>
+                        <span class="why-us__stat-number">10000+</span>
                         <span class="why-us__stat-label">Treatments Performed</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--2">
@@ -283,7 +298,7 @@ get_header(); ?>
                         <span class="why-us__stat-label">Years Experience</span>
                     </div>
                     <div class="why-us__image-placeholder">
-                        <div class="why-us__image-gradient"></div>
+                        <div class="why-us__image-gradient" aria-hidden="true"></div>
                     </div>
                 </div>
             </div>
@@ -293,46 +308,46 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          TESTIMONIALS
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="testimonials">
+    <section class="testimonials" aria-label="Client testimonials">
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Client Love</span>
                 <h2 class="section__title">Real Results, Real Stories</h2>
             </div>
             <div class="testimonials__grid reveal">
-                <div class="testimonial-card">
-                    <div class="testimonial-card__stars">★★★★★</div>
+                <article class="testimonial-card">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-card__text">"The team at Livia made me feel so comfortable. My results look completely natural — my friends just say I look 'refreshed.' Exactly what I wanted!"</p>
                     <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">JM</div>
+                        <div class="testimonial-card__avatar" aria-hidden="true">JM</div>
                         <div>
                             <span class="testimonial-card__name">Jessica M.</span>
-                            <span class="testimonial-card__treatment">Botox & Fillers</span>
+                            <span class="testimonial-card__treatment">Botox &amp; Fillers</span>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card testimonial-card--featured">
-                    <div class="testimonial-card__stars">★★★★★</div>
+                </article>
+                <article class="testimonial-card testimonial-card--featured">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-card__text">"I've been to several med spas in Tampa, and Livia is by far the best. The attention to detail, the luxury atmosphere, and the incredible results speak for themselves."</p>
                     <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">SR</div>
+                        <div class="testimonial-card__avatar" aria-hidden="true">SR</div>
                         <div>
                             <span class="testimonial-card__name">Sarah R.</span>
                             <span class="testimonial-card__treatment">Microneedling + PRP</span>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-card__stars">★★★★★</div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-card__text">"The laser treatment completely transformed my skin. Dark spots are gone, texture is smoother. I can't stop touching my face! Highly recommend."</p>
                     <div class="testimonial-card__author">
-                        <div class="testimonial-card__avatar">AT</div>
+                        <div class="testimonial-card__avatar" aria-hidden="true">AT</div>
                         <div>
                             <span class="testimonial-card__name">Amanda T.</span>
                             <span class="testimonial-card__treatment">Laser Skin Rejuvenation</span>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -340,7 +355,7 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          CTA SECTION
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="cta-section" id="book">
+    <section class="cta-section" id="book" aria-label="Book a consultation">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Start Your Journey</span>
             <h2 class="cta-section__title">Ready to Reveal<br>Your Best Self?</h2>

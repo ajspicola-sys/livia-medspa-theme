@@ -1,12 +1,13 @@
 <?php
 /**
  * Livia Med Spa — Services Archive
+ * Performance-optimized
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Services overview">
         <div class="page-hero__inner">
             <span class="section__label">Our Expertise</span>
             <h1 class="page-hero__title">Our Services</h1>
@@ -14,7 +15,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <section class="services-archive">
+    <section class="services-archive" aria-label="All services">
         <div class="section__inner">
             <?php if (have_posts()) : ?>
                 <div class="services__grid reveal">
@@ -23,8 +24,8 @@ get_header(); ?>
                         $price    = get_post_meta(get_the_ID(), '_service_price', true);
                         $duration = get_post_meta(get_the_ID(), '_service_duration', true);
                     ?>
-                        <a href="<?php the_permalink(); ?>" class="service-card">
-                            <div class="service-card__icon"><?php echo esc_html($icon); ?></div>
+                        <a href="<?php the_permalink(); ?>" class="service-card" aria-label="<?php the_title_attribute(); ?>">
+                            <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
                             <h3 class="service-card__title"><?php the_title(); ?></h3>
                             <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
                             <?php if ($price || $duration) : ?>

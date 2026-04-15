@@ -1,6 +1,7 @@
 <?php
 /**
  * Livia Med Spa — Single Service Template
+ * Performance-optimized with Schema.org markup
  */
 get_header();
 
@@ -9,11 +10,11 @@ $price    = get_post_meta(get_the_ID(), '_service_price', true);
 $duration = get_post_meta(get_the_ID(), '_service_duration', true);
 ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Service details">
         <div class="page-hero__inner">
-            <span class="section__label"><?php echo esc_html($icon); ?> Treatment</span>
+            <span class="section__label"><span aria-hidden="true"><?php echo esc_html($icon); ?></span> Treatment</span>
             <h1 class="page-hero__title"><?php the_title(); ?></h1>
             <?php if (has_excerpt()) : ?>
                 <p class="page-hero__desc"><?php echo get_the_excerpt(); ?></p>
@@ -21,7 +22,8 @@ $duration = get_post_meta(get_the_ID(), '_service_duration', true);
         </div>
     </section>
 
-    <section class="single-service">
+    <section class="single-service" itemscope itemtype="https://schema.org/MedicalProcedure">
+        <meta itemprop="name" content="<?php the_title_attribute(); ?>">
         <div class="section__inner">
             <div class="single-service__grid">
 
@@ -29,17 +31,22 @@ $duration = get_post_meta(get_the_ID(), '_service_duration', true);
                 <div class="single-service__content reveal">
                     <?php if (has_post_thumbnail()) : ?>
                         <div class="single-service__image">
-                            <?php the_post_thumbnail('large'); ?>
+                            <?php the_post_thumbnail('large', [
+                                'loading'       => 'eager',
+                                'decoding'      => 'async',
+                                'fetchpriority' => 'high',
+                                'itemprop'      => 'image',
+                            ]); ?>
                         </div>
                     <?php endif; ?>
 
-                    <div class="post-content__body">
+                    <div class="post-content__body" itemprop="description">
                         <?php the_content(); ?>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
-                <div class="single-service__sidebar reveal">
+                <aside class="single-service__sidebar reveal" aria-label="Treatment information">
                     <!-- Quick Info -->
                     <div class="service-info-card">
                         <h3 class="service-info-card__title">Treatment Details</h3>
@@ -60,7 +67,7 @@ $duration = get_post_meta(get_the_ID(), '_service_duration', true);
 
                     <!-- Back to Services -->
                     <a href="<?php echo get_post_type_archive_link('service'); ?>" class="btn btn--outline" style="width:100%;text-align:center;">← All Services</a>
-                </div>
+                </aside>
             </div>
         </div>
     </section>

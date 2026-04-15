@@ -1,6 +1,7 @@
 <?php
 /**
  * Livia Med Spa — Footer Template
+ * Performance-optimized: deferred JS, passive listeners, requestIdleCallback
  */
 ?>
 
@@ -13,7 +14,13 @@
             <div class="client-portal__phone reveal">
                 <div class="client-portal__phone-wrapper">
                     <div class="client-portal__phone-glow"></div>
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png" alt="Livia Med Spa Client Portal on Phone" class="client-portal__phone-img">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png"
+                         alt="Livia Med Spa Client Portal on Phone"
+                         class="client-portal__phone-img"
+                         loading="lazy"
+                         decoding="async"
+                         width="300"
+                         height="382">
                 </div>
             </div>
             <!-- Content -->
@@ -24,15 +31,15 @@
                 <div class="client-portal__features">
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
-                        <span>Book & manage appointments 24/7</span>
+                        <span>Book &amp; manage appointments 24/7</span>
                     </div>
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
-                        <span>View vouchers & memberships</span>
+                        <span>View vouchers &amp; memberships</span>
                     </div>
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
-                        <span>Share referral links & earn rewards</span>
+                        <span>Share referral links &amp; earn rewards</span>
                     </div>
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
@@ -46,7 +53,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
     <div class="footer__top">
         <div class="footer__inner">
             <!-- Brand Column -->
@@ -57,13 +64,13 @@
                 </a>
                 <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics. We combine artistry with science to enhance your natural beauty.</p>
                 <div class="footer__social">
-                    <a href="#" class="footer__social-link" aria-label="Instagram">
+                    <a href="#" class="footer__social-link" aria-label="Follow us on Instagram">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                     </a>
-                    <a href="#" class="footer__social-link" aria-label="Facebook">
+                    <a href="#" class="footer__social-link" aria-label="Follow us on Facebook">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="#" class="footer__social-link" aria-label="TikTok">
+                    <a href="#" class="footer__social-link" aria-label="Follow us on TikTok">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
                     </a>
                 </div>
@@ -74,7 +81,7 @@
                 <h4 class="footer__heading">Quick Links</h4>
                 <ul class="footer__links">
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before &amp; After</a></li>
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
                     <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
@@ -87,7 +94,7 @@
             <div class="footer__col">
                 <h4 class="footer__heading">Popular Treatments</h4>
                 <ul class="footer__links">
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Botox & Dysport</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Botox &amp; Dysport</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Dermal Fillers</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Microneedling</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Chemical Peels</a></li>
@@ -135,228 +142,345 @@
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
-<!-- SCRIPTS -->
+<!-- ════════════════════════════════════════════════════════════════════
+     OPTIMIZED SCRIPTS — deferred, passive listeners, GPU compositing
+     ════════════════════════════════════════════════════════════════════ -->
 <script>
-// Header scroll + announcement
-const header = document.getElementById('site-header');
-const annoBar = document.getElementById('announcement-bar');
-let annoBarHeight = annoBar ? annoBar.offsetHeight : 0;
-let annoDismissed = false;
-const adminBarEl = document.getElementById('wpadminbar');
-const adminBarH = adminBarEl ? adminBarEl.offsetHeight : 0;
+(function() {
+    'use strict';
 
-// Set initial header position below announcement bar
-function updateHeaderPosition() {
-    const base = adminBarH;
-    if (annoBar && !annoDismissed) {
-        annoBarHeight = annoBar.offsetHeight;
-        if (window.scrollY <= annoBarHeight) {
-            header.style.top = (base + annoBarHeight - window.scrollY) + 'px';
+    // ── Cache DOM lookups once ────────────────────────────────────
+    var header      = document.getElementById('site-header');
+    var annoBar     = document.getElementById('announcement-bar');
+    var annoClose   = document.getElementById('announcement-close');
+    var toggle      = document.getElementById('mobile-toggle');
+    var mobileMenu  = document.getElementById('mobile-menu');
+    var mobileOver  = document.getElementById('mobile-overlay');
+    var mobileClose = document.getElementById('mobile-close');
+    var scrollBtn   = document.getElementById('scroll-top');
+    var adminBarEl  = document.getElementById('wpadminbar');
+    var adminBarH   = adminBarEl ? adminBarEl.offsetHeight : 0;
+    var annoDismissed = false;
+    var annoBarH    = annoBar ? annoBar.offsetHeight : 0;
+    var lastScrollY = 0;
+    var ticking     = false;
+
+    // ── Header scroll — uses rAF throttle for 60fps ──────────────
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            requestAnimationFrame(updateOnScroll);
+            ticking = true;
+        }
+    }
+
+    function updateOnScroll() {
+        var y = lastScrollY;
+        // Toggle scrolled class
+        header.classList.toggle('is-scrolled', y > 50);
+        // Update header position relative to announcement bar
+        var base = adminBarH;
+        if (annoBar && !annoDismissed) {
+            annoBarH = annoBar.offsetHeight;
+            header.style.top = (y <= annoBarH ? (base + annoBarH - y) : base) + 'px';
         } else {
             header.style.top = base + 'px';
         }
+        // Scroll-to-top visibility
+        if (scrollBtn) {
+            scrollBtn.classList.toggle('is-visible', y > 600);
+        }
+        ticking = false;
+    }
+
+    // Initial position
+    updateOnScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ── Announcement dismiss ─────────────────────────────────────
+    if (annoClose) {
+        annoClose.addEventListener('click', function() {
+            annoDismissed = true;
+            annoBar.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
+            annoBar.style.transform = 'translateY(-100%)';
+            annoBar.style.opacity = '0';
+            header.style.transition = 'top 0.4s ease, background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease';
+            header.style.top = adminBarH + 'px';
+            document.body.classList.remove('has-announcement');
+            setTimeout(function() { annoBar.style.display = 'none'; }, 400);
+        });
+    }
+
+    // ── Mobile menu ──────────────────────────────────────────────
+    function openMenu() {
+        mobileMenu.classList.add('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        toggle.classList.add('is-active');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        // Trap focus: focus the close button
+        if (mobileClose) mobileClose.focus();
+    }
+    function closeMenu() {
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        toggle.classList.remove('is-active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        toggle.focus();
+    }
+
+    if (toggle) toggle.addEventListener('click', openMenu);
+    if (mobileOver) mobileOver.addEventListener('click', closeMenu);
+    if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+
+    // Close mobile menu on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+        }
+    });
+
+    // ── Scroll Reveal — using IntersectionObserver with rootMargin for early trigger ──
+    var revealObserver = new IntersectionObserver(function(entries) {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+                entries[i].target.classList.add('is-visible');
+                revealObserver.unobserve(entries[i].target);
+            }
+        }
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    for (var r = 0; r < revealEls.length; r++) {
+        revealObserver.observe(revealEls[r]);
+    }
+
+    // ── Services Carousel (Infinite) ─────────────────────────────
+    var carousel = document.getElementById('services-carousel');
+    if (carousel) {
+        var track = carousel.querySelector('.carousel__track');
+        var slides = carousel.querySelectorAll('.carousel__slide');
+        var dotsC = document.getElementById('carousel-dots');
+        var prevB = carousel.querySelector('.carousel__arrow--prev');
+        var nextB = carousel.querySelector('.carousel__arrow--next');
+        var total = slides.length;
+
+        if (total > 0) {
+            var current = 0;
+            var autoT;
+            var prevPos = {};
+
+            // Create dots
+            for (var d = 0; d < total; d++) {
+                var dot = document.createElement('button');
+                dot.className = 'carousel__dot' + (d === 0 ? ' is-active' : '');
+                dot.setAttribute('aria-label', 'Go to slide ' + (d + 1));
+                (function(idx) { dot.addEventListener('click', function() { goTo(idx); }); })(d);
+                dotsC.appendChild(dot);
+            }
+
+            function mod(n, m) { return ((n % m) + m) % m; }
+
+            function getPos(i) {
+                var diff = mod(i - current, total);
+                if (diff === 0) return 0;
+                if (diff === 1) return 1;
+                if (diff === total - 1) return -1;
+                if (diff === 2) return 2;
+                if (diff === total - 2) return -2;
+                return 99;
+            }
+
+            function updateSlides() {
+                for (var i = 0; i < total; i++) {
+                    var sl = slides[i];
+                    var np = getPos(i);
+                    var op = prevPos[i] !== undefined ? prevPos[i] : np;
+                    var wrapping = Math.abs(np - op) > 3;
+
+                    if (wrapping) {
+                        sl.style.transition = 'none';
+                        sl.style.opacity = '0';
+                    }
+
+                    sl.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next');
+                    if (np === 0) sl.classList.add('is-active');
+                    else if (np === 1) sl.classList.add('is-next');
+                    else if (np === -1) sl.classList.add('is-prev');
+                    else if (np === 2) sl.classList.add('is-far-next');
+                    else if (np === -2) sl.classList.add('is-far-prev');
+                    else sl.style.opacity = '0';
+
+                    if (wrapping) {
+                        (function(s) {
+                            requestAnimationFrame(function() {
+                                requestAnimationFrame(function() {
+                                    s.style.transition = '';
+                                    s.style.opacity = '';
+                                });
+                            });
+                        })(sl);
+                    } else {
+                        sl.style.opacity = '';
+                    }
+                    prevPos[i] = np;
+                }
+
+                var dots = dotsC.querySelectorAll('.carousel__dot');
+                for (var j = 0; j < dots.length; j++) {
+                    dots[j].classList.toggle('is-active', j === current);
+                }
+            }
+
+            function goTo(idx) { current = mod(idx, total); updateSlides(); }
+            function next() { goTo(current + 1); }
+            function prev() { goTo(current - 1); }
+
+            prevB.addEventListener('click', prev);
+            nextB.addEventListener('click', next);
+
+            // Touch / swipe — passive for performance
+            var touchX = 0;
+            track.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+            track.addEventListener('touchend', function(e) {
+                var diff = touchX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+            });
+
+            // Keyboard navigation for carousel
+            carousel.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') prev();
+                if (e.key === 'ArrowRight') next();
+            });
+
+            // Autoplay — 5s (better for UX than 4s)
+            function resetAuto() {
+                clearInterval(autoT);
+                autoT = setInterval(next, 5000);
+            }
+            carousel.addEventListener('mouseenter', function() { clearInterval(autoT); });
+            carousel.addEventListener('mouseleave', resetAuto);
+
+            // Pause autoplay when tab is not visible (performance)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) { clearInterval(autoT); }
+                else { resetAuto(); }
+            });
+
+            goTo(0);
+            resetAuto();
+        }
+    }
+
+    // ── Scroll to Top ────────────────────────────────────────────
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ── Active nav link — deferred to idle time ──────────────────
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(setActiveNav);
     } else {
-        header.style.top = base + 'px';
-    }
-}
-
-updateHeaderPosition();
-
-window.addEventListener('scroll', () => {
-    header.classList.toggle('is-scrolled', window.scrollY > 50);
-    updateHeaderPosition();
-});
-
-// Announcement dismiss
-const annoClose = document.getElementById('announcement-close');
-if (annoClose) {
-    annoClose.addEventListener('click', () => {
-        annoDismissed = true;
-        annoBar.style.transform = 'translateY(-100%)';
-        annoBar.style.opacity = '0';
-        annoBar.style.transition = 'transform 0.4s ease, opacity 0.3s ease';
-        header.style.transition = 'top 0.4s ease, background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease';
-        header.style.top = '0px';
-        document.body.classList.remove('has-announcement');
-        setTimeout(() => { annoBar.style.display = 'none'; }, 400);
-    });
-}
-
-// Mobile menu
-const toggle = document.getElementById('mobile-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileOverlay = document.getElementById('mobile-overlay');
-const mobileClose = document.getElementById('mobile-close');
-
-function openMenu() {
-    mobileMenu.classList.add('is-open');
-    toggle.classList.add('is-active');
-    document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-    mobileMenu.classList.remove('is-open');
-    toggle.classList.remove('is-active');
-    document.body.style.overflow = '';
-}
-
-if (toggle) toggle.addEventListener('click', openMenu);
-if (mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
-if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-
-// Scroll reveal animation
-const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// ── Services Carousel (Infinite) ──────────────────────────────────
-(function() {
-    const carousel = document.getElementById('services-carousel');
-    if (!carousel) return;
-
-    const track = carousel.querySelector('.carousel__track');
-    const slides = Array.from(carousel.querySelectorAll('.carousel__slide'));
-    const dotsContainer = document.getElementById('carousel-dots');
-    const prevBtn = carousel.querySelector('.carousel__arrow--prev');
-    const nextBtn = carousel.querySelector('.carousel__arrow--next');
-    const total = slides.length;
-    if (total === 0) return;
-
-    let current = 0;
-    let autoplayTimer;
-
-    // Create dots
-    slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'carousel__dot' + (i === 0 ? ' is-active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-    });
-
-    // Modular index helper
-    function mod(n, m) { return ((n % m) + m) % m; }
-
-    // Track previous positions to detect wrapping
-    let prevPositions = {};
-
-    function getPosition(i) {
-        const diff = mod(i - current, total);
-        if (diff === 0) return 0;       // active
-        if (diff === 1) return 1;       // next
-        if (diff === total - 1) return -1; // prev
-        if (diff === 2) return 2;       // far-next
-        if (diff === total - 2) return -2; // far-prev
-        return 99;                      // hidden
+        setTimeout(setActiveNav, 100);
     }
 
-    function updateSlides() {
-        slides.forEach((slide, i) => {
-            const newPos = getPosition(i);
-            const oldPos = prevPositions[i] !== undefined ? prevPositions[i] : newPos;
-
-            // Detect wrapping: large jump means it's looping around
-            const isWrapping = Math.abs(newPos - oldPos) > 3;
-
-            if (isWrapping) {
-                // Teleport: disable transition, hide, move to new spot
-                slide.style.transition = 'none';
-                slide.style.opacity = '0';
+    function setActiveNav() {
+        var path = window.location.pathname;
+        var links = document.querySelectorAll('.nav__link');
+        for (var i = 0; i < links.length; i++) {
+            var href = links[i].getAttribute('href');
+            if (href && href !== '/' && path.indexOf(href.replace(/\/$/, '').split('/').pop()) !== -1) {
+                links[i].classList.add('is-active');
             }
+        }
+    }
 
-            slide.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next');
+    // ── Stat counter animation (Why Us section) ──────────────────
+    var statObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                animateCounters(entry.target);
+                statObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
 
-            if (newPos === 0) slide.classList.add('is-active');
-            else if (newPos === 1) slide.classList.add('is-next');
-            else if (newPos === -1) slide.classList.add('is-prev');
-            else if (newPos === 2) slide.classList.add('is-far-next');
-            else if (newPos === -2) slide.classList.add('is-far-prev');
-            else slide.style.opacity = '0';
+    var statSection = document.querySelector('.why-us__visual');
+    if (statSection) statObserver.observe(statSection);
 
-            if (isWrapping) {
-                // Re-enable transition on next frame so it fades in
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        slide.style.transition = '';
-                        slide.style.opacity = '';
+    function animateCounters(container) {
+        var nums = container.querySelectorAll('.why-us__stat-number');
+        nums.forEach(function(el) {
+            var text = el.textContent.trim();
+            var match = text.match(/^([\d,]+)(\+?)$/);
+            if (!match) return;
+            var target = parseInt(match[1].replace(/,/g, ''), 10);
+            var suffix = match[2] || '';
+            var duration = 1800;
+            var start = performance.now();
+
+            function tick(now) {
+                var elapsed = now - start;
+                var progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.round(eased * target);
+                el.textContent = current.toLocaleString() + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        });
+    }
+
+    // ── Stats bar counter animation (About page) ─────────────────
+    var statsBar = document.querySelector('.stats-bar');
+    if (statsBar) {
+        var statsBarObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var nums = entry.target.querySelectorAll('.stats-bar__number');
+                    nums.forEach(function(el) {
+                        var text = el.textContent.trim();
+                        var match = text.match(/^([\d,]+)(\+?)$/);
+                        if (!match) return;
+                        var target = parseInt(match[1].replace(/,/g, ''), 10);
+                        var suffix = match[2] || '';
+                        var duration = 2000;
+                        var startTime = performance.now();
+                        function tick(now) {
+                            var elapsed = now - startTime;
+                            var progress = Math.min(elapsed / duration, 1);
+                            var eased = 1 - Math.pow(1 - progress, 3);
+                            el.textContent = Math.round(eased * target).toLocaleString() + suffix;
+                            if (progress < 1) requestAnimationFrame(tick);
+                        }
+                        requestAnimationFrame(tick);
                     });
-                });
-            } else {
-                slide.style.opacity = '';
+                    statsBarObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        statsBarObserver.observe(statsBar);
+    }
+
+    // ── Smooth anchor scrolling with offset ──────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            var target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                var headerHeight = header ? header.offsetHeight : 0;
+                var y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+                window.scrollTo({ top: y, behavior: 'smooth' });
             }
-
-            prevPositions[i] = newPos;
         });
-
-        // Update dots
-        dotsContainer.querySelectorAll('.carousel__dot').forEach((dot, i) => {
-            dot.classList.toggle('is-active', i === current);
-        });
-    }
-
-    function goTo(index) {
-        current = mod(index, total);
-        updateSlides();
-    }
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-
-    // Touch / swipe support
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
     });
 
-    // Autoplay every 4 seconds
-    function resetAutoplay() {
-        clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(next, 4000);
-    }
-
-    carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
-    carousel.addEventListener('mouseleave', resetAutoplay);
-
-    // Init
-    goTo(0);
-    resetAutoplay();
-})();
-
-// ── Scroll to Top ─────────────────────────────────────────────────
-(function() {
-    const btn = document.getElementById('scroll-top');
-    if (!btn) return;
-
-    window.addEventListener('scroll', () => {
-        btn.classList.toggle('is-visible', window.scrollY > 600);
-    }, { passive: true });
-
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
-
-// ── Active nav link ───────────────────────────────────────────────
-(function() {
-    const path = window.location.pathname;
-    document.querySelectorAll('.nav__link').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && path.includes(href.replace(/\/$/, '').split('/').pop()) && href !== '/') {
-            link.classList.add('is-active');
-        }
-    });
 })();
 </script>
 

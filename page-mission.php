@@ -5,11 +5,11 @@
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Our mission">
         <div class="page-hero__inner">
-            <span class="section__label">🎯 Our Purpose</span>
+            <span class="section__label"><span aria-hidden="true">🎯</span> Our Purpose</span>
             <h1 class="page-hero__title">Our Mission</h1>
             <p class="page-hero__desc">To empower every individual to feel confident in their own skin through safe, innovative, and personalized aesthetic care.</p>
         </div>
@@ -26,17 +26,17 @@ get_header(); ?>
 
             <div class="mission-pillars reveal">
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon">🔬</div>
+                    <div class="mission-pillar__icon" aria-hidden="true">🔬</div>
                     <h3 class="mission-pillar__title">Science-Driven Care</h3>
                     <p class="mission-pillar__text">Every treatment we offer is backed by clinical research and FDA approval. We stay at the forefront of aesthetic medicine through continuous education and investment in the latest technology.</p>
                 </div>
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon">🎨</div>
+                    <div class="mission-pillar__icon" aria-hidden="true">🎨</div>
                     <h3 class="mission-pillar__title">Artistry in Practice</h3>
                     <p class="mission-pillar__text">Aesthetics is as much an art as it is a science. Our providers are trained to see facial harmony, understand proportions, and deliver results that look natural and beautiful from every angle.</p>
                 </div>
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon">🤝</div>
+                    <div class="mission-pillar__icon" aria-hidden="true">🤝</div>
                     <h3 class="mission-pillar__title">Personal Connection</h3>
                     <p class="mission-pillar__text">You're not a number here. We take time to listen to your goals, understand your concerns, and build a treatment plan that fits your life, your budget, and your comfort level.</p>
                 </div>
@@ -54,7 +54,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section" aria-label="Experience the difference">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Experience the Difference</span>
             <h2 class="cta-section__title">See Our Mission<br>in Action</h2>

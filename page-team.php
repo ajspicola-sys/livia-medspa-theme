@@ -5,9 +5,9 @@
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Our team">
         <div class="page-hero__inner">
             <span class="section__label">Our Experts</span>
             <h1 class="page-hero__title">Meet the Team</h1>
@@ -20,9 +20,9 @@ get_header(); ?>
             <div class="team-full__grid">
 
                 <!-- Team Member 1 -->
-                <div class="team-member reveal">
+                <article class="team-member reveal">
                     <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg">DR</div>
+                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">DR</div>
                     </div>
                     <div class="team-member__info">
                         <h2 class="team-member__name">Dr. Rachel Torres</h2>
@@ -41,12 +41,12 @@ get_header(); ?>
                             <span class="team-member__specialty">Facial Sculpting</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 <!-- Team Member 2 -->
-                <div class="team-member team-member--reverse reveal">
+                <article class="team-member team-member--reverse reveal">
                     <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg">SM</div>
+                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">SM</div>
                     </div>
                     <div class="team-member__info">
                         <h2 class="team-member__name">Sarah Mitchell, PA-C</h2>
@@ -63,12 +63,12 @@ get_header(); ?>
                             <span class="team-member__specialty">Neurotoxins</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 <!-- Team Member 3 -->
-                <div class="team-member reveal">
+                <article class="team-member reveal">
                     <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg">JC</div>
+                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">JC</div>
                     </div>
                     <div class="team-member__info">
                         <h2 class="team-member__name">Jennifer Chen, RN, BSN</h2>
@@ -87,12 +87,12 @@ get_header(); ?>
                             <span class="team-member__specialty">Skin Analysis</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 <!-- Team Member 4 -->
-                <div class="team-member team-member--reverse reveal">
+                <article class="team-member team-member--reverse reveal">
                     <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg">AL</div>
+                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">AL</div>
                     </div>
                     <div class="team-member__info">
                         <h2 class="team-member__name">Amanda Lopez</h2>
@@ -108,13 +108,13 @@ get_header(); ?>
                             <span class="team-member__specialty">Memberships</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section" aria-label="Book with us">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Book With Us</span>
             <h2 class="cta-section__title">Ready to Meet<br>Your Provider?</h2>

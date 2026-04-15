@@ -2,13 +2,14 @@
 /**
  * Template Name: Contact
  * Livia Med Spa — Contact Page
+ * Performance-optimized with form validation
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
     <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Contact us">
         <div class="page-hero__inner">
             <span class="section__label">Get in Touch</span>
             <h1 class="page-hero__title">Contact Us</h1>
@@ -17,7 +18,7 @@ get_header(); ?>
     </section>
 
     <!-- Contact Content -->
-    <section class="contact-section">
+    <section class="contact-section" aria-label="Contact form and information">
         <div class="section__inner">
             <div class="contact-grid">
 
@@ -25,32 +26,32 @@ get_header(); ?>
                 <div class="contact-form-wrap reveal">
                     <h2 class="contact-form__title">Send a Message</h2>
                     <p class="contact-form__subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
-                    <form class="contact-form" id="contact-form" method="post">
+                    <form class="contact-form" id="contact-form" method="post" novalidate>
                         <div class="contact-form__row">
                             <div class="form-group">
                                 <label for="cf-first" class="form-label">First Name</label>
-                                <input type="text" id="cf-first" name="first_name" class="form-input" placeholder="Jane" required>
+                                <input type="text" id="cf-first" name="first_name" class="form-input" placeholder="Jane" required autocomplete="given-name">
                             </div>
                             <div class="form-group">
                                 <label for="cf-last" class="form-label">Last Name</label>
-                                <input type="text" id="cf-last" name="last_name" class="form-input" placeholder="Doe" required>
+                                <input type="text" id="cf-last" name="last_name" class="form-input" placeholder="Doe" required autocomplete="family-name">
                             </div>
                         </div>
                         <div class="contact-form__row">
                             <div class="form-group">
                                 <label for="cf-email" class="form-label">Email</label>
-                                <input type="email" id="cf-email" name="email" class="form-input" placeholder="jane@example.com" required>
+                                <input type="email" id="cf-email" name="email" class="form-input" placeholder="jane@example.com" required autocomplete="email">
                             </div>
                             <div class="form-group">
                                 <label for="cf-phone" class="form-label">Phone</label>
-                                <input type="tel" id="cf-phone" name="phone" class="form-input" placeholder="(813) 000-0000">
+                                <input type="tel" id="cf-phone" name="phone" class="form-input" placeholder="(813) 000-0000" autocomplete="tel">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cf-service" class="form-label">Service of Interest</label>
                             <select id="cf-service" name="service" class="form-input form-select">
                                 <option value="">Select a service...</option>
-                                <option value="botox">Botox & Dysport</option>
+                                <option value="botox">Botox &amp; Dysport</option>
                                 <option value="fillers">Dermal Fillers</option>
                                 <option value="microneedling">Microneedling</option>
                                 <option value="peels">Chemical Peels</option>
@@ -65,15 +66,15 @@ get_header(); ?>
                         </div>
                         <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
                             Send Message
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </button>
                     </form>
                 </div>
 
                 <!-- Contact Info Sidebar -->
-                <div class="contact-sidebar reveal">
+                <aside class="contact-sidebar reveal" aria-label="Contact information">
                     <div class="contact-card">
-                        <div class="contact-card__icon">
+                        <div class="contact-card__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         </div>
                         <h3 class="contact-card__title">Phone</h3>
@@ -81,7 +82,7 @@ get_header(); ?>
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-card__icon">
+                        <div class="contact-card__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                         </div>
                         <h3 class="contact-card__title">Email</h3>
@@ -89,7 +90,7 @@ get_header(); ?>
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-card__icon">
+                        <div class="contact-card__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         </div>
                         <h3 class="contact-card__title">Location</h3>
@@ -97,7 +98,7 @@ get_header(); ?>
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-card__icon">
+                        <div class="contact-card__icon" aria-hidden="true">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
                         <h3 class="contact-card__title">Hours</h3>
@@ -121,18 +122,18 @@ get_header(); ?>
                     <div class="contact-social">
                         <span class="contact-social__label">Follow Us</span>
                         <div class="contact-social__links">
-                            <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <a href="#" class="footer__social-link" aria-label="Follow us on Instagram">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                             </a>
-                            <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <a href="#" class="footer__social-link" aria-label="Follow us on Facebook">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                             </a>
-                            <a href="#" class="footer__social-link" aria-label="TikTok">
+                            <a href="#" class="footer__social-link" aria-label="Follow us on TikTok">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
                             </a>
                         </div>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </section>

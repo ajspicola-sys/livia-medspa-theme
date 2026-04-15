@@ -5,9 +5,9 @@
  */
 get_header(); ?>
 
-<main class="site-main">
+<main class="site-main" id="main-content">
 
-    <section class="page-hero">
+    <section class="page-hero" aria-label="Before and after gallery">
         <div class="page-hero__inner">
             <span class="section__label">Real Results</span>
             <h1 class="page-hero__title">Before & After</h1>
@@ -19,7 +19,7 @@ get_header(); ?>
         <div class="section__inner">
 
             <!-- Filter tabs -->
-            <div class="gallery-filters reveal">
+            <div class="gallery-filters reveal" role="group" aria-label="Filter by treatment type">
                 <button class="gallery-filter is-active" data-filter="all">All</button>
                 <button class="gallery-filter" data-filter="botox">Botox</button>
                 <button class="gallery-filter" data-filter="fillers">Fillers</button>
@@ -138,7 +138,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section" aria-label="Book your transformation">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Your Transformation Awaits</span>
             <h2 class="cta-section__title">Ready for Your<br>Before & After?</h2>
