@@ -25,7 +25,13 @@ get_header(); ?>
                         $duration = get_post_meta(get_the_ID(), '_service_duration', true);
                     ?>
                         <a href="<?php the_permalink(); ?>" class="service-card" aria-label="<?php the_title_attribute(); ?>">
-                            <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
+                            <?php if (has_post_thumbnail()) : ?>
+                                <div class="service-card__thumb">
+                                    <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                                </div>
+                            <?php else : ?>
+                                <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
+                            <?php endif; ?>
                             <h3 class="service-card__title"><?php the_title(); ?></h3>
                             <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
                             <?php if ($price || $duration) : ?>
@@ -43,11 +49,28 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
             <?php else : ?>
-                <div class="section__header">
-                    <h2 class="section__title">Coming Soon</h2>
-                    <p class="section__desc">Our services are being added. Check back soon!</p>
+                <div class="section__header" style="text-align:center;padding:4rem 0;">
+                    <span class="section__label">Coming Soon</span>
+                    <h2 class="section__title">Our Services</h2>
+                    <p class="section__desc">We're preparing our treatment menu. In the meantime, contact us for a consultation.</p>
+                    <div style="margin-top:1.5rem;">
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Book Consultation</a>
+                    </div>
                 </div>
             <?php endif; ?>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-label="Book a treatment">
+        <div class="cta-section__inner reveal">
+            <span class="cta-section__label">Ready to Glow?</span>
+            <h2 class="cta-section__title">Find Your<br>Perfect Treatment</h2>
+            <p class="cta-section__text">Not sure which service is right for you? Book a complimentary consultation and let our experts guide you.</p>
+            <div class="cta-section__actions">
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
+            </div>
         </div>
     </section>
 

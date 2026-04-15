@@ -77,6 +77,14 @@ get_header(); ?>
                 <span class="hero__trust-text">500+ Five-Star Reviews</span>
             </div>
         </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero__scroll-indicator" aria-hidden="true">
+            <div class="hero__scroll-mouse">
+                <div class="hero__scroll-dot"></div>
+            </div>
+            <span class="hero__scroll-text">Scroll</span>
+        </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
