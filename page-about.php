@@ -25,38 +25,78 @@ get_header(); ?>
                 <p class="section__desc">Board-certified providers dedicated to delivering exceptional results with precision and care.</p>
             </div>
             <div class="team-grid reveal">
-                <article class="team-card">
-                    <div class="team-card__image">
-                        <div class="team-card__placeholder" aria-hidden="true">DR</div>
-                    </div>
-                    <h3 class="team-card__name">Dr. Rachel Torres</h3>
-                    <span class="team-card__role">Medical Director</span>
-                    <p class="team-card__bio">Board-certified with 12+ years in aesthetic medicine. Specializes in advanced injectables and facial rejuvenation.</p>
-                </article>
-                <article class="team-card">
-                    <div class="team-card__image">
-                        <div class="team-card__placeholder" aria-hidden="true">SM</div>
-                    </div>
-                    <h3 class="team-card__name">Sarah Mitchell, PA-C</h3>
-                    <span class="team-card__role">Lead Injector</span>
-                    <p class="team-card__bio">Physician assistant with specialized training in dermal fillers and neurotoxins. Known for her artistic eye.</p>
-                </article>
-                <article class="team-card">
-                    <div class="team-card__image">
-                        <div class="team-card__placeholder" aria-hidden="true">JC</div>
-                    </div>
-                    <h3 class="team-card__name">Jennifer Chen, RN</h3>
-                    <span class="team-card__role">Aesthetic Nurse</span>
-                    <p class="team-card__bio">Registered nurse specializing in laser treatments and skin rejuvenation. Passionate about patient education.</p>
-                </article>
-                <article class="team-card">
-                    <div class="team-card__image">
-                        <div class="team-card__placeholder" aria-hidden="true">AL</div>
-                    </div>
-                    <h3 class="team-card__name">Amanda Lopez</h3>
-                    <span class="team-card__role">Patient Coordinator</span>
-                    <p class="team-card__bio">Your first point of contact. Amanda ensures every visit is seamless from booking to aftercare follow-up.</p>
-                </article>
+                <?php
+                $team_preview = new WP_Query([
+                    'post_type'      => 'team_member',
+                    'posts_per_page' => 4,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                    'no_found_rows'  => true,
+                ]);
+
+                if ($team_preview->have_posts()) :
+                    while ($team_preview->have_posts()) : $team_preview->the_post();
+                        $role = get_post_meta(get_the_ID(), '_team_role', true);
+                        $name_parts = explode(' ', get_the_title());
+                        $initials = '';
+                        foreach ($name_parts as $part) {
+                            $clean = preg_replace('/[^A-Za-z]/', '', $part);
+                            if ($clean) $initials .= strtoupper($clean[0]);
+                        }
+                        $initials = substr($initials, 0, 2);
+                ?>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                            <?php else : ?>
+                                <div class="team-card__placeholder" aria-hidden="true"><?php echo esc_html($initials); ?></div>
+                            <?php endif; ?>
+                        </div>
+                        <h3 class="team-card__name"><?php the_title(); ?></h3>
+                        <?php if ($role) : ?>
+                            <span class="team-card__role"><?php echo esc_html($role); ?></span>
+                        <?php endif; ?>
+                        <?php if (has_excerpt()) : ?>
+                            <p class="team-card__bio"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                        <?php endif; ?>
+                    </article>
+                <?php endwhile; wp_reset_postdata();
+                else : ?>
+                    <!-- Fallback when no team members yet -->
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">DR</div>
+                        </div>
+                        <h3 class="team-card__name">Dr. Rachel Torres</h3>
+                        <span class="team-card__role">Medical Director</span>
+                        <p class="team-card__bio">Board-certified with 12+ years in aesthetic medicine. Specializes in advanced injectables and facial rejuvenation.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">SM</div>
+                        </div>
+                        <h3 class="team-card__name">Sarah Mitchell, PA-C</h3>
+                        <span class="team-card__role">Lead Injector</span>
+                        <p class="team-card__bio">Physician assistant with specialized training in dermal fillers and neurotoxins. Known for her artistic eye.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">JC</div>
+                        </div>
+                        <h3 class="team-card__name">Jennifer Chen, RN</h3>
+                        <span class="team-card__role">Aesthetic Nurse</span>
+                        <p class="team-card__bio">Registered nurse specializing in laser treatments and skin rejuvenation. Passionate about patient education.</p>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__image">
+                            <div class="team-card__placeholder" aria-hidden="true">AL</div>
+                        </div>
+                        <h3 class="team-card__name">Amanda Lopez</h3>
+                        <span class="team-card__role">Patient Coordinator</span>
+                        <p class="team-card__bio">Your first point of contact. Amanda ensures every visit is seamless from booking to aftercare follow-up.</p>
+                    </article>
+                <?php endif; ?>
             </div>
             <div style="text-align:center;margin-top:2.5rem;" class="reveal">
                 <a href="<?php echo esc_url(home_url('/team/')); ?>" class="btn btn--primary">View Full Team →</a>

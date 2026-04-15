@@ -41,10 +41,11 @@ get_header(); ?>
                                     <?php if (has_category()) : ?>
                                         <span class="blog-card__cat"><?php $cat = get_the_category(); echo esc_html($cat[0]->name); ?></span>
                                     <?php endif; ?>
+                                    <span class="blog-card__read-time"><?php echo ceil(str_word_count(strip_tags(get_the_content())) / 250); ?> min read</span>
                                 </div>
                                 <h2 class="blog-card__title"><?php the_title(); ?></h2>
                                 <p class="blog-card__excerpt"><?php echo wp_trim_words(get_the_excerpt(), 18); ?></p>
-                                <span class="blog-card__read">Read More →</span>
+                                <span class="blog-card__read">Read Article →</span>
                             </div>
                         </a>
                     <?php endwhile; ?>

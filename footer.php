@@ -52,6 +52,18 @@
     </div>
 </section>
 
+<!-- Floating Mobile CTA -->
+<div class="floating-cta" id="floating-cta" aria-label="Quick actions">
+    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="floating-cta__btn floating-cta__btn--book">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+        Book Now
+    </a>
+    <a href="tel:8132302219" class="floating-cta__btn floating-cta__btn--call">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call
+    </a>
+</div>
+
 <!-- FOOTER -->
 <footer class="site-footer" role="contentinfo">
     <div class="footer__top">
@@ -512,6 +524,32 @@
             }
         });
     });
+
+    // ── Reading progress bar (blog posts only) ──────────────────
+    var progressBar = document.getElementById('reading-progress-bar');
+    var postContent = document.querySelector('.post-content');
+    if (progressBar && postContent) {
+        window.addEventListener('scroll', function() {
+            var rect = postContent.getBoundingClientRect();
+            var scrolled = -rect.top;
+            var total = rect.height - window.innerHeight;
+            var pct = Math.min(Math.max(scrolled / total * 100, 0), 100);
+            progressBar.style.width = pct + '%';
+        }, { passive: true });
+    }
+
+    // ── Hide floating CTA near footer ───────────────────────────
+    var floatingCta = document.getElementById('floating-cta');
+    var siteFooter = document.querySelector('.site-footer');
+    if (floatingCta && siteFooter) {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                floatingCta.style.opacity = entry.isIntersecting ? '0' : '';
+                floatingCta.style.pointerEvents = entry.isIntersecting ? 'none' : '';
+            });
+        }, { threshold: 0.1 });
+        observer.observe(siteFooter);
+    }
 
 })();
 </script>

@@ -18,6 +18,28 @@ $category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->na
 
 <main class="site-main" id="main-content">
 
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <div class="section__inner">
+            <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li class="breadcrumbs__sep" aria-hidden="true">›</li>
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" itemprop="item"><span itemprop="name">Services</span></a>
+                    <meta itemprop="position" content="2">
+                </li>
+                <li class="breadcrumbs__sep" aria-hidden="true">›</li>
+                <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+                    <span itemprop="name"><?php the_title(); ?></span>
+                    <meta itemprop="position" content="3">
+                </li>
+            </ol>
+        </div>
+    </nav>
+
     <!-- ═══════════════════════════════════════════════════════
          SECTION 1: HERO (Dynamic)
          ═══════════════════════════════════════════════════════ -->

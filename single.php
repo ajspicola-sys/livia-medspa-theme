@@ -7,6 +7,11 @@ get_header(); ?>
 
 <main class="site-main" id="main-content">
 
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress" aria-hidden="true">
+        <div class="reading-progress__bar" id="reading-progress-bar"></div>
+    </div>
+
     <article class="single-post" itemscope itemtype="https://schema.org/BlogPosting">
         <!-- Post Hero -->
         <div class="page-hero page-hero--blog">

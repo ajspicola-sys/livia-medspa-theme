@@ -4513,6 +4513,145 @@ a.contact-card__text:hover {
   color: #c9a96e;
 }
 
+.blog-card__read-time {
+  font-size: 0.7rem;
+  color: #9e9eb0;
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   READING PROGRESS BAR
+   ========================================================================== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10000;
+  background: transparent;
+  pointer-events: none;
+}
+
+.reading-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #c9a96e, #d4b87a, #c9a96e);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.1s linear;
+  will-change: width;
+}
+
+/* ==========================================================================
+   BREADCRUMBS
+   ========================================================================== */
+.breadcrumbs {
+  padding: 1rem 0;
+  background: linear-gradient(180deg, #f5f0ea 0%, #faf8f5 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  color: #9e9eb0;
+}
+
+.breadcrumbs__item a {
+  color: #7a7a90;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs__item a:hover {
+  color: #c9a96e;
+}
+
+.breadcrumbs__sep {
+  margin: 0 0.5rem;
+  color: #c9a96e;
+  font-size: 0.85rem;
+}
+
+.breadcrumbs__item--current {
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   FLOATING MOBILE CTA
+   ========================================================================== */
+.floating-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .floating-cta {
+    display: flex;
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 9999px;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: float-up 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  @keyframes float-up {
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .floating-cta__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.2rem;
+    border-radius: 9999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .floating-cta__btn--book {
+    background: linear-gradient(135deg, #c9a96e, #b8944f);
+    color: #fff;
+  }
+
+  .floating-cta__btn--book:hover {
+    background: linear-gradient(135deg, #d4b87a, #c9a96e);
+  }
+
+  .floating-cta__btn--call {
+    background: rgba(255, 255, 255, 0.08);
+    color: #faf8f5;
+    border: 1px solid rgba(250, 248, 245, 0.15);
+  }
+
+  .floating-cta__btn--call:hover {
+    border-color: #c9a96e;
+    color: #c9a96e;
+  }
+}
+
 /* Pagination */
 .blog-pagination {
   margin-top: 3rem;
