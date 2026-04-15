@@ -2753,69 +2753,303 @@ a.contact-card__text:hover { color: #c9a96e; }
   padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
 }
 
-.single-service {
-  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
-}
+/* ==========================================================================
+   SINGLE SERVICE PAGE
+   ========================================================================== */
 
-.single-service__grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
-  align-items: start;
-}
-
-.single-service__image {
-  border-radius: 16px;
+/* ── Service Hero ──────────────────────────────────────────────── */
+.service-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
+  padding: clamp(5rem, 4rem + 5vw, 9rem) 0 clamp(3rem, 2.5rem + 3vw, 5rem);
+  position: relative;
   overflow: hidden;
-  margin-bottom: 2rem;
 }
 
-.single-service__image img {
+.service-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.service-hero__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  text-align: center;
+}
+
+.service-hero__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 1.7rem + 2.5vw, 3.8rem);
+  font-weight: 300;
+  color: #faf8f5;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.service-hero__desc {
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.1rem);
+  color: rgba(250, 248, 245, 0.7);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto 2rem;
+}
+
+.service-hero .section__label {
+  color: #c9a96e;
+}
+
+/* Price & Duration badges */
+.service-hero__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.service-hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  min-width: 140px;
+}
+
+.service-hero__meta-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 245, 0.5);
+}
+
+.service-hero__meta-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #c9a96e;
+}
+
+.service-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.service-hero__actions .btn--outline {
+  color: rgba(250, 248, 245, 0.8);
+  border-color: rgba(250, 248, 245, 0.2);
+}
+
+.service-hero__actions .btn--outline:hover {
+  color: #c9a96e;
+  border-color: #c9a96e;
+}
+
+/* ── Featured Image ────────────────────────────────────────────── */
+.service-featured-img {
+  padding: clamp(2rem, 1.5rem + 2vw, 3rem) 0 0;
+}
+
+.service-featured-img__wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.1);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.service-featured-img__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Service Content (from WP Editor) ──────────────────────────── */
+.service-content {
+  padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
+}
+
+.service-content__body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.service-content__body h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 1.3rem + 1.3vw, 2.2rem);
+  font-weight: 400;
+  color: #1a1a2e;
+  margin: 3rem 0 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f0f0f4;
+  line-height: 1.25;
+}
+
+.service-content__body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.service-content__body h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+  font-weight: 400;
+  color: #1a1a2e;
+  margin: 2rem 0 1rem;
+  line-height: 1.3;
+}
+
+.service-content__body p {
+  font-size: 0.95rem;
+  color: #55556a;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.service-content__body img {
+  border-radius: 16px;
+  margin: 2rem 0;
   width: 100%;
   height: auto;
 }
 
-.service-info-card {
+.service-content__body ul,
+.service-content__body ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.service-content__body ul { list-style: none; padding-left: 0; }
+
+.service-content__body ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  color: #55556a;
+  line-height: 1.7;
+}
+
+.service-content__body ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: #c9a96e;
+  font-size: 0.7rem;
+  top: 0.35rem;
+}
+
+.service-content__body ol li {
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  color: #55556a;
+  line-height: 1.7;
+}
+
+.service-content__body blockquote {
+  border-left: 3px solid #c9a96e;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(201, 169, 110, 0.04);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+}
+
+.service-content__body blockquote p {
+  color: #1a1a2e;
+  margin-bottom: 0;
+}
+
+.service-content__body strong {
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+/* ── Why People Choose Livia (Static) ──────────────────────────── */
+.service-why-us {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #fff;
+}
+
+.service-why-us__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service-why-us__card {
+  background: #faf8f5;
   border: 1px solid #f0f0f4;
   border-radius: 16px;
-  padding: 2rem;
-  margin-bottom: 1rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.service-info-card__title {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
+.service-why-us__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a96e, #dbb978);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.service-why-us__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.service-why-us__card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-why-us__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.service-why-us__card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  font-weight: 400;
   color: #1a1a2e;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #f0f0f4;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
-.service-info-card__row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f8f8fa;
+.service-why-us__card-text {
+  font-size: 0.85rem;
+  color: #55556a;
+  line-height: 1.7;
 }
 
-.service-info-card__row:last-of-type {
-  border-bottom: none;
-}
-
-.service-info-card__label {
-  font-size: 0.82rem;
-  color: #7a7a90;
-}
-
-.service-info-card__value {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #c9a96e;
-}
-
+/* Keep old service card meta for archive pages */
 .service-card__meta {
   display: flex;
   align-items: center;
@@ -2835,6 +3069,7 @@ a.contact-card__text:hover { color: #c9a96e; }
   font-size: 0.78rem;
   color: #7a7a90;
 }
+
 
 /* ==========================================================================
    ABOUT PAGE
@@ -4518,6 +4753,9 @@ a.contact-card__text:hover { color: #c9a96e; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .single-service__grid { grid-template-columns: 1fr; }
+  .service-why-us__grid { grid-template-columns: 1fr; max-width: 500px; margin: 2rem auto 0; }
+  .service-hero__actions { flex-direction: column; }
+  .service-hero__actions .btn { width: 100%; max-width: 340px; }
   .product-showcase__layout { grid-template-columns: 1fr; text-align: center; }
   .product-showcase__features { align-items: center; }
   .product-showcase__actions { justify-content: center; }
@@ -4560,6 +4798,8 @@ a.contact-card__text:hover { color: #c9a96e; }
   .team-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .value-detail { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .service-hero__meta { flex-direction: column; gap: 0.75rem; }
+  .service-hero__meta-item { width: 100%; max-width: 280px; }
 }
 
 /* WP Admin bar — handled dynamically via JS */
