@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 
 // ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
-    if (get_option('livia_pages_created_v2')) return;
+    if (get_option('livia_pages_created_v3')) return;
 
     $pages = [
         'Home'           => '',
@@ -67,7 +67,7 @@ function livia_create_pages() {
         }
     }
 
-    update_option('livia_pages_created_v2', true);
+    update_option('livia_pages_created_v3', true);
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
