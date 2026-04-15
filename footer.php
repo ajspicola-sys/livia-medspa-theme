@@ -167,7 +167,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ── Services Carousel ─────────────────────────────────────────────
+// ── Services Carousel (Infinite) ──────────────────────────────────
 (function() {
     const carousel = document.getElementById('services-carousel');
     if (!carousel) return;
@@ -178,6 +178,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     const prevBtn = carousel.querySelector('.carousel__arrow--prev');
     const nextBtn = carousel.querySelector('.carousel__arrow--next');
     const total = slides.length;
+    if (total === 0) return;
+
     let current = 0;
     let autoplayTimer;
 
@@ -190,17 +192,31 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
         dotsContainer.appendChild(dot);
     });
 
-    function updateClasses() {
+    // Modular index helper
+    function mod(n, m) { return ((n % m) + m) % m; }
+
+    function updateSlides() {
         slides.forEach((slide, i) => {
-            slide.classList.remove('is-active', 'is-prev', 'is-next');
-            if (i === current) {
+            slide.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next');
+            slide.style.opacity = '';
+
+            const diff = mod(i - current, total);
+
+            if (diff === 0) {
                 slide.classList.add('is-active');
-            } else if (i === current - 1 || (current === 0 && i === total - 1)) {
-                slide.classList.add('is-prev');
-            } else if (i === current + 1 || (current === total - 1 && i === 0)) {
+            } else if (diff === 1) {
                 slide.classList.add('is-next');
+            } else if (diff === total - 1) {
+                slide.classList.add('is-prev');
+            } else if (diff === 2) {
+                slide.classList.add('is-far-next');
+            } else if (diff === total - 2) {
+                slide.classList.add('is-far-prev');
+            } else {
+                slide.style.opacity = '0';
             }
         });
+
         // Update dots
         dotsContainer.querySelectorAll('.carousel__dot').forEach((dot, i) => {
             dot.classList.toggle('is-active', i === current);
@@ -208,48 +224,36 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     }
 
     function goTo(index) {
-        current = Math.max(0, Math.min(index, total - 1));
-        const slideWidth = slides[0].offsetWidth + 24; // gap
-        const containerWidth = track.parentElement.offsetWidth;
-        const centerOffset = (containerWidth - slides[0].offsetWidth) / 2;
-        const offset = -(current * slideWidth) + centerOffset;
-        track.style.transform = 'translateX(' + offset + 'px)';
-        updateClasses();
-        resetAutoplay();
+        current = mod(index, total);
+        updateSlides();
     }
 
-    function next() { goTo(current >= total - 1 ? 0 : current + 1); }
-    function prev() { goTo(current <= 0 ? total - 1 : current - 1); }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
 
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
 
     // Touch / swipe support
     let touchStartX = 0;
-    let touchEndX = 0;
     track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].clientX;
-        const diff = touchStartX - touchEndX;
+        const diff = touchStartX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
     });
 
-    // Autoplay
+    // Autoplay every 4 seconds
     function resetAutoplay() {
         clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(next, 5000);
+        autoplayTimer = setInterval(next, 4000);
     }
 
-    // Pause on hover
     carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
     carousel.addEventListener('mouseleave', resetAutoplay);
 
     // Init
     goTo(0);
     resetAutoplay();
-
-    // Recalc on resize
-    window.addEventListener('resize', () => goTo(current));
 })();
 </script>
 
