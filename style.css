@@ -1382,6 +1382,179 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   PRODUCT SHOWCASE
+   ========================================================================== */
+.product-showcase {
+  position: relative;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 40%, #191930 100%);
+  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  overflow: hidden;
+}
+
+.product-showcase__glow {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 65%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.product-showcase__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+
+.product-showcase__text {
+  font-size: 0.95rem;
+  color: rgba(250,248,245,0.6);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.product-showcase__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.product-showcase__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.product-showcase__feature-icon {
+  font-size: 1.1rem;
+}
+
+.product-showcase__feature-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(250,248,245,0.75);
+}
+
+.product-showcase__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Outline light button variant */
+.btn--outline-light {
+  border-color: rgba(250,248,245,0.25);
+  color: #faf8f5;
+}
+
+.btn--outline-light:hover {
+  border-color: #c9a96e;
+  color: #c9a96e;
+  background: rgba(201,169,110,0.06);
+}
+
+/* Product Visual */
+.product-showcase__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-showcase__image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-showcase__ring {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,169,110,0.15);
+  animation: productRingSpin 20s linear infinite;
+}
+
+.product-showcase__ring::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #c9a96e;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(201,169,110,0.6);
+}
+
+@keyframes productRingSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.product-showcase__image {
+  width: 280px;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 50px rgba(0,0,0,0.4));
+  animation: productFloat 4s ease-in-out infinite;
+}
+
+@keyframes productFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.product-showcase__badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  z-index: 3;
+  animation: badgeBounce 3s ease-in-out infinite;
+}
+
+.product-showcase__badge--1 {
+  top: 15%;
+  right: -10%;
+  animation-delay: 0s;
+}
+
+.product-showcase__badge--2 {
+  bottom: 20%;
+  left: -10%;
+  animation-delay: 1.5s;
+}
+
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.product-showcase__badge-icon {
+  font-size: 1rem;
+}
+
+.product-showcase__badge-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
    WHY US
    ========================================================================== */
 .why-us {
@@ -2888,6 +3061,11 @@ a.contact-card__text:hover { color: #c9a96e; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .single-service__grid { grid-template-columns: 1fr; }
+  .product-showcase__layout { grid-template-columns: 1fr; text-align: center; }
+  .product-showcase__features { align-items: center; }
+  .product-showcase__actions { justify-content: center; }
+  .product-showcase__ring { width: 300px; height: 300px; }
+  .product-showcase__image { width: 220px; }
   .about-story__grid { grid-template-columns: 1fr; }
   .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid { grid-template-columns: repeat(2, 1fr); }

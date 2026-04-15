@@ -136,6 +136,54 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         PRODUCT SHOWCASE
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="product-showcase">
+        <div class="product-showcase__glow"></div>
+        <div class="section__inner">
+            <div class="product-showcase__layout">
+                <div class="product-showcase__content reveal">
+                    <span class="section__label" style="color: rgba(201,169,110,0.8);">Medical-Grade Skincare</span>
+                    <h2 class="section__title" style="color: #faf8f5;">Professional Products,<br>Exceptional Results</h2>
+                    <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
+                    <div class="product-showcase__features">
+                        <div class="product-showcase__feature">
+                            <span class="product-showcase__feature-icon">🔬</span>
+                            <span class="product-showcase__feature-text">Physician-Strength Formulas</span>
+                        </div>
+                        <div class="product-showcase__feature">
+                            <span class="product-showcase__feature-icon">✨</span>
+                            <span class="product-showcase__feature-text">Clinically Proven Results</span>
+                        </div>
+                        <div class="product-showcase__feature">
+                            <span class="product-showcase__feature-icon">🛡️</span>
+                            <span class="product-showcase__feature-text">FDA-Approved Ingredients</span>
+                        </div>
+                    </div>
+                    <div class="product-showcase__actions">
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Shop Products</a>
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline-light btn--lg">Get a Skincare Consultation</a>
+                    </div>
+                </div>
+                <div class="product-showcase__visual reveal">
+                    <div class="product-showcase__image-wrapper">
+                        <div class="product-showcase__ring"></div>
+                        <img src="https://liviamedspa.com/wp-content/uploads/2025/03/1b5814_e3537a28776d47dbbe90ddc516aa73b3mv2-759x1024.avif" alt="ZO Skin Health Products" class="product-showcase__image">
+                        <div class="product-showcase__badge product-showcase__badge--1">
+                            <span class="product-showcase__badge-icon">⭐</span>
+                            <span class="product-showcase__badge-text">Best Seller</span>
+                        </div>
+                        <div class="product-showcase__badge product-showcase__badge--2">
+                            <span class="product-showcase__badge-icon">👩‍⚕️</span>
+                            <span class="product-showcase__badge-text">Dr. Recommended</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          WHY LIVIA SECTION
          ═══════════════════════════════════════════════════════════════ -->
     <section class="why-us">
