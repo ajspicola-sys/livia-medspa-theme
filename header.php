@@ -195,11 +195,10 @@
                                         ];
                                         $pi = 0;
                                         while ($nav_products->have_posts()) : $nav_products->the_post();
-                                            $p_url = get_post_meta(get_the_ID(), '_product_url', true) ?: '#';
                                             $pc = $p_colors[$pi % count($p_colors)];
                                             $pi++;
                                     ?>
-                                        <a href="<?php echo esc_url($p_url); ?>" class="mega-menu__item" target="_blank" rel="noopener noreferrer">
+                                        <a href="<?php echo esc_url(home_url('/products/')); ?>" class="mega-menu__item">
                                             <span class="mega-menu__item-icon" style="background:<?php echo $pc['bg']; ?>;color:<?php echo $pc['fg']; ?>;">🛍️</span>
                                             <span class="mega-menu__item-content">
                                                 <span class="mega-menu__item-title"><?php the_title(); ?></span>
