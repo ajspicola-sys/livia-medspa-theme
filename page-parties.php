@@ -199,6 +199,41 @@ get_header(); ?>
             </div>
         </div>
     </section>
+    <!-- Party Testimonials -->
+    <section class="testimonials-section" aria-label="Party testimonials">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">What Hosts Are Saying</span>
+                <h2 class="section__title">Party Reviews</h2>
+            </div>
+            <div class="testimonials-grid reveal">
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                    <p class="testimonial-card__text">"Best girls' night EVER! The team was so professional and made everyone feel comfortable. We're already planning our next one!"</p>
+                    <div class="testimonial-card__author">
+                        <strong>Sarah M.</strong>
+                        <span>Botox Party Host</span>
+                    </div>
+                </div>
+                <div class="testimonial-card testimonial-card--featured">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                    <p class="testimonial-card__text">"I hosted a bridal party glow-up and it was absolutely perfect. Every guest left glowing — literally. The Glo2Facial was a hit!"</p>
+                    <div class="testimonial-card__author">
+                        <strong>Jessica L.</strong>
+                        <span>Bridal Party Host</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                    <p class="testimonial-card__text">"We did a corporate wellness day with Livia. The team brought everything to our office and the employees loved it. Huge morale boost!"</p>
+                    <div class="testimonial-card__author">
+                        <strong>Amanda K.</strong>
+                        <span>Corporate Wellness Event</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- CTA -->
     <section class="cta-section">
@@ -206,6 +241,7 @@ get_header(); ?>
             <span class="cta-section__label">Ready to Celebrate?</span>
             <h2 class="cta-section__title">Book Your<br>Glow-Up Party</h2>
             <p class="cta-section__text">Contact us to plan the ultimate beauty experience for you and your friends.</p>
+            <p class="cta-section__urgency">⚡ Limited weekend spots available — book early!</p>
             <div class="cta-section__actions">
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book a Party</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>

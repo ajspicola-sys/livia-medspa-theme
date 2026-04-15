@@ -273,6 +273,71 @@ h6 {
 }
 
 /* ==========================================================================
+   ANNOUNCEMENT BAR
+   ========================================================================== */
+.announcement-bar {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  text-align: center;
+  overflow: hidden;
+  max-height: 50px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.announcement-bar.is-dismissed {
+  max-height: 0;
+  opacity: 0;
+  border-bottom: none;
+}
+
+.announcement-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.announcement-bar__text {
+  font-size: 0.72rem;
+  color: rgba(250, 248, 245, 0.8);
+  letter-spacing: 0.02em;
+}
+
+.announcement-bar__text strong {
+  color: #c9a96e;
+}
+
+.announcement-bar__link {
+  color: #c9a96e;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.announcement-bar__link:hover {
+  color: #d4b87a;
+}
+
+.announcement-bar__close {
+  background: none;
+  border: none;
+  color: rgba(250, 248, 245, 0.4);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.announcement-bar__close:hover {
+  color: #faf8f5;
+}
+
+/* ==========================================================================
    HEADER
    ========================================================================== */
 .site-header {
@@ -2535,6 +2600,88 @@ html {
   color: rgba(250, 248, 245, 0.55);
   line-height: 1.7;
   margin-bottom: 2.5rem;
+}
+
+.cta-section__urgency {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c9a96e;
+  margin-bottom: 1.5rem;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
+.testimonials-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #f5f0ea;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  border: 1px solid #f0f0f4;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.testimonial-card--featured {
+  border-color: rgba(201, 169, 110, 0.3);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.08);
+}
+
+.testimonial-card__stars {
+  color: #c9a96e;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card__text {
+  font-size: 0.88rem;
+  color: #3a3a50;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+
+.testimonial-card__author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial-card__author strong {
+  font-size: 0.85rem;
+  color: #1a1a2e;
+}
+
+.testimonial-card__author span {
+  font-size: 0.7rem;
+  color: #9e9eb0;
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cta-section__actions {
@@ -5224,6 +5371,62 @@ a.contact-card__text:hover {
 .breadcrumbs__item--current {
   color: #1a1a2e;
   font-weight: 600;
+}
+
+/* ==========================================================================
+   SOCIAL PROOF NOTIFICATION
+   ========================================================================== */
+.social-proof {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform: translateX(-120%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  max-width: 320px;
+}
+
+.social-proof.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.social-proof__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.social-proof__content {
+  font-size: 0.78rem;
+  color: #1a1a2e;
+  line-height: 1.4;
+}
+
+.social-proof__content strong {
+  color: #c9a96e;
+}
+
+.social-proof__time {
+  display: block;
+  font-size: 0.65rem;
+  color: #9e9eb0;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 768px) {
+  .social-proof {
+    display: none;
+  }
 }
 
 /* ==========================================================================

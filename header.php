@@ -157,6 +157,17 @@
     <!-- Skip to content (accessibility) -->
     <a class="skip-to-content" href="#main-content">Skip to content</a>
 
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement-bar" role="banner">
+        <div class="announcement-bar__inner">
+            <p class="announcement-bar__text">
+                ✨ <strong>New Client Special</strong> — Book your first consultation and receive <strong>20% off</strong> any treatment!
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="announcement-bar__link">Book Now →</a>
+            </p>
+            <button class="announcement-bar__close" id="announcement-close" aria-label="Dismiss announcement">✕</button>
+        </div>
+    </div>
+
     <!-- HEADER – uses will-change for GPU compositing during scroll -->
     <header class="site-header" id="site-header" role="banner">
         <div class="site-header__inner">

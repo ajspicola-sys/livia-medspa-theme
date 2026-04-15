@@ -711,6 +711,59 @@
         }, { passive: true });
     }
 
+    // ── Announcement Bar Dismiss ────────────────────────────────
+    var announcementBar = document.getElementById('announcement-bar');
+    var announcementClose = document.getElementById('announcement-close');
+    if (announcementBar) {
+        if (localStorage.getItem('livia-announcement-dismissed')) {
+            announcementBar.classList.add('is-dismissed');
+        }
+        if (announcementClose) {
+            announcementClose.addEventListener('click', function() {
+                announcementBar.classList.add('is-dismissed');
+                localStorage.setItem('livia-announcement-dismissed', Date.now());
+            });
+        }
+    }
+
+    // ── Social Proof Notification ───────────────────────────────
+    var proofNames = ['Sarah M.', 'Jessica L.', 'Emily R.', 'Amanda K.', 'Lauren B.', 'Michelle T.'];
+    var proofServices = ['Botox', 'Dermal Fillers', 'Chemical Peel', 'Microneedling', 'IV Therapy', 'Laser Treatment'];
+    var proofTimes = ['2 minutes', '5 minutes', '12 minutes', '23 minutes', '1 hour'];
+
+    function showSocialProof() {
+        var existing = document.getElementById('social-proof');
+        if (existing) existing.remove();
+
+        var name = proofNames[Math.floor(Math.random() * proofNames.length)];
+        var service = proofServices[Math.floor(Math.random() * proofServices.length)];
+        var time = proofTimes[Math.floor(Math.random() * proofTimes.length)];
+
+        var el = document.createElement('div');
+        el.id = 'social-proof';
+        el.className = 'social-proof';
+        el.innerHTML = '<div class="social-proof__icon">✨</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
+        document.body.appendChild(el);
+
+        requestAnimationFrame(function() {
+            el.classList.add('is-visible');
+        });
+
+        setTimeout(function() {
+            el.classList.remove('is-visible');
+            setTimeout(function() { el.remove(); }, 400);
+        }, 5000);
+    }
+
+    // Show first proof after 8s, then every 30s
+    if (window.innerWidth > 768) {
+        setTimeout(showSocialProof, 8000);
+        setInterval(showSocialProof, 30000);
+    }
+
+    // ── Smooth scroll on HTML ───────────────────────────────────
+    document.documentElement.style.scrollBehavior = 'smooth';
+
 })();
 </script>
 
