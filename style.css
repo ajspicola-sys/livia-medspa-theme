@@ -1263,13 +1263,13 @@ h6 {
 .carousel {
   position: relative;
   overflow: hidden;
-  padding: 2rem 0;
+  padding: 2rem 0 1rem;
   perspective: 1200px;
 }
 
 .carousel__track {
   position: relative;
-  height: 440px;
+  height: 480px;
   transform-style: preserve-3d;
 }
 
@@ -1329,11 +1329,30 @@ h6 {
   border: 1px solid #f0f0f4;
   border-radius: 20px;
   overflow: hidden;
-  transition: box-shadow 0.4s ease, transform 0.3s ease;
+  transition: box-shadow 0.4s ease, transform 0.3s ease, border-color 0.4s ease;
+  position: relative;
+}
+
+.carousel-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a96e, #dbb978, #c9a96e);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
 }
 
 .carousel__slide.is-active .carousel-card {
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(201, 169, 110, 0.08);
+  border-color: rgba(201, 169, 110, 0.15);
+}
+
+.carousel__slide.is-active .carousel-card::after {
+  opacity: 1;
 }
 
 .carousel-card__image {
@@ -1377,7 +1396,7 @@ h6 {
 }
 
 .carousel-card__body {
-  padding: 1.75rem;
+  padding: 1.75rem 1.75rem 2rem;
 }
 
 .carousel-card__icon {
@@ -1397,7 +1416,7 @@ h6 {
   font-size: 0.82rem;
   color: #7a7a90;
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .carousel-card__price {
@@ -1419,12 +1438,25 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+.carousel__nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.2), transparent);
 }
 
 .carousel__arrow {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #fff;
   border: 1.5px solid #e8e8ed;
@@ -1434,13 +1466,14 @@ h6 {
   cursor: pointer;
   transition: all 0.3s ease;
   color: #1a1a2e;
+  flex-shrink: 0;
 }
 
 .carousel__arrow:hover {
   border-color: #c9a96e;
   color: #c9a96e;
-  box-shadow: 0 4px 15px rgba(201, 169, 110, 0.15);
-  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.2);
+  transform: scale(1.08);
 }
 
 .carousel__dots {
@@ -1460,9 +1493,15 @@ h6 {
   padding: 0;
 }
 
+.carousel__dot:hover {
+  background: #bbb;
+  transform: scale(1.2);
+}
+
 .carousel__dot.is-active {
-  width: 28px;
+  width: 32px;
   background: linear-gradient(135deg, #c9a96e, #b8944f);
+  box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
 }
 
 /* ==========================================================================
