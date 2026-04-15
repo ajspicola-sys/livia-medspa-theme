@@ -256,17 +256,13 @@ add_action('after_switch_theme', 'livia_create_pages');
 
 // ── Auto-create All Services ───────────────────────────────────────
 function livia_create_services() {
-    if (get_option('livia_services_created_v1')) return;
+    if (get_option('livia_services_created_v2')) return;
 
-    // First, create service categories
+    // 3 broad categories that fit the mega menu grid perfectly
     $categories = [
-        'Injectables'       => 'Premium injectable treatments for facial rejuvenation and wrinkle reduction.',
-        'Skin Rejuvenation'  => 'Advanced treatments to restore, renew, and revitalize your skin.',
-        'Laser Treatments'   => 'State-of-the-art laser technology for skin resurfacing and correction.',
-        'Body Contouring'    => 'Non-surgical treatments to sculpt and enhance your body.',
-        'Hair Restoration'   => 'Advanced solutions for hair loss and thinning hair.',
-        'Wellness'           => 'Holistic wellness treatments to boost your health from the inside out.',
-        'Sexual Wellness'    => 'Confidential, cutting-edge treatments for intimate health and rejuvenation.',
+        'Injectables'       => 'Premium injectable treatments including Botox, fillers, and neuromodulators for facial rejuvenation.',
+        'Skin & Facials'    => 'Advanced skin treatments from chemical peels and microneedling to laser resurfacing and facials.',
+        'Body & Wellness'   => 'Body contouring, hair restoration, IV therapy, and wellness treatments for total transformation.',
     ];
 
     $cat_ids = [];
@@ -282,9 +278,9 @@ function livia_create_services() {
         }
     }
 
-    // Define all 18 services
+    // Define all 18 services across 3 categories
     $services = [
-        // Injectables
+        // ── Injectables (3 services) ──────────────────────────────
         [
             'title'    => 'Botox',
             'icon'     => '💉',
@@ -304,105 +300,97 @@ function livia_create_services() {
             'excerpt'  => 'Restore volume, enhance contours, and achieve a refreshed, youthful appearance with premium hyaluronic acid fillers.',
         ],
 
-        // Skin Rejuvenation
+        // ── Skin & Facials (6 services) ───────────────────────────
         [
             'title'    => 'Chemical Peels',
             'icon'     => '🧴',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'Reveal fresh, radiant skin by removing damaged outer layers with customized chemical peel treatments.',
         ],
         [
             'title'    => 'Microneedling',
             'icon'     => '🔬',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'Stimulate your skin\'s natural collagen production to improve texture, tone, and firmness with precision microneedling.',
         ],
         [
             'title'    => 'Secret RF Microneedling',
             'icon'     => '⚡',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
         ],
         [
             'title'    => 'PRP Facial',
             'icon'     => '🌟',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'Harness your body\'s own growth factors for natural skin renewal, improved texture, and a radiant glow.',
         ],
         [
             'title'    => 'Glo2Facial',
             'icon'     => '✦',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'A next-generation facial that combines exfoliation, oxygenation, and infusion for an instant, healthy glow.',
         ],
         [
             'title'    => 'Cellis Derma PRP',
             'icon'     => '🧬',
-            'category' => 'Skin Rejuvenation',
+            'category' => 'Skin & Facials',
             'excerpt'  => 'Advanced PRP therapy combined with cutting-edge Cellis technology for superior skin rejuvenation and healing.',
         ],
 
-        // Laser Treatments
+        // ── Body & Wellness (9 services) ──────────────────────────
         [
             'title'    => 'Helix CO2 Laser',
             'icon'     => '🔆',
-            'category' => 'Laser Treatments',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Fractional CO2 laser resurfacing to dramatically reduce scars, wrinkles, and sun damage with precision technology.',
         ],
         [
             'title'    => 'Laser Treatments',
             'icon'     => '💡',
-            'category' => 'Laser Treatments',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'A range of advanced laser therapies for hair removal, skin tightening, pigmentation correction, and more.',
         ],
-
-        // Body Contouring
         [
             'title'    => 'Butt Lift',
             'icon'     => '🍑',
-            'category' => 'Body Contouring',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Non-surgical butt enhancement to lift, firm, and sculpt for a naturally contoured silhouette.',
         ],
         [
             'title'    => 'Sclerotherapy',
             'icon'     => '🩺',
-            'category' => 'Body Contouring',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Eliminate spider veins and varicose veins with this safe, proven injection-based treatment.',
         ],
         [
             'title'    => 'Weight Loss',
             'icon'     => '⚖️',
-            'category' => 'Body Contouring',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
         ],
-
-        // Hair Restoration
         [
             'title'    => 'Hair Restoration',
             'icon'     => '💆',
-            'category' => 'Hair Restoration',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Advanced hair restoration treatments to combat thinning and stimulate natural hair growth for fuller, healthier hair.',
         ],
-
-        // Wellness
         [
             'title'    => 'IV Therapy',
             'icon'     => '💧',
-            'category' => 'Wellness',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'Boost hydration, energy, and immunity with custom IV vitamin infusions delivered directly to your bloodstream.',
         ],
-
-        // Sexual Wellness
         [
             'title'    => 'Vaginal PRP',
             'icon'     => '🌸',
-            'category' => 'Sexual Wellness',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'A confidential, non-surgical treatment using platelet-rich plasma to enhance intimate wellness and rejuvenation.',
         ],
         [
             'title'    => 'Penile PRP',
             'icon'     => '🔬',
-            'category' => 'Sexual Wellness',
+            'category' => 'Body & Wellness',
             'excerpt'  => 'A discreet, non-surgical PRP treatment designed to improve intimate health, sensitivity, and confidence.',
         ],
     ];
@@ -410,7 +398,13 @@ function livia_create_services() {
     foreach ($services as $service) {
         // Check if service already exists
         $existing = get_page_by_title($service['title'], OBJECT, 'service');
-        if ($existing) continue;
+        if ($existing) {
+            // Update category on existing services
+            if (isset($cat_ids[$service['category']])) {
+                wp_set_object_terms($existing->ID, (int) $cat_ids[$service['category']], 'service_category');
+            }
+            continue;
+        }
 
         $post_id = wp_insert_post([
             'post_title'   => $service['title'],
@@ -421,17 +415,14 @@ function livia_create_services() {
         ]);
 
         if ($post_id && !is_wp_error($post_id)) {
-            // Set icon
             update_post_meta($post_id, '_service_icon', $service['icon']);
-
-            // Assign category
             if (isset($cat_ids[$service['category']])) {
                 wp_set_object_terms($post_id, (int) $cat_ids[$service['category']], 'service_category');
             }
         }
     }
 
-    update_option('livia_services_created_v1', true);
+    update_option('livia_services_created_v2', true);
 }
 add_action('after_switch_theme', 'livia_create_services');
 
