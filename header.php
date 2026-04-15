@@ -215,6 +215,7 @@
                     </div>
                 </li>
 
+                <li class="nav__item"><a href="<?php echo esc_url(home_url('/parties/')); ?>" class="nav__link">Parties</a></li>
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/blog/')); ?>" class="nav__link">Blog</a></li>
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="nav__link">Contact</a></li>
             </ul>
@@ -255,6 +256,7 @@
                 <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
                 <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
                 <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About</a></li>
+                <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
                 <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
                 <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
             </ul>

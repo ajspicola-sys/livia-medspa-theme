@@ -3266,6 +3266,284 @@ a.contact-card__text:hover { color: #c9a96e; }
 }
 
 /* ==========================================================================
+   PARTIES PAGE
+   ========================================================================== */
+.page-hero--parties {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 50%, #1a1a2e 100%);
+}
+
+.party-types {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+}
+
+.party-block {
+  margin-bottom: 4rem;
+}
+
+.party-block__header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.party-block__emoji {
+  font-size: 2.5rem;
+}
+
+.party-block__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+  align-items: start;
+}
+
+.party-block__grid--reverse {
+  grid-template-columns: 1.2fr 0.8fr;
+  direction: rtl;
+}
+
+.party-block__grid--reverse > * {
+  direction: ltr;
+}
+
+.party-block__subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 1rem + 1.5vw, 1.8rem);
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+}
+
+.party-block__text {
+  font-size: 0.92rem;
+  color: #55556a;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.party-block__features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.party-feature-card {
+  padding: 1.25rem 1.5rem;
+  background: #faf8f5;
+  border-radius: 14px;
+  border: 1px solid #f0f0f4;
+  border-left: 3px solid #c9a96e;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.party-feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.party-feature-card__icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.party-feature-card__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 0.3rem;
+}
+
+.party-feature-card__text {
+  font-size: 0.8rem;
+  color: #7a7a90;
+  line-height: 1.6;
+}
+
+/* Video */
+.party-block__video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1a1a2e;
+}
+
+.party-block__video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.party-block__image-placeholder {
+  width: 100%;
+  min-height: 350px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1a1a2e, #252540);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.party-block__image-placeholder span {
+  font-size: 3rem;
+}
+
+.party-block__image-placeholder p {
+  font-size: 0.8rem;
+  color: rgba(250,248,245,0.4);
+}
+
+/* Divider */
+.party-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.party-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0ddd8, transparent);
+}
+
+.party-divider__text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #9e9eb0;
+}
+
+/* How It Works */
+.party-how-it-works {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #faf8f5;
+}
+
+.party-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.party-step {
+  flex: 1;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f4;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.party-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+}
+
+.party-step__number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c9a96e;
+  margin-bottom: 0.75rem;
+}
+
+.party-step__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.party-step__text {
+  font-size: 0.8rem;
+  color: #7a7a90;
+  line-height: 1.6;
+}
+
+.party-step__arrow {
+  display: flex;
+  align-items: center;
+  padding-top: 2.5rem;
+  font-size: 1.25rem;
+  color: #c9a96e;
+  font-weight: 300;
+}
+
+/* FAQ */
+.party-faq {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: #faf8f5;
+  border: 1px solid #f0f0f4;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item[open] {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.faq-item__question {
+  padding: 1.25rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item__question::-webkit-details-marker { display: none; }
+
+.faq-item__question::after {
+  content: '+';
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #c9a96e;
+  transition: transform 0.3s ease;
+}
+
+.faq-item[open] .faq-item__question::after {
+  transform: rotate(45deg);
+}
+
+.faq-item__answer {
+  padding: 0 1.5rem 1.25rem;
+}
+
+.faq-item__answer p {
+  font-size: 0.85rem;
+  color: #55556a;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1023px) {
@@ -3278,6 +3556,10 @@ a.contact-card__text:hover { color: #c9a96e; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
   .carousel__slide { width: calc(45% - 0.75rem); }
   .carousel__track { height: 420px; }
+  .party-block__grid, .party-block__grid--reverse { grid-template-columns: 1fr; direction: ltr; }
+  .party-steps { flex-wrap: wrap; }
+  .party-step { flex: 1 1 calc(50% - 1rem); }
+  .party-step__arrow { display: none; }
   .why-us__grid { grid-template-columns: 1fr; }
   .why-us__visual { min-height: 340px; }
   .testimonials__grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }

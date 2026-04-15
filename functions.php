@@ -39,6 +39,7 @@ function livia_create_pages() {
         'Contact'        => '',
         'Before After'   => '',
         'Careers'        => '',
+        'Parties'        => '',
         'Blog'           => '',
     ];
 
