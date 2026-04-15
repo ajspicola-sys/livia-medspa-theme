@@ -86,6 +86,30 @@ function livia_deregister_jquery() {
 }
 add_action('wp_enqueue_scripts', 'livia_deregister_jquery', 100);
 
+// ── Force correct page template by slug ────────────────────────────
+function livia_force_page_templates($template) {
+    if (is_page()) {
+        $slug = get_post_field('post_name', get_queried_object_id());
+        $map = [
+            'team'         => 'page-team.php',
+            'about'        => 'page-about.php',
+            'contact'      => 'page-contact.php',
+            'memberships'  => 'page-memberships.php',
+            'parties'      => 'page-parties.php',
+            'values'       => 'page-values.php',
+            'before-after' => 'page-before-after.php',
+        ];
+        if (isset($map[$slug])) {
+            $custom = get_template_directory() . '/' . $map[$slug];
+            if (file_exists($custom)) {
+                return $custom;
+            }
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'livia_force_page_templates');
+
 // ── Enqueue Assets ─────────────────────────────────────────────────
 function livia_enqueue_styles() {
     // Force fresh CSS on every load (temporary — will optimize once deploy is stable)
