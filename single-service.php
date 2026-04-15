@@ -150,6 +150,46 @@ $category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->na
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
+         SECTION 7B: RELATED SERVICES (Dynamic)
+         ═══════════════════════════════════════════════════════ -->
+    <?php
+    $related = new WP_Query([
+        'post_type'      => 'service',
+        'posts_per_page' => 3,
+        'post__not_in'   => [get_the_ID()],
+        'orderby'        => 'rand',
+        'no_found_rows'  => true,
+    ]);
+    if ($related->have_posts()) : ?>
+        <section class="related-services" aria-label="Related treatments">
+            <div class="section__inner">
+                <div class="section__header reveal">
+                    <span class="section__label">Explore More</span>
+                    <h2 class="section__title">Related Treatments</h2>
+                </div>
+                <div class="related-services__grid reveal">
+                    <?php while ($related->have_posts()) : $related->the_post();
+                        $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+                    ?>
+                        <a href="<?php the_permalink(); ?>" class="service-card">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <div class="service-card__thumb">
+                                    <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                                </div>
+                            <?php else : ?>
+                                <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
+                            <?php endif; ?>
+                            <h3 class="service-card__title"><?php the_title(); ?></h3>
+                            <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
+                            <span class="service-card__link">Learn More →</span>
+                        </a>
+                    <?php endwhile; wp_reset_postdata(); ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
          SECTION 8: CTA (Static)
          ═══════════════════════════════════════════════════════ -->
     <section class="cta-section" aria-label="Book a consultation">

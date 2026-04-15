@@ -139,6 +139,25 @@
         </div>
     </div>
 
+    <!-- Newsletter bar -->
+    <div class="footer__newsletter">
+        <div class="footer__inner">
+            <div class="newsletter">
+                <div class="newsletter__text">
+                    <h4 class="newsletter__title">Stay in the Glow ✨</h4>
+                    <p class="newsletter__desc">Get exclusive offers, beauty tips, and early access to new treatments.</p>
+                </div>
+                <form class="newsletter__form" action="#" method="post" id="newsletter-form">
+                    <div class="newsletter__input-group">
+                        <input type="email" name="newsletter_email" class="newsletter__input" placeholder="Enter your email" required aria-label="Email address">
+                        <button type="submit" class="newsletter__btn btn btn--primary">Subscribe</button>
+                    </div>
+                    <p class="newsletter__privacy">We respect your privacy. Unsubscribe anytime.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Bottom bar -->
     <div class="footer__bottom">
         <div class="footer__inner">
@@ -146,10 +165,24 @@
             <div class="footer__legal">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
+                <a href="#">Accessibility</a>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- Cookie Consent -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner__inner">
+        <p class="cookie-banner__text">
+            <strong>🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+        </p>
+        <div class="cookie-banner__actions">
+            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
+            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
+        </div>
+    </div>
+</div>
 
 <!-- Scroll to Top -->
 <button class="scroll-top" id="scroll-top" aria-label="Back to top">
@@ -558,6 +591,52 @@
             });
         }, { threshold: 0.1 });
         observer.observe(siteFooter);
+    }
+
+    // ── Cookie Consent Banner ───────────────────────────────────
+    var cookieBanner = document.getElementById('cookie-banner');
+    var cookieAccept = document.getElementById('cookie-accept');
+    var cookieDecline = document.getElementById('cookie-decline');
+    if (cookieBanner && !localStorage.getItem('livia-cookie-consent')) {
+        setTimeout(function() {
+            cookieBanner.style.display = '';
+            cookieBanner.classList.add('is-visible');
+        }, 2000);
+    }
+    if (cookieAccept) {
+        cookieAccept.addEventListener('click', function() {
+            localStorage.setItem('livia-cookie-consent', 'accepted');
+            cookieBanner.classList.remove('is-visible');
+            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
+        });
+    }
+    if (cookieDecline) {
+        cookieDecline.addEventListener('click', function() {
+            localStorage.setItem('livia-cookie-consent', 'declined');
+            cookieBanner.classList.remove('is-visible');
+            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
+        });
+    }
+
+    // ── Newsletter Form ─────────────────────────────────────────
+    var newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var input = this.querySelector('.newsletter__input');
+            var btn = this.querySelector('.newsletter__btn');
+            if (input && input.value) {
+                btn.textContent = '✓ Subscribed!';
+                btn.style.background = '#2d6a4f';
+                input.value = '';
+                input.disabled = true;
+                setTimeout(function() {
+                    btn.textContent = 'Subscribe';
+                    btn.style.background = '';
+                    input.disabled = false;
+                }, 3000);
+            }
+        });
     }
 
 })();
