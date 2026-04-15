@@ -3764,6 +3764,61 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
+   CLIENT PORTAL SECTION
+   ========================================================================== */
+.portal-section {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+  background: linear-gradient(180deg, #faf8f5 0%, #f0ece6 100%);
+}
+
+.portal-section__card {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border-radius: 28px;
+  padding: clamp(2.5rem, 2rem + 2vw, 4rem);
+  border: 1px solid rgba(201, 169, 110, 0.12);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.5s ease;
+}
+
+.portal-section__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.08);
+}
+
+.portal-section__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.12), rgba(201, 169, 110, 0.06));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: #c9a96e;
+}
+
+.portal-section__title {
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  font-weight: 500;
+  color: #1a1a2e;
+  margin-bottom: 0.75rem;
+}
+
+.portal-section__text {
+  font-size: 0.88rem;
+  color: #7a7a90;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
    TEAM FULL PAGE
    ========================================================================== */
 .team-full {
@@ -5652,6 +5707,14 @@ a.contact-card__text:hover {
   .value-detail {
     grid-template-columns: 50px 1fr;
     gap: 1rem;
+  }
+
+  .error-404__links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portal-section__card {
+    padding: 2rem 1.5rem;
   }
 }
 

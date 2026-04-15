@@ -94,6 +94,7 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- Consultation CTA -->
     <section class="cta-section" aria-label="Book with us">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Need Help Choosing?</span>
@@ -101,6 +102,20 @@ get_header(); ?>
             <p class="cta-section__text">Our providers will analyze your skin and recommend the perfect products for your goals.</p>
             <div class="cta-section__actions">
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Portal Section -->
+    <section class="portal-section" aria-label="Client portal">
+        <div class="section__inner">
+            <div class="portal-section__card reveal">
+                <div class="portal-section__icon" aria-hidden="true">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <h2 class="portal-section__title">Click. Book. Glow.</h2>
+                <p class="portal-section__text">Access the Livia Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Client Portal →</a>
             </div>
         </div>
     </section>

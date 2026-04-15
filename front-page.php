@@ -8,6 +8,46 @@ get_header(); ?>
 
 <main class="site-main" id="main-content">
 
+<!-- LocalBusiness Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Livia Med Spa",
+    "description": "Tampa's premier destination for advanced aesthetics including Botox, dermal fillers, laser treatments, and medical-grade skincare.",
+    "url": "<?php echo esc_url(home_url('/')); ?>",
+    "telephone": "+18132302219",
+    "email": "support@liviamedspa.com",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tampa",
+        "addressRegion": "FL",
+        "postalCode": "33606",
+        "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "10:00",
+            "closes": "16:00"
+        }
+    ],
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "500"
+    },
+    "priceRange": "$$-$$$"
+}
+</script>
+
     <!-- ═══════════════════════════════════════════════════════════════
          HERO SECTION — above the fold, no lazy loading
          ═══════════════════════════════════════════════════════════════ -->

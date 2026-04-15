@@ -51,12 +51,19 @@ get_header(); ?>
                             <label for="cf-service" class="form-label">Service of Interest</label>
                             <select id="cf-service" name="service" class="form-input form-select">
                                 <option value="">Select a service...</option>
-                                <option value="botox">Botox &amp; Dysport</option>
-                                <option value="fillers">Dermal Fillers</option>
-                                <option value="microneedling">Microneedling</option>
-                                <option value="peels">Chemical Peels</option>
-                                <option value="laser">Laser Treatments</option>
-                                <option value="iv">IV Therapy</option>
+                                <?php
+                                $svc_query = new WP_Query([
+                                    'post_type'      => 'service',
+                                    'posts_per_page' => -1,
+                                    'orderby'        => 'title',
+                                    'order'          => 'ASC',
+                                    'no_found_rows'  => true,
+                                ]);
+                                if ($svc_query->have_posts()) :
+                                    while ($svc_query->have_posts()) : $svc_query->the_post(); ?>
+                                        <option value="<?php echo esc_attr(sanitize_title(get_the_title())); ?>"><?php the_title(); ?></option>
+                                    <?php endwhile; wp_reset_postdata();
+                                endif; ?>
                                 <option value="other">Other / General Inquiry</option>
                             </select>
                         </div>
