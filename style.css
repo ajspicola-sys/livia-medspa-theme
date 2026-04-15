@@ -40,6 +40,26 @@ body {
   overflow-x: hidden;
   opacity: 0;
   transition: opacity 0.35s ease;
+  scrollbar-width: thin;
+  scrollbar-color: #c9a96e transparent;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c9a96e, #b8944f);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d4b87a, #c9a96e);
 }
 
 body.is-loaded {
