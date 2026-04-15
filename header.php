@@ -66,107 +66,114 @@
                     <a href="<?php echo esc_url(home_url('/services/')); ?>" class="nav__link">Services <span class="nav__arrow">▾</span></a>
                     <div class="mega-menu">
                         <div class="mega-menu__inner">
-                            <div class="mega-menu__column">
-                                <span class="mega-menu__heading">Face</span>
-                                <div class="mega-menu__items">
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">💉</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Botox &amp; Dysport</span>
-                                            <span class="mega-menu__item-desc">Smooth fine lines &amp; wrinkles</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(201,169,110,0.12);color:#c9a96e;">✨</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Dermal Fillers</span>
-                                            <span class="mega-menu__item-desc">Restore volume &amp; contour</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(143,170,143,0.12);color:#8faa8f;">🧬</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">PRP Facial</span>
-                                            <span class="mega-menu__item-desc">Rejuvenate with growth factors</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="mega-menu__column">
-                                <span class="mega-menu__heading">Skin</span>
-                                <div class="mega-menu__items">
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(160,142,196,0.12);color:#a08ec4;">🔬</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Microneedling</span>
-                                            <span class="mega-menu__item-desc">Stimulate collagen production</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(201,169,110,0.12);color:#c9a96e;">🧴</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Chemical Peels</span>
-                                            <span class="mega-menu__item-desc">Reveal fresh, radiant skin</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(111,163,214,0.12);color:#6fa3d6;">⚡</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Laser Treatments</span>
-                                            <span class="mega-menu__item-desc">Advanced skin resurfacing</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="mega-menu__column">
-                                <span class="mega-menu__heading">Body &amp; Hair</span>
-                                <div class="mega-menu__items">
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">💆</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">CO2 Laser</span>
-                                            <span class="mega-menu__item-desc">Deep skin rejuvenation</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(143,170,143,0.12);color:#8faa8f;">🌿</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Hair Restoration</span>
-                                            <span class="mega-menu__item-desc">PRP therapy for hair growth</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="#" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(160,142,196,0.12);color:#a08ec4;">💎</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">IV Therapy</span>
-                                            <span class="mega-menu__item-desc">Wellness drips &amp; vitamin boosts</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <?php
+                            // Icon color palette — rotates per service
+                            $icon_colors = [
+                                ['bg' => 'rgba(196,122,122,0.12)', 'fg' => '#c47a7a'],
+                                ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#c9a96e'],
+                                ['bg' => 'rgba(143,170,143,0.12)', 'fg' => '#8faa8f'],
+                                ['bg' => 'rgba(160,142,196,0.12)', 'fg' => '#a08ec4'],
+                                ['bg' => 'rgba(111,163,214,0.12)', 'fg' => '#6fa3d6'],
+                                ['bg' => 'rgba(214,170,111,0.12)', 'fg' => '#d6aa6f'],
+                            ];
+                            $color_index = 0;
+
+                            // Get all service categories
+                            $service_cats = get_terms([
+                                'taxonomy'   => 'service_category',
+                                'hide_empty' => true,
+                                'orderby'    => 'name',
+                                'order'      => 'ASC',
+                            ]);
+
+                            if (!is_wp_error($service_cats) && !empty($service_cats)) :
+                                // Group services by category
+                                foreach ($service_cats as $cat) :
+                                    $cat_services = new WP_Query([
+                                        'post_type'      => 'service',
+                                        'posts_per_page' => 6,
+                                        'orderby'        => 'menu_order',
+                                        'order'          => 'ASC',
+                                        'no_found_rows'  => true,
+                                        'tax_query'      => [[
+                                            'taxonomy' => 'service_category',
+                                            'field'    => 'term_id',
+                                            'terms'    => $cat->term_id,
+                                        ]],
+                                    ]);
+                                    if ($cat_services->have_posts()) : ?>
+                                        <div class="mega-menu__column">
+                                            <span class="mega-menu__heading"><?php echo esc_html($cat->name); ?></span>
+                                            <div class="mega-menu__items">
+                                                <?php while ($cat_services->have_posts()) : $cat_services->the_post();
+                                                    $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+                                                    $c = $icon_colors[$color_index % count($icon_colors)];
+                                                    $color_index++;
+                                                ?>
+                                                    <a href="<?php the_permalink(); ?>" class="mega-menu__item">
+                                                        <span class="mega-menu__item-icon" style="background:<?php echo $c['bg']; ?>;color:<?php echo $c['fg']; ?>;"><?php echo esc_html($icon); ?></span>
+                                                        <span class="mega-menu__item-content">
+                                                            <span class="mega-menu__item-title"><?php the_title(); ?></span>
+                                                            <span class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                                        </span>
+                                                        <span class="mega-menu__item-arrow">→</span>
+                                                    </a>
+                                                <?php endwhile; wp_reset_postdata(); ?>
+                                            </div>
+                                        </div>
+                                    <?php endif;
+                                endforeach;
+
+                            else :
+                                // No categories — show all services in one column
+                                $all_services = new WP_Query([
+                                    'post_type'      => 'service',
+                                    'posts_per_page' => 12,
+                                    'orderby'        => 'menu_order',
+                                    'order'          => 'ASC',
+                                    'no_found_rows'  => true,
+                                ]);
+
+                                if ($all_services->have_posts()) : ?>
+                                    <div class="mega-menu__column">
+                                        <span class="mega-menu__heading">Our Treatments</span>
+                                        <div class="mega-menu__items">
+                                            <?php while ($all_services->have_posts()) : $all_services->the_post();
+                                                $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+                                                $c = $icon_colors[$color_index % count($icon_colors)];
+                                                $color_index++;
+                                            ?>
+                                                <a href="<?php the_permalink(); ?>" class="mega-menu__item">
+                                                    <span class="mega-menu__item-icon" style="background:<?php echo $c['bg']; ?>;color:<?php echo $c['fg']; ?>;"><?php echo esc_html($icon); ?></span>
+                                                    <span class="mega-menu__item-content">
+                                                        <span class="mega-menu__item-title"><?php the_title(); ?></span>
+                                                        <span class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                                    </span>
+                                                    <span class="mega-menu__item-arrow">→</span>
+                                                </a>
+                                            <?php endwhile; wp_reset_postdata(); ?>
+                                        </div>
+                                    </div>
+                                <?php endif;
+
+                            endif;
+                            ?>
+
+                            <!-- Promo Card -->
                             <div class="mega-menu__promo">
                                 <div>
                                     <span class="mega-menu__promo-label">✦ New Client Special</span>
                                     <h3 class="mega-menu__promo-title">Your First Visit is 20% Off</h3>
                                     <p class="mega-menu__promo-text">Experience Tampa's most advanced aesthetic treatments with a personalized consultation.</p>
                                 </div>
-                                <a href="#book" class="mega-menu__promo-cta">Book Now →</a>
+                                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mega-menu__promo-cta">Book Now →</a>
                             </div>
                         </div>
                         <div class="mega-menu__bottom">
                             <div class="mega-menu__bottom-links">
-                                <a href="#" class="mega-menu__bottom-link">📋 Treatment Guide</a>
-                                <a href="#" class="mega-menu__bottom-link">💰 Pricing</a>
-                                <a href="#" class="mega-menu__bottom-link">❓ FAQ</a>
+                                <a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="mega-menu__bottom-link">📋 Before & After</a>
+                                <a href="<?php echo esc_url(home_url('/memberships/')); ?>" class="mega-menu__bottom-link">💰 Memberships</a>
+                                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="mega-menu__bottom-link">❓ FAQ</a>
                             </div>
                             <a href="<?php echo esc_url(home_url('/services/')); ?>" class="mega-menu__bottom-cta">View All Services →</a>
                         </div>
