@@ -1,7 +1,8 @@
 <?php
 /**
  * Template Name: Team
- * Livia Med Spa — Meet the Team Page
+ * Livia Med Spa — Meet the Team Page (Dynamic)
+ * Pulls team members from the team_member custom post type
  */
 get_header(); ?>
 
@@ -19,96 +20,84 @@ get_header(); ?>
         <div class="section__inner">
             <div class="team-full__grid">
 
-                <!-- Team Member 1 -->
-                <article class="team-member reveal">
-                    <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">DR</div>
-                    </div>
-                    <div class="team-member__info">
-                        <h2 class="team-member__name">Dr. Rachel Torres</h2>
-                        <span class="team-member__role">Medical Director, MD</span>
-                        <div class="team-member__credentials">
-                            <span class="team-member__badge">Board Certified</span>
-                            <span class="team-member__badge">12+ Years</span>
-                            <span class="team-member__badge">AAAM Member</span>
-                        </div>
-                        <p class="team-member__bio">Dr. Torres founded Livia Med Spa with a vision to bring medical-grade aesthetic treatments to Tampa in a warm, personalized environment. With over 12 years of experience in aesthetic medicine, she has performed thousands of injectable procedures and has become one of Tampa's most sought-after providers.</p>
-                        <p class="team-member__bio">Her philosophy centers on celebrating each patient's unique features while subtly enhancing their natural beauty. She holds advanced certifications in neurotoxins, dermal fillers, and regenerative medicine.</p>
-                        <div class="team-member__specialties">
-                            <span class="team-member__specialty">Botox & Dysport</span>
-                            <span class="team-member__specialty">Dermal Fillers</span>
-                            <span class="team-member__specialty">PRP Therapy</span>
-                            <span class="team-member__specialty">Facial Sculpting</span>
-                        </div>
-                    </div>
-                </article>
+                <?php
+                $team = new WP_Query([
+                    'post_type'      => 'team_member',
+                    'posts_per_page' => -1,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                    'no_found_rows'  => true,
+                ]);
 
-                <!-- Team Member 2 -->
-                <article class="team-member team-member--reverse reveal">
-                    <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">SM</div>
-                    </div>
-                    <div class="team-member__info">
-                        <h2 class="team-member__name">Sarah Mitchell, PA-C</h2>
-                        <span class="team-member__role">Lead Injector, Physician Assistant</span>
-                        <div class="team-member__credentials">
-                            <span class="team-member__badge">NCCPA Certified</span>
-                            <span class="team-member__badge">8+ Years</span>
-                        </div>
-                        <p class="team-member__bio">Sarah brings an artistic eye and meticulous technique to every treatment. With specialized training from the Allergan Medical Institute, she is recognized for her ability to create natural, balanced results that enhance each patient's individual features.</p>
-                        <p class="team-member__bio">Patients love Sarah's warm bedside manner and her talent for making first-time clients feel completely at ease. She believes that great aesthetics starts with listening.</p>
-                        <div class="team-member__specialties">
-                            <span class="team-member__specialty">Advanced Fillers</span>
-                            <span class="team-member__specialty">Lip Augmentation</span>
-                            <span class="team-member__specialty">Neurotoxins</span>
-                        </div>
-                    </div>
-                </article>
+                $count = 0;
+                if ($team->have_posts()) :
+                    while ($team->have_posts()) : $team->the_post();
+                        $role        = get_post_meta(get_the_ID(), '_team_role', true);
+                        $credentials = get_post_meta(get_the_ID(), '_team_credentials', true);
+                        $specialties = get_post_meta(get_the_ID(), '_team_specialties', true);
+                        $count++;
+                        $reverse = ($count % 2 === 0) ? ' team-member--reverse' : '';
 
-                <!-- Team Member 3 -->
-                <article class="team-member reveal">
-                    <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">JC</div>
-                    </div>
-                    <div class="team-member__info">
-                        <h2 class="team-member__name">Jennifer Chen, RN, BSN</h2>
-                        <span class="team-member__role">Aesthetic Nurse Specialist</span>
-                        <div class="team-member__credentials">
-                            <span class="team-member__badge">RN Licensed</span>
-                            <span class="team-member__badge">6+ Years</span>
-                            <span class="team-member__badge">Laser Certified</span>
+                        // Get initials for placeholder
+                        $name_parts = explode(' ', get_the_title());
+                        $initials = '';
+                        foreach ($name_parts as $part) {
+                            $clean = preg_replace('/[^A-Za-z]/', '', $part);
+                            if ($clean) $initials .= strtoupper($clean[0]);
+                        }
+                        $initials = substr($initials, 0, 2);
+                ?>
+                    <article class="team-member<?php echo $reverse; ?> reveal">
+                        <div class="team-member__image">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('large', [
+                                    'loading'  => $count <= 2 ? 'eager' : 'lazy',
+                                    'decoding' => 'async',
+                                ]); ?>
+                            <?php else : ?>
+                                <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true"><?php echo esc_html($initials); ?></div>
+                            <?php endif; ?>
                         </div>
-                        <p class="team-member__bio">Jennifer is our laser and skin rejuvenation expert. With specialized training in advanced laser systems and chemical peels, she helps patients achieve their best skin through customized treatment protocols.</p>
-                        <p class="team-member__bio">Her passion for patient education means you'll always leave understanding your treatment, your expected results, and how to maintain them at home.</p>
-                        <div class="team-member__specialties">
-                            <span class="team-member__specialty">Laser Treatments</span>
-                            <span class="team-member__specialty">Chemical Peels</span>
-                            <span class="team-member__specialty">Microneedling</span>
-                            <span class="team-member__specialty">Skin Analysis</span>
-                        </div>
-                    </div>
-                </article>
+                        <div class="team-member__info">
+                            <h2 class="team-member__name"><?php the_title(); ?></h2>
+                            <?php if ($role) : ?>
+                                <span class="team-member__role"><?php echo esc_html($role); ?></span>
+                            <?php endif; ?>
 
-                <!-- Team Member 4 -->
-                <article class="team-member team-member--reverse reveal">
-                    <div class="team-member__image">
-                        <div class="team-card__placeholder team-card__placeholder--lg" aria-hidden="true">AL</div>
-                    </div>
-                    <div class="team-member__info">
-                        <h2 class="team-member__name">Amanda Lopez</h2>
-                        <span class="team-member__role">Patient Experience Coordinator</span>
-                        <div class="team-member__credentials">
-                            <span class="team-member__badge">5+ Years in Aesthetics</span>
+                            <?php if ($credentials) :
+                                $badges = array_map('trim', explode(',', $credentials));
+                            ?>
+                                <div class="team-member__credentials">
+                                    <?php foreach ($badges as $badge) : ?>
+                                        <span class="team-member__badge"><?php echo esc_html($badge); ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (get_the_content()) : ?>
+                                <div class="team-member__bio">
+                                    <?php the_content(); ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($specialties) :
+                                $specs = array_map('trim', explode(',', $specialties));
+                            ?>
+                                <div class="team-member__specialties">
+                                    <?php foreach ($specs as $spec) : ?>
+                                        <span class="team-member__specialty"><?php echo esc_html($spec); ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <p class="team-member__bio">Amanda is the heart of the Livia experience. From your very first phone call to post-treatment follow-up, she ensures every interaction is warm, professional, and stress-free.</p>
-                        <p class="team-member__bio">She manages scheduling, treatment plans, and membership programs, and is always available to answer questions or help you find the perfect treatment for your goals.</p>
-                        <div class="team-member__specialties">
-                            <span class="team-member__specialty">Patient Care</span>
-                            <span class="team-member__specialty">Treatment Planning</span>
-                            <span class="team-member__specialty">Memberships</span>
-                        </div>
+                    </article>
+
+                <?php endwhile; wp_reset_postdata();
+                else : ?>
+                    <div style="text-align:center; padding:4rem 2rem;">
+                        <p style="color:#7a7a90; font-size:1.1rem;">Team members coming soon! Add them in <strong>WordPress Admin → 👩‍⚕️ Team</strong>.</p>
                     </div>
-                </article>
+                <?php endif; ?>
 
             </div>
         </div>

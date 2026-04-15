@@ -523,9 +523,100 @@ function livia_save_service_meta($post_id) {
 }
 add_action('save_post_service', 'livia_save_service_meta');
 
+// ── Team Member Custom Post Type ───────────────────────────────────
+function livia_register_team() {
+    register_post_type('team_member', [
+        'labels' => [
+            'name'               => 'Team Members',
+            'singular_name'      => 'Team Member',
+            'add_new'            => 'Add Team Member',
+            'add_new_item'       => 'Add New Team Member',
+            'edit_item'          => 'Edit Team Member',
+            'new_item'           => 'New Team Member',
+            'view_item'          => 'View Team Member',
+            'search_items'       => 'Search Team Members',
+            'not_found'          => 'No team members found',
+            'menu_name'          => '👩‍⚕️ Team',
+        ],
+        'public'             => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => false,
+        'menu_icon'          => 'dashicons-groups',
+        'menu_position'      => 6,
+        'supports'           => ['title', 'editor', 'thumbnail', 'page-attributes'],
+        'show_in_rest'       => true,
+    ]);
+}
+add_action('init', 'livia_register_team');
+
+// ── Team Member custom fields (meta box) ───────────────────────────
+function livia_team_meta_boxes() {
+    add_meta_box(
+        'livia_team_details',
+        'Team Member Details',
+        'livia_team_meta_html',
+        'team_member',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'livia_team_meta_boxes');
+
+function livia_team_meta_html($post) {
+    wp_nonce_field('livia_team_meta', 'livia_team_nonce');
+    $role         = get_post_meta($post->ID, '_team_role', true);
+    $credentials  = get_post_meta($post->ID, '_team_credentials', true);
+    $specialties  = get_post_meta($post->ID, '_team_specialties', true);
+    ?>
+    <style>
+        .livia-team-row { display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+        .livia-team-field { flex:1; min-width:250px; }
+        .livia-team-field label { display:block; font-weight:600; margin-bottom:4px; }
+        .livia-team-field input { width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
+    </style>
+    <div class="livia-team-row">
+        <div class="livia-team-field">
+            <label for="team_role">Role / Title</label>
+            <input type="text" id="team_role" name="team_role" value="<?php echo esc_attr($role); ?>" placeholder="Medical Director, MD">
+            <p class="description">e.g. "Medical Director, MD" or "Lead Injector, PA-C"</p>
+        </div>
+    </div>
+    <div class="livia-team-row">
+        <div class="livia-team-field">
+            <label for="team_credentials">Credential Badges</label>
+            <input type="text" id="team_credentials" name="team_credentials" value="<?php echo esc_attr($credentials); ?>" placeholder="Board Certified, 12+ Years, AAAM Member">
+            <p class="description">Comma-separated badges shown under the name, e.g. "Board Certified, 12+ Years"</p>
+        </div>
+    </div>
+    <div class="livia-team-row">
+        <div class="livia-team-field">
+            <label for="team_specialties">Specialties</label>
+            <input type="text" id="team_specialties" name="team_specialties" value="<?php echo esc_attr($specialties); ?>" placeholder="Botox, Dermal Fillers, PRP Therapy">
+            <p class="description">Comma-separated specialties shown as tags, e.g. "Botox, Fillers, PRP"</p>
+        </div>
+    </div>
+    <?php
+}
+
+function livia_save_team_meta($post_id) {
+    if (!isset($_POST['livia_team_nonce']) || !wp_verify_nonce($_POST['livia_team_nonce'], 'livia_team_meta')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    $fields = ['team_role', 'team_credentials', 'team_specialties'];
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
+        }
+    }
+}
+add_action('save_post_team_member', 'livia_save_team_meta');
+
 // ── Flush rewrite rules on theme activation ────────────────────────
 function livia_rewrite_flush() {
     livia_register_services();
+    livia_register_team();
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'livia_rewrite_flush');
