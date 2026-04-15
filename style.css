@@ -1180,6 +1180,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   padding: 2rem 0;
+  perspective: 1200px;
 }
 
 .carousel__track {
@@ -1187,26 +1188,37 @@ h1, h2, h3, h4, h5, h6 {
   gap: 1.5rem;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 1rem 0;
+  transform-style: preserve-3d;
 }
 
 .carousel__slide {
   flex: 0 0 calc(33.333% - 1rem);
-  opacity: 0.35;
-  transform: scale(0.92);
-  filter: blur(1px);
-  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  opacity: 0.3;
+  transform: scale(0.85) rotateY(0deg);
+  filter: blur(2px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+  transform-style: preserve-3d;
 }
 
 .carousel__slide.is-active {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) rotateY(0deg);
   filter: blur(0);
+  z-index: 5;
 }
 
-.carousel__slide.is-adjacent {
-  opacity: 0.6;
-  transform: scale(0.96);
+.carousel__slide.is-prev {
+  opacity: 0.7;
+  transform: scale(0.88) rotateY(8deg) translateX(-15px);
   filter: blur(0);
+  z-index: 3;
+}
+
+.carousel__slide.is-next {
+  opacity: 0.7;
+  transform: scale(0.88) rotateY(-8deg) translateX(15px);
+  filter: blur(0);
+  z-index: 3;
 }
 
 .carousel-card {

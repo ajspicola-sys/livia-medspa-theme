@@ -192,11 +192,13 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     function updateClasses() {
         slides.forEach((slide, i) => {
-            slide.classList.remove('is-active', 'is-adjacent');
+            slide.classList.remove('is-active', 'is-prev', 'is-next');
             if (i === current) {
                 slide.classList.add('is-active');
-            } else if (i === current - 1 || i === current + 1) {
-                slide.classList.add('is-adjacent');
+            } else if (i === current - 1 || (current === 0 && i === total - 1)) {
+                slide.classList.add('is-prev');
+            } else if (i === current + 1 || (current === total - 1 && i === 0)) {
+                slide.classList.add('is-next');
             }
         });
         // Update dots
