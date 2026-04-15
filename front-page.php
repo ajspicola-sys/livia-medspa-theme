@@ -170,7 +170,7 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="product-showcase__actions">
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Shop Products</a>
+                        <a href="<?php echo esc_url(home_url('/products/')); ?>" class="btn btn--primary btn--lg">Shop Products</a>
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline-light btn--lg">Get a Skincare Consultation</a>
                     </div>
                 </div>

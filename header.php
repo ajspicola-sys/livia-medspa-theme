@@ -16,6 +16,33 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+    <?php
+    // Dynamic meta description
+    $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more.';
+    if (is_singular('service')) {
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment at Livia Med Spa in Tampa, FL.';
+    } elseif (is_singular('product')) {
+        $meta_desc = get_the_title() . ' — Medical-grade products available at Livia Med Spa Tampa.';
+    } elseif (is_page()) {
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: $meta_desc;
+    }
+    ?>
+    <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Livia Med Spa">
+    <meta property="og:title" content="<?php echo esc_attr(wp_get_document_title()); ?>">
+    <meta property="og:description" content="<?php echo esc_attr($meta_desc); ?>">
+    <meta property="og:type" content="<?php echo is_front_page() ? 'website' : 'article'; ?>">
+    <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>">
+    <?php if (has_post_thumbnail()) : ?>
+        <meta property="og:image" content="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>">
+    <?php endif; ?>
+
+    <!-- Preconnect for Google Fonts performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <?php wp_head(); ?>
 
     <!-- Critical CSS: inlined to prevent render-blocking for above-the-fold content -->
@@ -434,8 +461,10 @@
                 <ul class="mobile-menu__links">
                     <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
                     <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
                     <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
                     <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>

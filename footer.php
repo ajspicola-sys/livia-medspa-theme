@@ -81,8 +81,10 @@
                 <h4 class="footer__heading">Quick Links</h4>
                 <ul class="footer__links">
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
                     <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before &amp; After</a></li>
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
                     <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
                     <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
@@ -94,12 +96,12 @@
             <div class="footer__col">
                 <h4 class="footer__heading">Popular Treatments</h4>
                 <ul class="footer__links">
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Botox &amp; Dysport</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Dermal Fillers</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Microneedling</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Chemical Peels</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Laser Treatments</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/services/')); ?>">IV Therapy</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/botox/')); ?>">Botox &amp; Dysport</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/dermal-fillers/')); ?>">Dermal Fillers</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/microneedling/')); ?>">Microneedling</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/chemical-peels/')); ?>">Chemical Peels</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/laser-treatments/')); ?>">Laser Treatments</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/weight-loss/')); ?>">Weight Loss</a></li>
                 </ul>
             </div>
 
@@ -163,14 +165,8 @@
 
     // ── Set initial positions ────────────────────────────────────
     function setPositions() {
-        adminBarH = adminBarEl ? adminBarEl.offsetHeight : 0;
-        header.style.top = adminBarH + 'px';
-
-        var mainEl = document.querySelector('.site-main');
-        if (mainEl) {
-            var headerH = header ? header.offsetHeight : 0;
-            mainEl.style.paddingTop = (adminBarH + headerH) + 'px';
-        }
+        // Ensure header stays at top (admin bar is hidden via CSS)
+        header.style.top = '0px';
     }
 
     // ── Header scroll — uses rAF throttle for 60fps ──────────────
