@@ -22,21 +22,20 @@
         /* Prevent layout shift for header + hero */
         html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
         body{margin:0;font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;background:#faf8f5;overflow-x:hidden;}
+        .announcement-bar{position:fixed;top:0;left:0;right:0;z-index:201;padding:.5rem 0;background:linear-gradient(135deg,#1a1a2e 0%,#252540 100%);text-align:center;}
         .site-header{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 0;transition:background .4s ease,padding .4s ease,box-shadow .4s ease,top .4s ease;}
         .site-header__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;}
         .site-logo{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;flex-shrink:0;}
         .site-logo__name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,1.3rem + 1.2vw,2.1rem);font-weight:300;letter-spacing:.06em;background:linear-gradient(135deg,#c9a96e 0%,#dbb978 40%,#a88b4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
         .site-logo__tagline{font-family:'DM Sans',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#b89960;margin-top:-3px;}
-        .announcement-bar{background:linear-gradient(135deg,#1a1a2e 0%,#252540 100%);padding:.5rem 0;text-align:center;position:relative;z-index:201;}
         .hero{min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 40%,#252540 100%);padding:clamp(2rem,1.5rem + 3vw,4rem);overflow:hidden;}
-        .site-main{padding-top:120px;}
-        .has-announcement .site-main{padding-top:152px;}
+        .site-main{padding-top:80px;}
         /* Preload font-display for system fonts fallback */
         @font-face{font-family:'Cormorant Garamond';font-display:swap;src:local('Cormorant Garamond');}
         @font-face{font-family:'DM Sans';font-display:swap;src:local('DM Sans');}
     </style>
 </head>
-<body <?php body_class('has-announcement'); ?>>
+<body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
 <!-- ANNOUNCEMENT BAR -->

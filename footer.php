@@ -165,6 +165,27 @@
     var lastScrollY = 0;
     var ticking     = false;
 
+    // ── Set initial positions ────────────────────────────────────
+    function setPositions() {
+        adminBarH = adminBarEl ? adminBarEl.offsetHeight : 0;
+        annoBarH  = (annoBar && !annoDismissed) ? annoBar.offsetHeight : 0;
+
+        // Announcement bar at very top (below WP admin bar if present)
+        if (annoBar && !annoDismissed) {
+            annoBar.style.top = adminBarH + 'px';
+        }
+
+        // Header below announcement bar
+        header.style.top = (adminBarH + annoBarH) + 'px';
+
+        // Main content below both
+        var mainEl = document.querySelector('.site-main');
+        if (mainEl) {
+            var headerH = header ? header.offsetHeight : 0;
+            mainEl.style.paddingTop = (adminBarH + annoBarH + headerH) + 'px';
+        }
+    }
+
     // ── Header scroll — uses rAF throttle for 60fps ──────────────
     function onScroll() {
         lastScrollY = window.scrollY;
@@ -176,26 +197,25 @@
 
     function updateOnScroll() {
         var y = lastScrollY;
-        // Toggle scrolled class
         header.classList.toggle('is-scrolled', y > 50);
-        // Update header position relative to announcement bar
-        var base = adminBarH;
+
+        // Slide announcement bar up on scroll
         if (annoBar && !annoDismissed) {
-            annoBarH = annoBar.offsetHeight;
-            header.style.top = (y <= annoBarH ? (base + annoBarH - y) : base) + 'px';
-        } else {
-            header.style.top = base + 'px';
+            var shift = Math.min(y, annoBarH);
+            annoBar.style.transform = 'translateY(-' + shift + 'px)';
+            header.style.top = (adminBarH + annoBarH - shift) + 'px';
         }
-        // Scroll-to-top visibility
+
         if (scrollBtn) {
             scrollBtn.classList.toggle('is-visible', y > 600);
         }
         ticking = false;
     }
 
-    // Initial position
-    updateOnScroll();
+    // Initial setup
+    setPositions();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', setPositions, { passive: true });
 
     // ── Announcement dismiss ─────────────────────────────────────
     if (annoClose) {
@@ -206,7 +226,13 @@
             annoBar.style.opacity = '0';
             header.style.transition = 'top 0.4s ease, background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease';
             header.style.top = adminBarH + 'px';
-            document.body.classList.remove('has-announcement');
+
+            var mainEl = document.querySelector('.site-main');
+            if (mainEl) {
+                var headerH = header ? header.offsetHeight : 0;
+                mainEl.style.paddingTop = (adminBarH + headerH) + 'px';
+            }
+
             setTimeout(function() { annoBar.style.display = 'none'; }, 400);
         });
     }

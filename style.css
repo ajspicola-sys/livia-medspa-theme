@@ -92,7 +92,10 @@ h6 {
   background: linear-gradient(135deg, #1a1a2e 0%, #252540 100%);
   padding: 0.5rem 0;
   text-align: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 201;
   overflow: hidden;
 }
@@ -186,8 +189,7 @@ h6 {
   z-index: 200;
   padding: 0.85rem 0;
   transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease, top 0.4s ease;
-  will-change: transform, background;
-  contain: layout style;
+  will-change: background;
 }
 
 .site-header::after {
@@ -890,11 +892,7 @@ h6 {
    CONTENT AREA
    ========================================================================== */
 .site-main {
-  padding-top: 120px;
-}
-
-.has-announcement .site-main {
-  padding-top: 152px;
+  padding-top: 80px;
 }
 
 .test-section {
