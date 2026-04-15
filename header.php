@@ -38,9 +38,6 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<!-- TEST: Remove after confirming deploy works -->
-<div style="background:red;color:white;text-align:center;padding:10px;font-weight:bold;font-size:18px;z-index:9999;position:relative;">🔴 DEPLOY TEST - If you see this, the deploy is working!</div>
-
 <!-- HEADER – uses will-change for GPU compositing during scroll -->
 <header class="site-header" id="site-header" role="banner">
     <div class="site-header__inner">
