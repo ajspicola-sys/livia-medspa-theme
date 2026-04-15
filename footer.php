@@ -166,6 +166,89 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Services Carousel ─────────────────────────────────────────────
+(function() {
+    const carousel = document.getElementById('services-carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.carousel__track');
+    const slides = Array.from(carousel.querySelectorAll('.carousel__slide'));
+    const dotsContainer = document.getElementById('carousel-dots');
+    const prevBtn = carousel.querySelector('.carousel__arrow--prev');
+    const nextBtn = carousel.querySelector('.carousel__arrow--next');
+    const total = slides.length;
+    let current = 0;
+    let autoplayTimer;
+
+    // Create dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    function updateClasses() {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('is-active', 'is-adjacent');
+            if (i === current) {
+                slide.classList.add('is-active');
+            } else if (i === current - 1 || i === current + 1) {
+                slide.classList.add('is-adjacent');
+            }
+        });
+        // Update dots
+        dotsContainer.querySelectorAll('.carousel__dot').forEach((dot, i) => {
+            dot.classList.toggle('is-active', i === current);
+        });
+    }
+
+    function goTo(index) {
+        current = Math.max(0, Math.min(index, total - 1));
+        const slideWidth = slides[0].offsetWidth + 24; // gap
+        const containerWidth = track.parentElement.offsetWidth;
+        const centerOffset = (containerWidth - slides[0].offsetWidth) / 2;
+        const offset = -(current * slideWidth) + centerOffset;
+        track.style.transform = 'translateX(' + offset + 'px)';
+        updateClasses();
+        resetAutoplay();
+    }
+
+    function next() { goTo(current >= total - 1 ? 0 : current + 1); }
+    function prev() { goTo(current <= 0 ? total - 1 : current - 1); }
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+    });
+
+    // Autoplay
+    function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(next, 5000);
+    }
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+    carousel.addEventListener('mouseleave', resetAutoplay);
+
+    // Init
+    goTo(0);
+    resetAutoplay();
+
+    // Recalc on resize
+    window.addEventListener('resize', () => goTo(current));
+})();
 </script>
 
 <?php wp_footer(); ?>

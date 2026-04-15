@@ -39,7 +39,7 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SERVICES SECTION
+         SERVICES CAROUSEL
          ═══════════════════════════════════════════════════════════════ -->
     <section class="services" id="services">
         <div class="section__inner">
@@ -49,43 +49,88 @@ get_header(); ?>
                 <p class="section__desc">Each treatment is customized to your unique goals, delivered with precision in a luxurious environment.</p>
             </div>
 
-            <div class="services__grid reveal">
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">💉</div>
-                    <h3 class="service-card__title">Botox & Dysport</h3>
-                    <p class="service-card__text">Smooth away fine lines and wrinkles with precision neurotoxin injections for a refreshed, youthful look.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">✨</div>
-                    <h3 class="service-card__title">Dermal Fillers</h3>
-                    <p class="service-card__text">Restore lost volume and sculpt facial contours with premium hyaluronic acid fillers.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">🔬</div>
-                    <h3 class="service-card__title">Microneedling</h3>
-                    <p class="service-card__text">Stimulate your skin's natural collagen production for firmer, smoother, more radiant skin.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">🧴</div>
-                    <h3 class="service-card__title">Chemical Peels</h3>
-                    <p class="service-card__text">Reveal fresh, glowing skin and reduce discoloration with our medical-grade peel treatments.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">⚡</div>
-                    <h3 class="service-card__title">Laser Treatments</h3>
-                    <p class="service-card__text">Advanced laser technology for skin resurfacing, pigment correction, and hair removal.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
-                    <div class="service-card__icon">💎</div>
-                    <h3 class="service-card__title">IV Therapy</h3>
-                    <p class="service-card__text">Boost vitality from within with custom vitamin drips designed for energy, glow, and wellness.</p>
-                    <span class="service-card__link">Learn More →</span>
-                </a>
+            <?php
+            // Pull services from CPT
+            $services = new WP_Query([
+                'post_type'      => 'service',
+                'posts_per_page' => 12,
+                'orderby'        => 'menu_order',
+                'order'          => 'ASC',
+            ]);
+
+            // Fallback services if none created yet
+            $fallback = [
+                ['icon' => '💉', 'title' => 'Botox & Dysport', 'text' => 'Smooth away fine lines and wrinkles with precision neurotoxin injections for a refreshed, youthful look.'],
+                ['icon' => '✨', 'title' => 'Dermal Fillers', 'text' => 'Restore lost volume and sculpt facial contours with premium hyaluronic acid fillers.'],
+                ['icon' => '🔬', 'title' => 'Microneedling', 'text' => 'Stimulate your skin\'s natural collagen production for firmer, smoother, more radiant skin.'],
+                ['icon' => '🧴', 'title' => 'Chemical Peels', 'text' => 'Reveal fresh, glowing skin and reduce discoloration with our medical-grade peel treatments.'],
+                ['icon' => '⚡', 'title' => 'Laser Treatments', 'text' => 'Advanced laser technology for skin resurfacing, pigment correction, and hair removal.'],
+                ['icon' => '💎', 'title' => 'IV Therapy', 'text' => 'Boost vitality from within with custom vitamin drips designed for energy, glow, and wellness.'],
+            ];
+            ?>
+
+            <div class="carousel reveal" id="services-carousel">
+                <div class="carousel__track">
+                    <?php if ($services->have_posts()) : $i = 0; ?>
+                        <?php while ($services->have_posts()) : $services->the_post();
+                            $icon  = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+                            $price = get_post_meta(get_the_ID(), '_service_price', true);
+                            $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
+                        ?>
+                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>">
+                                <div class="carousel-card">
+                                    <div class="carousel-card__image">
+                                        <?php if ($thumb) : ?>
+                                            <img src="<?php echo esc_url($thumb); ?>" alt="<?php the_title_attribute(); ?>">
+                                        <?php else : ?>
+                                            <div class="carousel-card__placeholder">
+                                                <span><?php echo esc_html($icon); ?></span>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="carousel-card__body">
+                                        <div class="carousel-card__icon"><?php echo esc_html($icon); ?></div>
+                                        <h3 class="carousel-card__title"><?php the_title(); ?></h3>
+                                        <p class="carousel-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                                        <?php if ($price) : ?>
+                                            <span class="carousel-card__price">From <?php echo esc_html($price); ?></span>
+                                        <?php endif; ?>
+                                        <a href="<?php the_permalink(); ?>" class="btn btn--primary btn--sm">View Treatment →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php $i++; endwhile; wp_reset_postdata(); ?>
+                    <?php else : ?>
+                        <?php foreach ($fallback as $i => $svc) : ?>
+                            <div class="carousel__slide <?php echo $i === 0 ? 'is-active' : ''; ?>" data-index="<?php echo $i; ?>">
+                                <div class="carousel-card">
+                                    <div class="carousel-card__image">
+                                        <div class="carousel-card__placeholder">
+                                            <span><?php echo $svc['icon']; ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-card__body">
+                                        <div class="carousel-card__icon"><?php echo $svc['icon']; ?></div>
+                                        <h3 class="carousel-card__title"><?php echo $svc['title']; ?></h3>
+                                        <p class="carousel-card__text"><?php echo $svc['text']; ?></p>
+                                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary btn--sm">View Treatment →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Navigation -->
+                <div class="carousel__nav">
+                    <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <div class="carousel__dots" id="carousel-dots"></div>
+                    <button class="carousel__arrow carousel__arrow--next" aria-label="Next">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
