@@ -25,11 +25,11 @@ get_header(); ?>
             <h1 class="hero__title">Where Science<br>Meets <em>Beauty</em></h1>
             <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
             <div class="hero__actions">
-                <a href="#book" class="btn btn--primary btn--lg">
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">
                     Book Consultation
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="#services" class="btn btn--outline btn--lg">View Services</a>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
             </div>
             <div class="hero__trust">
                 <div class="hero__trust-stars">★★★★★</div>
@@ -50,37 +50,37 @@ get_header(); ?>
             </div>
 
             <div class="services__grid reveal">
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">💉</div>
                     <h3 class="service-card__title">Botox & Dysport</h3>
                     <p class="service-card__text">Smooth away fine lines and wrinkles with precision neurotoxin injections for a refreshed, youthful look.</p>
                     <span class="service-card__link">Learn More →</span>
                 </a>
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">✨</div>
                     <h3 class="service-card__title">Dermal Fillers</h3>
                     <p class="service-card__text">Restore lost volume and sculpt facial contours with premium hyaluronic acid fillers.</p>
                     <span class="service-card__link">Learn More →</span>
                 </a>
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">🔬</div>
                     <h3 class="service-card__title">Microneedling</h3>
                     <p class="service-card__text">Stimulate your skin's natural collagen production for firmer, smoother, more radiant skin.</p>
                     <span class="service-card__link">Learn More →</span>
                 </a>
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">🧴</div>
                     <h3 class="service-card__title">Chemical Peels</h3>
                     <p class="service-card__text">Reveal fresh, glowing skin and reduce discoloration with our medical-grade peel treatments.</p>
                     <span class="service-card__link">Learn More →</span>
                 </a>
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">⚡</div>
                     <h3 class="service-card__title">Laser Treatments</h3>
                     <p class="service-card__text">Advanced laser technology for skin resurfacing, pigment correction, and hair removal.</p>
                     <span class="service-card__link">Learn More →</span>
                 </a>
-                <a href="#" class="service-card">
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="service-card">
                     <div class="service-card__icon">💎</div>
                     <h3 class="service-card__title">IV Therapy</h3>
                     <p class="service-card__text">Boost vitality from within with custom vitamin drips designed for energy, glow, and wellness.</p>
@@ -123,7 +123,7 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn--primary">Meet Our Team →</a>
+                    <a href="<?php echo esc_url(home_url('/team/')); ?>" class="btn btn--primary">Meet Our Team →</a>
                 </div>
                 <div class="why-us__visual reveal">
                     <div class="why-us__stat-card why-us__stat-card--1">
@@ -202,7 +202,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Reveal<br>Your Best Self?</h2>
             <p class="cta-section__text">Book a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
             <div class="cta-section__actions">
-                <a href="#" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Free Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>
