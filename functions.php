@@ -26,26 +26,47 @@ function livia_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 
-// ── Auto-create Home Page ──────────────────────────────────────────
+// ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
-    // Only run once
-    if (get_option('livia_pages_created')) return;
+    if (get_option('livia_pages_created_v2')) return;
 
-    // Create Home page
-    $home_id = wp_insert_post([
-        'post_title'   => 'Home',
-        'post_content' => '',
-        'post_status'  => 'publish',
-        'post_type'    => 'page',
-    ]);
+    $pages = [
+        'Home'           => '',
+        'About'          => '',
+        'Team'           => '',
+        'Mission'        => '',
+        'Values'         => '',
+        'Contact'        => '',
+        'Before After'   => '',
+        'Careers'        => '',
+        'Blog'           => '',
+    ];
 
-    if ($home_id && !is_wp_error($home_id)) {
-        // Set as static front page
-        update_option('show_on_front', 'page');
-        update_option('page_on_front', $home_id);
+    foreach ($pages as $title => $content) {
+        // Skip if page already exists
+        $existing = get_page_by_title($title, OBJECT, 'page');
+        if ($existing) continue;
+
+        $page_id = wp_insert_post([
+            'post_title'   => $title,
+            'post_content' => $content,
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+
+        // Set Home as static front page
+        if ($title === 'Home' && $page_id && !is_wp_error($page_id)) {
+            update_option('show_on_front', 'page');
+            update_option('page_on_front', $page_id);
+        }
+
+        // Set Blog as posts page
+        if ($title === 'Blog' && $page_id && !is_wp_error($page_id)) {
+            update_option('page_for_posts', $page_id);
+        }
     }
 
-    update_option('livia_pages_created', true);
+    update_option('livia_pages_created_v2', true);
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
