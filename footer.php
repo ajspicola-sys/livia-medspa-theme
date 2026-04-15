@@ -464,6 +464,40 @@
         statsBarObserver.observe(statsBar);
     }
 
+    // ── Gallery Filters (Before & After) ──────────────────────────
+    var filterBtns = document.querySelectorAll('.gallery-filter');
+    var galleryCards = document.querySelectorAll('.gallery-card');
+    if (filterBtns.length && galleryCards.length) {
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
+
+                // Update active state
+                filterBtns.forEach(function(b) { b.classList.remove('is-active'); });
+                this.classList.add('is-active');
+
+                // Show/hide cards with animation
+                galleryCards.forEach(function(card) {
+                    var category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = '';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(12px)';
+                        requestAnimationFrame(function() {
+                            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        });
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(12px)';
+                        setTimeout(function() { card.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+    }
+
     // ── Smooth anchor scrolling with offset ──────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
