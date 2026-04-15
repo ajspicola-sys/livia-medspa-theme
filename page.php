@@ -5,20 +5,45 @@
  */
 
 // Auto-route to custom templates by slug
-$slug = get_post_field('post_name', get_post());
+global $post;
+$slug = '';
+if ($post) {
+    $slug = $post->post_name;
+}
+
 $custom_templates = [
-    'team'        => 'page-team.php',
-    'about'       => 'page-about.php',
-    'contact'     => 'page-contact.php',
-    'memberships' => 'page-memberships.php',
-    'parties'     => 'page-parties.php',
-    'values'      => 'page-values.php',
-    'before-after'=> 'page-before-after.php',
+    'team'         => 'page-team.php',
+    'meet-the-team'=> 'page-team.php',
+    'our-team'     => 'page-team.php',
+    'about'        => 'page-about.php',
+    'about-us'     => 'page-about.php',
+    'contact'      => 'page-contact.php',
+    'contact-us'   => 'page-contact.php',
+    'memberships'  => 'page-memberships.php',
+    'membership'   => 'page-memberships.php',
+    'parties'      => 'page-parties.php',
+    'values'       => 'page-values.php',
+    'our-values'   => 'page-values.php',
+    'mission'      => 'page-values.php',
+    'before-after' => 'page-before-after.php',
 ];
 
-if (isset($custom_templates[$slug]) && file_exists(get_template_directory() . '/' . $custom_templates[$slug])) {
-    include(get_template_directory() . '/' . $custom_templates[$slug]);
-    return;
+if ($slug && isset($custom_templates[$slug])) {
+    $custom = get_template_directory() . '/' . $custom_templates[$slug];
+    if (file_exists($custom)) {
+        include($custom);
+        return;
+    }
+}
+
+// Also check by page title as fallback
+$title_slug = sanitize_title(get_the_title());
+if ($title_slug && isset($custom_templates[$title_slug])) {
+    $custom = get_template_directory() . '/' . $custom_templates[$title_slug];
+    if (file_exists($custom)) {
+        include($custom);
+        return;
+    }
 }
 
 get_header(); ?>
