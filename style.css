@@ -38,6 +38,17 @@ body {
   color: #1a1a2e;
   background: #faf8f5;
   overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+body.is-loaded {
+  opacity: 1;
+}
+
+body.is-leaving {
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 a {
@@ -5217,11 +5228,17 @@ a.contact-card__text:hover {
   border: 1px solid #f0f0f4;
   border-radius: 14px;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(201, 169, 110, 0.2);
+  transform: translateY(-1px);
 }
 
 .faq-item[open] {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border-color: rgba(201, 169, 110, 0.3);
 }
 
 .faq-item__question {

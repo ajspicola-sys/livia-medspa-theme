@@ -158,10 +158,26 @@
     var mobileOver  = document.getElementById('mobile-overlay');
     var mobileClose = document.getElementById('mobile-close');
     var scrollBtn   = document.getElementById('scroll-top');
-    var adminBarEl  = document.getElementById('wpadminbar');
-    var adminBarH   = adminBarEl ? adminBarEl.offsetHeight : 0;
     var lastScrollY = 0;
     var ticking     = false;
+
+    // ── Page load animation ─────────────────────────────────────
+    document.body.classList.add('is-loaded');
+
+    // Smooth page exit transition
+    document.querySelectorAll('a[href]').forEach(function(link) {
+        var href = link.getAttribute('href');
+        // Only apply to internal links, not anchors, tel:, mailto:, or new tab links
+        if (href && href.charAt(0) !== '#' && !href.startsWith('tel:') && !href.startsWith('mailto:') &&
+            !link.hasAttribute('target') && href.indexOf(window.location.hostname) !== -1 || (href.charAt(0) === '/')) {
+            link.addEventListener('click', function(e) {
+                if (e.ctrlKey || e.metaKey || e.shiftKey) return; // Allow cmd/ctrl+click
+                e.preventDefault();
+                document.body.classList.add('is-leaving');
+                setTimeout(function() { window.location.href = href; }, 250);
+            });
+        }
+    });
 
     // ── Set initial positions ────────────────────────────────────
     function setPositions() {
