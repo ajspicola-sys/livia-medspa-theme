@@ -220,6 +220,54 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         YOUR JOURNEY — 4-step process
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="journey-section" aria-label="How it works">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">How It Works</span>
+                <h2 class="section__title">Your Beauty Journey</h2>
+                <p class="section__desc">From consultation to results — we make every step seamless and luxurious.</p>
+            </div>
+            <div class="journey-steps reveal">
+                <div class="journey-step">
+                    <div class="journey-step__number">01</div>
+                    <div class="journey-step__icon">📋</div>
+                    <h3 class="journey-step__title">Free Consultation</h3>
+                    <p class="journey-step__text">Meet with our providers to discuss your goals. We'll assess your needs and recommend the perfect treatment plan.</p>
+                </div>
+                <div class="journey-step__connector" aria-hidden="true">
+                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-step__number">02</div>
+                    <div class="journey-step__icon">🎯</div>
+                    <h3 class="journey-step__title">Custom Plan</h3>
+                    <p class="journey-step__text">Your treatment plan is tailored to your unique anatomy, skin type, and aesthetic goals. No cookie-cutter solutions.</p>
+                </div>
+                <div class="journey-step__connector" aria-hidden="true">
+                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-step__number">03</div>
+                    <div class="journey-step__icon">✨</div>
+                    <h3 class="journey-step__title">Expert Treatment</h3>
+                    <p class="journey-step__text">Relax in our luxury suite while our certified professionals deliver precision treatments using premium products.</p>
+                </div>
+                <div class="journey-step__connector" aria-hidden="true">
+                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-step__number">04</div>
+                    <div class="journey-step__icon">🌟</div>
+                    <h3 class="journey-step__title">Glow Up!</h3>
+                    <p class="journey-step__text">Walk out feeling radiant and confident. We guide you through aftercare and schedule follow-ups for lasting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          PRODUCT SHOWCASE
          ═══════════════════════════════════════════════════════════════ -->
     <section class="product-showcase" aria-label="Medical-grade skincare products">

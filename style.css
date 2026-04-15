@@ -1711,6 +1711,96 @@ html {
 }
 
 /* ==========================================================================
+   YOUR JOURNEY (How It Works)
+   ========================================================================== */
+.journey-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: linear-gradient(180deg, #f5f0ea 0%, #faf8f5 100%);
+}
+
+.journey-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-top: 1rem;
+}
+
+.journey-step {
+  flex: 1;
+  max-width: 240px;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  position: relative;
+}
+
+.journey-step__number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #c9a96e;
+  margin-bottom: 0.75rem;
+}
+
+.journey-step__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(201, 169, 110, 0.08);
+  border-radius: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.journey-step:hover .journey-step__icon {
+  background: rgba(201, 169, 110, 0.15);
+  transform: translateY(-3px);
+}
+
+.journey-step__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.journey-step__text {
+  font-size: 0.8rem;
+  color: #7a7a90;
+  line-height: 1.6;
+}
+
+.journey-step__connector {
+  display: flex;
+  align-items: center;
+  padding-top: 3.5rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .journey-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .journey-step {
+    max-width: 100%;
+  }
+
+  .journey-step__connector {
+    padding-top: 0;
+    transform: rotate(90deg);
+  }
+}
+
+/* ==========================================================================
    PRODUCT SHOWCASE
    ========================================================================== */
 .product-showcase {
