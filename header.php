@@ -170,7 +170,7 @@
                     <li class="nav__item<?php if (is_front_page()) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="nav__link">Home</a>
                     </li>
-                    <li class="nav__item nav__item--has-mega">
+                    <li class="nav__item nav__item--has-mega<?php if (is_post_type_archive('service') || is_singular('service')) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/services/')); ?>" class="nav__link">Services <span
                                 class="nav__arrow">▾</span></a>
                         <div class="mega-menu">
@@ -308,7 +308,7 @@
                             class="nav__link">Before &amp; After</a></li>
 
                     <!-- Products with Mega Menu -->
-                    <li class="nav__item nav__item--has-mega">
+                    <li class="nav__item nav__item--has-mega<?php if (is_page(['products', 'our-products', 'shop']) || is_singular('product')) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/products/')); ?>" class="nav__link">Products <span
                                 class="nav__arrow">▾</span></a>
                         <div class="mega-menu">
@@ -372,7 +372,7 @@
                     </li>
 
                     <!-- About with Mega Menu -->
-                    <li class="nav__item nav__item--has-mega">
+                    <li class="nav__item nav__item--has-mega<?php if (is_page(['about', 'team', 'meet-the-team', 'our-team', 'values', 'our-values'])) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About <span
                                 class="nav__arrow">▾</span></a>
                         <div class="mega-menu">

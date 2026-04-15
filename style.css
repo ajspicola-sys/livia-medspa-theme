@@ -2968,11 +2968,13 @@ html {
 }
 
 /* Active nav link */
-.nav__link.is-active {
+.nav__link.is-active,
+.nav__item--active > .nav__link {
   color: #c9a96e !important;
 }
 
-.nav__link.is-active::after {
+.nav__link.is-active::after,
+.nav__item--active > .nav__link::after {
   width: 100% !important;
   opacity: 1 !important;
 }
