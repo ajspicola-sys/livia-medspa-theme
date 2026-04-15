@@ -386,3 +386,254 @@ function livia_heartbeat_settings($settings) {
     return $settings;
 }
 add_filter('heartbeat_settings', 'livia_heartbeat_settings');
+
+// ════════════════════════════════════════════════════════════════════════
+// BUILT-IN SEO META BOX — edit SEO title, description & OG image
+// directly from the WordPress editor on every page/post/service
+// ════════════════════════════════════════════════════════════════════════
+
+// ── Register the meta box on all editable post types ───────────────
+function livia_seo_meta_box() {
+    $post_types = ['post', 'page', 'service'];
+    foreach ($post_types as $pt) {
+        add_meta_box(
+            'livia_seo_meta',
+            '🔍 SEO Settings',
+            'livia_seo_meta_html',
+            $pt,
+            'normal',
+            'high'
+        );
+    }
+}
+add_action('add_meta_boxes', 'livia_seo_meta_box');
+
+// ── Render the meta box HTML ───────────────────────────────────────
+function livia_seo_meta_html($post) {
+    wp_nonce_field('livia_seo_meta', 'livia_seo_nonce');
+
+    $seo_title = get_post_meta($post->ID, '_livia_seo_title', true);
+    $seo_desc  = get_post_meta($post->ID, '_livia_seo_desc', true);
+    $og_image  = get_post_meta($post->ID, '_livia_og_image', true);
+    ?>
+    <style>
+        .livia-seo-box { padding: 12px 0; }
+        .livia-seo-field { margin-bottom: 18px; }
+        .livia-seo-field label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #1d2327;
+        }
+        .livia-seo-field input,
+        .livia-seo-field textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: border-color 0.2s;
+        }
+        .livia-seo-field input:focus,
+        .livia-seo-field textarea:focus {
+            border-color: #c9a96e;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(201,169,110,0.15);
+        }
+        .livia-seo-hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+        .livia-seo-counter {
+            font-size: 12px;
+            float: right;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .livia-seo-counter.is-warn { color: #dba617; }
+        .livia-seo-counter.is-over { color: #dc3232; }
+        .livia-seo-counter.is-good { color: #46b450; }
+        .livia-seo-preview {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 12px;
+        }
+        .livia-seo-preview__label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #c9a96e;
+            margin-bottom: 8px;
+        }
+        .livia-seo-preview__title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #1a0dab;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+        .livia-seo-preview__url {
+            font-size: 13px;
+            color: #006621;
+            margin-bottom: 4px;
+        }
+        .livia-seo-preview__desc {
+            font-size: 13px;
+            color: #545454;
+            line-height: 1.5;
+        }
+    </style>
+
+    <div class="livia-seo-box">
+        <!-- SEO Title -->
+        <div class="livia-seo-field">
+            <label for="livia_seo_title">SEO Title</label>
+            <input type="text"
+                   id="livia_seo_title"
+                   name="livia_seo_title"
+                   value="<?php echo esc_attr($seo_title); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' — Livia Med Spa'); ?>"
+                   maxlength="120">
+            <span class="livia-seo-hint">Recommended: 50–60 characters. Leave blank to use default.</span>
+            <span class="livia-seo-counter" id="seo-title-counter">0/60</span>
+        </div>
+
+        <!-- Meta Description -->
+        <div class="livia-seo-field">
+            <label for="livia_seo_desc">Meta Description</label>
+            <textarea id="livia_seo_desc"
+                      name="livia_seo_desc"
+                      rows="3"
+                      placeholder="A brief summary for search engines..."
+                      maxlength="320"><?php echo esc_textarea($seo_desc); ?></textarea>
+            <span class="livia-seo-hint">Recommended: 120–160 characters.</span>
+            <span class="livia-seo-counter" id="seo-desc-counter">0/160</span>
+        </div>
+
+        <!-- OG Image -->
+        <div class="livia-seo-field">
+            <label for="livia_og_image">Social Share Image URL</label>
+            <input type="url"
+                   id="livia_og_image"
+                   name="livia_og_image"
+                   value="<?php echo esc_attr($og_image); ?>"
+                   placeholder="https://liviamedspa.com/wp-content/uploads/...">
+            <span class="livia-seo-hint">Image shown when shared on Facebook, Twitter, etc. Ideal size: 1200×630px.</span>
+        </div>
+
+        <!-- Live Google Preview -->
+        <div class="livia-seo-preview">
+            <div class="livia-seo-preview__label">Google Search Preview</div>
+            <div class="livia-seo-preview__title" id="seo-preview-title">
+                <?php echo esc_html($seo_title ?: $post->post_title . ' — Livia Med Spa'); ?>
+            </div>
+            <div class="livia-seo-preview__url">
+                <?php echo esc_url(get_permalink($post->ID)); ?>
+            </div>
+            <div class="livia-seo-preview__desc" id="seo-preview-desc">
+                <?php echo esc_html($seo_desc ?: 'Add a meta description to control what appears here in search results.'); ?>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var titleInput = document.getElementById('livia_seo_title');
+        var descInput  = document.getElementById('livia_seo_desc');
+        var titleCounter = document.getElementById('seo-title-counter');
+        var descCounter  = document.getElementById('seo-desc-counter');
+        var previewTitle = document.getElementById('seo-preview-title');
+        var previewDesc  = document.getElementById('seo-preview-desc');
+        var defaultTitle = <?php echo json_encode($post->post_title . ' — Livia Med Spa'); ?>;
+
+        function updateCounter(input, counter, ideal) {
+            var len = input.value.length;
+            counter.textContent = len + '/' + ideal;
+            counter.className = 'livia-seo-counter ' +
+                (len === 0 ? '' : len <= ideal ? 'is-good' : len <= ideal * 1.2 ? 'is-warn' : 'is-over');
+        }
+
+        function updatePreview() {
+            previewTitle.textContent = titleInput.value || defaultTitle;
+            previewDesc.textContent = descInput.value || 'Add a meta description to control what appears here in search results.';
+        }
+
+        titleInput.addEventListener('input', function() {
+            updateCounter(titleInput, titleCounter, 60);
+            updatePreview();
+        });
+        descInput.addEventListener('input', function() {
+            updateCounter(descInput, descCounter, 160);
+            updatePreview();
+        });
+
+        // Initial count
+        updateCounter(titleInput, titleCounter, 60);
+        updateCounter(descInput, descCounter, 160);
+    })();
+    </script>
+    <?php
+}
+
+// ── Save the SEO meta fields ───────────────────────────────────────
+function livia_save_seo_meta($post_id) {
+    if (!isset($_POST['livia_seo_nonce']) || !wp_verify_nonce($_POST['livia_seo_nonce'], 'livia_seo_meta')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    $fields = ['livia_seo_title', 'livia_seo_desc', 'livia_og_image'];
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
+        }
+    }
+}
+add_action('save_post', 'livia_save_seo_meta');
+
+// ── Override the <title> tag with custom SEO title ─────────────────
+function livia_custom_title($title) {
+    if (is_singular()) {
+        $custom = get_post_meta(get_the_ID(), '_livia_seo_title', true);
+        if (!empty($custom)) {
+            $title['title'] = $custom;
+        }
+    }
+    return $title;
+}
+add_filter('document_title_parts', 'livia_custom_title');
+
+// ── Output meta description & OG tags in <head> ───────────────────
+function livia_seo_head_tags() {
+    if (is_singular()) {
+        $post_id = get_the_ID();
+        $desc    = get_post_meta($post_id, '_livia_seo_desc', true);
+        $og_img  = get_post_meta($post_id, '_livia_og_image', true);
+        $title   = get_post_meta($post_id, '_livia_seo_title', true) ?: get_the_title();
+
+        if (!empty($desc)) {
+            echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+            echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
+            echo '<meta name="twitter:description" content="' . esc_attr($desc) . '">' . "\n";
+        }
+
+        // Open Graph tags
+        echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
+        echo '<meta property="og:type" content="website">' . "\n";
+        echo '<meta property="og:url" content="' . esc_url(get_permalink($post_id)) . '">' . "\n";
+        echo '<meta property="og:site_name" content="Livia Med Spa">' . "\n";
+        echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+        echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
+
+        if (!empty($og_img)) {
+            echo '<meta property="og:image" content="' . esc_url($og_img) . '">' . "\n";
+            echo '<meta name="twitter:image" content="' . esc_url($og_img) . '">' . "\n";
+        }
+    }
+}
+add_action('wp_head', 'livia_seo_head_tags', 5);

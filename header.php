@@ -9,7 +9,6 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Tampa's elite aesthetics studio — expert Botox, fillers, and laser treatments tailored to enhance your natural beauty.">
     <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
     <meta name="format-detection" content="telephone=no">
