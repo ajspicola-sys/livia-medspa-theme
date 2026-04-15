@@ -1925,6 +1925,97 @@ a.contact-card__text:hover { color: #c9a96e; }
 }
 
 /* ==========================================================================
+/* ==========================================================================
+   SINGLE SERVICE
+   ========================================================================== */
+.services-archive {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+}
+
+.single-service {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+}
+
+.single-service__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+  align-items: start;
+}
+
+.single-service__image {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.single-service__image img {
+  width: 100%;
+  height: auto;
+}
+
+.service-info-card {
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.service-info-card__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f4;
+}
+
+.service-info-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f8f8fa;
+}
+
+.service-info-card__row:last-of-type {
+  border-bottom: none;
+}
+
+.service-info-card__label {
+  font-size: 0.82rem;
+  color: #7a7a90;
+}
+
+.service-info-card__value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #c9a96e;
+}
+
+.service-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f4;
+}
+
+.service-card__price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c9a96e;
+}
+
+.service-card__duration {
+  font-size: 0.78rem;
+  color: #7a7a90;
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1023px) {
@@ -1940,6 +2031,7 @@ a.contact-card__text:hover { color: #c9a96e; }
   .testimonials__grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
+  .single-service__grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 575px) {
