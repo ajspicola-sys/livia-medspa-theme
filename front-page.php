@@ -184,6 +184,57 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         SUPPLEMENTS (FULLSCRIPT)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="supplements">
+        <div class="section__inner">
+            <div class="supplements__layout">
+                <!-- Left: Branding + CTA -->
+                <div class="supplements__content reveal">
+                    <span class="section__label">Practitioner-Curated Supplements</span>
+                    <h2 class="section__title">Supplements as<br><em>intentional</em> as your care.</h2>
+                    <p class="supplements__text">Every product in our Fullscript store is hand-selected by our clinical team — pharmaceutical-grade, third-party tested, and shipped directly to your door at a practitioner discount.</p>
+                    <div class="supplements__cta-row">
+                        <a href="#" class="btn btn--primary btn--lg">Shop Our Supplement Store →</a>
+                        <span class="supplements__discount">20% off retail — exclusive to Livia patients</span>
+                    </div>
+                    <div class="supplements__partnership">
+                        <span class="supplements__partner-label">Livia Med Spa</span>
+                        <span class="supplements__partner-x">×</span>
+                        <span class="supplements__partner-powered">Powered by</span>
+                        <span class="supplements__partner-brand">Fullscript</span>
+                    </div>
+                </div>
+
+                <!-- Right: Feature Cards -->
+                <div class="supplements__features reveal">
+                    <div class="supplement-feature">
+                        <div class="supplement-feature__icon">🏆</div>
+                        <div class="supplement-feature__content">
+                            <h3 class="supplement-feature__title">Pharmaceutical-Grade Quality</h3>
+                            <p class="supplement-feature__text">Top-tier, certified brands hand-picked by our clinical team</p>
+                        </div>
+                    </div>
+                    <div class="supplement-feature">
+                        <div class="supplement-feature__icon">🔬</div>
+                        <div class="supplement-feature__content">
+                            <h3 class="supplement-feature__title">Third-Party Tested</h3>
+                            <p class="supplement-feature__text">Every product verified for purity and potency</p>
+                        </div>
+                    </div>
+                    <div class="supplement-feature">
+                        <div class="supplement-feature__icon">📦</div>
+                        <div class="supplement-feature__content">
+                            <h3 class="supplement-feature__title">Delivered to Your Door</h3>
+                            <p class="supplement-feature__text">Fast shipping with 20% off retail for Livia patients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          WHY LIVIA SECTION
          ═══════════════════════════════════════════════════════════════ -->
     <section class="why-us">

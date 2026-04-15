@@ -1555,6 +1555,126 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   SUPPLEMENTS (FULLSCRIPT)
+   ========================================================================== */
+.supplements {
+  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  background: #f5f0ea;
+  position: relative;
+}
+
+.supplements__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+
+.supplements__text {
+  font-size: 0.95rem;
+  color: #55556a;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.supplements__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.supplements__discount {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c9a96e;
+  padding: 0.4rem 0.85rem;
+  background: rgba(201,169,110,0.1);
+  border-radius: 8px;
+}
+
+.supplements__partnership {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f4;
+  width: fit-content;
+}
+
+.supplements__partner-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.supplements__partner-x {
+  font-size: 0.75rem;
+  color: #c9a96e;
+  font-weight: 300;
+}
+
+.supplements__partner-powered {
+  font-size: 0.68rem;
+  color: #9e9eb0;
+  font-weight: 500;
+}
+
+.supplements__partner-brand {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  letter-spacing: -0.01em;
+}
+
+.supplements__features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.supplement-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f4;
+  border-left: 3px solid #c9a96e;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.supplement-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.supplement-feature__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.supplement-feature__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #1a1a2e;
+}
+
+.supplement-feature__text {
+  font-size: 0.82rem;
+  color: #7a7a90;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
    WHY US
    ========================================================================== */
 .why-us {
@@ -3066,6 +3186,7 @@ a.contact-card__text:hover { color: #c9a96e; }
   .product-showcase__actions { justify-content: center; }
   .product-showcase__ring { width: 300px; height: 300px; }
   .product-showcase__image { width: 220px; }
+  .supplements__layout { grid-template-columns: 1fr; }
   .about-story__grid { grid-template-columns: 1fr; }
   .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
