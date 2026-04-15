@@ -88,8 +88,8 @@ add_action('wp_enqueue_scripts', 'livia_deregister_jquery', 100);
 
 // ── Enqueue Assets ─────────────────────────────────────────────────
 function livia_enqueue_styles() {
-    // Stable version hash for cache busting (change on deploy, not every page load)
-    $theme_version = '2.1.0';
+    // Auto cache-bust: uses file modification time so CSS always refreshes on deploy
+    $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
     // Google Fonts — single optimized request with display=swap
     wp_enqueue_style(
@@ -99,7 +99,7 @@ function livia_enqueue_styles() {
         null
     );
 
-    // Main stylesheet with stable version for caching
+    // Main stylesheet — version auto-updates when file changes
     wp_enqueue_style('livia-style', get_stylesheet_uri(), ['livia-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
