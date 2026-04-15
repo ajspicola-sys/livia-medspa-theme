@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Page Preview — Livia Med Spa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #faf8f5; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* Page Hero */
+.page-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
+  padding: 7rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+}
+.page-hero__inner { max-width: 700px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+.section__label {
+  display: inline-flex;
+  padding: 0.4rem 1.25rem;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 1.25rem;
+}
+.page-hero__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  color: #faf8f5;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+.page-hero__desc {
+  font-size: 1.05rem;
+  color: rgba(250,248,245,0.55);
+  line-height: 1.7;
+}
+
+/* Layout */
+.section__inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+.single-service { padding: 4rem 0; }
+.single-service__grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* Image */
+.single-service__image {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, #e8dfd0, #d5c9b5);
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+}
+
+/* Content Body */
+.post-content__body { font-size: 1.05rem; line-height: 1.85; color: #3a3a4e; }
+.post-content__body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 2.5rem 0 1rem;
+  color: #1a1a2e;
+}
+.post-content__body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 2rem 0 0.75rem;
+}
+.post-content__body p { margin-bottom: 1.5rem; }
+.post-content__body ul {
+  margin: 1rem 0 1.5rem 1.5rem;
+  list-style: none;
+}
+.post-content__body ul li {
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.post-content__body ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #c9a96e;
+  font-weight: 700;
+}
+
+/* Before/After Grid */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.ba-card {
+  background: linear-gradient(135deg, #e8dfd0, #d5c9b5);
+  border-radius: 14px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8a7d6d;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* FAQ Accordion */
+.faq-section { margin-top: 3rem; }
+.faq-item {
+  border-bottom: 1px solid #f0f0f4;
+  padding: 1.25rem 0;
+}
+.faq-item__q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  cursor: pointer;
+}
+.faq-item__q span { color: #c9a96e; font-size: 1.2rem; }
+.faq-item__a {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: #7a7a90;
+  line-height: 1.7;
+}
+
+/* Sidebar */
+.single-service__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 100px;
+}
+
+.service-info-card {
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 16px;
+  padding: 2rem;
+}
+.service-info-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f4;
+}
+.service-info-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f8f8fa;
+}
+.service-info-card__row:last-of-type { border-bottom: none; }
+.service-info-card__label { font-size: 0.82rem; color: #7a7a90; }
+.service-info-card__value { font-size: 0.95rem; font-weight: 600; color: #c9a96e; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn--primary {
+  background: linear-gradient(135deg, #c9a96e, #b8944f);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(201,169,110,0.25);
+  width: 100%;
+  margin-top: 1.25rem;
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201,169,110,0.35);
+}
+.btn--outline {
+  background: transparent;
+  color: #1a1a2e;
+  border: 1.5px solid #ddd;
+  width: 100%;
+  text-align: center;
+}
+.btn--outline:hover { border-color: #c9a96e; color: #c9a96e; }
+
+/* Related */
+.related-card {
+  background: #fff;
+  border: 1px solid #f0f0f4;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.related-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+.related-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(201,169,110,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.related-card__title { font-weight: 600; font-size: 0.88rem; color: #1a1a2e; }
+.related-card__price { font-size: 0.75rem; color: #c9a96e; font-weight: 600; margin-top: 2px; }
+
+.sidebar-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7a7a90;
+  margin-bottom: 1rem;
+}
+
+/* Trust badges */
+.trust-badges {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(201,169,110,0.08);
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #55556a;
+}
+.trust-badge span { font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="section__label">💉 Treatment</span>
+    <h1 class="page-hero__title">Botox & Dysport</h1>
+    <p class="page-hero__desc">Smooth away fine lines and wrinkles with FDA-approved neurotoxin injections for a refreshed, naturally youthful look.</p>
+  </div>
+</div>
+
+<!-- Service Content -->
+<div class="single-service">
+  <div class="section__inner">
+    <div class="single-service__grid">
+
+      <!-- Main Content -->
+      <div class="single-service__content">
+        <div class="single-service__image">💉</div>
+
+        <div class="post-content__body">
+          <h2>What is Botox?</h2>
+          <p>Botox and Dysport are FDA-approved injectable neurotoxins that temporarily relax targeted facial muscles to smooth dynamic wrinkles — the lines that form from years of expressions like smiling, squinting, and frowning.</p>
+          <p>At Livia Med Spa, our expert injectors use advanced micro-dosing techniques to deliver results that look natural and refreshed — never frozen or overdone.</p>
+
+          <h2>Key Benefits</h2>
+          <ul>
+            <li>Smooths forehead lines, crow's feet, and frown lines</li>
+            <li>Prevents new wrinkles from forming</li>
+            <li>Quick 15-30 minute treatment with no downtime</li>
+            <li>Results visible within 3-5 days, lasting 3-4 months</li>
+            <li>Can slim the jawline and reduce excessive sweating</li>
+            <li>FDA-approved with decades of safety data</li>
+          </ul>
+
+          <h2>Before & After</h2>
+          <div class="ba-grid">
+            <div class="ba-card">BEFORE PHOTO</div>
+            <div class="ba-card">AFTER PHOTO</div>
+          </div>
+
+          <h2>What to Expect</h2>
+          <h3>During Your Visit</h3>
+          <p>Your appointment begins with a personalized consultation where your injector will assess your facial anatomy and discuss your goals. The injection process takes just 10-15 minutes using ultra-fine needles — most clients describe it as a tiny pinch.</p>
+
+          <h3>Recovery & Results</h3>
+          <p>There is virtually no downtime. You may experience slight redness at injection sites that resolves within an hour. Avoid lying down for 4 hours and strenuous exercise for 24 hours. Full results appear within 7-14 days.</p>
+
+          <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+              <div class="faq-item__q">Does Botox hurt? <span>+</span></div>
+              <div class="faq-item__a">Most clients describe the sensation as a tiny pinch. We use ultra-fine needles and can apply topical numbing cream for comfort.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-item__q">How long do results last? <span>+</span></div>
+              <div class="faq-item__a">Results typically last 3-4 months. With regular treatments, many clients find their results last longer over time.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-item__q">What's the difference between Botox and Dysport? <span>+</span></div>
+              <div class="faq-item__a">Both are neurotoxins that work similarly. Dysport tends to spread slightly more, making it ideal for larger areas like the forehead. Your injector will recommend the best option for you.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-item__q">Can I combine Botox with other treatments? <span>+</span></div>
+              <div class="faq-item__a">Absolutely! Botox pairs beautifully with dermal fillers, chemical peels, and microneedling for comprehensive facial rejuvenation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="single-service__sidebar">
+        <div class="service-info-card">
+          <div class="service-info-card__title">Treatment Details</div>
+          <div class="service-info-card__row">
+            <span class="service-info-card__label">Starting at</span>
+            <span class="service-info-card__value">$12/unit</span>
+          </div>
+          <div class="service-info-card__row">
+            <span class="service-info-card__label">Duration</span>
+            <span class="service-info-card__value">15-30 min</span>
+          </div>
+          <div class="service-info-card__row">
+            <span class="service-info-card__label">Downtime</span>
+            <span class="service-info-card__value">None</span>
+          </div>
+          <div class="service-info-card__row">
+            <span class="service-info-card__label">Results Last</span>
+            <span class="service-info-card__value">3-4 months</span>
+          </div>
+          <div class="service-info-card__row">
+            <span class="service-info-card__label">Pain Level</span>
+            <span class="service-info-card__value">Minimal</span>
+          </div>
+          <button class="btn btn--primary">Book This Treatment →</button>
+        </div>
+
+        <div class="service-info-card">
+          <div class="sidebar-heading">Trust & Safety</div>
+          <div class="trust-badges">
+            <div class="trust-badge"><span>✓</span> FDA Approved</div>
+            <div class="trust-badge"><span>✓</span> Board Certified</div>
+            <div class="trust-badge"><span>✓</span> 10K+ Treatments</div>
+            <div class="trust-badge"><span>★</span> 4.9/5 Rating</div>
+          </div>
+        </div>
+
+        <div class="service-info-card">
+          <div class="sidebar-heading">Related Treatments</div>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <div class="related-card">
+              <div class="related-card__icon">✨</div>
+              <div>
+                <div class="related-card__title">Dermal Fillers</div>
+                <div class="related-card__price">From $650</div>
+              </div>
+            </div>
+            <div class="related-card">
+              <div class="related-card__icon">🧬</div>
+              <div>
+                <div class="related-card__title">PRP Facial</div>
+                <div class="related-card__price">From $450</div>
+              </div>
+            </div>
+            <div class="related-card">
+              <div class="related-card__icon">🔬</div>
+              <div>
+                <div class="related-card__title">Microneedling</div>
+                <div class="related-card__price">From $350</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn--outline">← All Services</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

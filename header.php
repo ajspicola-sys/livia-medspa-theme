@@ -147,7 +147,74 @@
                     </div>
                 </li>
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="nav__link">Before &amp; After</a></li>
-                <li class="nav__item"><a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About</a></li>
+
+                <!-- About with Mega Menu -->
+                <li class="nav__item nav__item--has-mega">
+                    <a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About <span class="nav__arrow">▾</span></a>
+                    <div class="mega-menu">
+                        <div class="mega-menu__inner mega-menu__inner--compact">
+                            <div class="mega-menu__column">
+                                <span class="mega-menu__heading">About Livia</span>
+                                <div class="mega-menu__items">
+                                    <a href="<?php echo esc_url(home_url('/about/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(201,169,110,0.12);color:#c9a96e;">🏛️</span>
+                                        <span class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Our Story</span>
+                                            <span class="mega-menu__item-desc">How Livia Med Spa began</span>
+                                        </span>
+                                        <span class="mega-menu__item-arrow">→</span>
+                                    </a>
+                                    <a href="<?php echo esc_url(home_url('/mission/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(143,170,143,0.12);color:#8faa8f;">🎯</span>
+                                        <span class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Our Mission</span>
+                                            <span class="mega-menu__item-desc">What drives everything we do</span>
+                                        </span>
+                                        <span class="mega-menu__item-arrow">→</span>
+                                    </a>
+                                    <a href="<?php echo esc_url(home_url('/values/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(160,142,196,0.12);color:#a08ec4;">💎</span>
+                                        <span class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Our Values</span>
+                                            <span class="mega-menu__item-desc">The principles we live by</span>
+                                        </span>
+                                        <span class="mega-menu__item-arrow">→</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mega-menu__column">
+                                <span class="mega-menu__heading">Our People</span>
+                                <div class="mega-menu__items">
+                                    <a href="<?php echo esc_url(home_url('/team/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">👩‍⚕️</span>
+                                        <span class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Meet the Team</span>
+                                            <span class="mega-menu__item-desc">Board-certified providers</span>
+                                        </span>
+                                        <span class="mega-menu__item-arrow">→</span>
+                                    </a>
+                                    <a href="<?php echo esc_url(home_url('/careers/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(111,163,214,0.12);color:#6fa3d6;">💼</span>
+                                        <span class="mega-menu__item-content">
+                                            <span class="mega-menu__item-title">Careers</span>
+                                            <span class="mega-menu__item-desc">Join the Livia family</span>
+                                        </span>
+                                        <span class="mega-menu__item-arrow">→</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mega-menu__promo" style="min-height:220px;">
+                                <div>
+                                    <span class="mega-menu__promo-label">✦ Join Our Team</span>
+                                    <h3 class="mega-menu__promo-title">We're Hiring</h3>
+                                    <p class="mega-menu__promo-text">Passionate about aesthetics? We're looking for talented providers to join our growing practice.</p>
+                                </div>
+                                <a href="<?php echo esc_url(home_url('/careers/')); ?>" class="mega-menu__promo-cta">View Openings →</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/blog/')); ?>" class="nav__link">Blog</a></li>
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="nav__link">Contact</a></li>
             </ul>
