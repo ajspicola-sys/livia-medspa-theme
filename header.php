@@ -170,6 +170,61 @@
                 </li>
                 <li class="nav__item"><a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="nav__link">Before &amp; After</a></li>
 
+                <!-- Products with Mega Menu -->
+                <li class="nav__item nav__item--has-mega">
+                    <a href="<?php echo esc_url(home_url('/products/')); ?>" class="nav__link">Products <span class="nav__arrow">▾</span></a>
+                    <div class="mega-menu">
+                        <div class="mega-menu__inner mega-menu__inner--compact">
+                            <div class="mega-menu__column">
+                                <span class="mega-menu__heading">Our Products</span>
+                                <div class="mega-menu__items">
+                                    <?php
+                                    $nav_products = new WP_Query([
+                                        'post_type'      => 'product',
+                                        'posts_per_page' => 8,
+                                        'orderby'        => 'menu_order',
+                                        'order'           => 'ASC',
+                                        'no_found_rows'  => true,
+                                    ]);
+                                    if ($nav_products->have_posts()) :
+                                        $p_colors = [
+                                            ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#c9a96e'],
+                                            ['bg' => 'rgba(196,122,122,0.12)', 'fg' => '#c47a7a'],
+                                            ['bg' => 'rgba(143,170,143,0.12)', 'fg' => '#8faa8f'],
+                                            ['bg' => 'rgba(160,142,196,0.12)', 'fg' => '#a08ec4'],
+                                        ];
+                                        $pi = 0;
+                                        while ($nav_products->have_posts()) : $nav_products->the_post();
+                                            $p_url = get_post_meta(get_the_ID(), '_product_url', true) ?: '#';
+                                            $pc = $p_colors[$pi % count($p_colors)];
+                                            $pi++;
+                                    ?>
+                                        <a href="<?php echo esc_url($p_url); ?>" class="mega-menu__item" target="_blank" rel="noopener noreferrer">
+                                            <span class="mega-menu__item-icon" style="background:<?php echo $pc['bg']; ?>;color:<?php echo $pc['fg']; ?>;">🛍️</span>
+                                            <span class="mega-menu__item-content">
+                                                <span class="mega-menu__item-title"><?php the_title(); ?></span>
+                                                <span class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                            </span>
+                                            <span class="mega-menu__item-arrow">→</span>
+                                        </a>
+                                    <?php endwhile; wp_reset_postdata();
+                                    else : ?>
+                                        <p style="color:#7a7a90;font-size:0.85rem;padding:1rem;">Products coming soon.</p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="mega-menu__promo" style="min-height:220px;">
+                                <div>
+                                    <span class="mega-menu__promo-label">✦ Curated Collection</span>
+                                    <h3 class="mega-menu__promo-title">Medical-Grade Products</h3>
+                                    <p class="mega-menu__promo-text">Physician-selected products to complement your treatments and elevate your daily skincare routine.</p>
+                                </div>
+                                <a href="<?php echo esc_url(home_url('/products/')); ?>" class="mega-menu__promo-cta">View All Products →</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
                 <!-- About with Mega Menu -->
                 <li class="nav__item nav__item--has-mega">
                     <a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About <span class="nav__arrow">▾</span></a>

@@ -96,6 +96,8 @@ function livia_force_page_templates($template) {
             'contact'      => 'page-contact.php',
             'memberships'  => 'page-memberships.php',
             'parties'      => 'page-parties.php',
+            'products'     => 'page-products.php',
+            'shop'         => 'page-products.php',
             'values'       => 'page-values.php',
             'before-after' => 'page-before-after.php',
         ];
@@ -637,10 +639,105 @@ function livia_save_team_meta($post_id) {
 }
 add_action('save_post_team_member', 'livia_save_team_meta');
 
+// ── Product Custom Post Type ───────────────────────────────────────
+function livia_register_products() {
+    register_post_type('product', [
+        'labels' => [
+            'name'               => 'Products',
+            'singular_name'      => 'Product',
+            'add_new'            => 'Add Product',
+            'add_new_item'       => 'Add New Product',
+            'edit_item'          => 'Edit Product',
+            'new_item'           => 'New Product',
+            'view_item'          => 'View Product',
+            'search_items'       => 'Search Products',
+            'not_found'          => 'No products found',
+            'menu_name'          => '🛍️ Products',
+        ],
+        'public'             => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => false,
+        'menu_icon'          => 'dashicons-cart',
+        'menu_position'      => 7,
+        'supports'           => ['title', 'editor', 'thumbnail', 'page-attributes'],
+        'show_in_rest'       => true,
+    ]);
+}
+add_action('init', 'livia_register_products');
+
+// ── Product custom fields (meta box) ───────────────────────────────
+function livia_product_meta_boxes() {
+    add_meta_box(
+        'livia_product_details',
+        'Product Details',
+        'livia_product_meta_html',
+        'product',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'livia_product_meta_boxes');
+
+function livia_product_meta_html($post) {
+    wp_nonce_field('livia_product_meta', 'livia_product_nonce');
+    $url      = get_post_meta($post->ID, '_product_url', true);
+    $video    = get_post_meta($post->ID, '_product_video_bg', true);
+    $price    = get_post_meta($post->ID, '_product_price', true);
+    $btn_text = get_post_meta($post->ID, '_product_btn_text', true) ?: 'Shop Now';
+    ?>
+    <style>
+        .livia-product-row { display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+        .livia-product-field { flex:1; min-width:250px; }
+        .livia-product-field label { display:block; font-weight:600; margin-bottom:4px; }
+        .livia-product-field input { width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
+    </style>
+    <div class="livia-product-row">
+        <div class="livia-product-field">
+            <label for="product_url">Product Website URL</label>
+            <input type="url" id="product_url" name="product_url" value="<?php echo esc_attr($url); ?>" placeholder="https://www.example.com/product">
+            <p class="description">External link where users can buy this product</p>
+        </div>
+        <div class="livia-product-field">
+            <label for="product_btn_text">Button Text</label>
+            <input type="text" id="product_btn_text" name="product_btn_text" value="<?php echo esc_attr($btn_text); ?>" placeholder="Shop Now">
+            <p class="description">Custom button label (default: "Shop Now")</p>
+        </div>
+    </div>
+    <div class="livia-product-row">
+        <div class="livia-product-field">
+            <label for="product_price">Price (optional)</label>
+            <input type="text" id="product_price" name="product_price" value="<?php echo esc_attr($price); ?>" placeholder="$89">
+            <p class="description">Display price or "From $89"</p>
+        </div>
+        <div class="livia-product-field">
+            <label for="product_video_bg">Video Background URL (optional)</label>
+            <input type="url" id="product_video_bg" name="product_video_bg" value="<?php echo esc_attr($video); ?>" placeholder="https://example.com/video.mp4">
+            <p class="description">MP4 video URL — plays faintly behind the product card. Leave blank for no video.</p>
+        </div>
+    </div>
+    <?php
+}
+
+function livia_save_product_meta($post_id) {
+    if (!isset($_POST['livia_product_nonce']) || !wp_verify_nonce($_POST['livia_product_nonce'], 'livia_product_meta')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    $fields = ['product_url', 'product_video_bg', 'product_price', 'product_btn_text'];
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
+        }
+    }
+}
+add_action('save_post_product', 'livia_save_product_meta');
+
 // ── Flush rewrite rules on theme activation ────────────────────────
 function livia_rewrite_flush() {
     livia_register_services();
     livia_register_team();
+    livia_register_products();
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'livia_rewrite_flush');
