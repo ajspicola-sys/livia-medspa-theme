@@ -23,7 +23,7 @@ get_header(); ?>
         </div>
         <div class="hero__content">
             <span class="hero__badge">✦ Tampa's Premier Aesthetics Studio</span>
-            <h1 class="hero__title">Where Science<br>Meets <em>Beauty</em></h1>
+            <h1 class="hero__title">Where Science<br>Meets <em>Beauty</em> ✦</h1>
             <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
             <div class="hero__actions">
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">
