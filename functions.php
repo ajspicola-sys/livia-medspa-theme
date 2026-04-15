@@ -254,6 +254,187 @@ function livia_create_pages() {
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
+// ── Auto-create All Services ───────────────────────────────────────
+function livia_create_services() {
+    if (get_option('livia_services_created_v1')) return;
+
+    // First, create service categories
+    $categories = [
+        'Injectables'       => 'Premium injectable treatments for facial rejuvenation and wrinkle reduction.',
+        'Skin Rejuvenation'  => 'Advanced treatments to restore, renew, and revitalize your skin.',
+        'Laser Treatments'   => 'State-of-the-art laser technology for skin resurfacing and correction.',
+        'Body Contouring'    => 'Non-surgical treatments to sculpt and enhance your body.',
+        'Hair Restoration'   => 'Advanced solutions for hair loss and thinning hair.',
+        'Wellness'           => 'Holistic wellness treatments to boost your health from the inside out.',
+        'Sexual Wellness'    => 'Confidential, cutting-edge treatments for intimate health and rejuvenation.',
+    ];
+
+    $cat_ids = [];
+    foreach ($categories as $name => $desc) {
+        $existing = term_exists($name, 'service_category');
+        if ($existing) {
+            $cat_ids[$name] = $existing['term_id'];
+        } else {
+            $term = wp_insert_term($name, 'service_category', ['description' => $desc]);
+            if (!is_wp_error($term)) {
+                $cat_ids[$name] = $term['term_id'];
+            }
+        }
+    }
+
+    // Define all 18 services
+    $services = [
+        // Injectables
+        [
+            'title'    => 'Botox',
+            'icon'     => '💉',
+            'category' => 'Injectables',
+            'excerpt'  => 'Smooth away fine lines and wrinkles with the world\'s most trusted neuromodulator, expertly administered for natural-looking results.',
+        ],
+        [
+            'title'    => 'Jeuveau',
+            'icon'     => '✨',
+            'category' => 'Injectables',
+            'excerpt'  => 'The modern alternative to Botox — Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
+        ],
+        [
+            'title'    => 'Dermal Fillers',
+            'icon'     => '💎',
+            'category' => 'Injectables',
+            'excerpt'  => 'Restore volume, enhance contours, and achieve a refreshed, youthful appearance with premium hyaluronic acid fillers.',
+        ],
+
+        // Skin Rejuvenation
+        [
+            'title'    => 'Chemical Peels',
+            'icon'     => '🧴',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'Reveal fresh, radiant skin by removing damaged outer layers with customized chemical peel treatments.',
+        ],
+        [
+            'title'    => 'Microneedling',
+            'icon'     => '🔬',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'Stimulate your skin\'s natural collagen production to improve texture, tone, and firmness with precision microneedling.',
+        ],
+        [
+            'title'    => 'Secret RF Microneedling',
+            'icon'     => '⚡',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
+        ],
+        [
+            'title'    => 'PRP Facial',
+            'icon'     => '🌟',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'Harness your body\'s own growth factors for natural skin renewal, improved texture, and a radiant glow.',
+        ],
+        [
+            'title'    => 'Glo2Facial',
+            'icon'     => '✦',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'A next-generation facial that combines exfoliation, oxygenation, and infusion for an instant, healthy glow.',
+        ],
+        [
+            'title'    => 'Cellis Derma PRP',
+            'icon'     => '🧬',
+            'category' => 'Skin Rejuvenation',
+            'excerpt'  => 'Advanced PRP therapy combined with cutting-edge Cellis technology for superior skin rejuvenation and healing.',
+        ],
+
+        // Laser Treatments
+        [
+            'title'    => 'Helix CO2 Laser',
+            'icon'     => '🔆',
+            'category' => 'Laser Treatments',
+            'excerpt'  => 'Fractional CO2 laser resurfacing to dramatically reduce scars, wrinkles, and sun damage with precision technology.',
+        ],
+        [
+            'title'    => 'Laser Treatments',
+            'icon'     => '💡',
+            'category' => 'Laser Treatments',
+            'excerpt'  => 'A range of advanced laser therapies for hair removal, skin tightening, pigmentation correction, and more.',
+        ],
+
+        // Body Contouring
+        [
+            'title'    => 'Butt Lift',
+            'icon'     => '🍑',
+            'category' => 'Body Contouring',
+            'excerpt'  => 'Non-surgical butt enhancement to lift, firm, and sculpt for a naturally contoured silhouette.',
+        ],
+        [
+            'title'    => 'Sclerotherapy',
+            'icon'     => '🩺',
+            'category' => 'Body Contouring',
+            'excerpt'  => 'Eliminate spider veins and varicose veins with this safe, proven injection-based treatment.',
+        ],
+        [
+            'title'    => 'Weight Loss',
+            'icon'     => '⚖️',
+            'category' => 'Body Contouring',
+            'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
+        ],
+
+        // Hair Restoration
+        [
+            'title'    => 'Hair Restoration',
+            'icon'     => '💆',
+            'category' => 'Hair Restoration',
+            'excerpt'  => 'Advanced hair restoration treatments to combat thinning and stimulate natural hair growth for fuller, healthier hair.',
+        ],
+
+        // Wellness
+        [
+            'title'    => 'IV Therapy',
+            'icon'     => '💧',
+            'category' => 'Wellness',
+            'excerpt'  => 'Boost hydration, energy, and immunity with custom IV vitamin infusions delivered directly to your bloodstream.',
+        ],
+
+        // Sexual Wellness
+        [
+            'title'    => 'Vaginal PRP',
+            'icon'     => '🌸',
+            'category' => 'Sexual Wellness',
+            'excerpt'  => 'A confidential, non-surgical treatment using platelet-rich plasma to enhance intimate wellness and rejuvenation.',
+        ],
+        [
+            'title'    => 'Penile PRP',
+            'icon'     => '🔬',
+            'category' => 'Sexual Wellness',
+            'excerpt'  => 'A discreet, non-surgical PRP treatment designed to improve intimate health, sensitivity, and confidence.',
+        ],
+    ];
+
+    foreach ($services as $service) {
+        // Check if service already exists
+        $existing = get_page_by_title($service['title'], OBJECT, 'service');
+        if ($existing) continue;
+
+        $post_id = wp_insert_post([
+            'post_title'   => $service['title'],
+            'post_excerpt' => $service['excerpt'],
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'service',
+        ]);
+
+        if ($post_id && !is_wp_error($post_id)) {
+            // Set icon
+            update_post_meta($post_id, '_service_icon', $service['icon']);
+
+            // Assign category
+            if (isset($cat_ids[$service['category']])) {
+                wp_set_object_terms($post_id, (int) $cat_ids[$service['category']], 'service_category');
+            }
+        }
+    }
+
+    update_option('livia_services_created_v1', true);
+}
+add_action('after_switch_theme', 'livia_create_services');
+
 // ── Services Custom Post Type ──────────────────────────────────────
 function livia_register_services() {
     register_post_type('service', [
