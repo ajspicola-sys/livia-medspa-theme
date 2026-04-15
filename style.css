@@ -1675,6 +1675,109 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   CLIENT PORTAL
+   ========================================================================== */
+.client-portal {
+  position: relative;
+  background: linear-gradient(160deg, #111125 0%, #1a1a2e 50%, #14142a 100%);
+  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  overflow: hidden;
+}
+
+.client-portal__bg-glow {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.client-portal__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+
+/* Phone Visual */
+.client-portal__phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-portal__phone-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-portal__phone-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(201,169,110,0.12) 0%, transparent 65%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.client-portal__phone-img {
+  width: 300px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+  animation: phoneFloat 5s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(0.5deg); }
+  75% { transform: translateY(6px) rotate(-0.5deg); }
+}
+
+/* Content */
+.client-portal__text {
+  font-size: 0.95rem;
+  color: rgba(250,248,245,0.55);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.client-portal__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.client-portal__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(250,248,245,0.75);
+}
+
+.client-portal__feature-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9a96e, #b8944f);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
    WHY US
    ========================================================================== */
 .why-us {
@@ -3187,6 +3290,8 @@ a.contact-card__text:hover { color: #c9a96e; }
   .product-showcase__ring { width: 300px; height: 300px; }
   .product-showcase__image { width: 220px; }
   .supplements__layout { grid-template-columns: 1fr; }
+  .client-portal__layout { grid-template-columns: 1fr; }
+  .client-portal__phone-img { width: 240px; }
   .about-story__grid { grid-template-columns: 1fr; }
   .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid { grid-template-columns: repeat(2, 1fr); }

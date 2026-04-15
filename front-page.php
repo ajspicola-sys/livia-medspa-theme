@@ -235,6 +235,49 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         CLIENT PORTAL
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="client-portal">
+        <div class="client-portal__bg-glow"></div>
+        <div class="section__inner">
+            <div class="client-portal__layout">
+                <!-- Phone mockup -->
+                <div class="client-portal__phone reveal">
+                    <div class="client-portal__phone-wrapper">
+                        <div class="client-portal__phone-glow"></div>
+                        <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png" alt="Livia Med Spa Client Portal on Phone" class="client-portal__phone-img">
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="client-portal__content reveal">
+                    <span class="section__label" style="color: rgba(201,169,110,0.8);">Client Portal</span>
+                    <h2 class="section__title" style="color: #faf8f5;">Click. Book. <em>Glow.</em></h2>
+                    <p class="client-portal__text">Access the Livia Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
+                    <div class="client-portal__features">
+                        <div class="client-portal__feature">
+                            <span class="client-portal__feature-check">✓</span>
+                            <span>Book & manage appointments 24/7</span>
+                        </div>
+                        <div class="client-portal__feature">
+                            <span class="client-portal__feature-check">✓</span>
+                            <span>View vouchers & memberships</span>
+                        </div>
+                        <div class="client-portal__feature">
+                            <span class="client-portal__feature-check">✓</span>
+                            <span>Share referral links & earn rewards</span>
+                        </div>
+                        <div class="client-portal__feature">
+                            <span class="client-portal__feature-check">✓</span>
+                            <span>Secure, HIPAA-compliant access</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn--primary btn--lg">Client Portal →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          WHY LIVIA SECTION
          ═══════════════════════════════════════════════════════════════ -->
     <section class="why-us">
