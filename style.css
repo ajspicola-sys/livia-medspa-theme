@@ -1403,6 +1403,10 @@ html {
   transform: scale(1.02);
 }
 
+.carousel-card:hover .carousel-card__image img {
+  transform: scale(1.08);
+}
+
 .carousel-card__placeholder {
   width: 100%;
   height: 100%;
@@ -2125,6 +2129,7 @@ html {
 .testimonial-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  border-color: rgba(201, 169, 110, 0.25);
 }
 
 .testimonial-card--featured {
@@ -2598,6 +2603,7 @@ html {
   border-color: #c9a96e;
   color: #c9a96e;
   background: rgba(201, 169, 110, 0.08);
+  transform: translateY(-2px);
 }
 
 .footer__heading {
@@ -3639,6 +3645,12 @@ a.contact-card__text:hover {
   height: 300px;
   max-height: 300px;
   overflow: hidden;
+}
+
+/* Shimmer loading effect for product images */
+@keyframes shimmer-load {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
 }
 
 .product-card__image::before {
