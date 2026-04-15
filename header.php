@@ -189,19 +189,11 @@
                             <div class="mega-menu__column">
                                 <span class="mega-menu__heading">About Livia</span>
                                 <div class="mega-menu__items">
-                                    <a href="<?php echo esc_url(home_url('/about/')); ?>" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(201,169,110,0.12);color:#c9a96e;">🏛️</span>
+                                    <a href="<?php echo esc_url(home_url('/team/')); ?>" class="mega-menu__item">
+                                        <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">👩‍⚕️</span>
                                         <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Our Story</span>
-                                            <span class="mega-menu__item-desc">How Livia Med Spa began</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="<?php echo esc_url(home_url('/mission/')); ?>" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(143,170,143,0.12);color:#8faa8f;">🎯</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Our Mission</span>
-                                            <span class="mega-menu__item-desc">What drives everything we do</span>
+                                            <span class="mega-menu__item-title">Meet the Team</span>
+                                            <span class="mega-menu__item-desc">Board-certified providers</span>
                                         </span>
                                         <span class="mega-menu__item-arrow">→</span>
                                     </a>
@@ -215,34 +207,13 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="mega-menu__column">
-                                <span class="mega-menu__heading">Our People</span>
-                                <div class="mega-menu__items">
-                                    <a href="<?php echo esc_url(home_url('/team/')); ?>" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(196,122,122,0.12);color:#c47a7a;">👩‍⚕️</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Meet the Team</span>
-                                            <span class="mega-menu__item-desc">Board-certified providers</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                    <a href="<?php echo esc_url(home_url('/careers/')); ?>" class="mega-menu__item">
-                                        <span class="mega-menu__item-icon" style="background:rgba(111,163,214,0.12);color:#6fa3d6;">💼</span>
-                                        <span class="mega-menu__item-content">
-                                            <span class="mega-menu__item-title">Careers</span>
-                                            <span class="mega-menu__item-desc">Join the Livia family</span>
-                                        </span>
-                                        <span class="mega-menu__item-arrow">→</span>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="mega-menu__promo" style="min-height:220px;">
                                 <div>
-                                    <span class="mega-menu__promo-label">✦ Join Our Team</span>
-                                    <h3 class="mega-menu__promo-title">We're Hiring</h3>
-                                    <p class="mega-menu__promo-text">Passionate about aesthetics? We're looking for talented providers to join our growing practice.</p>
+                                    <span class="mega-menu__promo-label">✦ Meet Our Experts</span>
+                                    <h3 class="mega-menu__promo-title">World-Class Care</h3>
+                                    <p class="mega-menu__promo-text">Our board-certified team combines artistry with science to deliver natural, stunning results every time.</p>
                                 </div>
-                                <a href="<?php echo esc_url(home_url('/careers/')); ?>" class="mega-menu__promo-cta">View Openings →</a>
+                                <a href="<?php echo esc_url(home_url('/team/')); ?>" class="mega-menu__promo-cta">Meet the Team →</a>
                             </div>
                         </div>
                     </div>

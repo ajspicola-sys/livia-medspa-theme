@@ -211,13 +211,12 @@ add_action('wp_head', 'livia_schema_markup', 99);
 
 // ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
-    if (get_option('livia_pages_created_v4')) return;
+    if (get_option('livia_pages_created_v5')) return;
 
     $pages = [
         'Home'           => '',
         'About'          => '',
         'Team'           => '',
-        'Mission'        => '',
         'Values'         => '',
         'Contact'        => '',
         'Before After'   => '',
@@ -251,7 +250,7 @@ function livia_create_pages() {
         }
     }
 
-    update_option('livia_pages_created_v4', true);
+    update_option('livia_pages_created_v5', true);
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
