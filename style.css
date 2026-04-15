@@ -3119,6 +3119,49 @@ html {
   box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
 }
 
+/* Inline validation */
+.form-input:not(:placeholder-shown):valid {
+  border-color: rgba(45, 106, 79, 0.4);
+}
+
+.form-input:not(:placeholder-shown):invalid:not(:focus) {
+  border-color: rgba(196, 78, 78, 0.4);
+}
+
+/* Form submission success */
+.contact-form__success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.contact-form__success.is-visible {
+  display: block;
+  animation: fade-in 0.5s ease;
+}
+
+.contact-form__success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form__success-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form__success-text {
+  font-size: 0.85rem;
+  color: #7a7a90;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .form-select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%237a7a90' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");

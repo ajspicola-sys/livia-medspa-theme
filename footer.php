@@ -639,6 +639,35 @@
         });
     }
 
+    // ── Contact Form Handler ────────────────────────────────────
+    var contactForm = document.getElementById('contact-form');
+    var formSuccess = document.getElementById('form-success');
+    if (contactForm && formSuccess) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Show success state
+            contactForm.style.display = 'none';
+            formSuccess.classList.add('is-visible');
+            // Scroll to success message
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
+
+    // ── Phone number auto-format ────────────────────────────────
+    var phoneInput = document.getElementById('cf-phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function() {
+            var digits = this.value.replace(/\D/g, '');
+            if (digits.length <= 3) {
+                this.value = digits.length ? '(' + digits : '';
+            } else if (digits.length <= 6) {
+                this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+            } else {
+                this.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6,10);
+            }
+        });
+    }
+
 })();
 </script>
 

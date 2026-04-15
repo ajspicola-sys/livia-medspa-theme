@@ -76,6 +76,13 @@ get_header(); ?>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </button>
                     </form>
+
+                    <!-- Form success state -->
+                    <div class="contact-form__success" id="form-success">
+                        <div class="contact-form__success-icon">✨</div>
+                        <h3 class="contact-form__success-title">Message Sent!</h3>
+                        <p class="contact-form__success-text">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+                    </div>
                 </div>
 
                 <!-- Contact Info Sidebar -->
