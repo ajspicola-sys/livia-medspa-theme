@@ -892,7 +892,7 @@ h6 {
    CONTENT AREA
    ========================================================================== */
 .site-main {
-  padding-top: 80px;
+  padding-top: 0;
 }
 
 .test-section {
@@ -2581,7 +2581,7 @@ h6 {
    ========================================================================== */
 .page-hero {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
-  padding: clamp(6rem, 5rem + 4vw, 8rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
+  padding: clamp(7rem, 6rem + 3vw, 9rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
   text-align: center;
   position: relative;
   overflow: hidden;
