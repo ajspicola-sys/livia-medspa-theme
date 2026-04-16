@@ -183,99 +183,6 @@ h6 {
    ANNOUNCEMENT BAR
    ========================================================================== */
 .announcement-bar {
-  background: linear-gradient(135deg, #1a1a2e 0%, #252540 100%);
-  padding: 0.5rem 0;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 201;
-  overflow: hidden;
-}
-
-.announcement-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 300%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.05), transparent);
-  animation: announcementShimmer 8s linear infinite;
-}
-
-@keyframes announcementShimmer {
-  0% {
-    transform: translateX(-33%);
-  }
-
-  100% {
-    transform: translateX(33%);
-  }
-}
-
-.announcement-bar__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.announcement-bar__text {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: rgba(250, 248, 245, 0.85);
-}
-
-.announcement-bar__text strong {
-  color: #c9a96e;
-  font-weight: 600;
-}
-
-.announcement-bar__cta {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #c9a96e;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(201, 169, 110, 0.4);
-  padding-bottom: 1px;
-  transition: all 0.2s ease;
-}
-
-.announcement-bar__cta:hover {
-  color: #e0c48a;
-  border-color: #e0c48a;
-}
-
-.announcement-bar__close {
-  position: absolute;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(250, 248, 245, 0.4);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  background: none;
-  border: none;
-  padding: 4px;
-}
-
-.announcement-bar__close:hover {
-  color: rgba(250, 248, 245, 0.8);
-}
-
-/* ==========================================================================
-   ANNOUNCEMENT BAR
-   ========================================================================== */
-.announcement-bar {
   background: linear-gradient(135deg, #1a1a2e, #16213e);
   border-bottom: 1px solid rgba(201, 169, 110, 0.15);
   text-align: center;
@@ -298,6 +205,7 @@ h6 {
   padding: 0.5rem 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
 }
 
 .announcement-bar__text {
@@ -2541,6 +2449,215 @@ html {
   font-size: 0.72rem;
   color: #9e9eb0;
   margin-top: 2px;
+}
+
+/* ==========================================================================
+   LATEST BLOG POSTS (Homepage)
+   ========================================================================== */
+.latest-posts {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #faf8f5;
+}
+
+.latest-posts__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.latest-post-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #f0f0f4;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.latest-post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.latest-post-card__img {
+  height: 180px;
+  overflow: hidden;
+}
+
+.latest-post-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.latest-post-card:hover .latest-post-card__img img {
+  transform: scale(1.05);
+}
+
+.latest-post-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.latest-post-card__date {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 0.5rem;
+}
+
+.latest-post-card__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.latest-post-card__excerpt {
+  font-size: 0.82rem;
+  color: #7a7a90;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.latest-post-card__link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c9a96e;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .latest-posts__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   REFER A FRIEND
+   ========================================================================== */
+.refer-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #f5f0ea;
+}
+
+.refer-card {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background: #fff;
+  border-radius: 20px;
+  padding: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.refer-card__content {
+  flex: 1;
+}
+
+.refer-card__badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  background: rgba(201, 169, 110, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.refer-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+  font-weight: 400;
+  color: #1a1a2e;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.refer-card__text {
+  font-size: 0.9rem;
+  color: #7a7a90;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.refer-card__text strong {
+  color: #c9a96e;
+  font-weight: 700;
+}
+
+.refer-card__visual {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.refer-card__circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.refer-card__circle--1 {
+  background: linear-gradient(135deg, #c9a96e, #b8944f);
+  color: #fff;
+}
+
+.refer-card__circle--2 {
+  background: rgba(201, 169, 110, 0.1);
+  color: #c9a96e;
+  border: 2px dashed rgba(201, 169, 110, 0.4);
+}
+
+.refer-card__plus {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #c9a96e;
+}
+
+@media (max-width: 768px) {
+  .refer-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .refer-card__visual {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   FAQ SECTION (Wrapper)
+   ========================================================================== */
+.faq-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #faf8f5;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 /* ==========================================================================
