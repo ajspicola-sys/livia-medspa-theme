@@ -324,28 +324,40 @@ function livia_fix_reading_settings() {
 }
 add_action('init', 'livia_fix_reading_settings');
 
-// ── Auto-create Privacy Policy page (if not yet created) ────────────
+// ── Shared helper: check if a page with a given slug exists (any status) ──
+function livia_page_slug_exists( $slug ) {
+    $q = new WP_Query([
+        'post_type'              => 'page',
+        'name'                   => $slug,
+        'post_status'            => 'any',
+        'posts_per_page'         => 1,
+        'no_found_rows'          => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ]);
+    return $q->have_posts();
+}
+
+// ── Auto-create Privacy Policy page ───────────────────────────────────
 function livia_create_privacy_page() {
-    if (get_option('livia_privacy_page_created_v1')) return;
-    $existing = get_page_by_path('privacy-policy', OBJECT, 'page');
-    if (!$existing) {
+    if ( get_option('livia_privacy_page_created_v1') ) return;
+    if ( ! livia_page_slug_exists('privacy-policy') ) {
         wp_insert_post([
-            'post_title'  => 'Privacy Policy',
-            'post_name'   => 'privacy-policy',
+            'post_title'   => 'Privacy Policy',
+            'post_name'    => 'privacy-policy',
             'post_content' => '',
-            'post_status' => 'publish',
-            'post_type'   => 'page',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
         ]);
     }
     update_option('livia_privacy_page_created_v1', true);
 }
 add_action('init', 'livia_create_privacy_page');
 
-// ── Auto-create Cancellation Policy page ───────────────────────
+// ── Auto-create Cancellation Policy page ──────────────────────────────
 function livia_create_cancellation_page() {
-    if (get_option('livia_cancellation_page_created_v1')) return;
-    $existing = get_page_by_path('cancellation-policy', OBJECT, 'page');
-    if (!$existing) {
+    if ( get_option('livia_cancellation_page_created_v1') ) return;
+    if ( ! livia_page_slug_exists('cancellation-policy') ) {
         wp_insert_post([
             'post_title'   => 'Cancellation Policy',
             'post_name'    => 'cancellation-policy',
@@ -358,11 +370,10 @@ function livia_create_cancellation_page() {
 }
 add_action('init', 'livia_create_cancellation_page');
 
-// ── Auto-create Refund Policy page ──────────────────────────────
+// ── Auto-create Refund Policy page ────────────────────────────────────
 function livia_create_refund_page() {
-    if (get_option('livia_refund_page_created_v1')) return;
-    $existing = get_page_by_path('refund-policy', OBJECT, 'page');
-    if (!$existing) {
+    if ( get_option('livia_refund_page_created_v1') ) return;
+    if ( ! livia_page_slug_exists('refund-policy') ) {
         wp_insert_post([
             'post_title'   => 'Refund Policy',
             'post_name'    => 'refund-policy',
@@ -375,11 +386,10 @@ function livia_create_refund_page() {
 }
 add_action('init', 'livia_create_refund_page');
 
-// ── Auto-create Beauty Bank page ──────────────────────────────
+// ── Auto-create Beauty Bank page ──────────────────────────────────────
 function livia_create_beauty_bank_page() {
-    if (get_option('livia_beauty_bank_page_created_v1')) return;
-    $existing = get_page_by_path('beauty-bank', OBJECT, 'page');
-    if (!$existing) {
+    if ( get_option('livia_beauty_bank_page_created_v1') ) return;
+    if ( ! livia_page_slug_exists('beauty-bank') ) {
         wp_insert_post([
             'post_title'   => 'Beauty Bank Membership',
             'post_name'    => 'beauty-bank',
