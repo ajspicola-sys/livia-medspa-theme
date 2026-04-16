@@ -638,7 +638,7 @@ html {
 }
 
 .mega-menu__item:hover {
-  background: #F0EBE3;
+  background: #F5EFE8;
   transform: translateX(4px);
 }
 
@@ -646,6 +646,7 @@ html {
   width: 38px;
   height: 38px;
   border-radius: 10px;
+  background: #F5EFE8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1993,10 +1994,10 @@ html {
   text-align: center;
   padding: 2.25rem 1.5rem;
   position: relative;
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
@@ -2385,9 +2386,9 @@ html {
   align-items: flex-start;
   gap: 1.25rem;
   padding: 1.5rem;
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 16px;
-  border: 1px solid #f0f0f4;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   border-left: 3px solid #AC13F9;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -2617,10 +2618,10 @@ html {
 
 .why-us__stat-card {
   position: absolute;
-  background: #fff;
+  background: #F5EFE8;
   border-radius: 14px;
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
   z-index: 2;
   text-align: center;
   min-width: 140px;
@@ -2743,11 +2744,11 @@ html {
 }
 
 .testimonial-card-v2 {
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 1rem;
   padding: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   position: relative;
 }
@@ -6810,9 +6811,9 @@ a.contact-card__text:hover {
 
 .party-feature-card {
   padding: 1.25rem 1.5rem;
-  background: #F0EBE3;
+  background: #FFFFFF;
   border-radius: 14px;
-  border: 1px solid #f0f0f4;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   border-left: 3px solid #AC13F9;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -6974,8 +6975,8 @@ a.contact-card__text:hover {
 }
 
 .faq-item {
-  background: #F0EBE3;
-  border: 1px solid #f0f0f4;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 14px;
   overflow: hidden;
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
