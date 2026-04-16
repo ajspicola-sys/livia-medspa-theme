@@ -106,8 +106,8 @@ _hw(
             name: "Livia Med Spa",
         },
         styles: {
-            primaryColor: "#c9a96e",
-            secondaryColor: "#faf8f5",
+            primaryColor: "#AC13F9",
+            secondaryColor: "#EAE4DA",
             fontFamily: "DM Sans",
         },
     },

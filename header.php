@@ -10,8 +10,8 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#2D1B3D" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#EAE4DA" media="(prefers-color-scheme: light)">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -56,7 +56,7 @@
         body {
             margin: 0;
             font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-            background: #faf8f5;
+            background: #EAE4DA;
             overflow-x: hidden;
         }
 
@@ -107,7 +107,7 @@
             font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem);
             font-weight: 300;
             letter-spacing: .06em;
-            background: linear-gradient(135deg, #c9a96e 0%, #dbb978 40%, #a88b4a 100%);
+            background: linear-gradient(135deg, #AC13F9 0%, #F471D1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -119,7 +119,7 @@
             font-weight: 600;
             letter-spacing: .3em;
             text-transform: uppercase;
-            color: #b89960;
+            color: #B93DE8;
             margin-top: -3px;
         }
 
@@ -130,7 +130,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
+            background: linear-gradient(135deg, #2D1B3D 0%, #251335 40%, #3A2248 100%);
             padding: clamp(2rem, 1.5rem + 3vw, 4rem);
             overflow: hidden;
         }
@@ -183,7 +183,7 @@
                                 // Icon color palette — rotates per service
                                 $icon_colors = [
                                     ['bg' => 'rgba(196,122,122,0.12)', 'fg' => '#c47a7a'],
-                                    ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#c9a96e'],
+                                    ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#AC13F9'],
                                     ['bg' => 'rgba(143,170,143,0.12)', 'fg' => '#8faa8f'],
                                     ['bg' => 'rgba(160,142,196,0.12)', 'fg' => '#a08ec4'],
                                     ['bg' => 'rgba(111,163,214,0.12)', 'fg' => '#6fa3d6'],
@@ -326,7 +326,7 @@
                                         ]);
                                         if ($nav_products->have_posts()):
                                             $p_colors = [
-                                                ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#c9a96e'],
+                                                ['bg' => 'rgba(201,169,110,0.12)', 'fg' => '#AC13F9'],
                                                 ['bg' => 'rgba(196,122,122,0.12)', 'fg' => '#c47a7a'],
                                                 ['bg' => 'rgba(143,170,143,0.12)', 'fg' => '#8faa8f'],
                                                 ['bg' => 'rgba(160,142,196,0.12)', 'fg' => '#a08ec4'],

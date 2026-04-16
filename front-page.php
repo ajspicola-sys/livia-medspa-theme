@@ -405,7 +405,7 @@ get_header(); ?>
             <div class="product-showcase__layout">
                 <div class="product-showcase__content reveal">
                     <span class="section__label" style="color: rgba(201,169,110,0.8);">Medical-Grade Skincare</span>
-                    <h2 class="section__title" style="color: #faf8f5;">Professional Products,<br>Exceptional Results</h2>
+                    <h2 class="section__title" style="color: #EAE4DA;">Professional Products,<br>Exceptional Results</h2>
                     <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
                     <div class="product-showcase__features">
                         <div class="product-showcase__feature">

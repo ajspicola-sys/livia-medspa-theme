@@ -1018,7 +1018,7 @@ function livia_seo_meta_html($post) {
         }
         .livia-seo-field input:focus,
         .livia-seo-field textarea:focus {
-            border-color: #c9a96e;
+            border-color: #AC13F9;
             outline: none;
             box-shadow: 0 0 0 2px rgba(201,169,110,0.15);
         }
@@ -1048,7 +1048,7 @@ function livia_seo_meta_html($post) {
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #c9a96e;
+            color: #AC13F9;
             margin-bottom: 8px;
         }
         .livia-seo-preview__title {
