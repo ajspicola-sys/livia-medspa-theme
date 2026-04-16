@@ -873,5 +873,46 @@
 </script>
 
 <?php wp_footer(); ?>
+
+<!-- Boulevard Self-Booking Overlay -->
+<script>
+(function (a) {
+    var b = {
+        businessId: '9563faa5-e2e5-4a6a-b5f5-0636ea78b80e',
+    };
+    var c = a.createElement('script');
+    var d = a.querySelector('script');
+    c.src = 'https://static.joinboulevard.com/injector.min.js';
+    c.async = true;
+    c.onload = function () {
+        blvd.init(b);
+    };
+    d.parentNode.insertBefore(c, d);
+})(document);
+
+// Intercept all booking links and open Boulevard overlay instead
+document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+
+    var href = link.getAttribute('href') || '';
+    var text = (link.textContent || '').trim().toLowerCase();
+
+    // Match booking-related links
+    var isBookingLink = (
+        href.indexOf('/contact/') !== -1 &&
+        (text.indexOf('book') !== -1 || text.indexOf('consultation') !== -1 || text.indexOf('schedule') !== -1)
+    );
+
+    // Also catch links with #book hash
+    if (href.indexOf('#book') !== -1) isBookingLink = true;
+
+    if (isBookingLink && typeof blvd !== 'undefined' && blvd.openBookingWidget) {
+        e.preventDefault();
+        blvd.openBookingWidget();
+    }
+});
+</script>
+
 </body>
 </html>
