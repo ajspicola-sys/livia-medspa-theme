@@ -224,6 +224,7 @@ get_header(); ?>
          ═══════════════════════════════════════════════════════════════ -->
     <style>
     .journey-section{padding:clamp(4rem,3rem+4vw,7rem) 0;background:linear-gradient(180deg,#f5f0ea 0%,#faf8f5 100%)}
+    .journey-section .section__inner{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem)}
     .journey-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
     .journey-step{text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;transition:transform .3s ease,box-shadow .3s ease}
     .journey-step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.06);border-color:rgba(201,169,110,.2)}
