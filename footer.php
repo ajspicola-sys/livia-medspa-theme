@@ -27,7 +27,7 @@
             <!-- Content -->
             <div class="client-portal__content reveal">
                 <span class="section__label" style="color: rgba(201,169,110,0.8);">Client Portal</span>
-                <h2 class="section__title" style="color: #EAE4DA;">Click. Book. <em>Glow.</em></h2>
+                <h2 class="section__title" style="color: #F0EBE3;">Click. Book. <em>Glow.</em></h2>
                 <p class="client-portal__text">Access the Livia Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
                 <div class="client-portal__features">
                     <div class="client-portal__feature">

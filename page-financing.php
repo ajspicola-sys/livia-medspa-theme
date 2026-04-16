@@ -107,7 +107,7 @@ _hw(
         },
         styles: {
             primaryColor: "#AC13F9",
-            secondaryColor: "#EAE4DA",
+            secondaryColor: "#F0EBE3",
             fontFamily: "DM Sans",
         },
     },

@@ -10,8 +10,8 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#2D1B3D" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#EAE4DA" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1A0E2E" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F0EBE3" media="(prefers-color-scheme: light)">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -56,7 +56,7 @@
         body {
             margin: 0;
             font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-            background: #EAE4DA;
+            background: #F0EBE3;
             overflow-x: hidden;
         }
 
@@ -119,7 +119,7 @@
             font-weight: 600;
             letter-spacing: .3em;
             text-transform: uppercase;
-            color: #B93DE8;
+            color: #C955F0;
             margin-top: -3px;
         }
 
@@ -130,7 +130,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #2D1B3D 0%, #251335 40%, #3A2248 100%);
+            background: linear-gradient(135deg, #1A0E2E 0%, #150A24 40%, #261640 100%);
             padding: clamp(2rem, 1.5rem + 3vw, 4rem);
             overflow: hidden;
         }
