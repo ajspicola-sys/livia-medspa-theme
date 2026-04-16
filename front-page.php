@@ -160,10 +160,6 @@ get_header(); ?>
             <!-- RIGHT: Model image -->
             <div class="hero__visual" aria-hidden="true">
 
-                <!-- Lighting glows behind the model -->
-                <div class="hero__model-glow hero__model-glow--purple"></div>
-                <div class="hero__model-glow hero__model-glow--gold"></div>
-
                 <!-- Cutout model image with bottom fade -->
                 <div class="hero__model">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero.png"
