@@ -144,7 +144,8 @@ function livia_async_styles($html, $handle) {
     $async_handles = ['livia-google-fonts', 'livia-style'];
     if (in_array($handle, $async_handles) && !is_admin()) {
         // media="print" prevents render-blocking, onload swaps to "all"
-        // noscript fallback ensures CSS loads without JS
+        // We also set css-loaded on body to reveal it (anti-FOUC)
+        $reveal_js = "this.media='all';document.body.style.opacity='1';";
         $html = str_replace(
             "media='all'",
             "media='print' onload=\"this.media='all'\"",
@@ -156,9 +157,17 @@ function livia_async_styles($html, $handle) {
             'media="print" onload="this.media=\'all\'"',
             $html
         );
+        // For the main stylesheet only, also reveal the body on load
+        if ($handle === 'livia-style') {
+            $html = str_replace(
+                "onload=\"this.media='all'\"",
+                "onload=\"this.media='all';document.body.style.opacity='1';\"",
+                $html
+            );
+        }
         // Add noscript fallback
         $noscript = '<noscript>' . str_replace(
-            ["media='print'", 'media="print"', " onload=\"this.media='all'\"", " onload=\"this.media='all'\""],
+            ["media='print'", 'media="print"', " onload=\"this.media='all'\"", " onload=\"this.media='all';document.body.style.opacity='1';\""],
             ["media='all'", 'media="all"', '', ''],
             $html
         ) . '</noscript>';
@@ -167,6 +176,14 @@ function livia_async_styles($html, $handle) {
     return $html;
 }
 add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
+
+// ── Anti-FOUC hard fallback (in case onload doesn't fire) ──────────
+function livia_anti_fouc_fallback() {
+    if (!is_admin()) {
+        echo "<script>setTimeout(function(){document.body.style.opacity='1';},500);</script>\n";
+    }
+}
+add_action('wp_footer', 'livia_anti_fouc_fallback', 1);
 
 // ── Performance: Preload critical fonts only (preconnects live in header.php) ──
 function livia_resource_hints() {

@@ -56,6 +56,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- Anti-FOUC: hide body until stylesheet loads -->
+    <style>body{opacity:0;transition:opacity 0.15s ease}</style>
+
     <?php wp_head(); ?>
 
     <!-- Critical CSS: inlined to prevent render-blocking for above-the-fold content -->
