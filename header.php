@@ -181,7 +181,7 @@
     <header class="site-header" id="site-header" role="banner">
         <div class="site-header__inner">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa — Home">
-                <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="160" height="auto">
+                <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="160" height="40" loading="eager" decoding="async">
             </a>
 
             <nav class="site-header__nav" aria-label="Main navigation">

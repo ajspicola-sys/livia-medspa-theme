@@ -163,12 +163,16 @@ get_header(); ?>
                 <!-- Cutout model image with bottom fade -->
                 <div class="hero__model">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero.png"
+                         srcset="https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero-300x466.png 300w,
+                                 https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero-600x932.png 600w,
+                                 https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero.png 800w"
+                         sizes="(max-width: 767px) 90vw, 600px"
                          alt="Livia Med Spa aesthetic treatment model"
                          class="hero__model-img"
                          fetchpriority="high"
                          decoding="async"
                          width="600"
-                         height="750">
+                         height="932">
                 </div>
 
                 <!-- Floating treatment badges -->
@@ -343,11 +347,13 @@ get_header(); ?>
                                     <div class="ai-preview__card">
                                         <div class="ai-preview__slider" data-ai-slider>
                                             <img class="ai-preview__img ai-preview__img--before"
-                                                src="https://www.ageless.ai/_next/static/media/phil-before.0fh3d~ztkb16..jpg"
-                                                alt="Phil — before treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/phil-before.0fh3d~ztkb16..jpg' ) ); ?>"
+                                                alt="Phil — before treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <img class="ai-preview__img ai-preview__img--after"
-                                                src="https://www.ageless.ai/_next/static/media/phil-after.0hhz6q..2jt~p.jpg"
-                                                alt="Phil — AI preview after treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/phil-after.0hhz6q..2jt~p.jpg' ) ); ?>"
+                                                alt="Phil — AI preview after treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <span class="ai-preview__label ai-preview__label--before">Before</span>
                                             <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
                                             <div class="ai-preview__divider"></div>
@@ -369,11 +375,13 @@ get_header(); ?>
                                     <div class="ai-preview__card">
                                         <div class="ai-preview__slider" data-ai-slider>
                                             <img class="ai-preview__img ai-preview__img--before"
-                                                src="https://www.ageless.ai/_next/static/media/courtney-before.0zffl2pbfkg_4.png"
-                                                alt="Courtney — before treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/courtney-before.0zffl2pbfkg_4.png' ) ); ?>"
+                                                alt="Courtney — before treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <img class="ai-preview__img ai-preview__img--after"
-                                                src="https://www.ageless.ai/_next/static/media/courtney-after.0ef7079sn6uaf.png"
-                                                alt="Courtney — AI preview after treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/courtney-after.0ef7079sn6uaf.png' ) ); ?>"
+                                                alt="Courtney — AI preview after treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <span class="ai-preview__label ai-preview__label--before">Before</span>
                                             <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
                                             <div class="ai-preview__divider"></div>
@@ -395,11 +403,13 @@ get_header(); ?>
                                     <div class="ai-preview__card">
                                         <div class="ai-preview__slider" data-ai-slider>
                                             <img class="ai-preview__img ai-preview__img--before"
-                                                src="https://www.ageless.ai/_next/static/media/eric-before.10zwxajum~4my.png"
-                                                alt="Eric — before treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/eric-before.10zwxajum~4my.png' ) ); ?>"
+                                                alt="Eric — before treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <img class="ai-preview__img ai-preview__img--after"
-                                                src="https://www.ageless.ai/_next/static/media/erica-after.03p5i6nizrcdp.png"
-                                                alt="Eric — AI preview after treatment" loading="lazy" decoding="async">
+                                                src="<?php echo esc_url( livia_cached_image_url( 'https://www.ageless.ai/_next/static/media/erica-after.03p5i6nizrcdp.png' ) ); ?>"
+                                                alt="Eric — AI preview after treatment" loading="lazy" decoding="async"
+                                                width="800" height="1067">
                                             <span class="ai-preview__label ai-preview__label--before">Before</span>
                                             <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
                                             <div class="ai-preview__divider"></div>

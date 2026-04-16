@@ -196,6 +196,80 @@ function livia_resource_hints() {
 }
 add_action('wp_head', 'livia_resource_hints', 1);
 
+// ── Performance: External image proxy & WebP cache ─────────────────
+// Fetches third-party images (e.g. Ageless AI before/after), resizes to
+// max 800px wide, converts to WebP, and caches in wp-uploads.
+// Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
+function livia_cached_image_url( $src_url, $max_w = 800 ) {
+    $upload   = wp_upload_dir();
+    $cache_dir = $upload['basedir'] . '/livia-img-cache';
+    $cache_url = $upload['baseurl'] . '/livia-img-cache';
+    $filename  = md5( $src_url ) . '.webp';
+    $file_path = $cache_dir . '/' . $filename;
+    $file_url  = $cache_url . '/' . $filename;
+
+    // Serve from cache if already downloaded
+    if ( file_exists( $file_path ) ) {
+        return $file_url;
+    }
+
+    // Create cache directory if needed
+    if ( ! file_exists( $cache_dir ) ) {
+        wp_mkdir_p( $cache_dir );
+        // Prevent direct browsing
+        file_put_contents( $cache_dir . '/.htaccess', "Options -Indexes\n" );
+    }
+
+    // Fetch the remote image
+    $response = wp_remote_get( $src_url, [
+        'timeout'   => 30,
+        'sslverify' => false,
+        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; LiviaMedSpa/1.0)' ],
+    ] );
+
+    if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+        return $src_url; // Fallback to original
+    }
+
+    $body = wp_remote_retrieve_body( $response );
+    if ( empty( $body ) ) {
+        return $src_url;
+    }
+
+    // Decode image with GD
+    $img = @imagecreatefromstring( $body );
+    if ( ! $img ) {
+        return $src_url; // GD can't read it, fall back
+    }
+
+    // Resize if wider than $max_w
+    $orig_w = imagesx( $img );
+    $orig_h = imagesy( $img );
+    if ( $orig_w > $max_w ) {
+        $new_h   = (int) round( ( $max_w / $orig_w ) * $orig_h );
+        $resized = imagecreatetruecolor( $max_w, $new_h );
+        // Preserve transparency (PNGs)
+        imagealphablending( $resized, false );
+        imagesavealpha( $resized, true );
+        imagecopyresampled( $resized, $img, 0, 0, 0, 0, $max_w, $new_h, $orig_w, $orig_h );
+        imagedestroy( $img );
+        $img = $resized;
+    }
+
+    // Save as WebP (quality 82 — good balance of size vs. quality)
+    if ( function_exists( 'imagewebp' ) ) {
+        imagewebp( $img, $file_path, 82 );
+    } else {
+        // Fallback: save as JPEG if WebP not available
+        $file_path = str_replace( '.webp', '.jpg', $file_path );
+        $file_url  = str_replace( '.webp', '.jpg', $file_url );
+        imagejpeg( $img, $file_path, 82 );
+    }
+    imagedestroy( $img );
+
+    return file_exists( $file_path ) ? $file_url : $src_url;
+}
+
 // ── Performance: Add async/defer to non-critical scripts ───────────
 function livia_script_loader_tag($tag, $handle) {
     // Defer non-critical scripts
