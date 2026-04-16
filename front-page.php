@@ -235,7 +235,7 @@ get_header(); ?>
             // Pull services from CPT
             $services = new WP_Query([
                 'post_type'      => 'service',
-                'posts_per_page' => 12,
+                'posts_per_page' => -1,
                 'orderby'        => 'menu_order',
                 'order'          => 'ASC',
                 'no_found_rows'  => true, // Performance: skip pagination count
