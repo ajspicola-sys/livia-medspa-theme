@@ -562,10 +562,11 @@
     var cookieAccept = document.getElementById('cookie-accept');
     var cookieDecline = document.getElementById('cookie-decline');
     if (cookieBanner && !localStorage.getItem('livia-cookie-consent')) {
+        // Delay past LCP window (~2.5s) so banner never wins LCP
         setTimeout(function() {
             cookieBanner.style.display = '';
             cookieBanner.classList.add('is-visible');
-        }, 2000);
+        }, 5000);
     }
     if (cookieAccept) {
         cookieAccept.addEventListener('click', function() {

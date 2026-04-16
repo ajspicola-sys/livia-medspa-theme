@@ -14,14 +14,15 @@ Text Domain:      livia-medspa
 
 /* Fonts loaded via wp_enqueue_style in functions.php — no @import needed */
 
-/* Cookie banner: hidden by default via CSS — JS reveals after 2s.
-   Keeping it CSS-hidden ensures it never becomes an LCP candidate. */
+/* Cookie banner: hidden by default via CSS — JS reveals after 5s.
+   contain:strict + content-visibility:hidden excludes it from LCP calculation. */
 .cookie-banner {
   display: none !important;
-  contain: layout style;
+  contain: strict;
 }
 .cookie-banner.is-visible {
   display: flex !important;
+  contain: layout style;
 }
 
 /* ==========================================================================
