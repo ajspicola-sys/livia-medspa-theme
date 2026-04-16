@@ -1548,7 +1548,7 @@ html {
    ========================================================================== */
 .services {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
   content-visibility: auto;
   contain-intrinsic-size: auto 800px;
 }
@@ -1653,11 +1653,11 @@ html {
    TRUST TICKER
    ========================================================================== */
 .trust-ticker {
-  background: #FAFAFA;
+  background: #FBF8FF;
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(172, 19, 249, 0.08);
+  border-bottom: 1px solid rgba(172, 19, 249, 0.08);
 }
 
 /* Subtle gold glow behind ticker */
@@ -1988,7 +1988,8 @@ html {
    ========================================================================== */
 .journey-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .journey-steps {
@@ -2113,6 +2114,7 @@ html {
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .product-showcase__glow {
@@ -2310,10 +2312,11 @@ html {
    ========================================================================== */
 .supplements {
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
   position: relative;
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .supplements__layout {
@@ -2544,9 +2547,10 @@ html {
    ========================================================================== */
 .why-us {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #fff;
+  background: #FFFFFF;
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .why-us__grid {
@@ -2674,8 +2678,9 @@ html {
    ========================================================================== */
 .testimonials-split {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
   overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .testimonials-split__layout {
@@ -5982,6 +5987,7 @@ a.contact-card__text:hover {
 .blog-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #FFFFFF;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .blog-card__link {
@@ -8058,6 +8064,7 @@ a.contact-card__text:hover {
   background: #FFFFFF;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .ai-preview::before,
