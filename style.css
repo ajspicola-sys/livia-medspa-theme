@@ -5339,6 +5339,7 @@ a.contact-card__text:hover {
 /* Blog Archive */
 .blog-archive {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #faf8f5;
 }
 
 .blog-grid {
@@ -5347,7 +5348,26 @@ a.contact-card__text:hover {
   gap: 1.5rem;
 }
 
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Single Post Wrapper */
+.post-content {
+  background: #fff;
+}
+
 .blog-card {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   border-radius: 16px;
   overflow: hidden;
@@ -5359,13 +5379,24 @@ a.contact-card__text:hover {
 .blog-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.blog-card__img {
+  height: 200px;
+  overflow: hidden;
 }
 
 .blog-card__img img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-card__img img {
+  transform: scale(1.05);
 }
 
 .blog-card__img--placeholder {
@@ -5709,54 +5740,6 @@ a.contact-card__text:hover {
 
 .post-meta-line__sep {
   color: rgba(250, 248, 245, 0.2);
-}
-
-.post-content__thumbnail {
-  margin-bottom: 2.5rem;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.post-content__thumbnail img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.post-content__body {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: #3a3a50;
-}
-
-.post-content__body h2,
-.post-content__body h3,
-.post-content__body h4 {
-  font-family: 'Cormorant Garamond', serif;
-  color: #1a1a2e;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.post-content__body p {
-  margin-bottom: 1.25rem;
-}
-
-.post-content__body img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin: 1.5rem 0;
-}
-
-.post-content__body blockquote {
-  border-left: 3px solid #c9a96e;
-  padding: 1rem 1.5rem;
-  background: #faf8f5;
-  border-radius: 0 12px 12px 0;
-  font-style: italic;
-  color: #55556a;
-  margin: 1.5rem 0;
 }
 
 /* Author Bar */
