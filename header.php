@@ -165,8 +165,7 @@
     <header class="site-header" id="site-header" role="banner">
         <div class="site-header__inner">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa — Home">
-                <span class="site-logo__name">Livia</span>
-                <span class="site-logo__tagline">MED SPA</span>
+                <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="160" height="auto">
             </a>
 
             <nav class="site-header__nav" aria-label="Main navigation">
@@ -455,8 +454,7 @@
         <div class="mobile-menu__drawer">
             <div class="mobile-menu__header">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                    <span class="site-logo__name">Livia</span>
-                    <span class="site-logo__tagline">MED SPA</span>
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="140" height="auto">
                 </a>
                 <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation menu">✕</button>
             </div>

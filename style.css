@@ -335,6 +335,19 @@ html {
   filter: drop-shadow(0 0 8px rgba(172, 19, 249, 0.35));
 }
 
+/* Image logo */
+.site-logo__img {
+  height: clamp(38px, 2.5rem + 0.5vw, 50px);
+  width: auto;
+  display: block;
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.site-logo:hover .site-logo__img {
+  filter: drop-shadow(0 0 12px rgba(172, 19, 249, 0.25));
+  transform: scale(1.02);
+}
+
 .site-logo__tagline {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.55rem;
