@@ -220,7 +220,7 @@ function livia_schema_markup() {
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "500"
+        "reviewCount": "70"
     },
     "priceRange": "$$-$$$"
 }
