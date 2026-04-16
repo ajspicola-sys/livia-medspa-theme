@@ -140,44 +140,46 @@
     </div>
 
     <!-- Newsletter bar -->
-    <div style="border-top:1px solid rgba(201,169,110,.1);padding:2.5rem 0;">
-        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
-            <div>
-                <h4 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:400;color:#faf8f5;margin:0 0 .35rem;">Stay in the Glow ✨</h4>
-                <p style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:rgba(250,248,245,.5);margin:0;">Get exclusive offers, beauty tips, and early access to new treatments.</p>
-            </div>
-            <form action="#" method="post" id="newsletter-form" style="display:flex;flex-direction:column;gap:.5rem;">
-                <div style="display:flex;gap:.5rem;">
-                    <input type="email" name="newsletter_email" placeholder="Enter your email" required aria-label="Email address" style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:.7rem 1rem;background:rgba(250,248,245,.06);border:1px solid rgba(250,248,245,.12);border-radius:8px;color:#faf8f5;outline:none;width:220px;">
-                    <button type="submit" style="font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.5rem;background:linear-gradient(135deg,#c9a96e,#b8914f);color:#fff;border:none;border-radius:8px;cursor:pointer;">Subscribe</button>
+    <div class="footer__newsletter">
+        <div class="footer__inner">
+            <div class="newsletter">
+                <div class="newsletter__text">
+                    <h4 class="newsletter__title">Stay in the Glow ✨</h4>
+                    <p class="newsletter__desc">Get exclusive offers, beauty tips, and early access to new treatments.</p>
                 </div>
-                <p style="font-family:'DM Sans',sans-serif;font-size:.7rem;color:rgba(250,248,245,.35);margin:0;">We respect your privacy. Unsubscribe anytime.</p>
-            </form>
+                <form class="newsletter__form" action="#" method="post" id="newsletter-form">
+                    <div class="newsletter__input-group">
+                        <input type="email" name="newsletter_email" class="newsletter__input" placeholder="Enter your email" required aria-label="Email address">
+                        <button type="submit" class="newsletter__btn btn btn--primary">Subscribe</button>
+                    </div>
+                    <p class="newsletter__privacy">We respect your privacy. Unsubscribe anytime.</p>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Bottom bar -->
-    <div style="border-top:1px solid rgba(250,248,245,.06);padding:1.5rem 0;">
-        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-            <p style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);margin:0;">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Privacy Policy</a>
-                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Terms of Service</a>
-                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Accessibility</a>
+    <div class="footer__bottom">
+        <div class="footer__inner">
+            <p class="footer__copyright">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
+            <div class="footer__legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Accessibility</a>
             </div>
         </div>
     </div>
 </footer>
 
 <!-- Cookie Consent -->
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(26,26,46,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(201,169,110,.15);padding:1rem 1.5rem;transition:transform .4s ease,opacity .4s ease;transform:translateY(100%);opacity:0;">
-    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
-        <p style="margin:0;font-family:'DM Sans',sans-serif;font-size:.85rem;color:rgba(250,248,245,.8);">
-            <strong style="color:#c9a96e;">🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;">
+    <div class="cookie-banner__inner">
+        <p class="cookie-banner__text">
+            <strong>🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
         </p>
-        <div style="display:flex;gap:.5rem;flex-shrink:0;">
-            <button id="cookie-accept" style="font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;background:linear-gradient(135deg,#c9a96e,#b8914f);color:#fff;border:none;border-radius:8px;cursor:pointer;">Accept</button>
-            <button id="cookie-decline" style="font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;color:rgba(250,248,245,.5);border:1px solid rgba(250,248,245,.15);border-radius:8px;cursor:pointer;">Decline</button>
+        <div class="cookie-banner__actions">
+            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
+            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
         </div>
     </div>
 </div>
@@ -598,23 +600,22 @@
     if (cookieBanner && !localStorage.getItem('livia-cookie-consent')) {
         setTimeout(function() {
             cookieBanner.style.display = '';
-            requestAnimationFrame(function() {
-                cookieBanner.style.transform = 'translateY(0)';
-                cookieBanner.style.opacity = '1';
-            });
+            cookieBanner.classList.add('is-visible');
         }, 2000);
     }
-    function hideCookieBanner(choice) {
-        localStorage.setItem('livia-cookie-consent', choice);
-        cookieBanner.style.transform = 'translateY(100%)';
-        cookieBanner.style.opacity = '0';
-        setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
-    }
     if (cookieAccept) {
-        cookieAccept.addEventListener('click', function() { hideCookieBanner('accepted'); });
+        cookieAccept.addEventListener('click', function() {
+            localStorage.setItem('livia-cookie-consent', 'accepted');
+            cookieBanner.classList.remove('is-visible');
+            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
+        });
     }
     if (cookieDecline) {
-        cookieDecline.addEventListener('click', function() { hideCookieBanner('declined'); });
+        cookieDecline.addEventListener('click', function() {
+            localStorage.setItem('livia-cookie-consent', 'declined');
+            cookieBanner.classList.remove('is-visible');
+            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
+        });
     }
 
     // ── Newsletter Form ─────────────────────────────────────────
@@ -740,17 +741,17 @@
 
         var el = document.createElement('div');
         el.id = 'social-proof';
-        el.style.cssText = 'position:fixed;bottom:1.5rem;left:1.5rem;z-index:800;display:flex;align-items:center;gap:.75rem;padding:.85rem 1.25rem;background:rgba(26,26,46,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,169,110,.15);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:DM Sans,sans-serif;transform:translateX(-120%);transition:transform .5s cubic-bezier(.23,1,.32,1);';
-        el.innerHTML = '<div style="font-size:1.25rem;">✨</div><div style="font-size:.8rem;color:rgba(250,248,245,.85);line-height:1.4;"><strong style="color:#faf8f5;">' + name + '</strong> just booked a <strong style="color:#c9a96e;">' + service + '</strong><br><span style="font-size:.7rem;color:rgba(250,248,245,.4);">' + time + ' ago</span></div>';
+        el.className = 'social-proof';
+        el.innerHTML = '<div class="social-proof__icon">✨</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
         document.body.appendChild(el);
 
         requestAnimationFrame(function() {
-            el.style.transform = 'translateX(0)';
+            el.classList.add('is-visible');
         });
 
         setTimeout(function() {
-            el.style.transform = 'translateX(-120%)';
-            setTimeout(function() { el.remove(); }, 500);
+            el.classList.remove('is-visible');
+            setTimeout(function() { el.remove(); }, 400);
         }, 5000);
     }
 
