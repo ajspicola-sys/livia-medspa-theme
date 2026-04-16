@@ -163,6 +163,7 @@
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
                 <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>">Refund Policy</a>
+                <a href="<?php echo esc_url(home_url('/beauty-bank/')); ?>">Beauty Bank</a>
             </div>
         </div>
     </div>
