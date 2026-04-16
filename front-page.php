@@ -157,18 +157,25 @@ get_header(); ?>
                 </div>
             </div>
 
-            <!-- RIGHT: Visual panel -->
+            <!-- RIGHT: Model image -->
             <div class="hero__visual" aria-hidden="true">
-                <div class="hero__visual-ring hero__visual-ring--outer"></div>
-                <div class="hero__visual-ring hero__visual-ring--mid"></div>
-                <div class="hero__visual-glow"></div>
-                <div class="hero__visual-card">
-                    <div class="hero__visual-card-icon">✦</div>
-                    <p class="hero__visual-card-name">Angela Spicola, APRN</p>
-                    <p class="hero__visual-card-title">Board-Certified Provider</p>
-                    <div class="hero__visual-card-stars">★★★★★</div>
-                    <p class="hero__visual-card-quote">"Natural results, elevated confidence."</p>
+
+                <!-- Lighting glows behind the model -->
+                <div class="hero__model-glow hero__model-glow--purple"></div>
+                <div class="hero__model-glow hero__model-glow--gold"></div>
+
+                <!-- Cutout model image with bottom fade -->
+                <div class="hero__model">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero.png"
+                         alt="Livia Med Spa aesthetic treatment model"
+                         class="hero__model-img"
+                         fetchpriority="high"
+                         decoding="async"
+                         width="600"
+                         height="750">
                 </div>
+
+                <!-- Floating treatment badges -->
                 <div class="hero__visual-badge hero__visual-badge--1">
                     <span>💉</span> Botox &amp; Fillers
                 </div>

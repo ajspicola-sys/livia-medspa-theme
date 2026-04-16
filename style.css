@@ -1376,143 +1376,110 @@ html {
 }
 
 /* ── Right visual panel ─────────────────────────────────────────── */
+/* ── Right: Model image ─────────────────────────────────────────── */
 .hero__visual {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: 480px;
+  height: 560px;
   animation: fadeIn 1.2s ease 0.5s both;
 }
 
-/* Rotating rings */
-.hero__visual-ring {
+/* ── Background lighting glows (behind the model) ─────────────── */
+.hero__model-glow {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(172, 19, 249, 0.15);
+  filter: blur(70px);
+  pointer-events: none;
 }
 
-.hero__visual-ring--outer {
-  width: 420px;
-  height: 420px;
-  animation: ring-rotate 30s linear infinite;
+.hero__model-glow--purple {
+  width: 380px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(172, 19, 249, 0.22), transparent 70%);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulse-glow 5s ease-in-out infinite alternate;
 }
 
-.hero__visual-ring--mid {
-  width: 310px;
-  height: 310px;
-  border-color: rgba(172, 19, 249, 0.22);
-  animation: ring-rotate 20s linear infinite reverse;
-}
-
-@keyframes ring-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* Central glow */
-.hero__visual-glow {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(172, 19, 249, 0.3), transparent 70%);
-  border-radius: 50%;
-  filter: blur(30px);
-  animation: pulse-glow 4s ease-in-out infinite alternate;
+.hero__model-glow--gold {
+  width: 220px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(224, 196, 138, 0.12), transparent 70%);
+  bottom: 10%;
+  right: 5%;
+  animation: pulse-glow 7s ease-in-out 2s infinite alternate;
 }
 
 @keyframes pulse-glow {
-  from { transform: scale(0.9); opacity: 0.7; }
-  to   { transform: scale(1.15); opacity: 1; }
+  from { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
+  to   { opacity: 1;   transform: translateX(-50%) scale(1.05); }
 }
 
-/* Center card */
-.hero__visual-card {
+/* ── Model container with bottom fade ─────────────────────────── */
+.hero__model {
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(172, 19, 249, 0.25);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  width: 220px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
-  animation: float 6s ease-in-out infinite;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
 }
 
-.hero__visual-card-icon {
-  font-size: 1.5rem;
-  color: #AC13F9;
-  margin-bottom: 1rem;
-}
-
-.hero__visual-card-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #F0EBE3;
-  margin-bottom: 0.25rem;
-}
-
-.hero__visual-card-title {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(172, 19, 249, 0.8);
-  margin-bottom: 0.75rem;
-}
-
-.hero__visual-card-stars {
-  color: #AC13F9;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  margin-bottom: 0.75rem;
-}
-
-.hero__visual-card-quote {
-  font-size: 0.75rem;
-  font-style: italic;
-  color: rgba(240, 235, 227, 0.45);
-  line-height: 1.4;
+.hero__model-img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  /* Bottom fade — blends into the dark hero background */
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  /* Subtle lighting: warm rim on right, cool shadow left */
+  filter:
+    drop-shadow(12px 0 40px rgba(172, 19, 249, 0.35))
+    drop-shadow(-6px 0 20px rgba(15, 7, 32, 0.6))
+    brightness(1.04)
+    contrast(1.02);
 }
 
 /* Floating treatment badges */
 .hero__visual-badge {
   position: absolute;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(172, 19, 249, 0.2);
+  background: rgba(15, 7, 32, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(172, 19, 249, 0.3);
   border-radius: 50px;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(240, 235, 227, 0.8);
+  color: rgba(240, 235, 227, 0.9);
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  gap: 0.45rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  z-index: 5;
 }
 
 .hero__visual-badge--1 {
-  top: 10%;
-  left: -5%;
+  top: 18%;
+  left: -8%;
   animation: float 5s ease-in-out 0.5s infinite;
 }
 
 .hero__visual-badge--2 {
-  top: 14%;
-  right: -5%;
+  top: 38%;
+  right: -8%;
   animation: float 6s ease-in-out 1.5s infinite;
 }
 
 .hero__visual-badge--3 {
-  bottom: 12%;
-  left: -2%;
+  bottom: 28%;
+  left: -6%;
   animation: float 7s ease-in-out 1s infinite;
 }
 
@@ -1578,11 +1545,11 @@ html {
   .hero__subtitle { margin-left: auto; margin-right: auto; }
   .hero__actions { justify-content: center; }
   .hero__stats { justify-content: center; }
-  .hero__visual { height: 340px; }
-  .hero__visual-ring--outer { width: 300px; height: 300px; }
-  .hero__visual-ring--mid { width: 220px; height: 220px; }
-  .hero__visual-badge--1 { left: 0; }
-  .hero__visual-badge--2 { right: 0; }
+  .hero__visual { height: 380px; order: -1; }
+  .hero__model-img { height: 380px; }
+  .hero__visual-badge--1 { left: 0; top: 10%; }
+  .hero__visual-badge--2 { right: 0; top: 35%; }
+  .hero__visual-badge--3 { left: 0; bottom: 22%; }
 }
 
 /* ==========================================================================
