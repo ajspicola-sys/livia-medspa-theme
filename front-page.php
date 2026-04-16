@@ -93,23 +93,23 @@ get_header(); ?>
     <section class="trust-ticker" aria-label="Certifications and partnerships">
         <div class="trust-ticker__track">
             <div class="trust-ticker__items">
-                <span class="trust-ticker__item">✦ FDA Approved Products</span>
-                <span class="trust-ticker__item">✦ Board-Certified Providers</span>
-                <span class="trust-ticker__item">✦ 500+ Five-Star Reviews</span>
-                <span class="trust-ticker__item">✦ HIPAA Compliant</span>
-                <span class="trust-ticker__item">✦ Allergan Partner</span>
-                <span class="trust-ticker__item">✦ Galderma Partner</span>
-                <span class="trust-ticker__item">✦ Complimentary Consultations</span>
-                <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
+                <span class="trust-ticker__item">FDA Approved Products</span>
+                <span class="trust-ticker__item">Board-Certified Providers</span>
+                <span class="trust-ticker__item">500+ Five-Star Reviews</span>
+                <span class="trust-ticker__item">HIPAA Compliant</span>
+                <span class="trust-ticker__item">Allergan Partner</span>
+                <span class="trust-ticker__item">Galderma Partner</span>
+                <span class="trust-ticker__item">Complimentary Consultations</span>
+                <span class="trust-ticker__item">Tampa's #1 Med Spa</span>
                 <!-- Duplicate for seamless loop -->
-                <span class="trust-ticker__item">✦ FDA Approved Products</span>
-                <span class="trust-ticker__item">✦ Board-Certified Providers</span>
-                <span class="trust-ticker__item">✦ 500+ Five-Star Reviews</span>
-                <span class="trust-ticker__item">✦ HIPAA Compliant</span>
-                <span class="trust-ticker__item">✦ Allergan Partner</span>
-                <span class="trust-ticker__item">✦ Galderma Partner</span>
-                <span class="trust-ticker__item">✦ Complimentary Consultations</span>
-                <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
+                <span class="trust-ticker__item">FDA Approved Products</span>
+                <span class="trust-ticker__item">Board-Certified Providers</span>
+                <span class="trust-ticker__item">500+ Five-Star Reviews</span>
+                <span class="trust-ticker__item">HIPAA Compliant</span>
+                <span class="trust-ticker__item">Allergan Partner</span>
+                <span class="trust-ticker__item">Galderma Partner</span>
+                <span class="trust-ticker__item">Complimentary Consultations</span>
+                <span class="trust-ticker__item">Tampa's #1 Med Spa</span>
             </div>
         </div>
     </section>
