@@ -1850,11 +1850,11 @@ html {
    ========================================================================== */
 .product-showcase {
   position: relative;
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 40%, #191930 100%);
-  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  background: #1a1a2e;
+  padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   overflow: hidden;
   content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
+  contain-intrinsic-size: auto 500px;
 }
 
 .product-showcase__glow {
@@ -1871,8 +1871,16 @@ html {
 .product-showcase__layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  gap: clamp(3rem, 2rem + 4vw, 5rem);
   align-items: center;
+}
+
+.product-showcase__content {
+  order: 1;
+}
+
+.product-showcase__visual {
+  order: 2;
 }
 
 .product-showcase__text {

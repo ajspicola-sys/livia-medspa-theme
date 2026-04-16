@@ -263,7 +263,6 @@ get_header(); ?>
          PRODUCT SHOWCASE
          ═══════════════════════════════════════════════════════════════ -->
     <section class="product-showcase" aria-label="Medical-grade skincare products">
-        <div class="product-showcase__glow" aria-hidden="true"></div>
         <div class="section__inner">
             <div class="product-showcase__layout">
                 <div class="product-showcase__content reveal">
