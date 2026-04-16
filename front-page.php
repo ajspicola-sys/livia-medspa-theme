@@ -468,6 +468,110 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         LATEST FROM THE BLOG
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="blog-section" aria-label="Latest blog posts">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Beauty Intel</span>
+                <h2 class="section__title">Latest from the Blog</h2>
+                <p class="section__desc">Expert tips, treatment guides, and the latest in aesthetic medicine.</p>
+            </div>
+
+            <div class="blog-grid">
+                <?php
+                $blog_posts = new WP_Query([
+                    'post_type'      => 'post',
+                    'posts_per_page' => 3,
+                    'post_status'    => 'publish',
+                    'no_found_rows'  => true,
+                ]);
+
+                if ($blog_posts->have_posts()) :
+                    while ($blog_posts->have_posts()) : $blog_posts->the_post();
+                        $categories = get_the_category();
+                        $cat_name = !empty($categories) ? $categories[0]->name : 'Beauty';
+                ?>
+                    <article class="blog-card reveal">
+                        <a href="<?php the_permalink(); ?>" class="blog-card__link">
+                            <div class="blog-card__img">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                                <?php else : ?>
+                                    <div class="blog-card__img--placeholder">
+                                        <span>📝</span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="blog-card__body">
+                                <div class="blog-card__meta">
+                                    <span class="blog-card__cat"><?php echo esc_html($cat_name); ?></span>
+                                    <span class="blog-card__date"><?php echo get_the_date('M j, Y'); ?></span>
+                                </div>
+                                <h3 class="blog-card__title"><?php the_title(); ?></h3>
+                                <p class="blog-card__excerpt"><?php echo wp_trim_words(get_the_excerpt(), 18); ?></p>
+                                <span class="blog-card__read">Read More →</span>
+                            </div>
+                        </a>
+                    </article>
+                <?php
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                ?>
+                    <!-- Placeholder cards when no posts exist yet -->
+                    <article class="blog-card reveal">
+                        <div class="blog-card__img">
+                            <div class="blog-card__img--placeholder"><span>💉</span></div>
+                        </div>
+                        <div class="blog-card__body">
+                            <div class="blog-card__meta">
+                                <span class="blog-card__cat">Injectables</span>
+                                <span class="blog-card__date">Coming Soon</span>
+                            </div>
+                            <h3 class="blog-card__title">Botox vs. Fillers: Which Is Right for You?</h3>
+                            <p class="blog-card__excerpt">Understanding the difference between neuromodulators and dermal fillers to choose the best treatment.</p>
+                            <span class="blog-card__read">Read More →</span>
+                        </div>
+                    </article>
+                    <article class="blog-card reveal">
+                        <div class="blog-card__img">
+                            <div class="blog-card__img--placeholder"><span>✨</span></div>
+                        </div>
+                        <div class="blog-card__body">
+                            <div class="blog-card__meta">
+                                <span class="blog-card__cat">Skincare</span>
+                                <span class="blog-card__date">Coming Soon</span>
+                            </div>
+                            <h3 class="blog-card__title">The Ultimate Guide to Medical-Grade Skincare</h3>
+                            <p class="blog-card__excerpt">Why medical-grade products outperform drugstore brands and how to build your routine.</p>
+                            <span class="blog-card__read">Read More →</span>
+                        </div>
+                    </article>
+                    <article class="blog-card reveal">
+                        <div class="blog-card__img">
+                            <div class="blog-card__img--placeholder"><span>🔬</span></div>
+                        </div>
+                        <div class="blog-card__body">
+                            <div class="blog-card__meta">
+                                <span class="blog-card__cat">Treatments</span>
+                                <span class="blog-card__date">Coming Soon</span>
+                            </div>
+                            <h3 class="blog-card__title">What to Expect at Your First Med Spa Visit</h3>
+                            <p class="blog-card__excerpt">A complete walkthrough of your consultation, treatment, and aftercare at Livia Med Spa.</p>
+                            <span class="blog-card__read">Read More →</span>
+                        </div>
+                    </article>
+                <?php endif; ?>
+            </div>
+
+            <div style="text-align:center; margin-top:2.5rem;">
+                <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">View All Posts →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          CTA SECTION
          ═══════════════════════════════════════════════════════════════ -->
     <section class="cta-section" id="book" aria-label="Book a consultation">

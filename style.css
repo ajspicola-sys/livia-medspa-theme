@@ -5338,6 +5338,20 @@ a.contact-card__text:hover {
   background: linear-gradient(135deg, #1a1a2e 0%, #1e2a3a 50%, #1a1a2e 100%);
 }
 
+/* Blog Section (Homepage) */
+.blog-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #faf8f5;
+}
+
+.blog-card__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
 /* Blog Archive */
 .blog-archive {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
