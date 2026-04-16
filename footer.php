@@ -47,7 +47,7 @@
                         <span>Secure, HIPAA-compliant access</span>
                     </div>
                 </div>
-                <a href="#" class="btn btn--primary btn--lg">Client Portal →</a>
+                <a href="https://blvd.app/@liviamedspa/login" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Client Portal →</a>
             </div>
         </div>
     </div>
