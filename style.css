@@ -188,7 +188,7 @@ h6 {
    ANNOUNCEMENT BAR
    ========================================================================== */
 .announcement-bar {
-  background: linear-gradient(135deg, #1A0E2E, #150A24);
+  background: linear-gradient(135deg, #F5EEFF 0%, #FFF0FA 100%);
   border-bottom: 1px solid rgba(172, 19, 249, 0.15);
   text-align: center;
   overflow: hidden;
@@ -215,7 +215,7 @@ h6 {
 
 .announcement-bar__text {
   font-size: 0.72rem;
-  color: rgba(250, 248, 245, 0.8);
+  color: #4A3560;
   letter-spacing: 0.02em;
 }
 
@@ -238,7 +238,7 @@ h6 {
 .announcement-bar__close {
   background: none;
   border: none;
-  color: rgba(250, 248, 245, 0.4);
+  color: rgba(100, 60, 140, 0.5);
   font-size: 0.8rem;
   cursor: pointer;
   padding: 0.25rem;
@@ -247,7 +247,7 @@ h6 {
 }
 
 .announcement-bar__close:hover {
-  color: #F0EBE3;
+  color: #1A0E2E;
 }
 
 /* ==========================================================================
@@ -1152,7 +1152,7 @@ html {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(135deg, #0F0720 0%, #1A0E2E 45%, #1E1038 100%);
+  background: linear-gradient(145deg, #FFFFFF 0%, #F5EEFF 45%, #FFF0FA 100%);
   padding: clamp(6rem, 5rem + 3vw, 8rem) clamp(1.5rem, 1rem + 3vw, 4rem);
   overflow: hidden;
   contain: layout style;
@@ -1176,7 +1176,7 @@ html {
 .hero__aurora-blob--1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #AC13F9, transparent 70%);
+  background: radial-gradient(circle, rgba(172, 19, 249, 0.12), transparent 70%);
   top: -150px;
   right: -100px;
   animation-duration: 14s;
@@ -1185,7 +1185,7 @@ html {
 .hero__aurora-blob--2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #6A0DAD, transparent 70%);
+  background: radial-gradient(circle, rgba(244, 113, 209, 0.12), transparent 70%);
   bottom: -100px;
   left: -80px;
   animation-duration: 18s;
@@ -1195,10 +1195,10 @@ html {
 .hero__aurora-blob--3 {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, #e0c48a, transparent 70%);
+  background: radial-gradient(circle, rgba(172, 19, 249, 0.07), transparent 70%);
   top: 40%;
   left: 40%;
-  opacity: 0.07;
+  opacity: 0.5;
   animation-duration: 20s;
   animation-delay: -8s;
 }
@@ -1271,7 +1271,7 @@ html {
 .hero__title {
   font-size: clamp(3rem, 2rem + 4vw, 5.75rem);
   font-weight: 300;
-  color: #F0EBE3;
+  color: #1A0E2E;
   line-height: 1.0;
   margin-bottom: 1.25rem;
   animation: fadeIn 1s ease 0.4s both;
@@ -1303,7 +1303,7 @@ html {
 
 .hero__subtitle {
   font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
-  color: rgba(240, 235, 227, 0.6);
+  color: rgba(80, 50, 110, 0.65);
   line-height: 1.75;
   max-width: 480px;
   margin-bottom: 2.5rem;
@@ -1325,8 +1325,8 @@ html {
 }
 
 .hero__actions .btn--outline {
-  color: #F0EBE3;
-  border-color: rgba(250, 248, 245, 0.2);
+  color: #1A0E2E;
+  border-color: rgba(26, 14, 46, 0.2);
 }
 
 .hero__actions .btn--outline:hover {
@@ -1353,7 +1353,7 @@ html {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.8rem;
   font-weight: 600;
-  color: #F0EBE3;
+  color: #1A0E2E;
   line-height: 1;
 }
 
@@ -1362,7 +1362,7 @@ html {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(240, 235, 227, 0.4);
+  color: rgba(80, 50, 110, 0.5);
 }
 
 .hero__stat-divider {
@@ -1431,7 +1431,7 @@ html {
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  /* Bottom fade — blends into the dark hero background */
+  /* Bottom fade — blends into the light hero background */
   -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
@@ -1439,20 +1439,20 @@ html {
 /* Floating treatment badges */
 .hero__visual-badge {
   position: absolute;
-  background: rgba(15, 7, 32, 0.55);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(172, 19, 249, 0.3);
+  border: 1px solid rgba(172, 19, 249, 0.2);
   border-radius: 50px;
   padding: 0.55rem 1.1rem;
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(240, 235, 227, 0.9);
+  color: #1A0E2E;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow: 0 8px 28px rgba(172, 19, 249, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
   z-index: 5;
 }
 
@@ -1653,11 +1653,11 @@ html {
    TRUST TICKER
    ========================================================================== */
 .trust-ticker {
-  background: linear-gradient(135deg, #1A0E2E 0%, #150A24 100%);
+  background: linear-gradient(135deg, #FDFBFF 0%, #FFF8FE 100%);
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(172, 19, 249, 0.15);
-  border-bottom: 1px solid rgba(172, 19, 249, 0.15);
+  border-top: 1px solid rgba(172, 19, 249, 0.12);
+  border-bottom: 1px solid rgba(172, 19, 249, 0.12);
 }
 
 /* Subtle gold glow behind ticker */
@@ -1845,7 +1845,7 @@ html {
 .carousel-card__placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1A0E2E 0%, #261640 50%, #1A0E2E 100%);
+  background: linear-gradient(135deg, #F0EAFF 0%, #F9EAFF 50%, #FFF0FA 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2108,7 +2108,7 @@ html {
    ========================================================================== */
 .product-showcase {
   position: relative;
-  background: #1A0E2E;
+  background: linear-gradient(135deg, #F5EEFF 0%, #FFF0FA 100%);
   padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   overflow: hidden;
   content-visibility: auto;
@@ -2143,7 +2143,7 @@ html {
 
 .product-showcase__text {
   font-size: 0.95rem;
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(60, 30, 90, 0.65);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
@@ -2168,7 +2168,7 @@ html {
 .product-showcase__feature-text {
   font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(250, 248, 245, 0.75);
+  color: rgba(60, 30, 90, 0.75);
 }
 
 .product-showcase__actions {
@@ -2179,8 +2179,8 @@ html {
 
 /* Outline light button variant */
 .btn--outline-light {
-  border-color: rgba(250, 248, 245, 0.25);
-  color: #F0EBE3;
+  border-color: rgba(26, 14, 46, 0.2);
+  color: #1A0E2E;
 }
 
 .btn--outline-light:hover {

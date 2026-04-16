@@ -149,7 +149,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #1A0E2E 0%, #150A24 40%, #261640 100%);
+            background: linear-gradient(145deg, #FFFFFF 0%, #F5EEFF 45%, #FFF0FA 100%);
             padding: clamp(2rem, 1.5rem + 3vw, 4rem);
             overflow: hidden;
         }
