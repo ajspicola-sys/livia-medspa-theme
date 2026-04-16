@@ -73,6 +73,9 @@ body {
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #AC13F9 transparent;
+  /* Reveal: overrides the opacity:0 set by inline critical CSS — eliminates FOUC */
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 /* Custom scrollbar for webkit browsers */

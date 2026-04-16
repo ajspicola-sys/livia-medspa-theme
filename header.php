@@ -75,8 +75,9 @@
         body {
             margin: 0;
             font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-            background: #F0EBE3;
+            background: #FAF7F4;
             overflow-x: hidden;
+            opacity: 0;
         }
 
         main.site-main {
@@ -149,7 +150,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F5 100%);
+            background: #F5EFE8;
             padding: clamp(2rem, 1.5rem + 3vw, 4rem);
             overflow: hidden;
         }
