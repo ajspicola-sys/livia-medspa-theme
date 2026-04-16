@@ -6864,6 +6864,10 @@ a.contact-card__text:hover {
   .portal-section__card {
     padding: 2rem 1.5rem;
   }
+
+  .announcement-bar {
+    display: none;
+  }
 }
 
 /* WP Admin bar — handled dynamically via JS */
@@ -6921,7 +6925,10 @@ a.contact-card__text:hover {
   .mega-menu,
   .hero__particles,
   .product-showcase__glow,
-  .client-portal__bg-glow {
+  .client-portal__bg-glow,
+  .floating-cta,
+  .cookie-banner,
+  .social-proof {
     display: none !important;
   }
 
