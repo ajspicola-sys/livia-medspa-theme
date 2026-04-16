@@ -3534,7 +3534,7 @@ html {
    ========================================================================== */
 .page-hero {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #252540 100%);
-  padding: clamp(7rem, 6rem + 3vw, 9rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
+  padding: clamp(3.5rem, 3rem + 2vw, 5rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
   text-align: center;
   position: relative;
   overflow: hidden;
