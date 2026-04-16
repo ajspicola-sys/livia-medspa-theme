@@ -72,10 +72,7 @@ get_header(); ?>
                                 </div>
                             <?php else : ?>
                                 <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
-                                    <span><?php
-                                        $icons = ['💉', '✨', '🔬', '🧴', '💎', '📝'];
-                                        echo $icons[array_rand($icons)];
-                                    ?></span>
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(172,19,249,0.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
                                 </div>
                             <?php endif; ?>
                             <div class="blog-card__body">
