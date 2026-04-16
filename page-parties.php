@@ -57,15 +57,9 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="party-block__visual">
-                        <div class="party-block__video-wrapper">
-                            <iframe
-                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 .5em black}</style><a href='https://www.youtube.com/embed/cXLYHldxOy8?autoplay=1'><img src='https://img.youtube.com/vi/cXLYHldxOy8/hqdefault.jpg' alt='Livia Botox Party Video'><span>&#x25B6;</span></a>"
-                                title="Livia Botox Party"
-                                frameborder="0"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="party-block__image-placeholder">
+                            <span>💉</span>
+                            <p>Botox Party Experience</p>
                         </div>
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="width:100%;margin-top:1.5rem;">Book a Botox Party →</a>
                     </div>
@@ -113,9 +107,15 @@ get_header(); ?>
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="margin-top:1.5rem;">Book a Glo2Facial Party →</a>
                     </div>
                     <div class="party-block__visual">
-                        <div class="party-block__image-placeholder">
-                            <span>✨</span>
-                            <p>Glo2Facial Experience</p>
+                        <div class="party-block__video-wrapper">
+                            <iframe
+                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 .5em black}</style><a href='https://www.youtube.com/embed/cXLYHldxOy8?autoplay=1'><img src='https://img.youtube.com/vi/cXLYHldxOy8/hqdefault.jpg' alt='Livia Glo2Facial Party Video'><span>&#x25B6;</span></a>"
+                                title="Livia Glo2Facial Party"
+                                frameborder="0"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -199,41 +199,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    <!-- Party Testimonials -->
-    <section class="testimonials-section" aria-label="Party testimonials">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">What Hosts Are Saying</span>
-                <h2 class="section__title">Party Reviews</h2>
-            </div>
-            <div class="testimonials-grid reveal">
-                <div class="testimonial-card">
-                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-                    <p class="testimonial-card__text">"Best girls' night EVER! The team was so professional and made everyone feel comfortable. We're already planning our next one!"</p>
-                    <div class="testimonial-card__author">
-                        <strong>Sarah M.</strong>
-                        <span>Botox Party Host</span>
-                    </div>
-                </div>
-                <div class="testimonial-card testimonial-card--featured">
-                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-                    <p class="testimonial-card__text">"I hosted a bridal party glow-up and it was absolutely perfect. Every guest left glowing — literally. The Glo2Facial was a hit!"</p>
-                    <div class="testimonial-card__author">
-                        <strong>Jessica L.</strong>
-                        <span>Bridal Party Host</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
-                    <p class="testimonial-card__text">"We did a corporate wellness day with Livia. The team brought everything to our office and the employees loved it. Huge morale boost!"</p>
-                    <div class="testimonial-card__author">
-                        <strong>Amanda K.</strong>
-                        <span>Corporate Wellness Event</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- CTA -->
     <section class="cta-section">
