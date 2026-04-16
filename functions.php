@@ -140,35 +140,15 @@ add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 // Critical CSS is already inlined in header.php, so we can safely
 // async-load both Google Fonts and the main stylesheet.
 function livia_async_styles($html, $handle) {
-    // Both Google Fonts AND main stylesheet are async — critical CSS is already inlined in header.php
     $async_handles = ['livia-google-fonts', 'livia-style'];
     if (in_array($handle, $async_handles) && !is_admin()) {
-        // media="print" prevents render-blocking, onload swaps to "all"
-        // We also set css-loaded on body to reveal it (anti-FOUC)
-        $reveal_js = "this.media='all';document.body.style.opacity='1';";
-        $html = str_replace(
-            "media='all'",
-            "media='print' onload=\"this.media='all'\"",
-            $html
-        );
-        // Also handle double-quote variant
-        $html = str_replace(
-            'media="all"',
-            'media="print" onload="this.media=\'all\'"',
-            $html
-        );
-        // For the main stylesheet only, also reveal the body on load
-        if ($handle === 'livia-style') {
-            $html = str_replace(
-                "onload=\"this.media='all'\"",
-                "onload=\"this.media='all';document.body.style.opacity='1';\"",
-                $html
-            );
-        }
-        // Add noscript fallback
+        // media="print" prevents render-blocking; onload swaps to "all"
+        $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
+        $html = str_replace('media="all"', 'media="print" onload="this.media=\'all\'"', $html);
+        // Add noscript fallback for CSS-disabled browsers
         $noscript = '<noscript>' . str_replace(
-            ["media='print'", 'media="print"', " onload=\"this.media='all'\"", " onload=\"this.media='all';document.body.style.opacity='1';\""],
-            ["media='all'", 'media="all"', '', ''],
+            ["media='print'", 'media="print"', " onload=\"this.media='all'\""],
+            ["media='all'",  'media="all"',  ''],
             $html
         ) . '</noscript>';
         $html .= $noscript;
@@ -177,13 +157,6 @@ function livia_async_styles($html, $handle) {
 }
 add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
 
-// ── Anti-FOUC hard fallback (in case onload doesn't fire) ──────────
-function livia_anti_fouc_fallback() {
-    if (!is_admin()) {
-        echo "<script>setTimeout(function(){document.body.style.opacity='1';},500);</script>\n";
-    }
-}
-add_action('wp_footer', 'livia_anti_fouc_fallback', 1);
 
 // ── Performance: Preload critical fonts only (preconnects live in header.php) ──
 function livia_resource_hints() {

@@ -56,8 +56,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Anti-FOUC: hide body until stylesheet loads -->
-    <style>body{opacity:0;transition:opacity 0.15s ease}</style>
+    <?php
+    // Preload main stylesheet — fetched at high priority, applied non-blocking
+    $theme_ver = filemtime( get_stylesheet_directory() . '/style.css' );
+    echo '<link rel="preload" href="' . esc_url( get_stylesheet_uri() . '?ver=' . $theme_ver ) . '" as="style">' . "\n";
+    ?>
 
     <?php wp_head(); ?>
 

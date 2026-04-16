@@ -70,8 +70,6 @@ body {
   color: #1A0E2E;
   background: #F0EBE3;
   overflow-x: hidden;
-  opacity: 0;
-  transition: opacity 0.35s ease;
   scrollbar-width: thin;
   scrollbar-color: #AC13F9 transparent;
 }
@@ -92,10 +90,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #d4b87a, #AC13F9);
-}
-
-body.is-loaded {
-  opacity: 1;
 }
 
 body.is-leaving {
