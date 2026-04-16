@@ -121,7 +121,7 @@ get_header(); ?>
             <h2 class="cta-section__title">See Our Mission<br>in Action</h2>
             <p class="cta-section__text">Book a consultation and experience care that's guided by purpose and integrity.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
                 <a href="<?php echo esc_url(home_url('/team/')); ?>" class="btn btn--outline btn--lg">Meet the Team</a>
             </div>
         </div>

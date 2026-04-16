@@ -101,7 +101,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Get a Personalized<br>Product Recommendation</h2>
             <p class="cta-section__text">Our providers will analyze your skin and recommend the perfect products for your goals.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
             </div>
         </div>
     </section>

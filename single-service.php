@@ -76,7 +76,7 @@ $category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->na
                 <?php endif; ?>
 
                 <div class="service-hero__actions">
-                    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book This
+                    <a href="#book-now" class="btn btn--primary btn--lg">Book This
                         Treatment</a>
                     <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
                 </div>
@@ -199,7 +199,7 @@ $category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->na
             <p class="cta-section__text">Schedule a complimentary consultation and let our experts create a personalized
                 treatment plan just for you.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Free
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Free
                     Consultation</a>
                 <a href="<?php echo get_post_type_archive_link('service'); ?>" class="btn btn--outline btn--lg">← All
                     Services</a>

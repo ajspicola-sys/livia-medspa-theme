@@ -144,7 +144,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready for Your<br>Before & After?</h2>
             <p class="cta-section__text">Book a consultation and start your journey to natural, beautiful results.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
             </div>
         </div>
     </section>

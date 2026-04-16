@@ -15,7 +15,7 @@ get_header(); ?>
             <p class="page-hero__desc">Don't let cost hold you back from looking and feeling your best. We offer flexible financing options so you can get the treatments you love — on your terms.</p>
             <div class="hero__actions" style="justify-content:center;">
                 <a href="#cherry-section" class="btn btn--primary btn--lg">View Payment Plans →</a>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--outline btn--lg">Book Consultation</a>
             </div>
         </div>
     </section>
@@ -75,7 +75,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Book Your Treatment.<br>We'll Handle the Rest.</h2>
             <p class="cta-section__text">Schedule your consultation and ask about our financing options. Our team will help you find the perfect plan.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

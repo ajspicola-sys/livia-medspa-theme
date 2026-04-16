@@ -66,7 +66,7 @@ get_header(); ?>
                                 <span>Member-Only Pricing</span>
                             </li>
                         </ul>
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg tier-card__btn">Enroll Now →</a>
+                        <a href="#book-now" class="btn btn--outline btn--lg tier-card__btn">Enroll Now →</a>
                     </div>
                 </article>
 
@@ -110,7 +110,7 @@ get_header(); ?>
                                 <span>Early Access to Promos</span>
                             </li>
                         </ul>
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg tier-card__btn">Enroll Now →</a>
+                        <a href="#book-now" class="btn btn--primary btn--lg tier-card__btn">Enroll Now →</a>
                     </div>
                 </article>
 
@@ -157,7 +157,7 @@ get_header(); ?>
                                 <span>Complimentary Birthday Treatment</span>
                             </li>
                         </ul>
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg tier-card__btn tier-card__btn--prestige">Enroll Now →</a>
+                        <a href="#book-now" class="btn btn--outline btn--lg tier-card__btn tier-card__btn--prestige">Enroll Now →</a>
                     </div>
                 </article>
 
@@ -370,7 +370,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Unlock<br>Your VIP Glow?</h2>
             <p class="cta-section__text">Choose your tier and start saving on every treatment. Your most radiant self is waiting.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Become a Member</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Become a Member</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

@@ -14,7 +14,7 @@ get_header(); ?>
             <h1 class="page-hero__title">Host a Glamorous Event<br>with <em>Livia Med Spa</em></h1>
             <p class="page-hero__desc">Whether it's a girls' night, birthday bash, bridal event, or corporate wellness day — our parties combine luxury, laughter, and expert care in one unforgettable experience.</p>
             <div class="hero__actions" style="justify-content:center;">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book a Party →</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Party →</a>
                 <a href="#party-types" class="btn btn--outline btn--lg">Explore Parties</a>
             </div>
         </div>
@@ -61,7 +61,7 @@ get_header(); ?>
                             <span>💉</span>
                             <p>Botox Party Experience</p>
                         </div>
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="width:100%;margin-top:1.5rem;">Book a Botox Party →</a>
+                        <a href="#book-now" class="btn btn--primary btn--lg" style="width:100%;margin-top:1.5rem;">Book a Botox Party →</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@ get_header(); ?>
                                 <p class="party-feature-card__text">There's no redness or peeling, just radiant results. Snap selfies with confidence — your skin will be glowing the same day.</p>
                             </div>
                         </div>
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg" style="margin-top:1.5rem;">Book a Glo2Facial Party →</a>
+                        <a href="#book-now" class="btn btn--primary btn--lg" style="margin-top:1.5rem;">Book a Glo2Facial Party →</a>
                     </div>
                     <div class="party-block__visual">
                         <div class="party-block__video-wrapper">
@@ -209,7 +209,7 @@ get_header(); ?>
             <p class="cta-section__text">Contact us to plan the ultimate beauty experience for you and your friends.</p>
             <p class="cta-section__urgency">⚡ Limited weekend spots available — book early!</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book a Party</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Party</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

@@ -54,7 +54,7 @@ get_header(); ?>
                     <h2 class="section__title">Our Services</h2>
                     <p class="section__desc">We're preparing our treatment menu. In the meantime, contact us for a consultation.</p>
                     <div style="margin-top:1.5rem;">
-                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Book Consultation</a>
+                        <a href="#book-now" class="btn btn--primary">Book Consultation</a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -68,7 +68,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Find Your<br>Perfect Treatment</h2>
             <p class="cta-section__text">Not sure which service is right for you? Book a complimentary consultation and let our experts guide you.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

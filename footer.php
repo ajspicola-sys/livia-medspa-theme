@@ -55,7 +55,7 @@
 
 <!-- Floating Mobile CTA -->
 <div class="floating-cta" id="floating-cta" aria-label="Quick actions">
-    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="floating-cta__btn floating-cta__btn--book">
+    <a href="#book-now" class="floating-cta__btn floating-cta__btn--book">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
         Book Now
     </a>
@@ -132,7 +132,7 @@
                         <span>Mon–Sat: 9am – 6pm</span>
                     </div>
                 </div>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>
             </div>
         </div>
     </div>

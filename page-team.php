@@ -109,7 +109,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Meet<br>Your Provider?</h2>
             <p class="cta-section__text">Schedule a complimentary consultation and let our experts create your personalized treatment plan.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
             </div>
         </div>
     </section>

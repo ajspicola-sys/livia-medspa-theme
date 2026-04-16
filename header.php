@@ -290,7 +290,7 @@
                                         <p class="mega-menu__promo-text">Experience Tampa's most advanced aesthetic
                                             treatments with a personalized consultation.</p>
                                     </div>
-                                    <a href="<?php echo esc_url(home_url('/contact/')); ?>"
+                                    <a href="#book-now"
                                         class="mega-menu__promo-cta">Book Now →</a>
                                 </div>
                             </div>
@@ -434,7 +434,7 @@
                     </svg>
                 </a>
                 <span class="header__divider"></span>
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>"
+                <a href="#book-now"
                     class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
             </div>
 
@@ -476,7 +476,7 @@
                 </ul>
             </nav>
             <div class="mobile-menu__footer">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary"
+                <a href="#book-now" class="btn btn--primary"
                     style="width:100%;justify-content:center;">Book a Consultation</a>
                 <a href="tel:8132302219" class="mobile-menu__contact-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

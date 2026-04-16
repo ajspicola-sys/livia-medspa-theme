@@ -143,7 +143,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Meet Us?</h2>
             <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts Livia Med Spa.</p>
             <div class="cta-section__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>
