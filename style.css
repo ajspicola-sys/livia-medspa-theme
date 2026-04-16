@@ -8526,3 +8526,53 @@ a.contact-card__text:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   REFUND POLICY PAGE
+   ========================================================================== */
+.refund-policy-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.75rem 0;
+}
+
+.refund-policy-card {
+  background: #fff0f0;
+  border: 1px solid #fc8181;
+  border-radius: 14px;
+  padding: 1.5rem;
+  color: #7a0000;
+}
+
+.refund-policy-card--positive {
+  background: #f0fff4;
+  border-color: #68d391;
+  color: #1a4731;
+}
+
+.refund-policy-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.refund-policy-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.refund-policy-card p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0 !important;
+  color: inherit;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .refund-policy-cards { grid-template-columns: 1fr; }
+}

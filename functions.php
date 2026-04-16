@@ -103,6 +103,7 @@ function livia_force_page_templates($template) {
             'financing'    => 'page-financing.php',
             'privacy-policy'      => 'page-privacy-policy.php',
             'cancellation-policy' => 'page-cancellation-policy.php',
+            'refund-policy'       => 'page-refund-policy.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -338,6 +339,23 @@ function livia_create_cancellation_page() {
     update_option('livia_cancellation_page_created_v1', true);
 }
 add_action('init', 'livia_create_cancellation_page');
+
+// ── Auto-create Refund Policy page ──────────────────────────────
+function livia_create_refund_page() {
+    if (get_option('livia_refund_page_created_v1')) return;
+    $existing = get_page_by_path('refund-policy', OBJECT, 'page');
+    if (!$existing) {
+        wp_insert_post([
+            'post_title'   => 'Refund Policy',
+            'post_name'    => 'refund-policy',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+    }
+    update_option('livia_refund_page_created_v1', true);
+}
+add_action('init', 'livia_create_refund_page');
 
 // ── Auto-create Starter Blog Posts ─────────────────────────────────
 function livia_create_blog_posts() {

@@ -162,6 +162,7 @@
             <div class="footer__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
+                <a href="<?php echo esc_url(home_url('/refund-policy/')); ?>">Refund Policy</a>
             </div>
         </div>
     </div>
