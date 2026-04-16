@@ -1,21 +1,226 @@
 <?php
 /**
  * Template Name: Memberships
- * Livia Med Spa — Beauty Bank Memberships
+ * Livia Med Spa — LIVIA Luxe Membership Tiers
  */
 get_header(); ?>
 
 <main class="site-main" id="main-content">
 
     <!-- Hero -->
-    <section class="page-hero page-hero--memberships" aria-label="Beauty Bank Membership">
+    <section class="page-hero page-hero--memberships" aria-label="LIVIA Luxe Membership">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">💎</span> Beauty Bank Membership</span>
-            <h1 class="page-hero__title">Bank Your Beauty,<br><em>Unlock Your Glow</em></h1>
-            <p class="page-hero__desc">Livia Med Spa's exclusive membership program designed to make self-care smarter and more rewarding. Your monthly contribution is safely stored as credit, ready to use whenever you choose.</p>
+            <span class="section__label"><span aria-hidden="true">💎</span> Exclusive Membership Program</span>
+            <h1 class="page-hero__title">LIVIA Luxe<br><em>Membership</em></h1>
+            <p class="page-hero__desc">Unlock exclusive savings, priority scheduling, and VIP perks with Tampa's most luxurious med spa membership. Choose the tier that fits your lifestyle and start glowing.</p>
             <div class="hero__actions" style="justify-content:center;">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Become a Member →</a>
+                <a href="#membership-tiers" class="btn btn--primary btn--lg">View Memberships →</a>
                 <a href="#how-it-works" class="btn btn--outline btn--lg">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Tiers -->
+    <section class="membership-tiers" id="membership-tiers" aria-label="Membership plans">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Choose Your Tier</span>
+                <h2 class="section__title">Three Levels of Luxury</h2>
+                <p class="section__desc">Every tier includes priority scheduling and exclusive member pricing. The only question is — how much glow do you want?</p>
+            </div>
+
+            <div class="tier-cards reveal">
+
+                <!-- Tier 1: LIVIA Luxe -->
+                <article class="tier-card" id="tier-luxe">
+                    <div class="tier-card__image">
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-luxe.png"
+                             alt="LIVIA Luxe membership — spa facial treatment"
+                             loading="lazy" decoding="async" width="600" height="400">
+                        <div class="tier-card__image-overlay"></div>
+                        <span class="tier-card__tier-label">Tier 01</span>
+                    </div>
+                    <div class="tier-card__body">
+                        <div class="tier-card__header">
+                            <h3 class="tier-card__name">LIVIA Luxe</h3>
+                            <div class="tier-card__price-row">
+                                <span class="tier-card__price"><span class="tier-card__currency">$</span>99<span class="tier-card__cents">.99</span></span>
+                                <span class="tier-card__period">/month</span>
+                            </div>
+                        </div>
+                        <ul class="tier-card__perks">
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>10%</strong> Savings on Skincare</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>10%</strong> Savings on All Services<br><small>(Excludes Weight Loss)</small></span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Priority Scheduling</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Member-Only Pricing</span>
+                            </li>
+                        </ul>
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg tier-card__btn">Enroll Now →</a>
+                    </div>
+                </article>
+
+                <!-- Tier 2: LIVIA Luxe Signature (FEATURED) -->
+                <article class="tier-card tier-card--featured" id="tier-signature">
+                    <div class="tier-card__popular-badge">Most Popular</div>
+                    <div class="tier-card__image">
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-signature.png"
+                             alt="LIVIA Luxe Signature — luxury spa experience"
+                             loading="lazy" decoding="async" width="600" height="400">
+                        <div class="tier-card__image-overlay"></div>
+                        <span class="tier-card__tier-label">Tier 02</span>
+                    </div>
+                    <div class="tier-card__body">
+                        <div class="tier-card__header">
+                            <h3 class="tier-card__name">LIVIA Luxe<br><em>Signature</em></h3>
+                            <div class="tier-card__price-row">
+                                <span class="tier-card__price"><span class="tier-card__currency">$</span>199<span class="tier-card__cents">.99</span></span>
+                                <span class="tier-card__period">/month</span>
+                            </div>
+                        </div>
+                        <ul class="tier-card__perks">
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>15%</strong> Savings on Skincare</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>15%</strong> Savings on All Services<br><small>(Excludes Weight Loss)</small></span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Priority Scheduling</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Member-Only Pricing</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Early Access to Promos</span>
+                            </li>
+                        </ul>
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg tier-card__btn">Enroll Now →</a>
+                    </div>
+                </article>
+
+                <!-- Tier 3: LIVIA Luxe Prestige -->
+                <article class="tier-card tier-card--prestige" id="tier-prestige">
+                    <div class="tier-card__image">
+                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-prestige.png"
+                             alt="LIVIA Luxe Prestige — ultra-premium aesthetic experience"
+                             loading="lazy" decoding="async" width="600" height="400">
+                        <div class="tier-card__image-overlay"></div>
+                        <span class="tier-card__tier-label">Tier 03</span>
+                    </div>
+                    <div class="tier-card__body">
+                        <div class="tier-card__header">
+                            <h3 class="tier-card__name">LIVIA Luxe<br><em>Prestige</em></h3>
+                            <div class="tier-card__price-row">
+                                <span class="tier-card__price"><span class="tier-card__currency">$</span>299<span class="tier-card__cents">.99</span></span>
+                                <span class="tier-card__period">/month</span>
+                            </div>
+                        </div>
+                        <ul class="tier-card__perks">
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>20%</strong> Savings on Skincare</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>20%</strong> Savings on All Services<br><small>(Excludes Weight Loss)</small></span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Priority Scheduling</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Member-Only Pricing</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Early Access to Promos</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span>Complimentary Birthday Treatment</span>
+                            </li>
+                        </ul>
+                        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--outline btn--lg tier-card__btn tier-card__btn--prestige">Enroll Now →</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="membership-compare" aria-label="Membership comparison">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Compare Plans</span>
+                <h2 class="section__title">Side-by-Side</h2>
+            </div>
+            <div class="compare-table-wrap reveal">
+                <table class="compare-table" role="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">Luxe</th>
+                            <th scope="col" class="compare-table__featured">Signature</th>
+                            <th scope="col">Prestige</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Price</td>
+                            <td>$99.99</td>
+                            <td class="compare-table__featured">$199.99</td>
+                            <td>$299.99</td>
+                        </tr>
+                        <tr>
+                            <td>Skincare Savings</td>
+                            <td>10%</td>
+                            <td class="compare-table__featured">15%</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>Service Savings</td>
+                            <td>10%</td>
+                            <td class="compare-table__featured">15%</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>Priority Scheduling</td>
+                            <td><span class="compare-check">✓</span></td>
+                            <td class="compare-table__featured"><span class="compare-check">✓</span></td>
+                            <td><span class="compare-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Early Access to Promos</td>
+                            <td><span class="compare-dash">—</span></td>
+                            <td class="compare-table__featured"><span class="compare-check">✓</span></td>
+                            <td><span class="compare-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Birthday Treatment</td>
+                            <td><span class="compare-dash">—</span></td>
+                            <td class="compare-table__featured"><span class="compare-dash">—</span></td>
+                            <td><span class="compare-check">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -25,66 +230,33 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">How It Works</span>
-                <h2 class="section__title">The Smart Way to Glow</h2>
-                <p class="section__desc">Build your beauty over time with a membership that turns every monthly deposit into real value. No gimmicks — just flexible, banked credits ready when you are.</p>
+                <h2 class="section__title">Getting Started is Easy</h2>
+                <p class="section__desc">From signup to savings — your membership starts working for you immediately.</p>
             </div>
             <div class="membership-steps reveal">
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">💰</div>
+                    <div class="membership-step__icon" aria-hidden="true">💎</div>
                     <div class="membership-step__number">01</div>
-                    <h3 class="membership-step__title">Choose Your Monthly Deposit</h3>
-                    <p class="membership-step__text">Pick a monthly contribution amount that fits your budget. Every dollar goes into your personal Beauty Bank.</p>
+                    <h3 class="membership-step__title">Choose Your Tier</h3>
+                    <p class="membership-step__text">Pick LIVIA Luxe, Signature, or Prestige based on your beauty goals and budget.</p>
                 </div>
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">🏦</div>
+                    <div class="membership-step__icon" aria-hidden="true">📋</div>
                     <div class="membership-step__number">02</div>
-                    <h3 class="membership-step__title">Credits Accumulate</h3>
-                    <p class="membership-step__text">Your contributions are safely stored as credits, building up month after month toward treatments you love.</p>
+                    <h3 class="membership-step__title">Enroll Online or In-Spa</h3>
+                    <p class="membership-step__text">Sign up in minutes — our team will walk you through everything and answer any questions.</p>
                 </div>
                 <div class="membership-step">
                     <div class="membership-step__icon" aria-hidden="true">✨</div>
                     <div class="membership-step__number">03</div>
-                    <h3 class="membership-step__title">Redeem Anytime</h3>
-                    <p class="membership-step__text">Use your banked credits whenever you're ready — on Botox, fillers, facials, laser treatments, or skincare products.</p>
+                    <h3 class="membership-step__title">Start Saving Instantly</h3>
+                    <p class="membership-step__text">Your member discounts apply immediately on skincare products and all eligible services.</p>
                 </div>
                 <div class="membership-step">
                     <div class="membership-step__icon" aria-hidden="true">🎁</div>
                     <div class="membership-step__number">04</div>
                     <h3 class="membership-step__title">Enjoy VIP Perks</h3>
-                    <p class="membership-step__text">Unlock exclusive member-only pricing, early access to promotions, and flexible payment options.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Beauty Bank -->
-    <section class="membership-why" aria-label="Why choose Beauty Bank">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">Why Choose Beauty Bank</span>
-                <h2 class="section__title">Your Beauty, Your Terms</h2>
-            </div>
-            <div class="membership-benefits reveal">
-                <div class="membership-benefit">
-                    <div class="membership-benefit__icon-wrap">
-                        <span>💎</span>
-                    </div>
-                    <h3 class="membership-benefit__title">Smart Savings, Stunning Results</h3>
-                    <p class="membership-benefit__text">With our Beauty Bank membership, every dollar you deposit becomes a future beauty investment. Your monthly contributions turn into credits you can use on the treatments you love — when you're ready.</p>
-                </div>
-                <div class="membership-benefit">
-                    <div class="membership-benefit__icon-wrap">
-                        <span>🎯</span>
-                    </div>
-                    <h3 class="membership-benefit__title">More Perks, Less Pressure</h3>
-                    <p class="membership-benefit__text">Enjoy exclusive member-only pricing, early access to promotions, and flexible payment that works with your schedule. No stress, just beauty on your terms.</p>
-                </div>
-                <div class="membership-benefit">
-                    <div class="membership-benefit__icon-wrap">
-                        <span>🪄</span>
-                    </div>
-                    <h3 class="membership-benefit__title">Tailored to You</h3>
-                    <p class="membership-benefit__text">Bank your dollars now, and use them however you like — whether it's Botox, fillers, facials, or laser treatments. It's your beauty, your way.</p>
+                    <p class="membership-step__text">Unlock priority scheduling, exclusive member pricing, and first access to promotions.</p>
                 </div>
             </div>
         </div>
@@ -94,9 +266,9 @@ get_header(); ?>
     <section class="membership-rewards" aria-label="Reward programs">
         <div class="section__inner">
             <div class="section__header reveal">
-                <span class="section__label">Reward Programs</span>
-                <h2 class="section__title">Earn Points, Save More</h2>
-                <p class="section__desc">Stack your Beauty Bank credits with these manufacturer reward programs for even bigger savings.</p>
+                <span class="section__label">Stack Your Savings</span>
+                <h2 class="section__title">Reward Programs</h2>
+                <p class="section__desc">Combine your LIVIA Luxe membership with manufacturer reward programs for even bigger savings.</p>
             </div>
             <div class="rewards-grid reveal">
                 <!-- Allē -->
@@ -160,31 +332,31 @@ get_header(); ?>
                 <details class="faq-item">
                     <summary class="faq-item__question">Is there a minimum commitment?</summary>
                     <div class="faq-item__answer">
-                        <p>We ask for a minimum 6-month commitment to get the most out of your Beauty Bank membership. After that, you can continue month-to-month or cancel anytime.</p>
+                        <p>We ask for a minimum 6-month commitment to get the most out of your LIVIA Luxe membership. After that, you can continue month-to-month or cancel anytime.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">Do my credits expire?</summary>
+                    <summary class="faq-item__question">Can I upgrade or downgrade my tier?</summary>
                     <div class="faq-item__answer">
-                        <p>No! Your banked credits never expire as long as your membership is active. If you cancel, unused credits remain available for 90 days.</p>
+                        <p>Absolutely! You can change your membership tier at any time. Simply contact us and we'll adjust your plan at the beginning of your next billing cycle.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">What can I use my credits on?</summary>
+                    <summary class="faq-item__question">Do my savings apply to all services?</summary>
                     <div class="faq-item__answer">
-                        <p>Your Beauty Bank credits can be used on any service or product we offer — Botox, fillers, facials, laser treatments, IV therapy, skincare products, and more.</p>
+                        <p>Your member discount applies to all services and skincare products we offer — Botox, fillers, facials, laser treatments, IV therapy, and more. Weight loss services are excluded.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">Can I share my credits with friends or family?</summary>
+                    <summary class="faq-item__question">Can I share my membership with family?</summary>
                     <div class="faq-item__answer">
-                        <p>Absolutely! You can gift your credits to friends and family members. It's the perfect way to share the glow.</p>
+                        <p>Memberships are individual, but we offer family plans! Contact us to learn about multi-member discounts for households.</p>
                     </div>
                 </details>
                 <details class="faq-item">
-                    <summary class="faq-item__question">How much should I set as my monthly deposit?</summary>
+                    <summary class="faq-item__question">What is Priority Scheduling?</summary>
                     <div class="faq-item__answer">
-                        <p>It depends on your goals! Most of our members choose between $100–$300/month. During your complimentary consultation, we'll help you find the perfect amount based on the treatments you're interested in.</p>
+                        <p>LIVIA Luxe members get first access to appointment slots, including prime-time weekday evenings and Saturdays. You'll also get shorter wait times for last-minute bookings.</p>
                     </div>
                 </details>
             </div>
@@ -192,11 +364,11 @@ get_header(); ?>
     </section>
 
     <!-- CTA -->
-    <section class="cta-section" aria-label="Join Beauty Bank">
+    <section class="cta-section" aria-label="Join LIVIA Luxe">
         <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Start Banking Beauty</span>
-            <h2 class="cta-section__title">Ready to Join<br>the Beauty Bank?</h2>
-            <p class="cta-section__text">Become a member today and start building your beauty credits. Your future glow-ups are waiting.</p>
+            <span class="cta-section__label">Start Your Membership</span>
+            <h2 class="cta-section__title">Ready to Unlock<br>Your VIP Glow?</h2>
+            <p class="cta-section__text">Choose your tier and start saving on every treatment. Your most radiant self is waiting.</p>
             <div class="cta-section__actions">
                 <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">Become a Member</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
