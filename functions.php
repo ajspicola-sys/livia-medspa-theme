@@ -273,6 +273,27 @@ function livia_create_pages() {
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
+// ── Fix Reading Settings (one-time) ───────────────────────────────
+function livia_fix_reading_settings() {
+    if (get_option('livia_reading_fixed_v1')) return;
+
+    // Find the Blog page and set it as posts page
+    $blog_page = get_page_by_title('Blog', OBJECT, 'page');
+    if ($blog_page) {
+        update_option('show_on_front', 'page');
+        update_option('page_for_posts', $blog_page->ID);
+    }
+
+    // Find the Home page and set it as front page
+    $home_page = get_page_by_title('Home', OBJECT, 'page');
+    if ($home_page) {
+        update_option('page_on_front', $home_page->ID);
+    }
+
+    update_option('livia_reading_fixed_v1', true);
+}
+add_action('init', 'livia_fix_reading_settings');
+
 // ── Auto-create Starter Blog Posts ─────────────────────────────────
 function livia_create_blog_posts() {
     if (get_option('livia_blog_created_v1')) return;
