@@ -2108,7 +2108,7 @@ html {
    ========================================================================== */
 .product-showcase {
   position: relative;
-  background: #F9F6F2;
+  background: #FFFFFF;
   padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   overflow: hidden;
   content-visibility: auto;
@@ -2432,7 +2432,7 @@ html {
    ========================================================================== */
 .client-portal {
   position: relative;
-  background: #F9F6F2;
+  background: #FFFFFF;
   padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   margin-top: 0;
   overflow: hidden;
