@@ -750,6 +750,125 @@
     // ── Smooth scroll on HTML ───────────────────────────────────
     document.documentElement.style.scrollBehavior = 'smooth';
 
+    // ── AI Preview — Before/After Carousel + Scan Engine ────────
+    (function initAIPreview() {
+        var aiTrack = document.getElementById('aiTrack');
+        if (!aiTrack) return;
+
+        var aiDots   = document.querySelectorAll('.ai-preview__dot');
+        var aiSlides = document.querySelectorAll('.ai-preview__slide');
+        var aiTotal  = aiSlides.length;
+        var aiCurrent = 0;
+        var scanFrame, scanStartTimer;
+
+        // Scan config
+        var SWEEP_MIN  = 0;
+        var SWEEP_MAX  = 100;
+        var SPEED_EDGE = 1.1;
+        var SPEED_MID  = 0.18;
+        var scanPct = SWEEP_MIN;
+        var scanDir = 1;
+
+        function aiGoTo(idx) {
+            aiCurrent = ((idx % aiTotal) + aiTotal) % aiTotal;
+            aiTrack.style.transform = 'translateX(-' + (aiCurrent * 100) + '%)';
+            aiDots.forEach(function(d, i) { d.classList.toggle('is-active', i === aiCurrent); });
+
+            // Reset new slide immediately
+            var parts = getAIParts();
+            applyAIPos(SWEEP_MIN, parts.after, parts.line);
+
+            cancelAnimationFrame(scanFrame);
+            clearTimeout(scanStartTimer);
+            scanStartTimer = setTimeout(function() { restartAIScan(); }, 680);
+        }
+
+        aiDots.forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                aiGoTo(parseInt(this.dataset.index));
+            });
+        });
+
+        function getAIParts() {
+            var slide = aiSlides[aiCurrent];
+            return {
+                after: slide.querySelector('.ai-preview__img--after'),
+                line:  slide.querySelector('.ai-preview__divider')
+            };
+        }
+
+        function applyAIPos(pct, afterImg, line) {
+            afterImg.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+            line.style.left = pct + '%';
+        }
+
+        function calcAISpeed(pct) {
+            var mid  = (SWEEP_MIN + SWEEP_MAX) / 2;
+            var half = (SWEEP_MAX - SWEEP_MIN) / 2;
+            var dist = Math.abs(pct - mid) / half;
+            return SPEED_MID + (SPEED_EDGE - SPEED_MID) * Math.pow(dist, 0.6);
+        }
+
+        function scanTick() {
+            var parts = getAIParts();
+            scanPct += scanDir * calcAISpeed(scanPct);
+
+            if (scanPct >= SWEEP_MAX) {
+                scanPct = SWEEP_MAX;
+                applyAIPos(scanPct, parts.after, parts.line);
+                cancelAnimationFrame(scanFrame);
+                setTimeout(function() { aiGoTo(aiCurrent + 1); }, 600);
+                return;
+            }
+
+            applyAIPos(scanPct, parts.after, parts.line);
+            scanFrame = requestAnimationFrame(scanTick);
+        }
+
+        function restartAIScan() {
+            cancelAnimationFrame(scanFrame);
+            scanPct = SWEEP_MIN;
+            scanDir = 1;
+            var parts = getAIParts();
+            applyAIPos(SWEEP_MIN, parts.after, parts.line);
+            scanFrame = requestAnimationFrame(scanTick);
+        }
+
+        // Drag-to-reveal
+        aiSlides.forEach(function(slide) {
+            var wrap  = slide.querySelector('.ai-preview__slider');
+            var after = slide.querySelector('.ai-preview__img--after');
+            var line  = slide.querySelector('.ai-preview__divider');
+            var dragging = false;
+
+            function dragTo(x) {
+                var rect = wrap.getBoundingClientRect();
+                var pct = Math.min(100, Math.max(0, ((x - rect.left) / rect.width) * 100));
+                applyAIPos(pct, after, line);
+            }
+
+            wrap.addEventListener('mousedown', function(e) { dragging = true; cancelAnimationFrame(scanFrame); dragTo(e.clientX); });
+            window.addEventListener('mousemove', function(e) { if (dragging) dragTo(e.clientX); });
+            window.addEventListener('mouseup', function() { if (dragging) dragging = false; });
+
+            wrap.addEventListener('touchstart', function(e) { dragging = true; cancelAnimationFrame(scanFrame); dragTo(e.touches[0].clientX); }, { passive: true });
+            window.addEventListener('touchmove', function(e) { if (dragging) dragTo(e.touches[0].clientX); }, { passive: true });
+            window.addEventListener('touchend', function() { dragging = false; });
+        });
+
+        // Start on visibility
+        var aiSection = document.getElementById('ai-preview');
+        if (aiSection) {
+            var aiObserver = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    restartAIScan();
+                    aiObserver.unobserve(aiSection);
+                }
+            }, { threshold: 0.2 });
+            aiObserver.observe(aiSection);
+        }
+    })();
+
 })();
 </script>
 

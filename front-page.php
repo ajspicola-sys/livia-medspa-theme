@@ -220,6 +220,144 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         AGELESS AI — Before/After Transformation Preview
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="ai-preview" id="ai-preview" aria-label="AI-powered treatment preview">
+        <div class="ai-preview__inner section__inner">
+            <div class="ai-preview__layout">
+
+                <!-- LEFT: Carousel -->
+                <div class="ai-preview__left">
+                    <div class="ai-preview__carousel" id="aiCarousel">
+                        <div class="ai-preview__stage">
+                            <div class="ai-preview__track" id="aiTrack">
+
+                                <!-- Slide 1: Phil -->
+                                <div class="ai-preview__slide">
+                                    <div class="ai-preview__card">
+                                        <div class="ai-preview__slider" data-ai-slider>
+                                            <img class="ai-preview__img ai-preview__img--before"
+                                                src="https://www.ageless.ai/_next/static/media/phil-before.0fh3d~ztkb16..jpg"
+                                                alt="Phil — before treatment" loading="lazy" decoding="async">
+                                            <img class="ai-preview__img ai-preview__img--after"
+                                                src="https://www.ageless.ai/_next/static/media/phil-after.0hhz6q..2jt~p.jpg"
+                                                alt="Phil — AI preview after treatment" loading="lazy" decoding="async">
+                                            <span class="ai-preview__label ai-preview__label--before">Before</span>
+                                            <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
+                                            <div class="ai-preview__divider"></div>
+                                        </div>
+                                        <div class="ai-preview__card-footer">
+                                            <div>
+                                                <div class="ai-preview__name">Phil</div>
+                                                <div class="ai-preview__treatment">Body Contouring</div>
+                                            </div>
+                                            <div class="ai-preview__badge">
+                                                Ageless AI
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 2: Courtney -->
+                                <div class="ai-preview__slide">
+                                    <div class="ai-preview__card">
+                                        <div class="ai-preview__slider" data-ai-slider>
+                                            <img class="ai-preview__img ai-preview__img--before"
+                                                src="https://www.ageless.ai/_next/static/media/courtney-before.0zffl2pbfkg_4.png"
+                                                alt="Courtney — before treatment" loading="lazy" decoding="async">
+                                            <img class="ai-preview__img ai-preview__img--after"
+                                                src="https://www.ageless.ai/_next/static/media/courtney-after.0ef7079sn6uaf.png"
+                                                alt="Courtney — AI preview after treatment" loading="lazy" decoding="async">
+                                            <span class="ai-preview__label ai-preview__label--before">Before</span>
+                                            <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
+                                            <div class="ai-preview__divider"></div>
+                                        </div>
+                                        <div class="ai-preview__card-footer">
+                                            <div>
+                                                <div class="ai-preview__name">Courtney</div>
+                                                <div class="ai-preview__treatment">Facial Rejuvenation</div>
+                                            </div>
+                                            <div class="ai-preview__badge">
+                                                Ageless AI
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 3: Eric -->
+                                <div class="ai-preview__slide">
+                                    <div class="ai-preview__card">
+                                        <div class="ai-preview__slider" data-ai-slider>
+                                            <img class="ai-preview__img ai-preview__img--before"
+                                                src="https://www.ageless.ai/_next/static/media/eric-before.10zwxajum~4my.png"
+                                                alt="Eric — before treatment" loading="lazy" decoding="async">
+                                            <img class="ai-preview__img ai-preview__img--after"
+                                                src="https://www.ageless.ai/_next/static/media/erica-after.03p5i6nizrcdp.png"
+                                                alt="Eric — AI preview after treatment" loading="lazy" decoding="async">
+                                            <span class="ai-preview__label ai-preview__label--before">Before</span>
+                                            <span class="ai-preview__label ai-preview__label--after">AI Preview</span>
+                                            <div class="ai-preview__divider"></div>
+                                        </div>
+                                        <div class="ai-preview__card-footer">
+                                            <div>
+                                                <div class="ai-preview__name">Eric</div>
+                                                <div class="ai-preview__treatment">Anti-Aging Treatments</div>
+                                            </div>
+                                            <div class="ai-preview__badge">
+                                                Ageless AI
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Dots -->
+                        <div class="ai-preview__dots" id="aiDots">
+                            <button class="ai-preview__dot is-active" data-index="0" aria-label="Slide 1 — Phil"></button>
+                            <button class="ai-preview__dot" data-index="1" aria-label="Slide 2 — Courtney"></button>
+                            <button class="ai-preview__dot" data-index="2" aria-label="Slide 3 — Eric"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Content -->
+                <div class="ai-preview__right">
+                    <div class="ai-preview__header reveal">
+                        <span class="section__label">AI-Powered Visualization</span>
+                        <h2 class="section__title">See Your Results<br><em>Before</em> You Book</h2>
+                        <p class="ai-preview__desc">Upload a selfie and instantly see a photorealistic AI preview of what aesthetic treatments could look like on <em>your</em> face — personalized, private, and under a minute.</p>
+                    </div>
+
+                    <div class="ai-preview__cta reveal">
+                        <p class="ai-preview__cta-text">Real AI-generated previews, not stock photos. Try it with your own face in under 60 seconds.</p>
+                        <a class="btn btn--primary btn--lg"
+                           href="https://ageless.ai/a/liviamedspa/transformation?utm_source=website&utm_medium=website"
+                           target="_blank" rel="noopener">
+                            See My AI Preview
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <div class="ai-preview__trust">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0110 0v4"/>
+                            </svg>
+                            Private · Under a minute · Powered by Ageless AI
+                        </div>
+                    </div>
+
+                    <div class="ai-preview__powered reveal">
+                        <span class="ai-preview__powered-dot"></span>
+                        Clinically Accurate AI Visualization by Ageless
+                        <span class="ai-preview__powered-dot"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          YOUR JOURNEY — 4-step process
          ═══════════════════════════════════════════════════════════════ -->
 
