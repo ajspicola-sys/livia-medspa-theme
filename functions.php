@@ -1394,101 +1394,37 @@ function livia_handle_contact_form() {
         wp_send_json_error(['message' => 'Please fill in all required fields.']);
     }
 
-    $to      = get_option('livia_notification_email', 'support@liviamedspa.com');
+    // ── Build recipients list (supports multiple, comma-separated) ──
+    $recipients_raw = get_option('livia_notification_emails', 'support@liviamedspa.com');
+    $recipients = array_filter(array_map('trim', explode(',', $recipients_raw)), 'is_email');
+    if ( empty($recipients) ) $recipients = ['support@liviamedspa.com'];
+    $to = $recipients;
+
     $subject = '✨ New Message — Livia Med Spa Website';
 
-    // ── Branded HTML email template ────────────────────────────────
-    $service_display = $service ? esc_html(ucwords(str_replace('-', ' ', $service))) : 'Not specified';
+    // ── Prepare substitution values ─────────────────────────────────
+    $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
     $phone_display   = $phone ?: 'Not provided';
-    $message_display = nl2br(esc_html($message));
 
-    $body = '<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New Message</title></head>
-<body style="margin:0;padding:0;background:#f4f0f8;font-family:\'Helvetica Neue\',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f0f8;padding:40px 0;">
-    <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
+    // ── Get custom or default template ─────────────────────────────
+    $default_template = livia_default_email_template();
+    $template = get_option('livia_email_template', '') ?: $default_template;
 
-        <!-- Header -->
-        <tr>
-          <td style="background:linear-gradient(135deg,#0f0720 0%,#1a0a35 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Livia Med Spa</p>
-            <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
-            <div style="width:40px;height:2px;background:linear-gradient(90deg,#AC13F9,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
-          </td>
-        </tr>
+    // Replace {{placeholders}} with actual values
+    $body = str_replace(
+        ['{{name}}', '{{first_name}}', '{{last_name}}', '{{email}}', '{{phone}}', '{{service}}', '{{message}}'],
+        [
+            esc_html($first . ' ' . $last),
+            esc_html($first),
+            esc_html($last),
+            esc_html($email),
+            esc_html($phone_display),
+            esc_html($service_display),
+            nl2br(esc_html($message)),
+        ],
+        $template
+    );
 
-        <!-- Body -->
-        <tr>
-          <td style="background:#ffffff;padding:40px;">
-
-            <p style="margin:0 0 28px;font-size:15px;color:#555;line-height:1.6;">
-              You have a new inquiry from your website contact form. Reply directly to this email to respond to ' . esc_html($first) . '.
-            </p>
-
-            <!-- Info grid -->
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="padding:0 8px 16px 0;width:50%;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Name</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">' . esc_html($first . ' ' . $last) . '</p>
-                  </div>
-                </td>
-                <td style="padding:0 0 16px 8px;width:50%;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Email</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;"><a href="mailto:' . esc_attr($email) . '" style="color:#AC13F9;text-decoration:none;">' . esc_html($email) . '</a></p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:0 8px 16px 0;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Phone</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">' . esc_html($phone_display) . '</p>
-                  </div>
-                </td>
-                <td style="padding:0 0 16px 8px;vertical-align:top;">
-                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
-                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Service Interest</p>
-                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">' . $service_display . '</p>
-                  </div>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Message -->
-            <div style="background:#f9f6ff;border-radius:10px;padding:20px 22px;margin-top:4px;border-left:3px solid #AC13F9;">
-              <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Message</p>
-              <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">' . $message_display . '</p>
-            </div>
-
-            <!-- Reply CTA -->
-            <div style="text-align:center;margin-top:32px;">
-              <a href="mailto:' . esc_attr($email) . '" style="display:inline-block;background:linear-gradient(135deg,#AC13F9,#8a0fd4);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">
-                Reply to ' . esc_html($first) . ' →
-              </a>
-            </div>
-
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="background:#0f0720;padding:24px 40px;text-align:center;">
-            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">
-              Livia Med Spa · Tampa, FL · <a href="https://liviamedspa.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">liviamedspa.com</a>
-            </p>
-          </td>
-        </tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>';
 
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
@@ -1506,41 +1442,178 @@ function livia_handle_contact_form() {
 add_action('wp_ajax_livia_contact_submit',        'livia_handle_contact_form');
 add_action('wp_ajax_nopriv_livia_contact_submit', 'livia_handle_contact_form');
 
+// ── Default email template (used when no custom template is saved) ──
+function livia_default_email_template() {
+    return '<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New Message</title></head>
+<body style="margin:0;padding:0;background:#f4f0f8;font-family:\'Helvetica Neue\',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f0f8;padding:40px 0;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
+        <tr>
+          <td style="background:linear-gradient(135deg,#0f0720 0%,#1a0a35 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
+            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Livia Med Spa</p>
+            <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
+            <div style="width:40px;height:2px;background:linear-gradient(90deg,#AC13F9,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#ffffff;padding:40px;">
+            <p style="margin:0 0 28px;font-size:15px;color:#555;line-height:1.6;">You have a new inquiry from your website contact form. Reply directly to this email to respond to {{first_name}}.</p>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 8px 16px 0;width:50%;vertical-align:top;">
+                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Name</p>
+                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{name}}</p>
+                  </div>
+                </td>
+                <td style="padding:0 0 16px 8px;width:50%;vertical-align:top;">
+                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #AC13F9;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Email</p>
+                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;"><a href="mailto:{{email}}" style="color:#AC13F9;text-decoration:none;">{{email}}</a></p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 8px 16px 0;vertical-align:top;">
+                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Phone</p>
+                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{phone}}</p>
+                  </div>
+                </td>
+                <td style="padding:0 0 16px 8px;vertical-align:top;">
+                  <div style="background:#f9f6ff;border-radius:10px;padding:16px 18px;border-left:3px solid #C9A96E;">
+                    <p style="margin:0 0 4px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C9A96E;font-weight:600;">Service Interest</p>
+                    <p style="margin:0;font-size:15px;color:#1a0a35;font-weight:500;">{{service}}</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div style="background:#f9f6ff;border-radius:10px;padding:20px 22px;margin-top:4px;border-left:3px solid #AC13F9;">
+              <p style="margin:0 0 8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#AC13F9;font-weight:600;">Message</p>
+              <p style="margin:0;font-size:15px;color:#333;line-height:1.7;">{{message}}</p>
+            </div>
+            <div style="text-align:center;margin-top:32px;">
+              <a href="mailto:{{email}}" style="display:inline-block;background:linear-gradient(135deg,#AC13F9,#8a0fd4);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Reply to {{first_name}} →</a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#0f0720;padding:24px 40px;text-align:center;">
+            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Livia Med Spa &middot; Tampa, FL &middot; <a href="https://liviamedspa.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">liviamedspa.com</a></p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>';
+}
+
 // ── Livia Settings Page (Admin Dashboard) ──────────────────────────
 function livia_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
+
     if ( isset($_POST['livia_settings_nonce']) && wp_verify_nonce($_POST['livia_settings_nonce'], 'livia_save_settings') ) {
-        update_option('livia_notification_email', sanitize_email($_POST['livia_notification_email'] ?? 'support@liviamedspa.com'));
-        echo '<div class="notice notice-success is-dismissible"><p><strong>Settings saved!</strong></p></div>';
+        // Multiple emails — stored as comma-separated string
+        $emails_raw = sanitize_text_field($_POST['livia_notification_emails'] ?? 'support@liviamedspa.com');
+        $emails_clean = implode(', ', array_filter(array_map('sanitize_email', array_map('trim', explode(',', $emails_raw))), 'is_email'));
+        update_option('livia_notification_emails', $emails_clean ?: 'support@liviamedspa.com');
+
+        // Email template — allow HTML
+        $template = wp_unslash($_POST['livia_email_template'] ?? '');
+        update_option('livia_email_template', $template);
+
+        echo '<div class="notice notice-success is-dismissible"><p><strong>✅ Settings saved!</strong></p></div>';
     }
-    $current_email = get_option('livia_notification_email', 'support@liviamedspa.com');
+
+    $current_emails  = get_option('livia_notification_emails', 'support@liviamedspa.com');
+    $current_template = get_option('livia_email_template', '') ?: livia_default_email_template();
     ?>
     <div class="wrap">
-        <h1 style="display:flex;align-items:center;gap:10px;">
+        <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
             <span style="font-size:1.4rem;">✨</span> Livia Med Spa — Settings
         </h1>
-        <div style="background:#fff;border-radius:8px;padding:28px 32px;max-width:640px;margin-top:16px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-            <form method="post">
-                <?php wp_nonce_field('livia_save_settings', 'livia_settings_nonce'); ?>
-                <table class="form-table">
-                    <tr>
-                        <th scope="row" style="padding-top:16px;">
-                            <label for="livia_notification_email" style="font-weight:600;">Contact Form — Notification Email</label>
-                            <p class="description" style="font-weight:400;margin-top:4px;">All contact form submissions will be emailed here.</p>
-                        </th>
-                        <td style="padding-top:16px;">
-                            <input type="email" id="livia_notification_email" name="livia_notification_email"
-                                   value="<?php echo esc_attr($current_email); ?>"
-                                   class="regular-text" required
-                                   placeholder="support@liviamedspa.com">
-                        </td>
-                    </tr>
-                </table>
-                <?php submit_button('Save Settings', 'primary', 'submit', true, ['style' => 'margin-top:8px;']); ?>
-            </form>
-        </div>
+
+        <form method="post">
+            <?php wp_nonce_field('livia_save_settings', 'livia_settings_nonce'); ?>
+
+            <!-- Section: Recipients -->
+            <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+                <h2 style="margin:0 0 6px;font-size:16px;">📬 Notification Recipients</h2>
+                <p style="margin:0 0 20px;color:#666;font-size:13px;">Separate multiple email addresses with commas. All recipients receive every submission.</p>
+                <label for="livia_notification_emails" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">Email Address(es)</label>
+                <input type="text" id="livia_notification_emails" name="livia_notification_emails"
+                       value="<?php echo esc_attr($current_emails); ?>"
+                       style="width:100%;max-width:600px;padding:10px 14px;border:1px solid #ddd;border-radius:6px;font-size:14px;"
+                       placeholder="support@liviamedspa.com, manager@liviamedspa.com">
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Example: <code>support@liviamedspa.com, angie@liviamedspa.com</code></p>
+            </div>
+
+            <!-- Section: Email Template -->
+            <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+                <h2 style="margin:0 0 6px;font-size:16px;">🎨 Email Template (HTML)</h2>
+                <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
+
+                <!-- Placeholder Tags Reference -->
+                <div style="background:#f9f6ff;border:1px solid #e8d8ff;border-radius:8px;padding:16px 20px;margin-bottom:16px;">
+                    <p style="margin:0 0 10px;font-size:12px;font-weight:700;color:#AC13F9;letter-spacing:1px;text-transform:uppercase;">Available Placeholder Tags</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <?php
+                        $tags = [
+                            '{{name}}'       => 'Full name',
+                            '{{first_name}}' => 'First name only',
+                            '{{last_name}}'  => 'Last name only',
+                            '{{email}}'      => 'Email address',
+                            '{{phone}}'      => 'Phone number',
+                            '{{service}}'    => 'Service of interest',
+                            '{{message}}'    => 'Their message',
+                        ];
+                        foreach ($tags as $tag => $desc) : ?>
+                            <span style="background:#fff;border:1px solid #d8b4ff;border-radius:5px;padding:4px 10px;font-size:12px;cursor:pointer;"
+                                  title="<?php echo esc_attr($desc); ?>"
+                                  onclick="insertTag('<?php echo esc_js($tag); ?>')"><?php echo esc_html($tag); ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                    <p style="margin:10px 0 0;font-size:11px;color:#888;">💡 Click a tag to insert it at your cursor position in the editor below.</p>
+                </div>
+
+                <label for="livia_email_template" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">HTML Template</label>
+                <textarea id="livia_email_template" name="livia_email_template"
+                          rows="24"
+                          style="width:100%;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;padding:14px;border:1px solid #ddd;border-radius:6px;resize:vertical;background:#1a1a2e;color:#e8e8f0;"><?php echo esc_textarea($current_template); ?></textarea>
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">⚠️ Click "Reset to Default" to restore the original branded template.</p>
+            </div>
+
+            <div style="max-width:800px;display:flex;gap:12px;align-items:center;">
+                <?php submit_button('Save Settings', 'primary', 'submit', false, ['style' => 'margin:0;']); ?>
+                <button type="submit" name="livia_reset_template" value="1"
+                        style="background:none;border:1px solid #ddd;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;color:#555;"
+                        onclick="if(!confirm('Reset template to default? This cannot be undone.')) return false;">
+                    Reset to Default
+                </button>
+            </div>
+        </form>
     </div>
+
+    <script>
+    function insertTag(tag) {
+        var ta = document.getElementById('livia_email_template');
+        if (!ta) return;
+        var start = ta.selectionStart, end = ta.selectionEnd;
+        ta.value = ta.value.substring(0, start) + tag + ta.value.substring(end);
+        ta.selectionStart = ta.selectionEnd = start + tag.length;
+        ta.focus();
+    }
+    </script>
     <?php
+
+    // Handle reset separately
+    if ( isset($_POST['livia_reset_template']) && isset($_POST['livia_settings_nonce']) && wp_verify_nonce($_POST['livia_settings_nonce'], 'livia_save_settings') ) {
+        update_option('livia_email_template', '');
+    }
 }
 
 function livia_add_settings_menu() {
@@ -1553,3 +1626,5 @@ function livia_add_settings_menu() {
     );
 }
 add_action('admin_menu', 'livia_add_settings_menu');
+
+
