@@ -68,9 +68,8 @@
         <div class="footer__inner">
             <!-- Brand Column -->
             <div class="footer__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                    <span class="site-logo__name">Livia</span>
-                    <span class="site-logo__tagline">MED SPA</span>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="Livia Med Spa — Home">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="Livia Med Spa" width="160" height="auto" loading="lazy" decoding="async">
                 </a>
                 <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics. We combine artistry with science to enhance your natural beauty.</p>
                 <div class="footer__social">
