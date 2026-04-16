@@ -1150,25 +1150,73 @@ html {
    HERO
    ========================================================================== */
 .hero {
-  min-height: 600px;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   position: relative;
-  background: linear-gradient(135deg, #1A0E2E 0%, #150A24 40%, #261640 100%);
-  padding: clamp(2rem, 1.5rem + 3vw, 4rem);
+  background: linear-gradient(135deg, #0F0720 0%, #1A0E2E 45%, #1E1038 100%);
+  padding: clamp(6rem, 5rem + 3vw, 8rem) clamp(1.5rem, 1rem + 3vw, 4rem);
   overflow: hidden;
   contain: layout style;
+}
+
+/* ── Aurora blobs ─────────────────────────────────────────────── */
+.hero__aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+}
+
+.hero__aurora-blob--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #AC13F9, transparent 70%);
+  top: -150px;
+  right: -100px;
+  animation-duration: 14s;
+}
+
+.hero__aurora-blob--2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #6A0DAD, transparent 70%);
+  bottom: -100px;
+  left: -80px;
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+
+.hero__aurora-blob--3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #e0c48a, transparent 70%);
+  top: 40%;
+  left: 40%;
+  opacity: 0.07;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+
+@keyframes aurora-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 30px) scale(1.08); }
 }
 
 .hero__bg-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(172, 19, 249, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(172, 19, 249, 0.06) 0%, transparent 40%),
-    radial-gradient(ellipse at 50% 80%, rgba(100, 100, 200, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(172, 19, 249, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(172, 19, 249, 0.05) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -1189,73 +1237,99 @@ html {
   animation: float 6s ease-in-out var(--delay) infinite;
 }
 
-.hero__content {
+/* ── Layout ────────────────────────────────────────────────────── */
+.hero__inner {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(3rem, 2rem + 5vw, 7rem);
+}
+
+/* ── Left content ──────────────────────────────────────────────── */
+.hero__content {
+  text-align: left;
 }
 
 .hero__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.5rem;
-  background: rgba(172, 19, 249, 0.12);
-  border: 1px solid rgba(172, 19, 249, 0.2);
+  padding: 0.5rem 1.25rem;
+  background: rgba(172, 19, 249, 0.1);
+  border: 1px solid rgba(172, 19, 249, 0.25);
   border-radius: 9999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #AC13F9;
-  margin-bottom: 2rem;
+  color: #C96BF8;
+  margin-bottom: 1.75rem;
   animation: fadeIn 1s ease 0.2s both;
 }
 
 .hero__title {
-  font-size: clamp(3rem, 2.2rem + 4vw, 5.5rem);
+  font-size: clamp(3rem, 2rem + 4vw, 5.75rem);
   font-weight: 300;
   color: #F0EBE3;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
+  line-height: 1.0;
+  margin-bottom: 1.25rem;
   animation: fadeIn 1s ease 0.4s both;
+  letter-spacing: -0.01em;
 }
 
 .hero__title em {
   font-style: italic;
-  background: linear-gradient(135deg, #AC13F9, #e0c48a);
+  background: linear-gradient(135deg, #AC13F9 20%, #e0c48a 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Animated divider line */
+.hero__divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #AC13F9, #e0c48a);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  animation: expand 1s ease 0.6s both;
+}
+
+@keyframes expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 60px; opacity: 1; }
+}
+
 .hero__subtitle {
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
-  color: rgba(250, 248, 245, 0.6);
-  line-height: 1.7;
-  max-width: 540px;
-  margin: 0 auto 2.5rem;
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
+  color: rgba(240, 235, 227, 0.6);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
   animation: fadeIn 1s ease 0.6s both;
 }
 
 .hero__actions {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   animation: fadeIn 1s ease 0.8s both;
 }
 
 .btn--lg {
-  padding: 1rem 2.5rem;
+  padding: 1rem 2.25rem;
   font-size: 0.78rem;
 }
 
 .hero__actions .btn--outline {
   color: #F0EBE3;
-  border-color: rgba(250, 248, 245, 0.25);
+  border-color: rgba(250, 248, 245, 0.2);
 }
 
 .hero__actions .btn--outline:hover {
@@ -1264,27 +1338,185 @@ html {
   background: rgba(172, 19, 249, 0.08);
 }
 
-.hero__trust {
+/* ── Stats row ─────────────────────────────────────────────────── */
+.hero__stats {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  gap: 1.75rem;
   animation: fadeIn 1s ease 1s both;
 }
 
-.hero__trust-stars {
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hero__stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #F0EBE3;
+  line-height: 1;
+}
+
+.hero__stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(240, 235, 227, 0.4);
+}
+
+.hero__stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(172, 19, 249, 0.25);
+  flex-shrink: 0;
+}
+
+/* ── Right visual panel ─────────────────────────────────────────── */
+.hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 480px;
+  animation: fadeIn 1.2s ease 0.5s both;
+}
+
+/* Rotating rings */
+.hero__visual-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(172, 19, 249, 0.15);
+}
+
+.hero__visual-ring--outer {
+  width: 420px;
+  height: 420px;
+  animation: ring-rotate 30s linear infinite;
+}
+
+.hero__visual-ring--mid {
+  width: 310px;
+  height: 310px;
+  border-color: rgba(172, 19, 249, 0.22);
+  animation: ring-rotate 20s linear infinite reverse;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Central glow */
+.hero__visual-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(172, 19, 249, 0.3), transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: pulse-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { transform: scale(0.9); opacity: 0.7; }
+  to   { transform: scale(1.15); opacity: 1; }
+}
+
+/* Center card */
+.hero__visual-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(172, 19, 249, 0.25);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero__visual-card-icon {
+  font-size: 1.5rem;
   color: #AC13F9;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  margin-bottom: 1rem;
 }
 
-.hero__trust-text {
-  font-size: 0.8rem;
-  color: rgba(250, 248, 245, 0.5);
-  font-weight: 500;
+.hero__visual-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #F0EBE3;
+  margin-bottom: 0.25rem;
 }
 
-/* ── Hero scroll indicator ───────────────────────────────────── */
+.hero__visual-card-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(172, 19, 249, 0.8);
+  margin-bottom: 0.75rem;
+}
+
+.hero__visual-card-stars {
+  color: #AC13F9;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  margin-bottom: 0.75rem;
+}
+
+.hero__visual-card-quote {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(240, 235, 227, 0.45);
+  line-height: 1.4;
+}
+
+/* Floating treatment badges */
+.hero__visual-badge {
+  position: absolute;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(172, 19, 249, 0.2);
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(240, 235, 227, 0.8);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.hero__visual-badge--1 {
+  top: 10%;
+  left: -5%;
+  animation: float 5s ease-in-out 0.5s infinite;
+}
+
+.hero__visual-badge--2 {
+  top: 14%;
+  right: -5%;
+  animation: float 6s ease-in-out 1.5s infinite;
+}
+
+.hero__visual-badge--3 {
+  bottom: 12%;
+  left: -2%;
+  animation: float 7s ease-in-out 1s infinite;
+}
+
+/* ── Scroll indicator ──────────────────────────────────────────── */
 .hero__scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -1333,6 +1565,24 @@ html {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(172, 19, 249, 0.5);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero__content { text-align: center; }
+  .hero__divider { margin-left: auto; margin-right: auto; }
+  .hero__subtitle { margin-left: auto; margin-right: auto; }
+  .hero__actions { justify-content: center; }
+  .hero__stats { justify-content: center; }
+  .hero__visual { height: 340px; }
+  .hero__visual-ring--outer { width: 300px; height: 300px; }
+  .hero__visual-ring--mid { width: 220px; height: 220px; }
+  .hero__visual-badge--1 { left: 0; }
+  .hero__visual-badge--2 { right: 0; }
 }
 
 /* ==========================================================================

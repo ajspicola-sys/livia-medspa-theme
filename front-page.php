@@ -52,7 +52,14 @@ get_header(); ?>
          HERO SECTION — above the fold, no lazy loading
          ═══════════════════════════════════════════════════════════════ -->
     <section class="hero" id="hero" aria-label="Welcome to Livia Med Spa">
-        <div class="hero__bg-overlay"></div>
+
+        <!-- Background layers -->
+        <div class="hero__bg-overlay" aria-hidden="true"></div>
+        <div class="hero__aurora" aria-hidden="true">
+            <div class="hero__aurora-blob hero__aurora-blob--1"></div>
+            <div class="hero__aurora-blob hero__aurora-blob--2"></div>
+            <div class="hero__aurora-blob hero__aurora-blob--3"></div>
+        </div>
         <div class="hero__particles" aria-hidden="true">
             <span class="hero__particle" style="--x:10%;--y:20%;--delay:0s;--size:3px;"></span>
             <span class="hero__particle" style="--x:85%;--y:15%;--delay:1s;--size:2px;"></span>
@@ -60,21 +67,72 @@ get_header(); ?>
             <span class="hero__particle" style="--x:25%;--y:75%;--delay:0.5s;--size:2px;"></span>
             <span class="hero__particle" style="--x:50%;--y:35%;--delay:1.5s;--size:3px;"></span>
             <span class="hero__particle" style="--x:90%;--y:80%;--delay:3s;--size:2px;"></span>
+            <span class="hero__particle" style="--x:35%;--y:10%;--delay:2.5s;--size:2px;"></span>
+            <span class="hero__particle" style="--x:60%;--y:88%;--delay:0.8s;--size:3px;"></span>
         </div>
-        <div class="hero__content">
-            <span class="hero__badge">✦ Tampa's Premier Aesthetics Studio</span>
-            <h1 class="hero__title">Where Science<br>Meets <em>Beauty</em></h1>
-            <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
-            <div class="hero__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">
-                    Book Consultation
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
+
+        <div class="hero__inner">
+            <!-- LEFT: Content -->
+            <div class="hero__content">
+                <span class="hero__badge">✦ Tampa's Premier Aesthetics Studio</span>
+
+                <h1 class="hero__title">
+                    Where Science<br>
+                    Meets <em>Beauty</em>
+                </h1>
+
+                <div class="hero__divider" aria-hidden="true"></div>
+
+                <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
+
+                <div class="hero__actions">
+                    <a href="#book-now" class="btn btn--primary btn--lg">
+                        Book Consultation
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
+                </div>
+
+                <!-- Stats row -->
+                <div class="hero__stats" aria-label="Practice highlights">
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">70+</span>
+                        <span class="hero__stat-label">Five-Star Reviews</span>
+                    </div>
+                    <div class="hero__stat-divider" aria-hidden="true"></div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">18+</span>
+                        <span class="hero__stat-label">Treatments</span>
+                    </div>
+                    <div class="hero__stat-divider" aria-hidden="true"></div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-num">5★</span>
+                        <span class="hero__stat-label">Google Rating</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero__trust" aria-label="Customer rating">
-                <div class="hero__trust-stars" aria-hidden="true">★★★★★</div>
-                <span class="hero__trust-text">70+ Five-Star Reviews</span>
+
+            <!-- RIGHT: Visual panel -->
+            <div class="hero__visual" aria-hidden="true">
+                <div class="hero__visual-ring hero__visual-ring--outer"></div>
+                <div class="hero__visual-ring hero__visual-ring--mid"></div>
+                <div class="hero__visual-glow"></div>
+                <div class="hero__visual-card">
+                    <div class="hero__visual-card-icon">✦</div>
+                    <p class="hero__visual-card-name">Angela Spicola, APRN</p>
+                    <p class="hero__visual-card-title">Board-Certified Provider</p>
+                    <div class="hero__visual-card-stars">★★★★★</div>
+                    <p class="hero__visual-card-quote">"Natural results, elevated confidence."</p>
+                </div>
+                <div class="hero__visual-badge hero__visual-badge--1">
+                    <span>💉</span> Botox &amp; Fillers
+                </div>
+                <div class="hero__visual-badge hero__visual-badge--2">
+                    <span>✨</span> Laser Treatments
+                </div>
+                <div class="hero__visual-badge hero__visual-badge--3">
+                    <span>🌿</span> Medical-Grade Skincare
+                </div>
             </div>
         </div>
 
