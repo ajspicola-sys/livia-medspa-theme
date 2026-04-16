@@ -1154,7 +1154,7 @@ html {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F5 100%);
+  background: #F5EFE8;
   padding: clamp(6rem, 5rem + 3vw, 8rem) clamp(1.5rem, 1rem + 3vw, 4rem);
   overflow: hidden;
   contain: layout style;
@@ -1655,25 +1655,13 @@ html {
    TRUST TICKER
    ========================================================================== */
 .trust-ticker {
-  background: #FBF8FF;
+  background: #EDE7DF;
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(172, 19, 249, 0.08);
-  border-bottom: 1px solid rgba(172, 19, 249, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Subtle gold glow behind ticker */
-.trust-ticker::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 100%;
-  background: radial-gradient(ellipse, rgba(172, 19, 249, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
 
 .trust-ticker__track {
   padding: 1.1rem 0;
@@ -1696,10 +1684,7 @@ html {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #AC13F9 0%, #e8d5a3 50%, #AC13F9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #7A5C6E;
   flex-shrink: 0;
   padding: 0 1.5rem;
   position: relative;
