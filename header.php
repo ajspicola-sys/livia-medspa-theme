@@ -301,7 +301,7 @@
                                 <div class="mega-menu__promo">
                                     <div>
                                         <span class="mega-menu__promo-label">✦ New Client Special</span>
-                                        <h3 class="mega-menu__promo-title">Your First Visit is 20% Off</h3>
+                                        <h3 class="mega-menu__promo-title">$50 Off Your First Visit</h3>
                                         <p class="mega-menu__promo-text">Experience Tampa's most advanced aesthetic
                                             treatments with a personalized consultation.</p>
                                     </div>
