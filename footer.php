@@ -711,20 +711,8 @@
         }, { passive: true });
     }
 
-    // ── Announcement Bar Dismiss ────────────────────────────────
-    var announcementBar = document.getElementById('announcement-bar');
-    var announcementClose = document.getElementById('announcement-close');
-    if (announcementBar) {
-        if (localStorage.getItem('livia-announcement-dismissed')) {
-            announcementBar.classList.add('is-dismissed');
-        }
-        if (announcementClose) {
-            announcementClose.addEventListener('click', function() {
-                announcementBar.classList.add('is-dismissed');
-                localStorage.setItem('livia-announcement-dismissed', Date.now());
-            });
-        }
-    }
+
+
 
     // ── Social Proof Notification ───────────────────────────────
     var proofNames = ['Sarah M.', 'Jessica L.', 'Emily R.', 'Amanda K.', 'Lauren B.', 'Michelle T.'];
