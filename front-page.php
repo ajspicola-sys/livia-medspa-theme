@@ -535,8 +535,8 @@ get_header(); ?>
                 <div class="product-showcase__visual reveal">
                     <div class="product-showcase__image-wrapper">
                         <div class="product-showcase__ring" aria-hidden="true"></div>
-                        <img src="https://liviamedspa.com/wp-content/uploads/2025/03/1b5814_e3537a28776d47dbbe90ddc516aa73b3mv2-759x1024.avif"
-                             alt="ZO Skin Health Products — medical-grade skincare available at Livia Med Spa"
+                        <img src="https://liviamedspa.com/wp-content/uploads/2026/04/Hydrinity.png"
+                             alt="Hydrinity medical-grade skincare products available at Livia Med Spa"
                              class="product-showcase__image"
                              loading="lazy"
                              decoding="async"
