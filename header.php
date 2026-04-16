@@ -60,6 +60,15 @@
             overflow-x: hidden;
         }
 
+        main.site-main {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .client-portal {
+            margin-top: 0 !important;
+        }
+
         .announcement-bar {
             position: fixed;
             top: 0;

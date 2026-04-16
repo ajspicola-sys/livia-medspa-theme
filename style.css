@@ -982,6 +982,7 @@ html {
    ========================================================================== */
 .site-main {
   padding-top: 0;
+  margin-bottom: 0;
 }
 
 .test-section {
@@ -2122,6 +2123,7 @@ html {
   position: relative;
   background: linear-gradient(160deg, #111125 0%, #1a1a2e 50%, #14142a 100%);
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  margin-top: 0;
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
