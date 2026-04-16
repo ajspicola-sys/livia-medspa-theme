@@ -324,6 +324,8 @@
             for (var d = 0; d < total; d++) {
                 var dot = document.createElement('button');
                 dot.className = 'carousel__dot' + (d === 0 ? ' is-active' : '');
+                dot.setAttribute('role', 'tab');
+                dot.setAttribute('aria-selected', d === 0 ? 'true' : 'false');
                 dot.setAttribute('aria-label', 'Go to slide ' + (d + 1));
                 (function(idx) { dot.addEventListener('click', function() { goTo(idx); }); })(d);
                 dotsC.appendChild(dot);
@@ -378,7 +380,9 @@
 
                 var dots = dotsC.querySelectorAll('.carousel__dot');
                 for (var j = 0; j < dots.length; j++) {
-                    dots[j].classList.toggle('is-active', j === current);
+                    var isActive = j === current;
+                    dots[j].classList.toggle('is-active', isActive);
+                    dots[j].setAttribute('aria-selected', isActive ? 'true' : 'false');
                 }
             }
 

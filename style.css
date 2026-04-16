@@ -1753,6 +1753,14 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0;
+  position: relative;
+  /* Expand invisible touch target to 44x44px without changing visual size */
+}
+
+.carousel__dot::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
 }
 
 .carousel__dot:hover {
@@ -1760,7 +1768,8 @@ html {
   transform: scale(1.2);
 }
 
-.carousel__dot.is-active {
+.carousel__dot.is-active,
+.carousel__dot[aria-selected="true"] {
   width: 32px;
   background: linear-gradient(135deg, #AC13F9, #9B2FD0);
   box-shadow: 0 2px 8px rgba(172, 19, 249, 0.3);

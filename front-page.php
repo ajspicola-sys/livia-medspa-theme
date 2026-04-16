@@ -313,10 +313,10 @@ get_header(); ?>
                             </div>
                         </div>
                         <!-- Dots -->
-                        <div class="ai-preview__dots" id="aiDots">
-                            <button class="ai-preview__dot is-active" data-index="0" aria-label="Slide 1 — Phil"></button>
-                            <button class="ai-preview__dot" data-index="1" aria-label="Slide 2 — Courtney"></button>
-                            <button class="ai-preview__dot" data-index="2" aria-label="Slide 3 — Eric"></button>
+                        <div class="ai-preview__dots" id="aiDots" role="tablist" aria-label="Before & After slides">
+                            <button class="ai-preview__dot is-active" role="tab" aria-selected="true" data-index="0" aria-label="Slide 1 — Phil"></button>
+                            <button class="ai-preview__dot" role="tab" aria-selected="false" data-index="1" aria-label="Slide 2 — Courtney"></button>
+                            <button class="ai-preview__dot" role="tab" aria-selected="false" data-index="2" aria-label="Slide 3 — Eric"></button>
                         </div>
                     </div>
                 </div>
