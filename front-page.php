@@ -596,15 +596,15 @@ get_header(); ?>
                 </div>
                 <div class="why-us__visual reveal">
                     <div class="why-us__stat-card why-us__stat-card--1">
-                        <span class="why-us__stat-number" data-count="10000" data-suffix="+">0</span>
-                        <span class="why-us__stat-label">Treatments Performed</span>
+                        <span class="why-us__stat-number" data-count="500" data-suffix="+">0</span>
+                        <span class="why-us__stat-label">Patients Treated</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--2">
                         <span class="why-us__stat-number" data-count="70" data-suffix="+">0</span>
                         <span class="why-us__stat-label">5-Star Reviews</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--3">
-                        <span class="why-us__stat-number" data-count="8" data-suffix="+">0</span>
+                        <span class="why-us__stat-number" data-count="3" data-suffix="+">0</span>
                         <span class="why-us__stat-label">Years Experience</span>
                     </div>
                     <div class="why-us__image-placeholder">
