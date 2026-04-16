@@ -5,6 +5,9 @@
  */
 ?>
 
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+
 <!-- CLIENT PORTAL (site-wide) -->
 <section class="client-portal">
     <div class="client-portal__bg-glow"></div>
@@ -63,9 +66,6 @@
         Call
     </a>
 </div>
-
-<!-- FOOTER -->
-<footer class="site-footer" role="contentinfo">
     <div class="footer__top">
         <div class="footer__inner">
             <!-- Brand Column -->
