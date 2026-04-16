@@ -3343,6 +3343,14 @@ html {
   padding: 2.5rem 0;
 }
 
+.footer__newsletter .footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
 .newsletter {
   display: flex;
   align-items: center;
