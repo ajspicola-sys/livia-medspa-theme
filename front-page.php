@@ -66,7 +66,7 @@ get_header(); ?>
             <h1 class="hero__title">Where Science<br>Meets <em>Beauty</em></h1>
             <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
             <div class="hero__actions">
-                <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary btn--lg">
+                <a href="#book-now" class="btn btn--primary btn--lg">
                     Book Consultation
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
