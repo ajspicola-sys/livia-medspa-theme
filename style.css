@@ -6145,8 +6145,17 @@ a.contact-card__text:hover {
    ========================================================================== */
 .breadcrumbs {
   padding: 1rem 0;
-  background: linear-gradient(180deg, #E6E0D6 0%, #F0EBE3 100%);
+  background: linear-gradient(180deg, #E6E0D6 0%, #FAF7F4 100%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Inside the service hero — no bar, just an inline trail */
+.breadcrumbs--hero {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  justify-content: center;
 }
 
 .breadcrumbs__list {
@@ -6158,10 +6167,18 @@ a.contact-card__text:hover {
   color: #A899AD;
 }
 
+.breadcrumbs--hero .breadcrumbs__list {
+  justify-content: center;
+}
+
 .breadcrumbs__item a {
   color: #8A7B8F;
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+.breadcrumbs--hero .breadcrumbs__item a {
+  color: rgba(106, 75, 120, 0.65);
 }
 
 .breadcrumbs__item a:hover {
@@ -6174,9 +6191,18 @@ a.contact-card__text:hover {
   font-size: 0.85rem;
 }
 
+.breadcrumbs--hero .breadcrumbs__sep {
+  color: rgba(172, 19, 249, 0.4);
+}
+
 .breadcrumbs__item--current {
   color: #1A0E2E;
   font-weight: 600;
+}
+
+.breadcrumbs--hero .breadcrumbs__item--current {
+  color: rgba(26, 14, 46, 0.55);
+  font-weight: 500;
 }
 
 /* ==========================================================================
