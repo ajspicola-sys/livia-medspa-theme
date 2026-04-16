@@ -90,26 +90,26 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          TRUST TICKER — scrolling partner/certification badges
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="trust-ticker" aria-label="Certifications and partnerships">
-        <div class="trust-ticker__track">
-            <div class="trust-ticker__items">
-                <span class="trust-ticker__item">FDA Approved Products</span>
-                <span class="trust-ticker__item">Board-Certified Providers</span>
-                <span class="trust-ticker__item">500+ Five-Star Reviews</span>
-                <span class="trust-ticker__item">HIPAA Compliant</span>
-                <span class="trust-ticker__item">Allergan Partner</span>
-                <span class="trust-ticker__item">Galderma Partner</span>
-                <span class="trust-ticker__item">Complimentary Consultations</span>
-                <span class="trust-ticker__item">Tampa's #1 Med Spa</span>
+    <section style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);overflow:hidden;border-top:1px solid rgba(201,169,110,.15);border-bottom:1px solid rgba(201,169,110,.15);" aria-label="Certifications and partnerships">
+        <div style="padding:1.1rem 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);">
+            <div style="display:flex;align-items:center;gap:0;white-space:nowrap;animation:ticker-scroll 35s linear infinite;will-change:transform;">
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ FDA Approved Products</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Board-Certified Providers</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ 500+ Five-Star Reviews</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ HIPAA Compliant</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Allergan Partner</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Galderma Partner</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Complimentary Consultations</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Tampa's #1 Med Spa</span>
                 <!-- Duplicate for seamless loop -->
-                <span class="trust-ticker__item">FDA Approved Products</span>
-                <span class="trust-ticker__item">Board-Certified Providers</span>
-                <span class="trust-ticker__item">500+ Five-Star Reviews</span>
-                <span class="trust-ticker__item">HIPAA Compliant</span>
-                <span class="trust-ticker__item">Allergan Partner</span>
-                <span class="trust-ticker__item">Galderma Partner</span>
-                <span class="trust-ticker__item">Complimentary Consultations</span>
-                <span class="trust-ticker__item">Tampa's #1 Med Spa</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ FDA Approved Products</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Board-Certified Providers</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ 500+ Five-Star Reviews</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ HIPAA Compliant</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Allergan Partner</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Galderma Partner</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Complimentary Consultations</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#c9a96e;flex-shrink:0;padding:0 1.5rem;">✦ Tampa's #1 Med Spa</span>
             </div>
         </div>
     </section>
@@ -222,46 +222,41 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          YOUR JOURNEY — 4-step process
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="journey-section" aria-label="How it works">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">How It Works</span>
-                <h2 class="section__title">Your Beauty Journey</h2>
-                <p class="section__desc">From consultation to results — we make every step seamless and luxurious.</p>
+    <section style="padding:5rem 0;background:linear-gradient(180deg,#f5f0ea 0%,#faf8f5 100%);" aria-label="How it works">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);">
+            <div style="text-align:center;margin-bottom:3rem;">
+                <span style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e;border:1px solid rgba(201,169,110,.3);border-radius:9999px;padding:.4rem 1.2rem;margin-bottom:1rem;">How It Works</span>
+                <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,1.5rem+2vw,3rem);font-weight:400;color:#1a1a2e;margin:0 0 .75rem;">Your Beauty Journey</h2>
+                <p style="font-size:.95rem;color:#7a7a90;max-width:500px;margin:0 auto;">From consultation to results — we make every step seamless and luxurious.</p>
             </div>
-            <div class="journey-steps reveal">
-                <div class="journey-step">
-                    <div class="journey-step__number">01</div>
-                    <div class="journey-step__icon">📋</div>
-                    <h3 class="journey-step__title">Free Consultation</h3>
-                    <p class="journey-step__text">Meet with our providers to discuss your goals. We'll assess your needs and recommend the perfect treatment plan.</p>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;">
+                <!-- Step 1 -->
+                <div style="text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;transition:transform .3s;">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#c9a96e;margin-bottom:.75rem;">01</div>
+                    <div style="font-size:2rem;margin-bottom:1rem;height:60px;width:60px;display:flex;align-items:center;justify-content:center;margin-left:auto;margin-right:auto;background:rgba(201,169,110,.08);border-radius:16px;">📋</div>
+                    <h3 style="font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a2e;margin:0 0 .5rem;">Free Consultation</h3>
+                    <p style="font-size:.8rem;color:#7a7a90;line-height:1.6;margin:0;">Meet with our providers to discuss your goals and get a perfect treatment plan.</p>
                 </div>
-                <div class="journey-step__connector" aria-hidden="true">
-                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <!-- Step 2 -->
+                <div style="text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#c9a96e;margin-bottom:.75rem;">02</div>
+                    <div style="font-size:2rem;margin-bottom:1rem;height:60px;width:60px;display:flex;align-items:center;justify-content:center;margin-left:auto;margin-right:auto;background:rgba(201,169,110,.08);border-radius:16px;">🎯</div>
+                    <h3 style="font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a2e;margin:0 0 .5rem;">Custom Plan</h3>
+                    <p style="font-size:.8rem;color:#7a7a90;line-height:1.6;margin:0;">Tailored to your unique anatomy, skin type, and aesthetic goals. No cookie-cutter solutions.</p>
                 </div>
-                <div class="journey-step">
-                    <div class="journey-step__number">02</div>
-                    <div class="journey-step__icon">🎯</div>
-                    <h3 class="journey-step__title">Custom Plan</h3>
-                    <p class="journey-step__text">Your treatment plan is tailored to your unique anatomy, skin type, and aesthetic goals. No cookie-cutter solutions.</p>
+                <!-- Step 3 -->
+                <div style="text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#c9a96e;margin-bottom:.75rem;">03</div>
+                    <div style="font-size:2rem;margin-bottom:1rem;height:60px;width:60px;display:flex;align-items:center;justify-content:center;margin-left:auto;margin-right:auto;background:rgba(201,169,110,.08);border-radius:16px;">✨</div>
+                    <h3 style="font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a2e;margin:0 0 .5rem;">Expert Treatment</h3>
+                    <p style="font-size:.8rem;color:#7a7a90;line-height:1.6;margin:0;">Relax in our luxury suite while certified professionals deliver precision treatments.</p>
                 </div>
-                <div class="journey-step__connector" aria-hidden="true">
-                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-step__number">03</div>
-                    <div class="journey-step__icon">✨</div>
-                    <h3 class="journey-step__title">Expert Treatment</h3>
-                    <p class="journey-step__text">Relax in our luxury suite while our certified professionals deliver precision treatments using premium products.</p>
-                </div>
-                <div class="journey-step__connector" aria-hidden="true">
-                    <svg width="40" height="12" viewBox="0 0 40 12" fill="none"><path d="M0 6h35m0 0l-5-5m5 5l-5 5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <div class="journey-step">
-                    <div class="journey-step__number">04</div>
-                    <div class="journey-step__icon">🌟</div>
-                    <h3 class="journey-step__title">Glow Up!</h3>
-                    <p class="journey-step__text">Walk out feeling radiant and confident. We guide you through aftercare and schedule follow-ups for lasting results.</p>
+                <!-- Step 4 -->
+                <div style="text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#c9a96e;margin-bottom:.75rem;">04</div>
+                    <div style="font-size:2rem;margin-bottom:1rem;height:60px;width:60px;display:flex;align-items:center;justify-content:center;margin-left:auto;margin-right:auto;background:rgba(201,169,110,.08);border-radius:16px;">🌟</div>
+                    <h3 style="font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a2e;margin:0 0 .5rem;">Glow Up!</h3>
+                    <p style="font-size:.8rem;color:#7a7a90;line-height:1.6;margin:0;">Walk out feeling radiant and confident with aftercare guidance for lasting results.</p>
                 </div>
             </div>
         </div>
