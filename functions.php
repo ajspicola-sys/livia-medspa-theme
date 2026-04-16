@@ -100,6 +100,7 @@ function livia_force_page_templates($template) {
             'shop'         => 'page-products.php',
             'values'       => 'page-values.php',
             'before-after' => 'page-before-after.php',
+            'financing'    => 'page-financing.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -243,6 +244,7 @@ function livia_create_pages() {
         'Parties'        => '',
         'Memberships'    => '',
         'Blog'           => '',
+        'Financing'      => '',
     ];
 
     foreach ($pages as $title => $content) {
@@ -275,7 +277,7 @@ add_action('after_switch_theme', 'livia_create_pages');
 
 // ── Fix Reading Settings (one-time) ───────────────────────────────
 function livia_fix_reading_settings() {
-    if (get_option('livia_reading_fixed_v1')) return;
+    if (get_option('livia_reading_fixed_v2')) return;
 
     // Find the Blog page and set it as posts page
     $blog_page = get_page_by_title('Blog', OBJECT, 'page');
@@ -290,7 +292,18 @@ function livia_fix_reading_settings() {
         update_option('page_on_front', $home_page->ID);
     }
 
-    update_option('livia_reading_fixed_v1', true);
+    // Auto-create Financing page if it doesn't exist
+    $financing = get_page_by_title('Financing', OBJECT, 'page');
+    if (!$financing) {
+        wp_insert_post([
+            'post_title'  => 'Financing',
+            'post_content' => '',
+            'post_status' => 'publish',
+            'post_type'   => 'page',
+        ]);
+    }
+
+    update_option('livia_reading_fixed_v2', true);
 }
 add_action('init', 'livia_fix_reading_settings');
 

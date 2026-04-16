@@ -7302,6 +7302,86 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
+   FINANCING / PAYMENT PLANS
+   ========================================================================== */
+.cherry-section {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: #faf8f5;
+}
+
+.cherry-widget-wrap {
+  margin-top: 2rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Override Cherry widget font to match theme */
+.cherry-widget-wrap * {
+  font-family: 'DM Sans', 'Open Sans', sans-serif !important;
+}
+
+.financing-why {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: #f5f0ea;
+}
+
+.financing-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.financing-benefit {
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.financing-benefit:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(26, 26, 46, 0.08);
+}
+
+.financing-benefit__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.financing-benefit__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.financing-benefit__text {
+  font-size: 0.85rem;
+  color: #7a7a90;
+  line-height: 1.65;
+}
+
+@media (max-width: 960px) {
+  .financing-benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .financing-benefits {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
    MEMBERSHIP TIERS — LIVIA Luxe Cards
    ========================================================================== */
 .membership-tiers {
