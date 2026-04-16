@@ -1988,7 +1988,7 @@ html {
    ========================================================================== */
 .journey-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: linear-gradient(180deg, #E6E0D6 0%, #F0EBE3 100%);
+  background: #F0EBE3;
 }
 
 .journey-steps {
@@ -2310,7 +2310,7 @@ html {
    ========================================================================== */
 .supplements {
   padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
-  background: #E6E0D6;
+  background: #F0EBE3;
   position: relative;
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;
@@ -5981,7 +5981,7 @@ a.contact-card__text:hover {
 /* Blog Section (Homepage) */
 .blog-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FFFFFF;
 }
 
 .blog-card__link {
@@ -8055,7 +8055,7 @@ a.contact-card__text:hover {
 .ai-preview {
   width: 100%;
   padding: clamp(5rem, 10vw, 8.75rem) 0;
-  background: #E6E0D6;
+  background: #FFFFFF;
   position: relative;
   overflow: hidden;
 }
