@@ -452,42 +452,7 @@
         }
     }
 
-    // ── Stat counter animation (Why Us section) ──────────────────
-    var statObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                animateCounters(entry.target);
-                statObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    var statSection = document.querySelector('.why-us__visual');
-    if (statSection) statObserver.observe(statSection);
-
-    function animateCounters(container) {
-        var nums = container.querySelectorAll('.why-us__stat-number');
-        nums.forEach(function(el) {
-            var text = el.textContent.trim();
-            var match = text.match(/^([\d,]+)(\+?)$/);
-            if (!match) return;
-            var target = parseInt(match[1].replace(/,/g, ''), 10);
-            var suffix = match[2] || '';
-            var duration = 1800;
-            var start = performance.now();
-
-            function tick(now) {
-                var elapsed = now - start;
-                var progress = Math.min(elapsed / duration, 1);
-                // Ease out cubic
-                var eased = 1 - Math.pow(1 - progress, 3);
-                var current = Math.round(eased * target);
-                el.textContent = current.toLocaleString() + suffix;
-                if (progress < 1) requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-        });
-    }
+    // (stat counter removed — static values used instead)
 
     // ── Stats bar counter animation (About page) ─────────────────
     var statsBar = document.querySelector('.stats-bar');
@@ -670,35 +635,7 @@
         });
     }
 
-    // ── Counter Animation ───────────────────────────────────────
-    var counters = document.querySelectorAll('[data-count]');
-    if (counters.length) {
-        var counterObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    var el = entry.target;
-                    var target = parseInt(el.getAttribute('data-count'), 10);
-                    var suffix = el.getAttribute('data-suffix') || '';
-                    var duration = target > 1000 ? 2000 : 1500;
-                    var start = 0;
-                    var startTime = null;
-
-                    function animate(ts) {
-                        if (!startTime) startTime = ts;
-                        var progress = Math.min((ts - startTime) / duration, 1);
-                        // easeOutQuart
-                        var ease = 1 - Math.pow(1 - progress, 4);
-                        var current = Math.floor(ease * target);
-                        el.textContent = current.toLocaleString() + suffix;
-                        if (progress < 1) requestAnimationFrame(animate);
-                    }
-                    requestAnimationFrame(animate);
-                    counterObserver.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(function(c) { counterObserver.observe(c); });
-    }
+    // (generic counter animation removed — static values used)
 
     // ── Hide scroll indicator on scroll ─────────────────────────
     var scrollIndicator = document.querySelector('.hero__scroll-indicator');
