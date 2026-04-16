@@ -556,6 +556,9 @@ html {
   transform: translateY(-8px);
   transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
   z-index: 100;
+  /* Invisible top padding acts as hover bridge between nav link and dropdown */
+  padding-top: 0.5rem;
+  margin-top: 0;
 }
 
 .mega-menu::before {
