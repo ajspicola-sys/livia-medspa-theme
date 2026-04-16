@@ -115,8 +115,9 @@ add_filter('template_include', 'livia_force_page_templates');
 
 // ── Enqueue Assets ─────────────────────────────────────────────────
 function livia_enqueue_styles() {
-    // Force fresh CSS on every load (temporary — will optimize once deploy is stable)
-    $theme_version = time();
+    // Use file modification time so browser caches CSS between visits
+    // but auto-busts cache when the file actually changes
+    $theme_version = filemtime(get_stylesheet_directory() . '/style.css');
 
     // Google Fonts — single optimized request with display=swap
     wp_enqueue_style(
@@ -126,7 +127,7 @@ function livia_enqueue_styles() {
         null
     );
 
-    // Main stylesheet — version auto-updates when file changes
+    // Main stylesheet — cacheable, busts only when file changes
     wp_enqueue_style('livia-style', get_stylesheet_uri(), ['livia-google-fonts'], $theme_version);
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
@@ -135,7 +136,8 @@ add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 // Critical CSS is already inlined in header.php, so we can safely
 // async-load both Google Fonts and the main stylesheet.
 function livia_async_styles($html, $handle) {
-    $async_handles = ['livia-google-fonts'];
+    // Both Google Fonts AND main stylesheet are async — critical CSS is already inlined in header.php
+    $async_handles = ['livia-google-fonts', 'livia-style'];
     if (in_array($handle, $async_handles) && !is_admin()) {
         // media="print" prevents render-blocking, onload swaps to "all"
         // noscript fallback ensures CSS loads without JS
@@ -162,14 +164,8 @@ function livia_async_styles($html, $handle) {
 }
 add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
 
-// ── Performance: Preload critical fonts & add resource hints ───────
+// ── Performance: Preload critical fonts only (preconnects live in header.php) ──
 function livia_resource_hints() {
-    // DNS prefetch + preconnect for Google Fonts
-    echo '<link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
-    echo '<link rel="dns-prefetch" href="//fonts.gstatic.com">' . "\n";
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
-    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
-
     // DNS prefetch for external image CDN
     echo '<link rel="dns-prefetch" href="//liviamedspa.com">' . "\n";
 
