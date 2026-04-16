@@ -69,7 +69,7 @@ body {
   font-size: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
   line-height: 1.6;
   color: #1A0E2E;
-  background: #F0EBE3;
+  background: #FAF7F4;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #AC13F9 transparent;
@@ -2836,7 +2836,7 @@ html {
    ========================================================================== */
 .latest-posts {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .latest-posts__grid {
@@ -3040,7 +3040,7 @@ html {
    ========================================================================== */
 .faq-section {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .faq-list {
@@ -3053,7 +3053,7 @@ html {
    ========================================================================== */
 .cta-section {
   padding: clamp(4rem, 3rem + 4vw, 6rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
   position: relative;
   overflow: hidden;
 }
@@ -3350,7 +3350,7 @@ html {
    ========================================================================== */
 .search-results {
   padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .search-results__grid {
@@ -3966,7 +3966,7 @@ html {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.88rem;
   color: #1A0E2E;
-  background: #F0EBE3;
+  background: #FAF7F4;
   border: 1.5px solid #e8e8ed;
   border-radius: 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -4136,7 +4136,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .contact-map {
   padding: 0 0 clamp(3rem, 2rem + 3vw, 5rem);
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .contact-map__wrap {
@@ -4248,7 +4248,7 @@ a.contact-card__text:hover {
 /* ── Category Filters ─────────────────────────────────────── */
 .blog-filters {
   padding: 1.5rem 0 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .blog-filters__bar {
@@ -4823,8 +4823,8 @@ a.contact-card__text:hover {
 }
 
 .service-why-us__card {
-  background: #F0EBE3;
-  border: 1px solid #f0f0f4;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 16px;
   padding: 2.5rem 2rem;
   text-align: center;
@@ -5005,7 +5005,7 @@ a.contact-card__text:hover {
 /* Team Preview */
 .team-preview {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .team-grid {
@@ -5732,7 +5732,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .careers-why {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .careers-perks {
@@ -5992,7 +5992,7 @@ a.contact-card__text:hover {
 /* Blog Archive */
 .blog-archive {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .blog-grid {
@@ -6343,7 +6343,7 @@ a.contact-card__text:hover {
 }
 
 .blog-pagination .page-numbers li a:hover {
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 /* Empty Blog */
@@ -6406,7 +6406,7 @@ a.contact-card__text:hover {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: #F0EBE3;
+  background: #FFFFFF;
   border-radius: 14px;
   margin: 2.5rem 0;
   border: 1px solid #f0f0f4;
@@ -6551,9 +6551,9 @@ a.contact-card__text:hover {
 .membership-step {
   text-align: center;
   padding: 2rem 1.5rem;
-  background: #F0EBE3;
+  background: #FFFFFF;
   border-radius: 18px;
-  border: 1px solid #f0f0f4;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
@@ -6905,7 +6905,7 @@ a.contact-card__text:hover {
 /* How It Works */
 .party-how-it-works {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .party-steps {
@@ -7601,7 +7601,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .cherry-section {
   padding: clamp(4rem, 8vw, 6rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .cherry-widget-wrap {
@@ -7681,7 +7681,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .membership-tiers {
   padding: clamp(5rem, 10vw, 8rem) 0;
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 /* Tier cards grid */
@@ -8405,7 +8405,7 @@ a.contact-card__text:hover {
    ========================================================================== */
 .legal-page {
   padding: clamp(3rem, 2rem + 4vw, 6rem) 0 clamp(4rem, 3rem + 4vw, 7rem);
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .legal-page__inner {
@@ -8799,7 +8799,7 @@ a.contact-card__text:hover {
 }
 
 .beauty-bank-how {
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 /* Steps */
@@ -8904,7 +8904,7 @@ a.contact-card__text:hover {
 
 /* Policy Cards */
 .beauty-bank-policy {
-  background: #F0EBE3;
+  background: #FAF7F4;
 }
 
 .beauty-bank-policy-grid {
