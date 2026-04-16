@@ -125,7 +125,7 @@
                     </div>
                     <div class="footer__contact-item">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Mon–Sat: 9am – 6pm</span>
+                        <span>Mon–Wed: 9am–7pm &nbsp;|&nbsp; Thu–Sat: 9am–4pm</span>
                     </div>
                 </div>
                 <a href="#book-now" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>

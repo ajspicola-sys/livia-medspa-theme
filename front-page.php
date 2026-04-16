@@ -49,14 +49,14 @@ get_header(); ?>
     "openingHoursSpecification": [
         {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday"],
             "opens": "09:00",
-            "closes": "18:00"
+            "closes": "19:00"
         },
         {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "10:00",
+            "dayOfWeek": ["Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
             "closes": "16:00"
         }
     ],
