@@ -222,6 +222,18 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          YOUR JOURNEY — 4-step process
          ═══════════════════════════════════════════════════════════════ -->
+    <style>
+    .journey-section{padding:clamp(4rem,3rem+4vw,7rem) 0;background:linear-gradient(180deg,#f5f0ea 0%,#faf8f5 100%)}
+    .journey-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+    .journey-step{text-align:center;padding:2rem 1.25rem;background:#fff;border-radius:16px;border:1px solid #f0f0f4;transition:transform .3s ease,box-shadow .3s ease}
+    .journey-step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.06);border-color:rgba(201,169,110,.2)}
+    .journey-step__number{font-family:'Cormorant Garamond',serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;color:#c9a96e;margin-bottom:.75rem}
+    .journey-step__icon{font-size:2rem;margin:0 auto 1rem;height:60px;width:60px;display:flex;align-items:center;justify-content:center;background:rgba(201,169,110,.08);border-radius:16px}
+    .journey-step__title{font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a2e;margin:0 0 .5rem}
+    .journey-step__text{font-size:.8rem;color:#7a7a90;line-height:1.6;margin:0}
+    @media(max-width:768px){.journey-steps{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.journey-steps{grid-template-columns:1fr}}
+    </style>
     <section class="journey-section" aria-label="How it works">
         <div class="section__inner">
             <div class="section__header reveal">
