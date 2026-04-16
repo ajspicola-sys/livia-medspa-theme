@@ -162,7 +162,7 @@ get_header(); ?>
 
                 <!-- Cutout model image with bottom fade -->
                 <div class="hero__model">
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/04/New-Hero.png"
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png"
                          alt="Livia Med Spa aesthetic treatment model"
                          class="hero__model-img"
                          fetchpriority="high"
