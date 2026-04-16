@@ -134,7 +134,7 @@ add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 // Critical CSS is already inlined in header.php, so we can safely
 // async-load both Google Fonts and the main stylesheet.
 function livia_async_styles($html, $handle) {
-    $async_handles = ['livia-google-fonts', 'livia-style'];
+    $async_handles = ['livia-google-fonts'];
     if (in_array($handle, $async_handles) && !is_admin()) {
         // media="print" prevents render-blocking, onload swaps to "all"
         // noscript fallback ensures CSS loads without JS
