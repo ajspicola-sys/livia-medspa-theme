@@ -189,15 +189,8 @@ function livia_script_loader_tag($tag, $handle) {
 }
 add_filter('script_loader_tag', 'livia_script_loader_tag', 10, 2);
 
-// ── Performance: Remove query strings from static resources ────────
-function livia_remove_script_version($src) {
-    if (strpos($src, 'ver=')) {
-        $src = remove_query_arg('ver', $src);
-    }
-    return $src;
-}
-add_filter('style_loader_src', 'livia_remove_script_version', 9999);
-add_filter('script_loader_src', 'livia_remove_script_version', 9999);
+// NOTE: Version query strings (ver=) are kept intentionally for cache busting.
+// They ensure the browser loads the latest CSS when the theme is updated.
 
 // ── Performance: Limit post revisions ──────────────────────────────
 if (!defined('WP_POST_REVISIONS')) {
