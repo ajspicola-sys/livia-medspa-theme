@@ -96,13 +96,13 @@ get_header(); ?>
                 <!-- Stats row -->
                 <div class="hero__stats" aria-label="Practice highlights">
                     <div class="hero__stat">
-                        <span class="hero__stat-num">70+</span>
-                        <span class="hero__stat-label">Five-Star Reviews</span>
+                        <span class="hero__stat-num">500+</span>
+                        <span class="hero__stat-label">Patients Treated</span>
                     </div>
                     <div class="hero__stat-divider" aria-hidden="true"></div>
                     <div class="hero__stat">
-                        <span class="hero__stat-num">18+</span>
-                        <span class="hero__stat-label">Treatments</span>
+                        <span class="hero__stat-num">3+</span>
+                        <span class="hero__stat-label">Years Experience</span>
                     </div>
                     <div class="hero__stat-divider" aria-hidden="true"></div>
                     <div class="hero__stat">
