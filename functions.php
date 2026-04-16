@@ -101,7 +101,8 @@ function livia_force_page_templates($template) {
             'values'       => 'page-values.php',
             'before-after' => 'page-before-after.php',
             'financing'    => 'page-financing.php',
-            'privacy-policy' => 'page-privacy-policy.php',
+            'privacy-policy'      => 'page-privacy-policy.php',
+            'cancellation-policy' => 'page-cancellation-policy.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -320,6 +321,23 @@ function livia_create_privacy_page() {
     update_option('livia_privacy_page_created_v1', true);
 }
 add_action('init', 'livia_create_privacy_page');
+
+// ── Auto-create Cancellation Policy page ───────────────────────
+function livia_create_cancellation_page() {
+    if (get_option('livia_cancellation_page_created_v1')) return;
+    $existing = get_page_by_path('cancellation-policy', OBJECT, 'page');
+    if (!$existing) {
+        wp_insert_post([
+            'post_title'   => 'Cancellation Policy',
+            'post_name'    => 'cancellation-policy',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+    }
+    update_option('livia_cancellation_page_created_v1', true);
+}
+add_action('init', 'livia_create_cancellation_page');
 
 // ── Auto-create Starter Blog Posts ─────────────────────────────────
 function livia_create_blog_posts() {
