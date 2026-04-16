@@ -110,7 +110,7 @@ get_header(); ?>
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         </div>
                         <h3 class="contact-card__title">Location</h3>
-                        <p class="contact-card__text">Tampa, FL 33606</p>
+                        <p class="contact-card__text">10043 N Dale Mabry Hwy<br>Tampa, FL 33618</p>
                     </div>
 
                     <div class="contact-card">
@@ -155,7 +155,7 @@ get_header(); ?>
     <section class="contact-map" aria-label="Our location">
         <div class="contact-map__wrap reveal">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112539.75152973957!2d-82.5511647!3d27.9505669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c48aef610245%3A0xdea2de0661043e26!2sTampa%2C+FL!5e0!3m2!1sen!2sus!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3522.4!2d-82.503!3d28.075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c48aef610245%3A0x1!2s10043+N+Dale+Mabry+Hwy%2C+Tampa%2C+FL+33618!5e0!3m2!1sen!2sus!4v1"
                 width="100%"
                 height="400"
                 style="border:0;border-radius:16px;"

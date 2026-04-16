@@ -27,7 +27,7 @@ get_header(); ?>
     "logo": "https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "4012 Gunn Highway, Suite 164",
+        "streetAddress": "10043 N Dale Mabry Hwy",
         "addressLocality": "Tampa",
         "addressRegion": "FL",
         "postalCode": "33618",

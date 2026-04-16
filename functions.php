@@ -228,12 +228,13 @@ function livia_schema_markup() {
     "telephone": "+1-813-230-2219",
     "address": {
         "@type": "PostalAddress",
+        "streetAddress": "10043 N Dale Mabry Hwy",
         "addressLocality": "Tampa",
         "addressRegion": "FL",
-        "postalCode": "33606",
+        "postalCode": "33618",
         "addressCountry": "US"
     },
-    "openingHours": "Mo-Sa 09:00-18:00",
+    "openingHours": ["Mo-We 09:00-19:00", "Th-Sa 09:00-16:00"],
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
