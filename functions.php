@@ -688,6 +688,16 @@ function livia_register_services() {
 }
 add_action('init', 'livia_register_services');
 
+// ── Show ALL services on the services archive page ─────────────────
+function livia_services_per_page($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('service')) {
+        $query->set('posts_per_page', 100);
+        $query->set('orderby', 'menu_order');
+        $query->set('order', 'ASC');
+    }
+}
+add_action('pre_get_posts', 'livia_services_per_page');
+
 // ── Service custom fields (meta box) ───────────────────────────────
 function livia_service_meta_boxes() {
     add_meta_box(
