@@ -81,9 +81,8 @@ get_header(); ?>
         "worstRating": "1"
     },
     "sameAs": [
-        "https://www.instagram.com/liviamedspa",
-        "https://www.facebook.com/liviamedspa",
-        "https://g.co/kgs/liviamedspa"
+        "https://www.instagram.com/liviamedspa/",
+        "https://www.facebook.com/p/Livia-Med-Spa-61561610168278/"
     ],
     "founder": {
         "@type": "Person",
