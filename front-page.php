@@ -501,6 +501,10 @@ get_header(); ?>
                                 <div class="latest-post-card__img">
                                     <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
                                 </div>
+                            <?php else : ?>
+                                <div class="latest-post-card__img latest-post-card__img--placeholder">
+                                    <span>📝</span>
+                                </div>
                             <?php endif; ?>
                             <div class="latest-post-card__body">
                                 <span class="latest-post-card__date"><?php echo get_the_date('M j, Y'); ?></span>

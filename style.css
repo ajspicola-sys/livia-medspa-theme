@@ -2502,6 +2502,14 @@ html {
   transform: scale(1.05);
 }
 
+.latest-post-card__img--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f0ea, #e8e0d4);
+  font-size: 2.5rem;
+}
+
 .latest-post-card__body {
   padding: 1.25rem 1.5rem 1.5rem;
   flex: 1;
