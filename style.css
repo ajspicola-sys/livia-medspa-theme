@@ -8576,3 +8576,191 @@ a.contact-card__text:hover {
 @media (max-width: 600px) {
   .refund-policy-cards { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   BEAUTY BANK PAGE
+   ========================================================================== */
+.beauty-bank-hero {
+  background: linear-gradient(135deg, #1A0E2E 0%, #2D1650 50%, #1A0E2E 100%);
+}
+
+.beauty-bank-section {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+}
+
+.beauty-bank-how {
+  background: #F0EBE3;
+}
+
+/* Steps */
+.beauty-bank-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.beauty-bank-step {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.beauty-bank-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(172, 19, 249, 0.1);
+}
+
+.beauty-bank-step__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  background: linear-gradient(135deg, #AC13F9, #F471D1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.beauty-bank-step h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1A0E2E;
+  margin-bottom: 0.75rem;
+}
+
+.beauty-bank-step p {
+  font-size: 0.88rem;
+  color: #6B5B73;
+  line-height: 1.6;
+}
+
+/* Benefits */
+.beauty-bank-benefits {
+  background: linear-gradient(180deg, #1A0E2E 0%, #261640 100%);
+}
+
+.beauty-bank-benefits .section__label { color: rgba(240,235,227,0.5); }
+.beauty-bank-benefits .section__title { color: #F0EBE3; }
+
+.beauty-bank-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.beauty-bank-benefit {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(172, 19, 249, 0.2);
+  border-radius: 18px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.beauty-bank-benefit:hover {
+  background: rgba(172, 19, 249, 0.1);
+  border-color: rgba(172, 19, 249, 0.4);
+}
+
+.beauty-bank-benefit__icon {
+  font-size: 2.25rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.beauty-bank-benefit h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #F0EBE3;
+  margin-bottom: 0.6rem;
+}
+
+.beauty-bank-benefit p {
+  font-size: 0.85rem;
+  color: rgba(240,235,227,0.65);
+  line-height: 1.6;
+}
+
+/* Policy Cards */
+.beauty-bank-policy {
+  background: #F0EBE3;
+}
+
+.beauty-bank-policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.beauty-bank-policy-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  border-top: 3px solid #AC13F9;
+  transition: transform 0.3s ease;
+}
+
+.beauty-bank-policy-card:hover {
+  transform: translateY(-3px);
+}
+
+.beauty-bank-policy-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.beauty-bank-policy-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1A0E2E;
+  margin-bottom: 0.75rem;
+}
+
+.beauty-bank-policy-card ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.beauty-bank-policy-card li {
+  font-size: 0.84rem;
+  color: #5A4660;
+  line-height: 1.5;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.beauty-bank-policy-card li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #AC13F9;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .beauty-bank-steps,
+  .beauty-bank-benefit-grid { grid-template-columns: 1fr 1fr; }
+  .beauty-bank-policy-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .beauty-bank-steps,
+  .beauty-bank-benefit-grid,
+  .beauty-bank-policy-grid { grid-template-columns: 1fr; }
+}

@@ -104,6 +104,7 @@ function livia_force_page_templates($template) {
             'privacy-policy'      => 'page-privacy-policy.php',
             'cancellation-policy' => 'page-cancellation-policy.php',
             'refund-policy'       => 'page-refund-policy.php',
+            'beauty-bank'         => 'page-beauty-bank.php',
         ];
         if (isset($map[$slug])) {
             $custom = get_template_directory() . '/' . $map[$slug];
@@ -356,6 +357,23 @@ function livia_create_refund_page() {
     update_option('livia_refund_page_created_v1', true);
 }
 add_action('init', 'livia_create_refund_page');
+
+// ── Auto-create Beauty Bank page ──────────────────────────────
+function livia_create_beauty_bank_page() {
+    if (get_option('livia_beauty_bank_page_created_v1')) return;
+    $existing = get_page_by_path('beauty-bank', OBJECT, 'page');
+    if (!$existing) {
+        wp_insert_post([
+            'post_title'   => 'Beauty Bank Membership',
+            'post_name'    => 'beauty-bank',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+    }
+    update_option('livia_beauty_bank_page_created_v1', true);
+}
+add_action('init', 'livia_create_beauty_bank_page');
 
 // ── Auto-create Starter Blog Posts ─────────────────────────────────
 function livia_create_blog_posts() {
