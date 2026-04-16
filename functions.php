@@ -1256,6 +1256,11 @@ add_action('save_post', 'livia_save_seo_meta');
 
 // ── Override the <title> tag with custom SEO title ─────────────────
 function livia_custom_title($title) {
+    if (is_front_page()) {
+        $title['title'] = 'Med Spa Tampa | Botox, Fillers & Laser Treatments';
+        $title['site']  = 'Livia Med Spa';
+        return $title;
+    }
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_livia_seo_title', true);
         if (!empty($custom)) {

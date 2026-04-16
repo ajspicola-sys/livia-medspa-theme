@@ -18,26 +18,39 @@
 
     <?php
     // Dynamic meta description
-    $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more.';
-    if (is_singular('service')) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment at Livia Med Spa in Tampa, FL.';
+    if (is_front_page()) {
+        $meta_desc = 'Livia Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN — serving Tampa, FL. Book today.';
+    } elseif (is_singular('service')) {
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at Livia Med Spa — board-certified provider, natural results.';
     } elseif (is_singular('product')) {
-        $meta_desc = get_the_title() . ' — Medical-grade products available at Livia Med Spa Tampa.';
+        $meta_desc = get_the_title() . ' — Medical-grade skincare products available at Livia Med Spa in Tampa, FL.';
     } elseif (is_page()) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: $meta_desc;
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'Livia Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
+    } else {
+        $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
     }
     ?>
     <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
+    <link rel="canonical" href="<?php echo esc_url(get_permalink() ?: home_url('/')); ?>">
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="Livia Med Spa">
     <meta property="og:title" content="<?php echo esc_attr(wp_get_document_title()); ?>">
     <meta property="og:description" content="<?php echo esc_attr($meta_desc); ?>">
     <meta property="og:type" content="<?php echo is_front_page() ? 'website' : 'article'; ?>">
-    <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>">
+    <meta property="og:url" content="<?php echo esc_url(is_front_page() ? home_url('/') : get_permalink()); ?>">
+    <meta property="og:locale" content="en_US">
     <?php if (has_post_thumbnail()) : ?>
         <meta property="og:image" content="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>">
+    <?php else : ?>
+        <meta property="og:image" content="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png">
     <?php endif; ?>
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr(wp_get_document_title()); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr($meta_desc); ?>">
+    <meta name="twitter:site" content="@liviamedspa">
 
     <!-- Preconnect for Google Fonts performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

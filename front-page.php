@@ -12,19 +12,40 @@ get_header(); ?>
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
+    "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
+    "@id": "<?php echo esc_url(home_url('/')); ?>#business",
     "name": "Livia Med Spa",
-    "description": "Tampa's premier destination for advanced aesthetics including Botox, dermal fillers, laser treatments, and medical-grade skincare.",
+    "alternateName": "Livia Medical Spa Tampa",
+    "description": "Tampa's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, and medical-grade skincare led by Angela Spicola, APRN.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
     "telephone": "+18132302219",
     "email": "support@liviamedspa.com",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Credit Card, AMEX, Visa, MasterCard",
+    "priceRange": "$$-$$$",
+    "image": "https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png",
+    "logo": "https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png",
     "address": {
         "@type": "PostalAddress",
+        "streetAddress": "4012 Gunn Highway, Suite 164",
         "addressLocality": "Tampa",
         "addressRegion": "FL",
-        "postalCode": "33606",
+        "postalCode": "33618",
         "addressCountry": "US"
     },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "28.0764",
+        "longitude": "-82.5205"
+    },
+    "areaServed": [
+        { "@type": "City", "name": "Tampa" },
+        { "@type": "City", "name": "Westchase" },
+        { "@type": "City", "name": "Carrollwood" },
+        { "@type": "City", "name": "Lutz" },
+        { "@type": "City", "name": "Odessa" },
+        { "@type": "City", "name": "Land O' Lakes" }
+    ],
     "openingHoursSpecification": [
         {
             "@type": "OpeningHoursSpecification",
@@ -39,12 +60,37 @@ get_header(); ?>
             "closes": "16:00"
         }
     ],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Medical Spa Services",
+        "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Botox & Neuromodulators", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dermal Fillers", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "RF Microneedling", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laser Hair Removal", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chemical Peels", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Medical-Grade Facials", "areaServed": "Tampa, FL" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beauty Bank Membership", "areaServed": "Tampa, FL" } }
+        ]
+    },
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "70"
+        "reviewCount": "70",
+        "bestRating": "5",
+        "worstRating": "1"
     },
-    "priceRange": "$$-$$$"
+    "sameAs": [
+        "https://www.instagram.com/liviamedspa",
+        "https://www.facebook.com/liviamedspa",
+        "https://g.co/kgs/liviamedspa"
+    ],
+    "founder": {
+        "@type": "Person",
+        "name": "Angela Spicola",
+        "jobTitle": "APRN, Board-Certified Aesthetic Provider",
+        "worksFor": { "@id": "<?php echo esc_url(home_url('/')); ?>#business" }
+    }
 }
 </script>
 
