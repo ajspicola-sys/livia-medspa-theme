@@ -337,7 +337,7 @@ html {
 
 /* Image logo */
 .site-logo__img {
-  height: clamp(38px, 2.5rem + 0.5vw, 50px);
+  height: clamp(30px, 2rem + 0.3vw, 40px);
   width: auto;
   display: block;
   transition: filter 0.4s ease, transform 0.4s ease;
