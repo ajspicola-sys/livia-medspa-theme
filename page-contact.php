@@ -27,6 +27,7 @@ get_header(); ?>
                     <h2 class="contact-form__title">Send a Message</h2>
                     <p class="contact-form__subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
                     <form class="contact-form" id="contact-form" method="post" novalidate>
+                        <?php wp_nonce_field('livia_contact_form', 'livia_contact_nonce'); ?>
                         <div class="contact-form__row">
                             <div class="form-group">
                                 <label for="cf-first" class="form-label">First Name</label>
@@ -71,6 +72,7 @@ get_header(); ?>
                             <label for="cf-message" class="form-label">Message</label>
                             <textarea id="cf-message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell us about your goals or ask a question..."></textarea>
                         </div>
+                        <input type="hidden" name="action" value="livia_contact_submit">
                         <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
                             Send Message
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -118,12 +120,12 @@ get_header(); ?>
                         <h3 class="contact-card__title">Hours</h3>
                         <div class="contact-card__hours">
                             <div class="contact-card__hour-row">
-                                <span>Monday – Friday</span>
-                                <span>9:00 AM – 6:00 PM</span>
+                                <span>Monday – Wednesday</span>
+                                <span>9:00 AM – 7:00 PM</span>
                             </div>
                             <div class="contact-card__hour-row">
-                                <span>Saturday</span>
-                                <span>10:00 AM – 4:00 PM</span>
+                                <span>Thursday – Saturday</span>
+                                <span>9:00 AM – 4:00 PM</span>
                             </div>
                             <div class="contact-card__hour-row">
                                 <span>Sunday</span>
@@ -136,14 +138,11 @@ get_header(); ?>
                     <div class="contact-social">
                         <span class="contact-social__label">Follow Us</span>
                         <div class="contact-social__links">
-                            <a href="#" class="footer__social-link" aria-label="Follow us on Instagram">
+                            <a href="https://www.instagram.com/liviamedspa/" class="footer__social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                             </a>
-                            <a href="#" class="footer__social-link" aria-label="Follow us on Facebook">
+                            <a href="https://www.facebook.com/p/Livia-Med-Spa-61561610168278/" class="footer__social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                            </a>
-                            <a href="#" class="footer__social-link" aria-label="Follow us on TikTok">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
                             </a>
                         </div>
                     </div>

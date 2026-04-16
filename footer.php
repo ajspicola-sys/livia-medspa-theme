@@ -609,11 +609,34 @@
     if (contactForm && formSuccess) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Show success state
-            contactForm.style.display = 'none';
-            formSuccess.classList.add('is-visible');
-            // Scroll to success message
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            var btn = contactForm.querySelector('.contact-form__submit');
+            var originalText = btn ? btn.innerHTML : '';
+            if (btn) { btn.innerHTML = 'Sending…'; btn.disabled = true; }
+
+            var data = new FormData(contactForm);
+            data.set('action', 'livia_contact_submit');
+
+            fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
+                method: 'POST',
+                body: data,
+                credentials: 'same-origin'
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(res) {
+                if (res.success) {
+                    contactForm.style.display = 'none';
+                    formSuccess.classList.add('is-visible');
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    if (btn) { btn.innerHTML = originalText; btn.disabled = false; }
+                    var msg = (res.data && res.data.message) ? res.data.message : 'Something went wrong. Please try again.';
+                    alert(msg);
+                }
+            })
+            .catch(function() {
+                if (btn) { btn.innerHTML = originalText; btn.disabled = false; }
+                alert('Connection error. Please call us at (813) 230-2219.');
+            });
         });
     }
 

@@ -1373,3 +1373,50 @@ function livia_security_headers() {
     }
 }
 add_action('send_headers', 'livia_security_headers');
+
+// ── Contact Form: AJAX email handler ───────────────────────────────
+function livia_handle_contact_form() {
+    // Verify nonce
+    if ( ! isset($_POST['livia_contact_nonce']) || ! wp_verify_nonce($_POST['livia_contact_nonce'], 'livia_contact_form') ) {
+        wp_send_json_error(['message' => 'Security check failed. Please refresh and try again.']);
+    }
+
+    // Sanitize inputs
+    $first   = sanitize_text_field($_POST['first_name'] ?? '');
+    $last    = sanitize_text_field($_POST['last_name']  ?? '');
+    $email   = sanitize_email($_POST['email']           ?? '');
+    $phone   = sanitize_text_field($_POST['phone']      ?? '');
+    $service = sanitize_text_field($_POST['service']    ?? '');
+    $message = sanitize_textarea_field($_POST['message'] ?? '');
+
+    // Validate required fields
+    if ( empty($first) || empty($email) || ! is_email($email) ) {
+        wp_send_json_error(['message' => 'Please fill in all required fields.']);
+    }
+
+    $to      = 'support@liviamedspa.com';
+    $subject = 'New Contact Form Submission — Livia Med Spa';
+
+    $body  = "You have a new message from your website contact form.\n\n";
+    $body .= "Name:    {$first} {$last}\n";
+    $body .= "Email:   {$email}\n";
+    $body .= "Phone:   " . ($phone ?: 'Not provided') . "\n";
+    $body .= "Service: " . ($service ?: 'Not specified') . "\n\n";
+    $body .= "Message:\n{$message}\n\n";
+    $body .= "---\nSent from liviamedspa.com";
+
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        "Reply-To: {$first} {$last} <{$email}>",
+    ];
+
+    $sent = wp_mail($to, $subject, $body, $headers);
+
+    if ($sent) {
+        wp_send_json_success(['message' => 'Message sent! We\'ll get back to you within 24 hours.']);
+    } else {
+        wp_send_json_error(['message' => 'Something went wrong. Please call us at (813) 230-2219.']);
+    }
+}
+add_action('wp_ajax_livia_contact_submit',        'livia_handle_contact_form');
+add_action('wp_ajax_nopriv_livia_contact_submit', 'livia_handle_contact_form');
