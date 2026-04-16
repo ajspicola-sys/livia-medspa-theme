@@ -273,6 +273,174 @@ function livia_create_pages() {
 }
 add_action('after_switch_theme', 'livia_create_pages');
 
+// ── Auto-create Starter Blog Posts ─────────────────────────────────
+function livia_create_blog_posts() {
+    if (get_option('livia_blog_created_v1')) return;
+
+    // Create blog categories
+    $categories = ['Skincare', 'Injectables', 'Wellness', 'Treatments', 'Beauty Tips'];
+    $cat_ids = [];
+    foreach ($categories as $cat) {
+        $existing = term_exists($cat, 'category');
+        if ($existing) {
+            $cat_ids[$cat] = $existing['term_id'];
+        } else {
+            $term = wp_insert_term($cat, 'category');
+            if (!is_wp_error($term)) {
+                $cat_ids[$cat] = $term['term_id'];
+            }
+        }
+    }
+
+    $posts = [
+        [
+            'title'    => 'Botox vs. Fillers: Which Is Right for You?',
+            'category' => 'Injectables',
+            'excerpt'  => 'Understanding the difference between neuromodulators and dermal fillers is key to choosing the right treatment for your aesthetic goals.',
+            'content'  => '<h2>Understanding the Difference</h2>
+<p>One of the most common questions we hear at Livia Med Spa is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
+
+<h3>Botox: The Wrinkle Relaxer</h3>
+<p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles — think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
+
+<h3>Dermal Fillers: The Volume Restorer</h3>
+<p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juvéderm and Restylane.</p>
+
+<h3>Which Should You Choose?</h3>
+<p>The answer depends on your specific concerns. Many of our clients at Livia Med Spa benefit from a combination of both treatments — what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
+
+<p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at Livia Med Spa today.</p>',
+        ],
+        [
+            'title'    => 'The Ultimate Guide to Medical-Grade Skincare',
+            'category' => 'Skincare',
+            'excerpt'  => 'Why medical-grade products outperform drugstore brands and how to build a results-driven skincare routine.',
+            'content'  => '<h2>Why Medical-Grade Matters</h2>
+<p>Not all skincare is created equal. While drugstore products can provide basic hydration and sun protection, medical-grade skincare is formulated with higher concentrations of active ingredients that penetrate deeper into the skin for visible, lasting results.</p>
+
+<h3>Key Differences</h3>
+<p>Medical-grade products, like those from ZO Skin Health (which we carry at Livia Med Spa), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level — something over-the-counter products simply can\'t match.</p>
+
+<h3>Building Your Routine</h3>
+<p>A solid medical-grade skincare routine includes four essential steps:</p>
+<ul>
+<li><strong>Cleanser</strong> — Remove impurities without stripping your skin</li>
+<li><strong>Active Treatment</strong> — Target specific concerns (retinol, vitamin C, etc.)</li>
+<li><strong>Moisturizer</strong> — Lock in hydration and protect the skin barrier</li>
+<li><strong>Sunscreen</strong> — The single most important anti-aging product you can use</li>
+</ul>
+
+<p>Our providers at Livia Med Spa can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
+        ],
+        [
+            'title'    => 'What to Expect at Your First Med Spa Visit',
+            'category' => 'Treatments',
+            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Livia Med Spa — so you know exactly what to expect.',
+            'content'  => '<h2>Your First Visit, Demystified</h2>
+<p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At Livia Med Spa, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
+
+<h3>Step 1: The Consultation</h3>
+<p>Every journey starts with a free, no-pressure consultation. You\'ll meet with one of our expert providers to discuss your goals, concerns, and medical history. We\'ll examine your skin and recommend treatments that align with your budget and expectations.</p>
+
+<h3>Step 2: Your Treatment</h3>
+<p>On treatment day, you\'ll be welcomed into our luxury treatment suite. Depending on the procedure, the process can take anywhere from 15 minutes (for Botox) to 60 minutes (for a Glo2Facial or microneedling). Most treatments are minimally invasive with little to no downtime.</p>
+
+<h3>Step 3: Aftercare</h3>
+<p>We\'ll provide clear aftercare instructions and schedule any follow-up appointments. Our team is always available by phone or text if you have questions during your recovery.</p>
+
+<p><strong>Ready to take the first step?</strong> Book your complimentary consultation at Livia Med Spa today.</p>',
+        ],
+        [
+            'title'    => '5 Anti-Aging Treatments That Actually Work',
+            'category' => 'Beauty Tips',
+            'excerpt'  => 'Cut through the noise — these are the five proven anti-aging treatments our providers recommend most.',
+            'content'  => '<h2>Evidence-Based Anti-Aging</h2>
+<p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at Livia Med Spa.</p>
+
+<h3>1. Botox & Neuromodulators</h3>
+<p>The gold standard for preventing and treating dynamic wrinkles. Regular treatments can actually slow the formation of new lines over time.</p>
+
+<h3>2. Microneedling with PRP</h3>
+<p>By creating micro-injuries in the skin and applying platelet-rich plasma, this treatment stimulates your body\'s natural collagen production for firmer, more youthful skin.</p>
+
+<h3>3. Chemical Peels</h3>
+<p>Medical-grade peels remove damaged outer layers to reveal fresh, even-toned skin underneath. They\'re excellent for hyperpigmentation, fine lines, and overall texture improvement.</p>
+
+<h3>4. Laser Skin Resurfacing</h3>
+<p>Our Helix CO2 laser delivers dramatic results for deep wrinkles, scars, and sun damage by stimulating new collagen growth at the deepest layers of skin.</p>
+
+<h3>5. Medical-Grade Retinol</h3>
+<p>Prescription-strength retinol is the most well-researched anti-aging ingredient in skincare. It accelerates cell turnover, boosts collagen, and fades discoloration.</p>
+
+<p><strong>Want a personalized anti-aging plan?</strong> Our experts will create a custom treatment roadmap during your free consultation.</p>',
+        ],
+        [
+            'title'    => 'The Benefits of IV Therapy for Skin Health',
+            'category' => 'Wellness',
+            'excerpt'  => 'Discover how IV vitamin infusions can transform your skin from the inside out — boosting hydration, glow, and cellular repair.',
+            'content'  => '<h2>Beauty From the Inside Out</h2>
+<p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in — delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
+
+<h3>How IV Therapy Helps Your Skin</h3>
+<p>Our custom IV drips at Livia Med Spa are formulated with skin-boosting nutrients including:</p>
+<ul>
+<li><strong>Vitamin C</strong> — A powerful antioxidant that brightens skin and supports collagen production</li>
+<li><strong>Glutathione</strong> — The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
+<li><strong>B-Complex Vitamins</strong> — Essential for cellular repair and energy production</li>
+<li><strong>Zinc</strong> — Supports skin healing and reduces inflammation</li>
+</ul>
+
+<h3>Beyond Skin Benefits</h3>
+<p>IV therapy also boosts energy, strengthens immunity, and helps with recovery after intense workouts or travel. Many of our clients schedule regular drips as part of their overall wellness routine.</p>
+
+<p><strong>Try it yourself.</strong> Book an IV therapy session at Livia Med Spa and feel the difference within hours.</p>',
+        ],
+        [
+            'title'    => 'Glo2Facial: Why Tampa\'s It-Girls Are Obsessed',
+            'category' => 'Treatments',
+            'excerpt'  => 'The Glo2Facial is the hottest facial treatment in Tampa right now — here\'s why everyone is booking one.',
+            'content'  => '<h2>The Facial That Changed Everything</h2>
+<p>If you\'ve been on Instagram lately, you\'ve probably seen the Glo2Facial everywhere. This innovative three-in-one treatment has taken Tampa by storm — and for good reason.</p>
+
+<h3>What Makes It Special?</h3>
+<p>Unlike traditional facials, the Glo2Facial uses a proprietary OxyPods technology that triggers a natural oxygenation process from within your skin. This means nutrients are absorbed more effectively, leading to better, longer-lasting results.</p>
+
+<h3>The Three-Step Process</h3>
+<ol>
+<li><strong>Exfoliate</strong> — Gentle resurfacing removes dead skin cells and prepares the skin</li>
+<li><strong>Oxygenate</strong> — The OxyPods reaction floods skin with oxygen from within</li>
+<li><strong>Infuse</strong> — Nutrient-rich serums are pushed deeper into the skin for maximum absorption</li>
+</ol>
+
+<h3>Why We Love It</h3>
+<p>The Glo2Facial delivers instant, visible results with absolutely zero downtime. You can literally get one on your lunch break and return to work glowing. It\'s safe for all skin types and can be customized for specific concerns like hydration, brightening, or anti-aging.</p>
+
+<p><strong>Want that Tampa glow?</strong> Book your Glo2Facial at Livia Med Spa — or host a Glo2Facial Party with your friends!</p>',
+        ],
+    ];
+
+    foreach ($posts as $post_data) {
+        $existing = get_page_by_title($post_data['title'], OBJECT, 'post');
+        if ($existing) continue;
+
+        $post_id = wp_insert_post([
+            'post_title'   => $post_data['title'],
+            'post_excerpt' => $post_data['excerpt'],
+            'post_content' => $post_data['content'],
+            'post_status'  => 'publish',
+            'post_type'    => 'post',
+            'post_date'    => date('Y-m-d H:i:s', strtotime('-' . rand(1, 30) . ' days')),
+        ]);
+
+        if ($post_id && !is_wp_error($post_id) && isset($cat_ids[$post_data['category']])) {
+            wp_set_post_categories($post_id, [$cat_ids[$post_data['category']]]);
+        }
+    }
+
+    update_option('livia_blog_created_v1', true);
+}
+add_action('after_switch_theme', 'livia_create_blog_posts');
+
 // ── Auto-create All Services ───────────────────────────────────────
 function livia_create_services() {
     if (get_option('livia_services_created_v2')) return;
