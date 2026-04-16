@@ -172,14 +172,14 @@
 </footer>
 
 <!-- Cookie Consent -->
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;">
-    <div class="cookie-banner__inner">
-        <p class="cookie-banner__text">
-            <strong>🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(26,26,46,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(201,169,110,.15);padding:1rem 1.5rem;transition:transform .4s ease,opacity .4s ease;transform:translateY(100%);opacity:0;">
+    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+        <p style="margin:0;font-family:'DM Sans',sans-serif;font-size:.85rem;color:rgba(250,248,245,.8);">
+            <strong style="color:#c9a96e;">🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
         </p>
-        <div class="cookie-banner__actions">
-            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
-            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
+        <div style="display:flex;gap:.5rem;flex-shrink:0;">
+            <button id="cookie-accept" style="font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;background:linear-gradient(135deg,#c9a96e,#b8914f);color:#fff;border:none;border-radius:8px;cursor:pointer;">Accept</button>
+            <button id="cookie-decline" style="font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;background:transparent;color:rgba(250,248,245,.5);border:1px solid rgba(250,248,245,.15);border-radius:8px;cursor:pointer;">Decline</button>
         </div>
     </div>
 </div>
@@ -600,22 +600,23 @@
     if (cookieBanner && !localStorage.getItem('livia-cookie-consent')) {
         setTimeout(function() {
             cookieBanner.style.display = '';
-            cookieBanner.classList.add('is-visible');
+            requestAnimationFrame(function() {
+                cookieBanner.style.transform = 'translateY(0)';
+                cookieBanner.style.opacity = '1';
+            });
         }, 2000);
     }
+    function hideCookieBanner(choice) {
+        localStorage.setItem('livia-cookie-consent', choice);
+        cookieBanner.style.transform = 'translateY(100%)';
+        cookieBanner.style.opacity = '0';
+        setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
+    }
     if (cookieAccept) {
-        cookieAccept.addEventListener('click', function() {
-            localStorage.setItem('livia-cookie-consent', 'accepted');
-            cookieBanner.classList.remove('is-visible');
-            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
-        });
+        cookieAccept.addEventListener('click', function() { hideCookieBanner('accepted'); });
     }
     if (cookieDecline) {
-        cookieDecline.addEventListener('click', function() {
-            localStorage.setItem('livia-cookie-consent', 'declined');
-            cookieBanner.classList.remove('is-visible');
-            setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
-        });
+        cookieDecline.addEventListener('click', function() { hideCookieBanner('declined'); });
     }
 
     // ── Newsletter Form ─────────────────────────────────────────
@@ -741,17 +742,17 @@
 
         var el = document.createElement('div');
         el.id = 'social-proof';
-        el.className = 'social-proof';
-        el.innerHTML = '<div class="social-proof__icon">✨</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
+        el.style.cssText = 'position:fixed;bottom:1.5rem;left:1.5rem;z-index:800;display:flex;align-items:center;gap:.75rem;padding:.85rem 1.25rem;background:rgba(26,26,46,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,169,110,.15);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:DM Sans,sans-serif;transform:translateX(-120%);transition:transform .5s cubic-bezier(.23,1,.32,1);';
+        el.innerHTML = '<div style="font-size:1.25rem;">✨</div><div style="font-size:.8rem;color:rgba(250,248,245,.85);line-height:1.4;"><strong style="color:#faf8f5;">' + name + '</strong> just booked a <strong style="color:#c9a96e;">' + service + '</strong><br><span style="font-size:.7rem;color:rgba(250,248,245,.4);">' + time + ' ago</span></div>';
         document.body.appendChild(el);
 
         requestAnimationFrame(function() {
-            el.classList.add('is-visible');
+            el.style.transform = 'translateX(0)';
         });
 
         setTimeout(function() {
-            el.classList.remove('is-visible');
-            setTimeout(function() { el.remove(); }, 400);
+            el.style.transform = 'translateX(-120%)';
+            setTimeout(function() { el.remove(); }, 500);
         }, 5000);
     }
 
