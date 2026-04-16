@@ -422,8 +422,7 @@
                             class="nav__link">Memberships</a></li>
                     <li class="nav__item<?php if (is_page('parties')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/parties/')); ?>"
                             class="nav__link">Parties</a></li>
-                    <li class="nav__item<?php if (is_home() || is_singular('post')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/blog/')); ?>"
-                            class="nav__link">Blog</a></li>
+
                     <li class="nav__item<?php if (is_page('contact')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/contact/')); ?>"
                             class="nav__link">Contact</a></li>
                 </ul>
@@ -474,7 +473,7 @@
                     <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
                     <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/blog/')); ?>">Blog</a></li>
+
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
                 </ul>
             </nav>
