@@ -160,9 +160,8 @@
         <div class="footer__inner">
             <p class="footer__copyright">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
             <div class="footer__legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Accessibility</a>
+                <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
+                <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
             </div>
         </div>
     </div>
