@@ -188,7 +188,7 @@ h6 {
    ANNOUNCEMENT BAR
    ========================================================================== */
 .announcement-bar {
-  background: linear-gradient(135deg, #F5EEFF 0%, #FFF0FA 100%);
+  background: #FDF9F6;
   border-bottom: 1px solid rgba(172, 19, 249, 0.15);
   text-align: center;
   overflow: hidden;
@@ -1152,7 +1152,7 @@ html {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F5EEFF 45%, #FFF0FA 100%);
+  background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F5 100%);
   padding: clamp(6rem, 5rem + 3vw, 8rem) clamp(1.5rem, 1rem + 3vw, 4rem);
   overflow: hidden;
   contain: layout style;
@@ -1653,11 +1653,11 @@ html {
    TRUST TICKER
    ========================================================================== */
 .trust-ticker {
-  background: linear-gradient(135deg, #FDFBFF 0%, #FFF8FE 100%);
+  background: #FAFAFA;
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(172, 19, 249, 0.12);
-  border-bottom: 1px solid rgba(172, 19, 249, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Subtle gold glow behind ticker */
@@ -1845,7 +1845,7 @@ html {
 .carousel-card__placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #F0EAFF 0%, #F9EAFF 50%, #FFF0FA 100%);
+  background: #F0EBE3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2108,7 +2108,7 @@ html {
    ========================================================================== */
 .product-showcase {
   position: relative;
-  background: linear-gradient(135deg, #F5EEFF 0%, #FFF0FA 100%);
+  background: #F9F6F2;
   padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   overflow: hidden;
   content-visibility: auto;
@@ -2432,7 +2432,7 @@ html {
    ========================================================================== */
 .client-portal {
   position: relative;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F5EEFF 50%, #FFF0FA 100%);
+  background: #F9F6F2;
   padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   margin-top: 0;
   overflow: hidden;
@@ -2611,7 +2611,7 @@ html {
   width: 100%;
   height: 420px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #F0EAFF, #F9EAFF);
+  background: #F0EBE3;
   position: relative;
   overflow: hidden;
 }
@@ -3060,7 +3060,7 @@ html {
    ========================================================================== */
 .cta-section {
   padding: clamp(4rem, 3rem + 4vw, 6rem) 0;
-  background: linear-gradient(145deg, #FFFFFF 0%, #F5EEFF 50%, #FFF0FA 100%);
+  background: #F0EBE3;
   position: relative;
   overflow: hidden;
 }
