@@ -10,13 +10,11 @@
 
 <!-- CLIENT PORTAL (site-wide) -->
 <section class="client-portal">
-    <div class="client-portal__bg-glow"></div>
     <div class="section__inner">
         <div class="client-portal__layout">
             <!-- Phone mockup -->
             <div class="client-portal__phone reveal">
                 <div class="client-portal__phone-wrapper">
-                    <div class="client-portal__phone-glow"></div>
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png"
                          alt="Livia Med Spa Client Portal on Phone"
                          class="client-portal__phone-img"

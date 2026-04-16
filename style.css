@@ -2174,29 +2174,25 @@ html {
    ========================================================================== */
 .client-portal {
   position: relative;
-  background: linear-gradient(160deg, #111125 0%, #1a1a2e 50%, #14142a 100%);
-  padding: clamp(5rem, 4rem + 4vw, 8rem) 0;
+  background: #1a1a2e;
+  padding: clamp(3.5rem, 3rem + 3vw, 5.5rem) 0;
   margin-top: 0;
   overflow: hidden;
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-
-.client-portal__bg-glow {
-  position: absolute;
-  top: 30%;
-  left: 20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
-  pointer-events: none;
 }
 
 .client-portal__layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  gap: clamp(3rem, 2rem + 4vw, 5rem);
   align-items: center;
+}
+
+.client-portal__phone {
+  order: 2;
+}
+
+.client-portal__content {
+  order: 1;
 }
 
 /* Phone Visual */
