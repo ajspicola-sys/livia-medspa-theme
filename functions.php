@@ -440,6 +440,7 @@ function livia_create_blog_posts() {
     update_option('livia_blog_created_v1', true);
 }
 add_action('after_switch_theme', 'livia_create_blog_posts');
+add_action('init', 'livia_create_blog_posts');
 
 // ── Auto-create All Services ───────────────────────────────────────
 function livia_create_services() {
