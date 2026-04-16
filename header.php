@@ -17,14 +17,71 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <?php
-    // Dynamic meta description
-    $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more.';
-    if (is_singular('service')) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment at Livia Med Spa in Tampa, FL.';
-    } elseif (is_singular('product')) {
-        $meta_desc = get_the_title() . ' — Medical-grade products available at Livia Med Spa Tampa.';
-    } elseif (is_page()) {
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: $meta_desc;
+    // Dynamic meta description — Priority: Custom SEO field > Page-specific default > Global fallback
+    $meta_desc = '';
+
+    // 1. Check for custom SEO meta field (from admin meta box)
+    if (is_singular()) {
+        $meta_desc = get_post_meta(get_the_ID(), '_livia_seo_desc', true);
+    }
+
+    // 2. If no custom description, use smart defaults
+    if (!$meta_desc) {
+        if (is_front_page()) {
+            $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for Botox, dermal fillers, laser treatments, and advanced aesthetics. Board-certified providers, 500+ five-star reviews. Book your free consultation today.';
+        } elseif (is_singular('service')) {
+            // Auto-generate from excerpt or title
+            $excerpt = wp_strip_all_tags(get_the_excerpt());
+            if ($excerpt && strlen($excerpt) > 20) {
+                $meta_desc = $excerpt . ' | Livia Med Spa Tampa';
+            } else {
+                // Fallback per-service keyword descriptions
+                $slug = get_post_field('post_name', get_the_ID());
+                $service_descs = [
+                    'botox' => 'Expert Botox injections in Tampa, FL. Smooth wrinkles and fine lines with FDA-approved treatments from board-certified providers at Livia Med Spa.',
+                    'jeuveau' => 'Jeuveau ("Newtox") treatments in Tampa. The modern alternative to Botox for smooth, wrinkle-free results. Book at Livia Med Spa today.',
+                    'dermal-fillers' => 'Premium dermal filler treatments in Tampa. Restore volume, enhance lips, and contour cheeks with Juvederm and Restylane at Livia Med Spa.',
+                    'chemical-peels' => 'Professional chemical peels in Tampa, FL. Reveal brighter, smoother skin with customized peels at Livia Med Spa. Free consultation available.',
+                    'microneedling' => 'Advanced microneedling treatments in Tampa. Stimulate collagen, reduce scars, and improve skin texture at Livia Med Spa. Book your session.',
+                    'secret-rf-microneedling' => 'Secret RF microneedling in Tampa — combine radiofrequency with microneedling for deeper skin tightening and dramatic rejuvenation at Livia Med Spa.',
+                    'prp-facial' => 'PRP Facial treatments in Tampa, FL. Harness your body\'s own growth factors for natural skin renewal and a radiant glow at Livia Med Spa.',
+                    'glo2facial' => 'Glo2Facial in Tampa — next-generation facial combining exfoliation, oxygenation, and infusion for instant, healthy glow. Book at Livia Med Spa.',
+                    'cellis-derma-prp' => 'Cellis Derma PRP therapy in Tampa. Advanced PRP combined with cutting-edge technology for superior skin rejuvenation at Livia Med Spa.',
+                    'laser-treatments' => 'Advanced laser treatments in Tampa, FL. Hair removal, skin tightening, pigmentation correction, and more at Livia Med Spa.',
+                    'helix-co2-laser' => 'Helix CO2 fractional laser in Tampa. Dramatically reduce scars, wrinkles, and sun damage with precision laser resurfacing at Livia Med Spa.',
+                    'butt-lift' => 'Non-surgical butt lift in Tampa, FL. Lift, firm, and sculpt your silhouette without surgery at Livia Med Spa. Free consultation available.',
+                    'sclerotherapy' => 'Sclerotherapy in Tampa — eliminate spider veins and varicose veins with safe, effective treatments at Livia Med Spa. Book today.',
+                    'weight-loss' => 'Medical weight loss programs in Tampa, FL. Physician-supervised plans tailored to your goals at Livia Med Spa. Start your transformation.',
+                    'hair-restoration' => 'Advanced hair restoration in Tampa. Combat thinning hair with proven treatments at Livia Med Spa. Consultations available.',
+                    'penile-prp' => 'Penile PRP therapy in Tampa, FL. Discreet, non-surgical treatment to improve intimate health and confidence at Livia Med Spa.',
+                ];
+                $meta_desc = isset($service_descs[$slug]) ? $service_descs[$slug] : get_the_title() . ' treatment at Livia Med Spa in Tampa, FL. Expert care from board-certified providers. Book your free consultation.';
+            }
+        } elseif (is_singular('product')) {
+            $meta_desc = get_the_title() . ' — Medical-grade skincare available at Livia Med Spa Tampa. Physician-selected, clinically proven products for professional results.';
+        } elseif (is_page()) {
+            $slug = get_post_field('post_name', get_the_ID());
+            $page_descs = [
+                'about' => 'Learn about Livia Med Spa — Tampa\'s trusted aesthetics practice. Our mission, values, and commitment to delivering natural, beautiful results.',
+                'team' => 'Meet the expert team at Livia Med Spa Tampa. Board-certified providers with decades of experience in Botox, fillers, laser treatments, and more.',
+                'services' => 'Explore our full menu of aesthetic treatments at Livia Med Spa Tampa — Botox, fillers, lasers, facials, weight loss, and more. Book a free consultation.',
+                'contact' => 'Contact Livia Med Spa in Tampa, FL. Book your free consultation, call (813) 230-2219, or visit us. Mon–Sat, 9am–6pm.',
+                'memberships' => 'Livia Med Spa membership plans — save on Botox, fillers, and treatments with exclusive monthly perks. Join Tampa\'s premier aesthetics club.',
+                'before-after' => 'See real before and after results from Livia Med Spa Tampa. Botox, fillers, laser treatments, and more — proof of our expert results.',
+                'products' => 'Shop medical-grade skincare at Livia Med Spa Tampa. Physician-selected products from top brands to complement your treatments.',
+                'parties' => 'Book a Botox or spa party at Livia Med Spa Tampa! Group treatments, exclusive discounts, and a luxury experience for you and your friends.',
+                'blog' => 'Livia Med Spa blog — expert beauty tips, treatment guides, skincare advice, and the latest in aesthetic medicine from Tampa\'s top providers.',
+                'values' => 'Livia Med Spa\'s core values and mission — personalized care, clinical excellence, and helping every client feel confident in their own skin.',
+            ];
+            $meta_desc = isset($page_descs[$slug]) ? $page_descs[$slug] : wp_strip_all_tags(get_the_excerpt()) ?: 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more.';
+        } else {
+            $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more.';
+        }
+    }
+
+    // Trim to 160 chars for SEO best practice
+    if (strlen($meta_desc) > 160) {
+        $meta_desc = substr($meta_desc, 0, 157) . '...';
     }
     ?>
     <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
