@@ -296,8 +296,6 @@
                             </div>
                             <div class="mega-menu__bottom">
                                 <div class="mega-menu__bottom-links">
-                                    <a href="<?php echo esc_url(home_url('/before-after/')); ?>"
-                                        class="mega-menu__bottom-link">📋 Before & After</a>
                                     <a href="<?php echo esc_url(home_url('/memberships/')); ?>"
                                         class="mega-menu__bottom-link">💰 Memberships</a>
                                     <a href="<?php echo esc_url(home_url('/contact/')); ?>"
@@ -308,8 +306,6 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav__item<?php if (is_page('before-after')) echo ' nav__item--active'; ?>"><a href="<?php echo esc_url(home_url('/before-after/')); ?>"
-                            class="nav__link">Before &amp; After</a></li>
 
                     <!-- Products with Mega Menu -->
                     <li class="nav__item nav__item--has-mega<?php if (is_page(['products', 'our-products', 'shop']) || is_singular('product')) echo ' nav__item--active'; ?>">
@@ -469,7 +465,7 @@
                     <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
                     <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before & After</a></li>
+
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About</a></li>
                     <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
