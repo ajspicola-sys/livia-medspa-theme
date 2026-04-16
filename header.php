@@ -77,7 +77,11 @@
             right: 0;
             z-index: 200;
             padding: 0.85rem 0;
-            transition: background .4s ease, padding .4s ease, box-shadow .4s ease, top .4s ease;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 1px 30px rgba(0, 0, 0, 0.06);
+            transition: padding .4s ease, box-shadow .4s ease;
         }
 
         .site-header__inner {

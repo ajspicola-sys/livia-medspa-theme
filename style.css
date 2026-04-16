@@ -255,8 +255,11 @@ h6 {
   right: 0;
   z-index: 200;
   padding: 0.85rem 0;
-  transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease, top 0.4s ease;
-  will-change: background;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.06);
+  transition: padding 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* ── WordPress Admin Bar Fix ─────────────────────────────────────
@@ -283,12 +286,8 @@ html {
   transition: opacity 0.4s ease;
 }
 
-.site-header:hover,
 .site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
 }
 
 .site-header.is-scrolled::after {
