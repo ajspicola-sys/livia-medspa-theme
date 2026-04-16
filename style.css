@@ -695,7 +695,6 @@ html {
 .mega-menu__promo {
   background: #F5EFE8;
   border: 1px solid rgba(172, 19, 249, 0.12);
-  border-left: 4px solid #AC13F9;
   border-radius: 14px;
   padding: 2rem;
   display: flex;
@@ -706,29 +705,20 @@ html {
   overflow: hidden;
 }
 
+/* Gradient top-line accent */
 .mega-menu__promo::before {
   content: '';
   position: absolute;
-  top: -30%;
-  right: -30%;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(172, 19, 249, 0.15) 0%, transparent 70%);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #AC13F9, #F471D1);
+  border-radius: 14px 14px 0 0;
   pointer-events: none;
 }
 
-.mega-menu__promo::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -20%;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(172, 19, 249, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
+
 
 .mega-menu__promo-label {
   font-size: 0.58rem;
@@ -760,7 +750,7 @@ html {
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.4rem;
-  background: #AC13F9;
+  background: linear-gradient(135deg, #AC13F9 0%, #F471D1 100%);
   color: #fff;
   font-size: 0.68rem;
   font-weight: 600;
@@ -770,13 +760,14 @@ html {
   border-radius: 9999px;
   transition: all 0.3s ease;
   align-self: flex-start;
+  box-shadow: 0 4px 15px rgba(172, 19, 249, 0.2);
 }
 
 .mega-menu__promo-cta:hover {
-  background: #9B2FD0;
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(172, 19, 249, 0.3);
+  box-shadow: 0 6px 20px rgba(172, 19, 249, 0.35);
   color: #fff;
+  filter: brightness(1.05);
 }
 
 /* Mega menu bottom bar */
