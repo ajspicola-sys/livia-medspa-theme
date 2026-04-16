@@ -140,32 +140,30 @@
     </div>
 
     <!-- Newsletter bar -->
-    <div class="footer__newsletter">
-        <div class="footer__inner">
-            <div class="newsletter">
-                <div class="newsletter__text">
-                    <h4 class="newsletter__title">Stay in the Glow ✨</h4>
-                    <p class="newsletter__desc">Get exclusive offers, beauty tips, and early access to new treatments.</p>
-                </div>
-                <form class="newsletter__form" action="#" method="post" id="newsletter-form">
-                    <div class="newsletter__input-group">
-                        <input type="email" name="newsletter_email" class="newsletter__input" placeholder="Enter your email" required aria-label="Email address">
-                        <button type="submit" class="newsletter__btn btn btn--primary">Subscribe</button>
-                    </div>
-                    <p class="newsletter__privacy">We respect your privacy. Unsubscribe anytime.</p>
-                </form>
+    <div style="border-top:1px solid rgba(201,169,110,.1);padding:2.5rem 0;">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+            <div>
+                <h4 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:400;color:#faf8f5;margin:0 0 .35rem;">Stay in the Glow ✨</h4>
+                <p style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:rgba(250,248,245,.5);margin:0;">Get exclusive offers, beauty tips, and early access to new treatments.</p>
             </div>
+            <form action="#" method="post" id="newsletter-form" style="display:flex;flex-direction:column;gap:.5rem;">
+                <div style="display:flex;gap:.5rem;">
+                    <input type="email" name="newsletter_email" placeholder="Enter your email" required aria-label="Email address" style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:.7rem 1rem;background:rgba(250,248,245,.06);border:1px solid rgba(250,248,245,.12);border-radius:8px;color:#faf8f5;outline:none;width:220px;">
+                    <button type="submit" style="font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.5rem;background:linear-gradient(135deg,#c9a96e,#b8914f);color:#fff;border:none;border-radius:8px;cursor:pointer;">Subscribe</button>
+                </div>
+                <p style="font-family:'DM Sans',sans-serif;font-size:.7rem;color:rgba(250,248,245,.35);margin:0;">We respect your privacy. Unsubscribe anytime.</p>
+            </form>
         </div>
     </div>
 
     <!-- Bottom bar -->
-    <div class="footer__bottom">
-        <div class="footer__inner">
-            <p class="footer__copyright">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
-            <div class="footer__legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Accessibility</a>
+    <div style="border-top:1px solid rgba(250,248,245,.06);padding:1.5rem 0;">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,1rem + 2vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <p style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);margin:0;">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Privacy Policy</a>
+                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Terms of Service</a>
+                <a href="#" style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(250,248,245,.35);text-decoration:none;">Accessibility</a>
             </div>
         </div>
     </div>
