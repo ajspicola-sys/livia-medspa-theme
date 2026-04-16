@@ -1271,6 +1271,7 @@ html {
   gap: 0.5rem;
   animation: scroll-fade 1.5s ease-in-out 2s forwards;
   opacity: 0;
+  z-index: 5;
 }
 
 @keyframes scroll-fade {
@@ -5526,11 +5527,12 @@ a.contact-card__text:hover {
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.25rem;
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(26, 26, 46, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
   border: 1px solid rgba(201, 169, 110, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transform: translateX(-120%);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -5549,7 +5551,7 @@ a.contact-card__text:hover {
 
 .social-proof__content {
   font-size: 0.78rem;
-  color: #1a1a2e;
+  color: rgba(250, 248, 245, 0.85);
   line-height: 1.4;
 }
 
@@ -5557,10 +5559,14 @@ a.contact-card__text:hover {
   color: #c9a96e;
 }
 
+.social-proof__content strong:first-child {
+  color: #faf8f5;
+}
+
 .social-proof__time {
   display: block;
   font-size: 0.65rem;
-  color: #9e9eb0;
+  color: rgba(250, 248, 245, 0.4);
   margin-top: 0.15rem;
 }
 
