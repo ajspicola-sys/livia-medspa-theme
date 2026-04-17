@@ -517,6 +517,7 @@
     }
 
     // ── Smooth anchor scrolling with offset ──────────────────────
+    // #book-now: scroll to element if present, else redirect to /contact/
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             var targetId = this.getAttribute('href');
@@ -527,6 +528,10 @@
                 var headerHeight = header ? header.offsetHeight : 0;
                 var y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
                 window.scrollTo({ top: y, behavior: 'smooth' });
+            } else if (targetId === '#book-now') {
+                // Booking section not on this page — send to contact
+                e.preventDefault();
+                window.location.href = '<?php echo esc_url(home_url("/contact/")); ?>';
             }
         });
     });

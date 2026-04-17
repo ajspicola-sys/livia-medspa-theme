@@ -147,7 +147,7 @@ button {
   background: none;
 }
 
-/* Gold text selection */
+/* Text selection */
 ::selection {
   background: rgba(172, 19, 249, 0.25);
   color: #1A0E2E;
@@ -170,12 +170,7 @@ h6 {
   color: #1A0E2E;
 }
 
-::selection {
-  background: #AC13F9;
-  color: #fff;
-}
-
-/* Focus ring for keyboard users — golden glow */
+/* Focus ring for keyboard users */
 :focus-visible {
   outline: 2px solid #AC13F9;
   outline-offset: 3px;
@@ -1540,11 +1535,24 @@ html {
   .hero__subtitle { margin-left: auto; margin-right: auto; }
   .hero__actions { justify-content: center; }
   .hero__stats { justify-content: center; }
-  .hero__visual { height: 380px; order: -1; }
+  .hero__visual { height: 380px; order: -1; overflow: visible; }
   .hero__model-img { height: 380px; }
-  .hero__visual-badge--1 { left: 0; top: 10%; }
-  .hero__visual-badge--2 { right: 0; top: 35%; }
-  .hero__visual-badge--3 { left: 0; bottom: 22%; }
+  /* Clamp badges to viewport edges so they don't overflow */
+  .hero__visual-badge--1 { left: 4px; top: 10%; }
+  .hero__visual-badge--2 { right: 4px; top: 35%; }
+  .hero__visual-badge--3 { left: 4px; bottom: 22%; }
+}
+
+@media (max-width: 480px) {
+  /* Hide floating badges on small phones to avoid overlap */
+  .hero__visual-badge { display: none; }
+  .hero__visual { height: 300px; }
+  .hero__model-img { height: 300px; }
+  /* Tighter hero padding on tiny screens */
+  .hero {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
 /* ==========================================================================
@@ -1720,6 +1728,8 @@ html {
   overflow: hidden;
   padding: 2rem 0 1rem;
   perspective: 1200px;
+  /* Enable native momentum scrolling touch on iOS */
+  touch-action: pan-y;
 }
 
 .carousel__track {
@@ -2079,17 +2089,21 @@ html {
 @media (max-width: 768px) {
   .journey-steps {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .journey-step {
-    max-width: 320px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 }
 
 @media (max-width: 480px) {
   .journey-steps {
     grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -2263,13 +2277,13 @@ html {
 
 .product-showcase__badge--1 {
   top: 15%;
-  right: -10%;
+  right: -5%;
   animation-delay: 0s;
 }
 
 .product-showcase__badge--2 {
   bottom: 20%;
-  left: -10%;
+  left: -5%;
   animation-delay: 1.5s;
 }
 
@@ -8400,31 +8414,52 @@ a.contact-card__text:hover {
 
 /* ── AI Preview Responsive ─────────────────────────────────── */
 @media (max-width: 860px) {
+  /* Use explicit flex column stack — display:contents is buggy on older iOS Safari */
   .ai-preview__layout {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
 
-  .ai-preview__left,
-  .ai-preview__right {
-    display: contents;
+  .ai-preview__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: 2;
   }
 
-  .ai-preview__header { order: 1; text-align: center; margin-bottom: 0; }
-  .ai-preview__carousel { order: 2; margin: 0 auto; }
-  .ai-preview__cta { order: 3; align-items: center; margin-top: 1rem; }
-  .ai-preview__powered { order: 4; justify-content: center; }
+  .ai-preview__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+  }
 
+  .ai-preview__header {
+    text-align: center;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .ai-preview__carousel { margin: 0 auto; }
+
+  .ai-preview__cta {
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .ai-preview__powered { justify-content: center; }
   .ai-preview__dots { justify-content: center; }
   .ai-preview__cta-text { text-align: center; }
 }
 
 @media (max-width: 600px) {
-  .ai-preview { padding: 4rem 0; }
+  .ai-preview { padding: 3.5rem 0; }
   .ai-preview__stage { border-radius: 1.25rem; }
   .ai-preview__card { border-radius: 1.25rem; }
   .ai-preview__cta .btn { width: 100%; justify-content: center; }
+  .ai-preview__carousel { max-width: 100%; }
 }
 
 /* ==========================================================================
