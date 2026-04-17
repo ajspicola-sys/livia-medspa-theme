@@ -4702,12 +4702,15 @@ a.contact-card__text:hover {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(172, 19, 249, 0.08) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 
 .service-hero__inner {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -4805,6 +4808,7 @@ a.contact-card__text:hover {
   overflow: hidden;
   box-shadow: 0 24px 72px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(172, 19, 249, 0.08);
   aspect-ratio: 4 / 3;
+  z-index: 1;
 }
 
 .service-hero__img {
