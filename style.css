@@ -8495,11 +8495,26 @@ a.contact-card__text:hover {
 }
 
 @media (max-width: 600px) {
-  .ai-preview { padding: 3.5rem 0; }
-  .ai-preview__stage { border-radius: 1.25rem; }
-  .ai-preview__card { border-radius: 1.25rem; }
+  .ai-preview { padding: 3rem 0; }
+  .ai-preview__stage { border-radius: 1rem; }
+  .ai-preview__card { border-radius: 1rem; }
   .ai-preview__cta .btn { width: 100%; justify-content: center; }
-  .ai-preview__carousel { max-width: 100%; }
+
+  /* Cap the carousel to a comfortable phone size */
+  .ai-preview__carousel {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  /* Shorter aspect ratio so the photo doesn't dominate the screen */
+  .ai-preview__slider {
+    aspect-ratio: 3 / 3.5;
+  }
+
+  /* Tighten card footer padding */
+  .ai-preview__card-footer {
+    padding: 0.85rem 1rem 1rem;
+  }
 }
 
 /* ==========================================================================
