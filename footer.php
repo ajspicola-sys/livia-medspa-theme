@@ -28,11 +28,11 @@
             <div class="client-portal__content reveal">
                 <span class="section__label">Client Portal</span>
                 <h2 class="section__title">Click. Book. <em>Glow.</em></h2>
-                <p class="client-portal__text">Access the Livia Med Spa Client Portal to easily book and manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
+                <p class="client-portal__text">Access the Livia Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
                 <div class="client-portal__features">
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
-                        <span>Book &amp; manage appointments 24/7</span>
+                        <span>Manage your appointments 24/7</span>
                     </div>
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
