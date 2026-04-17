@@ -594,7 +594,7 @@ get_header(); ?>
                         <div class="supplement-feature__icon" aria-hidden="true">📦</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Delivered to Your Door</h3>
-                            <p class="supplement-feature__text">Fast shipping with 20% off retail for Livia patients</p>
+                            <p class="supplement-feature__text">Fast shipping with 10% off retail for Livia patients</p>
                         </div>
                     </div>
                 </div>
