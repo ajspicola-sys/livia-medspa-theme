@@ -564,7 +564,7 @@ get_header(); ?>
                     <p class="supplements__text">Every product in our Fullscript store is hand-selected by our clinical team — pharmaceutical-grade, third-party tested, and shipped directly to your door at a practitioner discount.</p>
                     <div class="supplements__cta-row">
                         <a href="https://us.fullscript.com/welcome/liviamedspa" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Shop Our Supplement Store →</a>
-                        <span class="supplements__discount">20% off retail — exclusive to Livia patients</span>
+                        <span class="supplements__discount">10% off retail — exclusive to Livia patients</span>
                     </div>
                     <div class="supplements__partnership">
                         <span class="supplements__partner-label">Livia Med Spa</span>
