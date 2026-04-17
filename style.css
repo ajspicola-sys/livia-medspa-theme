@@ -7307,13 +7307,14 @@ a.contact-card__text:hover {
     height: 420px;
   }
 
-  /* Tablet: hide dots, keep arrows only */
+  /* Tablet: hide dots, keep arrows only + push nav clear of cards */
   .carousel__dots {
     display: none;
   }
 
   .carousel__nav {
     gap: 2rem;
+    margin-top: 5.5rem;
   }
 
   .membership-steps {
@@ -7501,6 +7502,7 @@ a.contact-card__text:hover {
 
   .carousel__nav {
     gap: 2rem;
+    margin-top: 6rem;
   }
 
   .contact-form__row {
