@@ -40,7 +40,7 @@
     $og_default_img    = 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
     $og_default_width  = 600;
     $og_default_height = 932;
-    $og_default_alt    = 'Livia Med Spa â€” Tampa\'s Premier Medical Spa';
+    $og_default_alt    = 'Livia Med Spa - Tampa Aesthetic Studio';
 
     if ( has_post_thumbnail() ) {
         $thumb_id   = get_post_thumbnail_id();
