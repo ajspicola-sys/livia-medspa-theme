@@ -2108,3 +2108,35 @@ function livia_importer_page() {
     delete_option( 'livia_demo_imported' );
     echo '</div>';
 }
+
+// =============================================================================
+// livia_cached_image_url()
+// Sideloads a remote image into WP media library and caches the local URL.
+// Falls back to the original URL gracefully so the page never goes blank.
+// =============================================================================
+if ( ! function_exists( 'livia_cached_image_url' ) ) {
+    function livia_cached_image_url( string $url ): string {
+        if ( empty( $url ) ) { return ''; }
+        $cache_key = 'livia_img_' . md5( $url );
+        $cached = get_transient( $cache_key );
+        if ( false !== $cached ) { return $cached; }
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        $tmp = download_url( $url );
+        if ( is_wp_error( $tmp ) ) {
+            set_transient( $cache_key, $url, HOUR_IN_SECONDS );
+            return $url;
+        }
+        $file_array = [ 'name' => wp_basename( $url ), 'tmp_name' => $tmp ];
+        $attachment_id = media_handle_sideload( $file_array, 0 );
+        if ( is_wp_error( $attachment_id ) ) {
+            @unlink( $tmp );
+            set_transient( $cache_key, $url, HOUR_IN_SECONDS );
+            return $url;
+        }
+        $local_url = wp_get_attachment_url( $attachment_id ) ?: $url;
+        set_transient( $cache_key, $local_url, 30 * DAY_IN_SECONDS );
+        return $local_url;
+    }
+}
