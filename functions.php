@@ -1737,7 +1737,7 @@ function livia_popup_customizer($wp_customize) {
     ]);
 
     // Badge
-    $wp_customize->add_setting('livia_popup_badge', ['default' => '✦ Limited Time Offer', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('livia_popup_badge', ['default' => '✦ Now Available in Tampa', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('livia_popup_badge', [
         'type'        => 'text',
         'section'     => 'livia_popup',
@@ -1746,7 +1746,7 @@ function livia_popup_customizer($wp_customize) {
     ]);
 
     // Title
-    $wp_customize->add_setting('livia_popup_title', ['default' => '$50 Off Your First Visit', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('livia_popup_title', ['default' => 'Tampa\'s Only Helix CO₂ Laser', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('livia_popup_title', [
         'type'        => 'text',
         'section'     => 'livia_popup',
@@ -1754,7 +1754,7 @@ function livia_popup_customizer($wp_customize) {
     ]);
 
     // Body text
-    $wp_customize->add_setting('livia_popup_text', ['default' => 'Book your complimentary consultation today and receive $50 off any treatment on your first visit.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('livia_popup_text', ['default' => 'Livia Med Spa is the only provider in Tampa with the Helix CO₂ Laser — the most advanced fractional laser for skin resurfacing, scars, and deep wrinkles. Book a free consultation to see if you\'re a candidate.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
     $wp_customize->add_control('livia_popup_text', [
         'type'        => 'textarea',
         'section'     => 'livia_popup',
@@ -1771,7 +1771,7 @@ function livia_popup_customizer($wp_customize) {
     ]);
 
     // Button text
-    $wp_customize->add_setting('livia_popup_btn_text', ['default' => 'Book Now & Save $50', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_setting('livia_popup_btn_text', ['default' => 'Book a Free Consultation →', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
     $wp_customize->add_control('livia_popup_btn_text', [
         'type'        => 'text',
         'section'     => 'livia_popup',
