@@ -166,18 +166,6 @@
     </div>
 </footer>
 
-<!-- Cookie Consent -->
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none;">
-    <div class="cookie-banner__inner">
-        <p class="cookie-banner__text">
-            <strong>🍪 Cookies</strong> — We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
-        </p>
-        <div class="cookie-banner__actions">
-            <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>
-            <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>
-        </div>
-    </div>
-</div>
 
 <!-- Scroll to Top -->
 <button class="scroll-top" id="scroll-top" aria-label="Back to top">
@@ -480,27 +468,38 @@
     // ══════════════════════════════════════════════════════════════
     setTimeout(function() { rIC(function() {
 
-        // ── Cookie Consent Banner ─────────────────────────────────
-        var cookieBanner  = document.getElementById('cookie-banner');
-        var cookieAccept  = document.getElementById('cookie-accept');
-        var cookieDecline = document.getElementById('cookie-decline');
-        if (cookieBanner && !localStorage.getItem('livia-cookie-consent')) {
-            setTimeout(function() { cookieBanner.style.display = ''; cookieBanner.classList.add('is-visible'); }, 5000);
+        // ── Cookie Consent Banner (injected dynamically — never in HTML to avoid LCP penalty) ──
+        if (!localStorage.getItem('livia-cookie-consent')) {
+            setTimeout(function() {
+                var banner = document.createElement('div');
+                banner.id = 'cookie-banner';
+                banner.className = 'cookie-banner';
+                banner.setAttribute('role', 'dialog');
+                banner.setAttribute('aria-label', 'Cookie consent');
+                banner.innerHTML =
+                    '<div class="cookie-banner__inner">' +
+                        '<p class="cookie-banner__text"><strong>\uD83C\uDF6A Cookies</strong> \u2014 We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>' +
+                        '<div class="cookie-banner__actions">' +
+                            '<button class="cookie-banner__btn cookie-banner__btn--accept" id="cookie-accept">Accept</button>' +
+                            '<button class="cookie-banner__btn cookie-banner__btn--decline" id="cookie-decline">Decline</button>' +
+                        '</div>' +
+                    '</div>';
+                document.body.appendChild(banner);
+                requestAnimationFrame(function() { banner.classList.add('is-visible'); });
+
+                document.getElementById('cookie-accept').addEventListener('click', function() {
+                    localStorage.setItem('livia-cookie-consent', 'accepted');
+                    banner.classList.remove('is-visible');
+                    setTimeout(function() { banner.remove(); }, 400);
+                });
+                document.getElementById('cookie-decline').addEventListener('click', function() {
+                    localStorage.setItem('livia-cookie-consent', 'declined');
+                    banner.classList.remove('is-visible');
+                    setTimeout(function() { banner.remove(); }, 400);
+                });
+            }, 5000);
         }
-        if (cookieAccept) {
-            cookieAccept.addEventListener('click', function() {
-                localStorage.setItem('livia-cookie-consent', 'accepted');
-                cookieBanner.classList.remove('is-visible');
-                setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
-            });
-        }
-        if (cookieDecline) {
-            cookieDecline.addEventListener('click', function() {
-                localStorage.setItem('livia-cookie-consent', 'declined');
-                cookieBanner.classList.remove('is-visible');
-                setTimeout(function() { cookieBanner.style.display = 'none'; }, 400);
-            });
-        }
+
 
         // ── Stats bar counter (About page) ────────────────────────
         var statsBar = document.querySelector('.stats-bar');
