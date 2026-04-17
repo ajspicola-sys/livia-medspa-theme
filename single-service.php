@@ -15,9 +15,10 @@ $benefits_raw = get_post_meta($post_id, '_service_benefits', true);
 $benefits     = $benefits_raw ? array_filter(array_map('trim', explode("\n", $benefits_raw))) : [];
 
 // Convert YouTube / Vimeo URL → embed URL
+// Accepts: watch?v=, youtu.be/, /shorts/, /embed/, /v/
 $video_embed = '';
 if ($video) {
-    if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video, $m)) {
+    if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video, $m)) {
         $video_embed = 'https://www.youtube.com/embed/' . $m[1] . '?rel=0&modestbranding=1';
     } elseif (preg_match('/vimeo\.com\/(\d+)/', $video, $m)) {
         $video_embed = 'https://player.vimeo.com/video/' . $m[1] . '?title=0&byline=0';
