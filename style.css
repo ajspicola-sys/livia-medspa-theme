@@ -5123,7 +5123,6 @@ a.contact-card__text:hover {
 .service-video__wrap {
   position: relative;
   width: 100%;
-  max-width: 900px;
   margin: 2.5rem auto 0;
   aspect-ratio: 16 / 9;
   border-radius: 20px;
