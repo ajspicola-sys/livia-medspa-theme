@@ -476,7 +476,7 @@
         <div class="mobile-menu__drawer">
             <div class="mobile-menu__header">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="140" height="auto">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="140" height="75">
                 </a>
                 <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation menu">✕</button>
             </div>

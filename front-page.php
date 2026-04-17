@@ -232,10 +232,11 @@ get_header(); ?>
             </div>
 
             <?php
-            // Pull services from CPT
+            // Pull services from CPT — capped at 8 for carousel DOM efficiency
+            // (carousel shows 1 at a time; full list lives on /services/)
             $services = new WP_Query([
                 'post_type'      => 'service',
-                'posts_per_page' => -1,
+                'posts_per_page' => 8,
                 'orderby'        => 'menu_order',
                 'order'          => 'ASC',
                 'no_found_rows'  => true, // Performance: skip pagination count
@@ -355,13 +356,9 @@ get_header(); ?>
                                             <div class="ai-preview__divider"></div>
                                         </div>
                                         <div class="ai-preview__card-footer">
-                                            <div>
-                                                <div class="ai-preview__name">Phil</div>
-                                                <div class="ai-preview__treatment">Body Contouring</div>
-                                            </div>
-                                            <div class="ai-preview__badge">
-                                                Ageless AI
-                                            </div>
+                                            <div class="ai-preview__name">Phil</div>
+                                            <div class="ai-preview__treatment">Body Contouring</div>
+                                            <div class="ai-preview__badge">Ageless AI</div>
                                         </div>
                                     </div>
                                 </div>
@@ -383,13 +380,9 @@ get_header(); ?>
                                             <div class="ai-preview__divider"></div>
                                         </div>
                                         <div class="ai-preview__card-footer">
-                                            <div>
-                                                <div class="ai-preview__name">Courtney</div>
-                                                <div class="ai-preview__treatment">Facial Rejuvenation</div>
-                                            </div>
-                                            <div class="ai-preview__badge">
-                                                Ageless AI
-                                            </div>
+                                            <div class="ai-preview__name">Courtney</div>
+                                            <div class="ai-preview__treatment">Facial Rejuvenation</div>
+                                            <div class="ai-preview__badge">Ageless AI</div>
                                         </div>
                                     </div>
                                 </div>
@@ -411,13 +404,9 @@ get_header(); ?>
                                             <div class="ai-preview__divider"></div>
                                         </div>
                                         <div class="ai-preview__card-footer">
-                                            <div>
-                                                <div class="ai-preview__name">Eric</div>
-                                                <div class="ai-preview__treatment">Anti-Aging Treatments</div>
-                                            </div>
-                                            <div class="ai-preview__badge">
-                                                Ageless AI
-                                            </div>
+                                            <div class="ai-preview__name">Eric</div>
+                                            <div class="ai-preview__treatment">Anti-Aging Treatments</div>
+                                            <div class="ai-preview__badge">Ageless AI</div>
                                         </div>
                                     </div>
                                 </div>

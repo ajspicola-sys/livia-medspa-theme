@@ -69,7 +69,7 @@
             <!-- Brand Column -->
             <div class="footer__brand">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="Livia Med Spa — Home">
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="Livia Med Spa" width="160" height="auto" loading="lazy" decoding="async">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="Livia Med Spa" width="160" height="86" loading="lazy" decoding="async">
                 </a>
                 <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics. We combine artistry with science to enhance your natural beauty.</p>
                 <div class="footer__social">
@@ -430,9 +430,18 @@
         var progressBar  = document.getElementById('reading-progress-bar');
         var postContent  = document.querySelector('.post-content');
         if (progressBar && postContent) {
+            // Cache rect outside scroll handler — getBoundingClientRect() inside
+            // scroll forces a layout recalculation on every tick (forced reflow).
+            // Refreshed on resize only, which is a rare event.
+            var postRect = postContent.getBoundingClientRect();
+            window.addEventListener('resize', function() {
+                postRect = postContent.getBoundingClientRect();
+            }, { passive: true });
             window.addEventListener('scroll', function() {
-                var rect = postContent.getBoundingClientRect();
-                var pct  = Math.min(Math.max(-rect.top / (rect.height - window.innerHeight) * 100, 0), 100);
+                var scrollTop = window.scrollY;
+                var contentTop    = postRect.top + scrollTop;
+                var contentHeight = postRect.height;
+                var pct = Math.min(Math.max((scrollTop - contentTop) / (contentHeight - window.innerHeight) * 100, 0), 100);
                 progressBar.style.width = pct + '%';
             }, { passive: true });
         }
@@ -624,6 +633,75 @@
 })();
 </script>
 
+
+<?php
+// ── Deal Popup — rendered only when enabled & not expired ──────────
+$popup_enabled = get_theme_mod('livia_popup_enabled', false);
+$popup_expiry  = get_theme_mod('livia_popup_expiry', '');
+$popup_active  = $popup_enabled;
+if ($popup_active && !empty($popup_expiry)) {
+    if (strtotime($popup_expiry) && strtotime($popup_expiry) < time()) {
+        $popup_active = false;
+    }
+}
+if ($popup_active) :
+    $p_badge    = esc_html(get_theme_mod('livia_popup_badge',    '✦ Limited Time Offer'));
+    $p_title    = esc_html(get_theme_mod('livia_popup_title',    '$50 Off Your First Visit'));
+    $p_text     = esc_html(get_theme_mod('livia_popup_text',     'Book your complimentary consultation today and receive $50 off any treatment on your first visit.'));
+    $p_code     = esc_html(get_theme_mod('livia_popup_code',     ''));
+    $p_btn_text = esc_html(get_theme_mod('livia_popup_btn_text', 'Book Now & Save $50'));
+    $p_btn_url  = esc_url(get_theme_mod('livia_popup_btn_url',   '#book-now'));
+    $p_delay    = absint(get_theme_mod('livia_popup_delay',      5)) * 1000;
+    $p_freq     = absint(get_theme_mod('livia_popup_frequency',  7));
+?>
+<div class="deal-popup" id="deal-popup" role="dialog" aria-modal="true" aria-label="Special offer" aria-hidden="true">
+    <div class="deal-popup__overlay" id="deal-popup-overlay"></div>
+    <div class="deal-popup__modal">
+        <button class="deal-popup__close" id="deal-popup-close" aria-label="Close offer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="deal-popup__glow" aria-hidden="true"></div>
+        <div class="deal-popup__content">
+            <span class="deal-popup__badge"><?php echo $p_badge; ?></span>
+            <h2 class="deal-popup__title"><?php echo $p_title; ?></h2>
+            <p class="deal-popup__text"><?php echo $p_text; ?></p>
+            <?php if ($p_code) : ?>
+            <div class="deal-popup__code-wrap">
+                <span class="deal-popup__code-label">Use Code</span>
+                <span class="deal-popup__code"><?php echo $p_code; ?></span>
+                <button class="deal-popup__copy" onclick="navigator.clipboard.writeText('<?php echo esc_js($p_code); ?>');this.textContent='✓ Copied!'">Copy</button>
+            </div>
+            <?php endif; ?>
+            <a href="<?php echo $p_btn_url; ?>" class="btn btn--primary btn--lg deal-popup__btn">
+                <?php echo $p_btn_text; ?>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <p class="deal-popup__fine">No commitment required · Free consultation</p>
+        </div>
+    </div>
+</div>
+<script>(function(){
+    var KEY   = 'livia-popup-dismissed';
+    var FREQ  = <?php echo $p_freq; ?>;
+    var DELAY = <?php echo $p_delay; ?>;
+    var last  = localStorage.getItem(KEY);
+    if (last && (Date.now() - parseInt(last, 10)) / 86400000 < FREQ) return;
+    var popup    = document.getElementById('deal-popup');
+    var overlay  = document.getElementById('deal-popup-overlay');
+    var closeBtn = document.getElementById('deal-popup-close');
+    function open()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); }
+    setTimeout(open, DELAY);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close(); });
+    if (window.innerWidth > 768) {
+        document.addEventListener('mouseleave', function(e){
+            if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
+        }, {once:true});
+    }
+})();</script>
+<?php endif; ?>
 
 <?php wp_footer(); ?>
 
