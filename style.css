@@ -1730,6 +1730,21 @@ html {
   perspective: 1200px;
   /* Enable native momentum scrolling touch on iOS */
   touch-action: pan-y;
+  /* Fade side cards into the background instead of hard-clipping */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
 }
 
 .carousel__track {
@@ -7292,6 +7307,15 @@ a.contact-card__text:hover {
     height: 420px;
   }
 
+  /* Tablet: hide dots, keep arrows only */
+  .carousel__dots {
+    display: none;
+  }
+
+  .carousel__nav {
+    gap: 2rem;
+  }
+
   .membership-steps {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -7468,6 +7492,15 @@ a.contact-card__text:hover {
   .carousel__slide.is-far-prev,
   .carousel__slide.is-far-next {
     opacity: 0;
+  }
+
+  /* Mobile nav: just show arrows, hide the dots */
+  .carousel__dots {
+    display: none;
+  }
+
+  .carousel__nav {
+    gap: 2rem;
   }
 
   .contact-form__row {
