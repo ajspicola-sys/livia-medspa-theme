@@ -1,0 +1,53 @@
+    <!-- Open Graph / Press Wire / Social Preview -->
+    <?php
+    // Default OG image: Hero shot (600x932, absolute URL, PNG)
+    // Press wire services need og:image:width + og:image:height to validate.
+    $og_default_img    = 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
+    $og_default_width  = 600;
+    $og_default_height = 932;
+    $og_default_alt    = 'Livia Med Spa — Tampa\'s Premier Medical Spa';
+
+    if ( has_post_thumbnail() ) {
+        $thumb_id   = get_post_thumbnail_id();
+        $thumb_data = wp_get_attachment_image_src( $thumb_id, 'full' );
+        $og_img     = $thumb_data ? esc_url( $thumb_data[0] ) : $og_default_img;
+        $og_img_w   = $thumb_data ? (int) $thumb_data[1]     : $og_default_width;
+        $og_img_h   = $thumb_data ? (int) $thumb_data[2]     : $og_default_height;
+        $og_img_alt = esc_attr( get_post_meta( $thumb_id, '_wp_attachment_image_alt', true ) ?: $og_default_alt );
+    } else {
+        $og_img     = $og_default_img;
+        $og_img_w   = $og_default_width;
+        $og_img_h   = $og_default_height;
+        $og_img_alt = esc_attr( $og_default_alt );
+    }
+
+    $og_title = is_front_page()
+        ? 'Livia Med Spa | Medical Spa in Tampa, FL'
+        : wp_get_document_title();
+
+    $og_desc = $meta_desc
+        ?: 'Tampa\'s premier boutique medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN.';
+
+    $og_url  = is_front_page() ? home_url( '/' ) : ( get_permalink() ?: home_url( '/' ) );
+    $og_type = ( is_front_page() || is_page() ) ? 'website' : 'article';
+    ?>
+    <meta property="og:site_name"        content="Livia Med Spa">
+    <meta property="og:type"             content="<?php echo esc_attr( $og_type ); ?>">
+    <meta property="og:url"              content="<?php echo esc_url( $og_url ); ?>">
+    <meta property="og:title"            content="<?php echo esc_attr( $og_title ); ?>">
+    <meta property="og:description"      content="<?php echo esc_attr( $og_desc ); ?>">
+    <meta property="og:locale"           content="en_US">
+    <meta property="og:image"            content="<?php echo esc_url( $og_img ); ?>">
+    <meta property="og:image:secure_url" content="<?php echo esc_url( $og_img ); ?>">
+    <meta property="og:image:width"      content="<?php echo (int) $og_img_w; ?>">
+    <meta property="og:image:height"     content="<?php echo (int) $og_img_h; ?>">
+    <meta property="og:image:alt"        content="<?php echo esc_attr( $og_img_alt ); ?>">
+    <meta property="og:image:type"       content="image/png">
+
+    <!-- Twitter / X Card (mirrors OG for press wires) -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:site"        content="@liviamedspa">
+    <meta name="twitter:title"       content="<?php echo esc_attr( $og_title ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $og_desc ); ?>">
+    <meta name="twitter:image"       content="<?php echo esc_url( $og_img ); ?>">
+    <meta name="twitter:image:alt"   content="<?php echo esc_attr( $og_img_alt ); ?>">
