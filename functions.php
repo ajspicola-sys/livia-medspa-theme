@@ -260,37 +260,65 @@ if (!defined('WP_POST_REVISIONS')) {
     define('WP_POST_REVISIONS', 5);
 }
 
-// ── SEO: Add Schema.org structured data ────────────────────────────
+// ── SEO: LocalBusiness schema on every page ─────────────────────────
+// Outputs on ALL pages (not just homepage) so Google gets business signals
+// site-wide. Service pages additionally get a Service schema block.
 function livia_schema_markup() {
-    if (is_front_page()) : ?>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Livia Med Spa",
-    "description": "Tampa's premier destination for advanced aesthetics — expert Botox, fillers, laser treatments, and medical-grade skincare.",
-    "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+1-813-230-2219",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "10043 N Dale Mabry Hwy",
-        "addressLocality": "Tampa",
-        "addressRegion": "FL",
-        "postalCode": "33618",
-        "addressCountry": "US"
-    },
-    "openingHours": ["Mo-We 09:00-19:00", "Th-Sa 09:00-16:00"],
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "70"
-    },
-    "priceRange": "$$-$$$"
+    // ── LocalBusiness / MedicalBusiness — every page ─────────────
+    $schema = [
+        '@context'    => 'https://schema.org',
+        '@type'       => 'MedicalBusiness',
+        'name'        => 'Livia Med Spa',
+        'description' => "Tampa's premier destination for advanced aesthetics — expert Botox, fillers, laser treatments, and medical-grade skincare.",
+        'url'         => esc_url(home_url('/')),
+        'telephone'   => '+18132302219',
+        'address'     => [
+            '@type'           => 'PostalAddress',
+            'streetAddress'   => '10043 N Dale Mabry Hwy',
+            'addressLocality' => 'Tampa',
+            'addressRegion'   => 'FL',
+            'postalCode'      => '33618',
+            'addressCountry'  => 'US',
+        ],
+        'geo' => [
+            '@type'     => 'GeoCoordinates',
+            'latitude'  => 28.0678,
+            'longitude' => -82.5054,
+        ],
+        'openingHours' => ['Mo-We 09:00-19:00', 'Th-Sa 09:00-16:00'],
+        'priceRange'   => '$$-$$$',
+        'image'        => 'https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png',
+        'sameAs'       => [
+            'https://www.facebook.com/p/Livia-Med-Spa-61561610168278/',
+            'https://www.instagram.com/liviamedspa/',
+        ],
+        'aggregateRating' => [
+            '@type'       => 'AggregateRating',
+            'ratingValue' => '5',
+            'reviewCount' => '70',
+        ],
+    ];
+    echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
+
+    // ── Service schema — service CPT pages only ───────────────────
+    if (is_singular('service')) {
+        $post_id = get_the_ID();
+        $service_schema = [
+            '@context'    => 'https://schema.org',
+            '@type'       => 'Service',
+            'name'        => get_the_title(),
+            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at Livia Med Spa in Tampa, FL.'),
+            'provider'    => [
+                '@type' => 'MedicalBusiness',
+                'name'  => 'Livia Med Spa',
+            ],
+            'areaServed'  => 'Tampa, FL',
+            'url'         => get_permalink($post_id),
+        ];
+        echo '<script type="application/ld+json">' . wp_json_encode($service_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
+    }
 }
-</script>
-    <?php endif;
-}
-add_action('wp_head', 'livia_schema_markup', 99);
+add_action('wp_head', 'livia_schema_markup', 5);
 
 // ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
@@ -1329,11 +1357,26 @@ add_action('save_post', 'livia_save_seo_meta');
 
 // ── Override the <title> tag with custom SEO title ─────────────────
 function livia_custom_title($title) {
+    // Homepage
     if (is_front_page()) {
-        $title['title'] = 'Med Spa Tampa | Botox, Fillers & Laser Treatments';
+        $title['title'] = 'Medical Spa in Tampa, FL';
         $title['site']  = 'Livia Med Spa';
         return $title;
     }
+    // Service pages: "Botox in Tampa, FL | Livia Med Spa"
+    if (is_singular('service')) {
+        $custom = get_post_meta(get_the_ID(), '_livia_seo_title', true);
+        $title['title'] = !empty($custom) ? $custom : get_the_title() . ' in Tampa, FL';
+        $title['site']  = 'Livia Med Spa';
+        return $title;
+    }
+    // Product pages
+    if (is_singular('product')) {
+        $title['title'] = get_the_title() . ' | Medical-Grade Skincare';
+        $title['site']  = 'Livia Med Spa';
+        return $title;
+    }
+    // All other singular pages — use custom SEO title if set
     if (is_singular()) {
         $custom = get_post_meta(get_the_ID(), '_livia_seo_title', true);
         if (!empty($custom)) {
