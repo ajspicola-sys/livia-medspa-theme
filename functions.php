@@ -1844,3 +1844,267 @@ function livia_save_service_extras($post_id) {
     if (isset($_POST['_service_video'])) update_post_meta($post_id, '_service_video', esc_url_raw($_POST['_service_video']));
     if (isset($_POST['_service_benefits'])) update_post_meta($post_id, '_service_benefits', sanitize_textarea_field($_POST['_service_benefits']));
 }
+
+// =============================================================================
+// LIVIA DEMO CONTENT IMPORTER
+// Bundles /demo-content/content.xml and provides a one-click admin importer.
+// Fires automatically on theme activation; can also be re-run any time from
+// the WP admin notice or directly via: ?livia_run_import=1 (admin only).
+// =============================================================================
+
+// -- Flag theme activation so we can show the notice on next page load --------
+add_action( 'after_switch_theme', 'livia_importer_set_activation_flag' );
+function livia_importer_set_activation_flag() {
+    set_transient( 'livia_just_activated', true, 300 );
+}
+
+// -- Admin notice with Import button ------------------------------------------
+add_action( 'admin_notices', 'livia_importer_admin_notice' );
+function livia_importer_admin_notice() {
+    // Only show to admins
+    if ( ! current_user_can( 'manage_options' ) ) return;
+
+    // Already imported? Never show again.
+    if ( get_option( 'livia_demo_imported' ) ) return;
+
+    // Only show right after activation OR when the user revisits the notice
+    if ( ! get_transient( 'livia_just_activated' ) && ! isset( $_GET['livia_import_notice'] ) ) return;
+
+    $import_url = wp_nonce_url(
+        add_query_arg( 'livia_run_import', '1', admin_url() ),
+        'livia_import_nonce'
+    );
+    $dismiss_url = add_query_arg( 'livia_dismiss_import', '1', admin_url() );
+
+    echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
+    echo '<div>';
+    echo '<strong>?? Livia Med Spa Theme</strong> — ';
+    echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
+    echo '</div>';
+    echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';
+    echo '<a href="' . esc_url( add_query_arg( [ 'livia_dismiss_import' => '1', '_wpnonce' => wp_create_nonce('livia_dismiss') ], admin_url() ) ) . '" class="button" style="white-space:nowrap;">Dismiss</a>';
+    echo '</div>';
+}
+
+// -- Dismiss handler ----------------------------------------------------------
+add_action( 'admin_init', 'livia_importer_handle_dismiss' );
+function livia_importer_handle_dismiss() {
+    if ( ! isset( $_GET['livia_dismiss_import'] ) ) return;
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    check_admin_referer( 'livia_dismiss' );
+    update_option( 'livia_demo_imported', 'dismissed' );
+    delete_transient( 'livia_just_activated' );
+    wp_safe_redirect( admin_url() );
+    exit;
+}
+
+// -- Main importer ------------------------------------------------------------
+add_action( 'admin_init', 'livia_run_demo_import' );
+function livia_run_demo_import() {
+    if ( ! isset( $_GET['livia_run_import'] ) ) return;
+    if ( ! current_user_can( 'manage_options' ) ) return;
+    check_admin_referer( 'livia_import_nonce' );
+
+    $xml_file = get_stylesheet_directory() . '/demo-content/content.xml';
+    if ( ! file_exists( $xml_file ) ) {
+        add_action( 'admin_notices', function() {
+            echo '<div class="notice notice-error"><p><strong>Livia Importer:</strong> demo-content/content.xml not found.</p></div>';
+        });
+        return;
+    }
+
+    // Make sure the WordPress importer is available
+    if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
+        define( 'WP_LOAD_IMPORTERS', true );
+    }
+
+    $importer_file = ABSPATH . 'wp-admin/includes/import.php';
+    if ( file_exists( $importer_file ) ) {
+        require_once $importer_file;
+    }
+
+    // Try to use the WordPress Importer plugin if active
+    $wp_importer = WP_PLUGIN_DIR . '/wordpress-importer/wordpress-importer.php';
+    if ( ! class_exists( 'WP_Import' ) && file_exists( $wp_importer ) ) {
+        require_once $wp_importer;
+    }
+
+    if ( class_exists( 'WP_Import' ) ) {
+        // Full import via WordPress Importer plugin
+        $importer = new WP_Import();
+        $importer->fetch_attachments = true; // pull remote images
+        ob_start();
+        $importer->import( $xml_file );
+        ob_end_clean();
+
+        update_option( 'livia_demo_imported', current_time( 'mysql' ) );
+        delete_transient( 'livia_just_activated' );
+
+        wp_safe_redirect( add_query_arg( 'livia_imported', '1', admin_url( 'edit.php?post_type=service' ) ) );
+        exit;
+
+    } else {
+        // WordPress Importer plugin not active — fall back to lightweight WXR parser
+        livia_lightweight_wxr_import( $xml_file );
+        update_option( 'livia_demo_imported', current_time( 'mysql' ) );
+        delete_transient( 'livia_just_activated' );
+        wp_safe_redirect( add_query_arg( 'livia_imported', '1', admin_url( 'edit.php?post_type=service' ) ) );
+        exit;
+    }
+}
+
+// -- Lightweight WXR parser (fallback when WordPress Importer plugin is absent)
+// Handles: posts, pages, custom post types, taxonomies, postmeta.
+// Does NOT handle authors or media re-attachment (use the plugin for that).
+function livia_lightweight_wxr_import( $xml_file ) {
+    $xml = simplexml_load_file( $xml_file, 'SimpleXMLElement', LIBXML_NOCDATA );
+    if ( ! $xml ) return;
+
+    $namespaces = $xml->getNamespaces( true );
+    $wp_ns  = isset( $namespaces['wp'] )      ? $namespaces['wp']      : 'http://wordpress.org/export/1.2/';
+    $dc_ns  = isset( $namespaces['dc'] )      ? $namespaces['dc']      : 'http://purl.org/dc/elements/1.1/';
+    $ex_ns  = isset( $namespaces['excerpt'] ) ? $namespaces['excerpt'] : 'http://wordpress.org/export/1.2/excerpt/';
+    $con_ns = isset( $namespaces['content'] ) ? $namespaces['content'] : 'http://purl.org/rss/1.0/modules/content/';
+
+    // First pass: register all terms / taxonomies
+    foreach ( $xml->channel->children( $wp_ns )->term as $term ) {
+        $taxonomy    = (string) $term->children( $wp_ns )->term_taxonomy;
+        $slug        = (string) $term->children( $wp_ns )->term_slug;
+        $name        = (string) $term->children( $wp_ns )->term_name;
+        $description = (string) $term->children( $wp_ns )->term_description;
+        if ( $taxonomy && $slug && $name ) {
+            if ( ! term_exists( $slug, $taxonomy ) ) {
+                wp_insert_term( $name, $taxonomy, [
+                    'slug'        => $slug,
+                    'description' => $description,
+                ] );
+            }
+        }
+    }
+
+    // Second pass: import items (posts, pages, CPTs)
+    $post_mapping = []; // old ID ? new ID
+
+    foreach ( $xml->channel->item as $item ) {
+        $wp = $item->children( $wp_ns );
+
+        $post_type   = (string) $wp->post_type;
+        $post_status = (string) $wp->post_status;
+        $post_date   = (string) $wp->post_date;
+        $post_name   = (string) $wp->post_name;
+        $old_id      = (int)    $wp->post_id;
+        $menu_order  = (int)    $wp->menu_order;
+
+        // Skip attachments and nav menu items for now
+        if ( in_array( $post_type, [ 'attachment', 'nav_menu_item' ], true ) ) continue;
+
+        // Skip if already exists (by slug + post type)
+        $existing = get_page_by_path( $post_name, OBJECT, $post_type );
+        if ( $existing ) {
+            $post_mapping[ $old_id ] = $existing->ID;
+            continue;
+        }
+
+        $content = '';
+        foreach ( $item->children( $con_ns ) as $c ) {
+            $content = (string) $c;
+        }
+        $excerpt = '';
+        foreach ( $item->children( $ex_ns ) as $e ) {
+            $excerpt = (string) $e;
+        }
+        $author = '';
+        foreach ( $item->children( $dc_ns ) as $d ) {
+            $author = (string) $d;
+        }
+        $author_obj = get_user_by( 'login', $author );
+        $author_id  = $author_obj ? $author_obj->ID : get_current_user_id();
+
+        $new_id = wp_insert_post( [
+            'post_title'    => (string) $item->title,
+            'post_content'  => $content,
+            'post_excerpt'  => $excerpt,
+            'post_status'   => in_array( $post_status, [ 'publish', 'draft', 'private' ], true ) ? $post_status : 'publish',
+            'post_type'     => $post_type,
+            'post_name'     => $post_name,
+            'post_date'     => $post_date,
+            'post_author'   => $author_id,
+            'menu_order'    => $menu_order,
+        ], true );
+
+        if ( is_wp_error( $new_id ) || ! $new_id ) continue;
+
+        $post_mapping[ $old_id ] = $new_id;
+
+        // Postmeta
+        foreach ( $wp->postmeta as $meta ) {
+            $key   = (string) $meta->meta_key;
+            $value = (string) $meta->meta_value;
+            if ( substr( $key, 0, 1 ) !== '_' || in_array( $key, [
+                '_service_icon', '_service_price', '_service_duration',
+                '_service_video', '_service_benefits', '_product_url',
+            ], true ) ) {
+                update_post_meta( $new_id, $key, $value );
+            }
+        }
+
+        // Taxonomy terms
+        foreach ( $item->children( $wp_ns )->category as $cat ) {
+            $domain = (string) $cat->attributes()->domain;
+            $slug   = (string) $cat->attributes()->nicename;
+            if ( $domain && $slug ) {
+                $term = get_term_by( 'slug', $slug, $domain );
+                if ( $term ) {
+                    wp_set_object_terms( $new_id, $term->term_id, $domain, true );
+                }
+            }
+        }
+    }
+}
+
+// -- Success notice after import ----------------------------------------------
+add_action( 'admin_notices', 'livia_import_success_notice' );
+function livia_import_success_notice() {
+    if ( ! isset( $_GET['livia_imported'] ) ) return;
+    echo '<div class="notice notice-success is-dismissible"><p>';
+    echo '? <strong>Livia Demo Content imported successfully!</strong> ';
+    echo 'Your services, posts, and categories have been restored. ';
+    echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services ?</a>';
+    echo '</p></div>';
+}
+
+// -- Helper: re-run importer at any time from the importer page ---------------
+// Visit: WP Admin ? Appearance ? Import Demo Content
+add_action( 'admin_menu', 'livia_importer_menu' );
+function livia_importer_menu() {
+    add_theme_page(
+        'Import Demo Content',
+        'Import Demo Content',
+        'manage_options',
+        'livia-importer',
+        'livia_importer_page'
+    );
+}
+function livia_importer_page() {
+    $already   = get_option( 'livia_demo_imported' );
+    $import_url = wp_nonce_url(
+        add_query_arg( 'livia_run_import', '1', admin_url() ),
+        'livia_import_nonce'
+    );
+    echo '<div class="wrap">';
+    echo '<h1>?? Livia Demo Content Importer</h1>';
+    if ( $already && $already !== 'dismissed' ) {
+        echo '<p>Content was last imported on <strong>' . esc_html( $already ) . '</strong>.</p>';
+        echo '<p>You can re-import at any time — existing posts with the same slug will be skipped.</p>';
+    }
+    echo '<p>This will import all services, pages, blog posts, categories, and custom field data from the bundled <code>demo-content/content.xml</code> file.</p>';
+    echo '<p><strong>Note:</strong> Images won\'t be re-uploaded automatically unless the WordPress Importer plugin is active and the original URLs are reachable.</p>';
+    echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary button-large">Run Import Now</a>';
+    // Allow re-import
+    echo '<script>document.querySelector(".button-primary").addEventListener("click",function(){';
+    echo 'if(!confirm("This will import all demo content. Continue?"))event.preventDefault();';
+    echo '});</script>';
+    // Reset flag so importer can run again
+    delete_option( 'livia_demo_imported' );
+    echo '</div>';
+}
