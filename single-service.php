@@ -19,7 +19,7 @@ $benefits     = $benefits_raw ? array_filter(array_map('trim', explode("\n", $be
 $video_embed = '';
 if ($video) {
     if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video, $m)) {
-        $video_embed = 'https://www.youtube.com/embed/' . $m[1] . '?rel=0&modestbranding=1&iv_load_policy=3&color=white&playsinline=1';
+        $video_embed = 'https://www.youtube.com/embed/' . $m[1] . '?rel=0&modestbranding=1&iv_load_policy=3&color=white&playsinline=1&autoplay=1&mute=1&loop=1&playlist=' . $m[1];
     } elseif (preg_match('/vimeo\.com\/(\d+)/', $video, $m)) {
         $video_embed = 'https://player.vimeo.com/video/' . $m[1] . '?title=0&byline=0&portrait=0&color=AC13F9';
     }
