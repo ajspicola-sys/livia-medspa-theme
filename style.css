@@ -7505,6 +7505,11 @@ a.contact-card__text:hover {
     margin-top: 6rem;
   }
 
+  /* Hide scroll indicator — desktop-only hint */
+  .hero__scroll-indicator {
+    display: none;
+  }
+
   .contact-form__row {
     grid-template-columns: 1fr;
   }
