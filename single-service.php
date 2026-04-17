@@ -253,13 +253,39 @@ $has_image     = has_post_thumbnail();
          RELATED SERVICES (Dynamic)
          ═══════════════════════════════════════════════════════ -->
     <?php
-    $related = new WP_Query([
+    // Pull from same category first; backfill with random others if < 3 found
+    $related_args = [
         'post_type'      => 'service',
         'posts_per_page' => 3,
         'post__not_in'   => [$post_id],
         'orderby'        => 'rand',
         'no_found_rows'  => true,
-    ]);
+    ];
+    if ($categories && !is_wp_error($categories)) {
+        $related_args['tax_query'] = [[
+            'taxonomy' => 'service_category',
+            'field'    => 'term_id',
+            'terms'    => wp_list_pluck($categories, 'term_id'),
+        ]];
+    }
+    $related = new WP_Query($related_args);
+
+    // Backfill: if same-cat returned fewer than 3, top up with random others
+    if ($related->post_count < 3 && $related->post_count > 0) {
+        $found_ids   = wp_list_pluck($related->posts, 'ID');
+        $exclude_ids = array_merge([$post_id], $found_ids);
+        $backfill    = new WP_Query([
+            'post_type'      => 'service',
+            'posts_per_page' => 3 - $related->post_count,
+            'post__not_in'   => $exclude_ids,
+            'orderby'        => 'rand',
+            'no_found_rows'  => true,
+        ]);
+        if ($backfill->have_posts()) {
+            $related->posts      = array_merge($related->posts, $backfill->posts);
+            $related->post_count = count($related->posts);
+        }
+    }
     if ($related->have_posts()): ?>
     <section class="related-services" aria-label="Related treatments">
         <div class="section__inner">
