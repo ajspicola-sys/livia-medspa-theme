@@ -1817,3 +1817,30 @@ function livia_popup_customizer($wp_customize) {
     ]);
 }
 
+
+// -- Service Page Extras — Video & Benefits Meta Box ----------------
+add_action('add_meta_boxes', 'livia_service_extras_meta_box');
+function livia_service_extras_meta_box() {
+    add_meta_box('livia_service_extras','?? Video & Key Benefits','livia_service_extras_html','service','normal','high');
+}
+function livia_service_extras_html($post) {
+    wp_nonce_field('livia_service_extras', 'livia_service_extras_nonce');
+    $video    = get_post_meta($post->ID, '_service_video', true);
+    $benefits = get_post_meta($post->ID, '_service_benefits', true);
+    echo '<table class="form-table" style="width:100%">';
+    echo '<tr><th style="width:160px;padding:12px 0;vertical-align:top"><label for="_service_video"><strong>?? Video URL</strong></label></th>';
+    echo '<td><input type="url" id="_service_video" name="_service_video" value="' . esc_attr($video) . '" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px" placeholder="https://youtube.com/watch?v=...">';
+    echo '<p style="color:#666;font-size:12px;margin:4px 0 0">Paste a YouTube or Vimeo URL. Leave blank to hide the video section.</p></td></tr>';
+    echo '<tr><th style="padding:12px 0;vertical-align:top"><label for="_service_benefits"><strong>? Key Benefits</strong></label></th>';
+    echo '<td><textarea id="_service_benefits" name="_service_benefits" rows="6" style="width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-family:inherit" placeholder="No pain, no downtime&#10;Results visible after 1 session">' . esc_textarea($benefits) . '</textarea>';
+    echo '<p style="color:#666;font-size:12px;margin:4px 0 0">One benefit per line. Leave blank to hide the benefits section.</p></td></tr>';
+    echo '</table>';
+}
+add_action('save_post_service', 'livia_save_service_extras');
+function livia_save_service_extras($post_id) {
+    if (!isset($_POST['livia_service_extras_nonce']) || !wp_verify_nonce($_POST['livia_service_extras_nonce'], 'livia_service_extras')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+    if (isset($_POST['_service_video'])) update_post_meta($post_id, '_service_video', esc_url_raw($_POST['_service_video']));
+    if (isset($_POST['_service_benefits'])) update_post_meta($post_id, '_service_benefits', sanitize_textarea_field($_POST['_service_benefits']));
+}
