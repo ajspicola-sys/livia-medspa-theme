@@ -2109,3 +2109,62 @@ function livia_importer_page() {
     echo '</div>';
 }
 
+
+// =============================================================================
+// AUTO-PURGE LITESPEED CACHE ON THEME UPDATE
+// Fires automatically after every git pull / theme file change.
+// Compares the combined modified-time of key theme files against a stored
+// value. If anything changed, it purges LiteSpeed, Cloudflare (via LSC), and
+// the WP object cache — zero manual effort required.
+// =============================================================================
+add_action( 'init', function () {
+    $theme_dir = get_template_directory();
+
+    // Hash the mtime of the files most likely to change after a deploy
+    $watch = [
+        $theme_dir . '/functions.php',
+        $theme_dir . '/style.css',
+        $theme_dir . '/front-page.php',
+        $theme_dir . '/footer.php',
+        $theme_dir . '/header.php',
+    ];
+
+    $current_sig = '';
+    foreach ( $watch as $f ) {
+        if ( file_exists( $f ) ) {
+            $current_sig .= filemtime( $f );
+        }
+    }
+    $current_sig = md5( $current_sig );
+
+    $stored_sig = get_option( 'livia_theme_sig', '' );
+
+    if ( $current_sig === $stored_sig ) {
+        return; // Nothing changed — skip
+    }
+
+    // Files changed: update stored signature
+    update_option( 'livia_theme_sig', $current_sig, false );
+
+    // 1. LiteSpeed Cache full purge
+    do_action( 'litespeed_purge_all' );
+
+    // 2. LiteSpeed ESI purge (covers edge-cached fragments)
+    do_action( 'litespeed_purge_all_esi' );
+
+    // 3. WP Object Cache flush (Redis / Memcached if active)
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+
+    // 4. WP Rocket compatibility (in case both are active)
+    if ( function_exists( 'rocket_clean_domain' ) ) {
+        rocket_clean_domain();
+    }
+
+    // 5. W3 Total Cache compatibility
+    if ( function_exists( 'w3tc_flush_all' ) ) {
+        w3tc_flush_all();
+    }
+
+}, 1 ); // Priority 1 — run early
