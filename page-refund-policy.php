@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Refund Policy Page
+ * LIVIA Med Spa — Refund Policy Page
  */
 get_header(); ?>
 
@@ -26,12 +26,12 @@ get_header(); ?>
 
                 <section id="products">
                     <h2>Products</h2>
-                    <p>At Livia Med Spa, <strong>all product sales are final.</strong> However, if you experience a skin reaction to one of our products, it may be returned within <strong>7 days</strong> for <strong>in-store product credit only</strong>.</p>
+                    <p>At LIVIA Med Spa, <strong>all product sales are final.</strong> However, if you experience a skin reaction to one of our products, it may be returned within <strong>7 days</strong> for <strong>in-store product credit only</strong>.</p>
                 </section>
 
                 <section id="services">
                     <h2>Services</h2>
-                    <p>At Livia Med Spa, we strive to ensure every client has the best possible treatment experience. Before services are performed, we review treatment objectives, expected outcomes, benefits, and risks to help you make informed decisions.</p>
+                    <p>At LIVIA Med Spa, we strive to ensure every client has the best possible treatment experience. Before services are performed, we review treatment objectives, expected outcomes, benefits, and risks to help you make informed decisions.</p>
 
                     <div class="refund-policy-cards">
                         <div class="refund-policy-card">
@@ -42,7 +42,7 @@ get_header(); ?>
                         <div class="refund-policy-card refund-policy-card--positive">
                             <div class="refund-policy-card__icon">✅</div>
                             <h3>Unused Service Values</h3>
-                            <p>Any unused service value (the credit equivalent of the remaining amount in a treatment package) may be <strong>applied toward any other service</strong> at Livia Med Spa.</p>
+                            <p>Any unused service value (the credit equivalent of the remaining amount in a treatment package) may be <strong>applied toward any other service</strong> at LIVIA Med Spa.</p>
                         </div>
                     </div>
                 </section>

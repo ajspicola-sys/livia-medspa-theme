@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Theme Functions
+ * LIVIA Med Spa — Theme Functions
  * Performance-optimized build
  */
 
@@ -195,7 +195,7 @@ function livia_cached_image_url( $src_url, $max_w = 800 ) {
     $response = wp_remote_get( $src_url, [
         'timeout'   => 30,
         'sslverify' => false,
-        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; LiviaMedSpa/1.0)' ],
+        'headers'   => [ 'User-Agent' => 'Mozilla/5.0 (compatible; LIVIAMedSpa/1.0)' ],
     ] );
 
     if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
@@ -268,7 +268,7 @@ function livia_schema_markup() {
     $schema = [
         '@context'    => 'https://schema.org',
         '@type'       => 'MedicalBusiness',
-        'name'        => 'Livia Med Spa',
+        'name'        => 'LIVIA Med Spa',
         'description' => "Tampa's premier destination for advanced aesthetics — expert Botox, fillers, laser treatments, and medical-grade skincare.",
         'url'         => esc_url(home_url('/')),
         'telephone'   => '+18132302219',
@@ -307,10 +307,10 @@ function livia_schema_markup() {
             '@context'    => 'https://schema.org',
             '@type'       => 'Service',
             'name'        => get_the_title(),
-            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at Livia Med Spa in Tampa, FL.'),
+            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at LIVIA Med Spa in Tampa, FL.'),
             'provider'    => [
                 '@type' => 'MedicalBusiness',
-                'name'  => 'Livia Med Spa',
+                'name'  => 'LIVIA Med Spa',
             ],
             'areaServed'  => 'Tampa, FL',
             'url'         => get_permalink($post_id),
@@ -501,7 +501,7 @@ function livia_create_blog_posts() {
             'category' => 'Injectables',
             'excerpt'  => 'Understanding the difference between neuromodulators and dermal fillers is key to choosing the right treatment for your aesthetic goals.',
             'content'  => '<h2>Understanding the Difference</h2>
-<p>One of the most common questions we hear at Livia Med Spa is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
+<p>One of the most common questions we hear at LIVIA Med Spa is: "Should I get Botox or fillers?" While both are injectable treatments that can help you look younger, they work in fundamentally different ways.</p>
 
 <h3>Botox: The Wrinkle Relaxer</h3>
 <p>Botox (and similar neuromodulators like Dysport and Jeuveau) works by temporarily relaxing the muscles that cause dynamic wrinkles — think forehead lines, crow\'s feet, and frown lines between the brows. It\'s ideal for wrinkles that appear when you make facial expressions.</p>
@@ -510,9 +510,9 @@ function livia_create_blog_posts() {
 <p>Fillers, on the other hand, work by adding volume beneath the skin\'s surface. They\'re perfect for plumping lips, restoring lost cheek volume, smoothing nasolabial folds, and enhancing facial contours. Popular brands include Juvéderm and Restylane.</p>
 
 <h3>Which Should You Choose?</h3>
-<p>The answer depends on your specific concerns. Many of our clients at Livia Med Spa benefit from a combination of both treatments — what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
+<p>The answer depends on your specific concerns. Many of our clients at LIVIA Med Spa benefit from a combination of both treatments — what we call a "liquid facelift." During your complimentary consultation, our expert injectors will create a customized treatment plan tailored to your unique facial anatomy and goals.</p>
 
-<p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at Livia Med Spa today.</p>',
+<p><strong>Ready to find out which treatment is right for you?</strong> Book a free consultation at LIVIA Med Spa today.</p>',
         ],
         [
             'title'    => 'The Ultimate Guide to Medical-Grade Skincare',
@@ -522,7 +522,7 @@ function livia_create_blog_posts() {
 <p>Not all skincare is created equal. While drugstore products can provide basic hydration and sun protection, medical-grade skincare is formulated with higher concentrations of active ingredients that penetrate deeper into the skin for visible, lasting results.</p>
 
 <h3>Key Differences</h3>
-<p>Medical-grade products, like those from ZO Skin Health (which we carry at Livia Med Spa), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level — something over-the-counter products simply can\'t match.</p>
+<p>Medical-grade products, like those from ZO Skin Health (which we carry at LIVIA Med Spa), are backed by clinical research and contain pharmaceutical-grade ingredients. They\'re designed to target specific skin concerns at the cellular level — something over-the-counter products simply can\'t match.</p>
 
 <h3>Building Your Routine</h3>
 <p>A solid medical-grade skincare routine includes four essential steps:</p>
@@ -533,14 +533,14 @@ function livia_create_blog_posts() {
 <li><strong>Sunscreen</strong> — The single most important anti-aging product you can use</li>
 </ul>
 
-<p>Our providers at Livia Med Spa can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
+<p>Our providers at LIVIA Med Spa can analyze your skin and recommend the exact products you need. No guesswork, no wasted money on products that don\'t work.</p>',
         ],
         [
             'title'    => 'What to Expect at Your First Med Spa Visit',
             'category' => 'Treatments',
-            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at Livia Med Spa — so you know exactly what to expect.',
+            'excerpt'  => 'A complete walkthrough of your consultation, treatment, and aftercare at LIVIA Med Spa — so you know exactly what to expect.',
             'content'  => '<h2>Your First Visit, Demystified</h2>
-<p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At Livia Med Spa, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
+<p>If you\'ve never been to a med spa before, it\'s completely normal to feel a mix of excitement and nervousness. At LIVIA Med Spa, we\'ve designed every step of the experience to make you feel comfortable, informed, and cared for.</p>
 
 <h3>Step 1: The Consultation</h3>
 <p>Every journey starts with a free, no-pressure consultation. You\'ll meet with one of our expert providers to discuss your goals, concerns, and medical history. We\'ll examine your skin and recommend treatments that align with your budget and expectations.</p>
@@ -551,14 +551,14 @@ function livia_create_blog_posts() {
 <h3>Step 3: Aftercare</h3>
 <p>We\'ll provide clear aftercare instructions and schedule any follow-up appointments. Our team is always available by phone or text if you have questions during your recovery.</p>
 
-<p><strong>Ready to take the first step?</strong> Book your complimentary consultation at Livia Med Spa today.</p>',
+<p><strong>Ready to take the first step?</strong> Book your complimentary consultation at LIVIA Med Spa today.</p>',
         ],
         [
             'title'    => '5 Anti-Aging Treatments That Actually Work',
             'category' => 'Beauty Tips',
             'excerpt'  => 'Cut through the noise — these are the five proven anti-aging treatments our providers recommend most.',
             'content'  => '<h2>Evidence-Based Anti-Aging</h2>
-<p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at Livia Med Spa.</p>
+<p>The beauty industry is full of promises, but only a handful of treatments deliver scientifically proven results. Here are the five anti-aging treatments we recommend most at LIVIA Med Spa.</p>
 
 <h3>1. Botox & Neuromodulators</h3>
 <p>The gold standard for preventing and treating dynamic wrinkles. Regular treatments can actually slow the formation of new lines over time.</p>
@@ -585,7 +585,7 @@ function livia_create_blog_posts() {
 <p>While topical treatments and procedures work on the surface, true skin health starts from within. That\'s where IV therapy comes in — delivering essential vitamins, minerals, and antioxidants directly to your bloodstream for maximum absorption.</p>
 
 <h3>How IV Therapy Helps Your Skin</h3>
-<p>Our custom IV drips at Livia Med Spa are formulated with skin-boosting nutrients including:</p>
+<p>Our custom IV drips at LIVIA Med Spa are formulated with skin-boosting nutrients including:</p>
 <ul>
 <li><strong>Vitamin C</strong> — A powerful antioxidant that brightens skin and supports collagen production</li>
 <li><strong>Glutathione</strong> — The "master antioxidant" that detoxifies and promotes an even, luminous complexion</li>
@@ -596,7 +596,7 @@ function livia_create_blog_posts() {
 <h3>Beyond Skin Benefits</h3>
 <p>IV therapy also boosts energy, strengthens immunity, and helps with recovery after intense workouts or travel. Many of our clients schedule regular drips as part of their overall wellness routine.</p>
 
-<p><strong>Try it yourself.</strong> Book an IV therapy session at Livia Med Spa and feel the difference within hours.</p>',
+<p><strong>Try it yourself.</strong> Book an IV therapy session at LIVIA Med Spa and feel the difference within hours.</p>',
         ],
         [
             'title'    => 'Glo2Facial: Why Tampa\'s It-Girls Are Obsessed',
@@ -618,7 +618,7 @@ function livia_create_blog_posts() {
 <h3>Why We Love It</h3>
 <p>The Glo2Facial delivers instant, visible results with absolutely zero downtime. You can literally get one on your lunch break and return to work glowing. It\'s safe for all skin types and can be customized for specific concerns like hydration, brightening, or anti-aging.</p>
 
-<p><strong>Want that Tampa glow?</strong> Book your Glo2Facial at Livia Med Spa — or host a Glo2Facial Party with your friends!</p>',
+<p><strong>Want that Tampa glow?</strong> Book your Glo2Facial at LIVIA Med Spa — or host a Glo2Facial Party with your friends!</p>',
         ],
     ];
 
@@ -1257,7 +1257,7 @@ function livia_seo_meta_html($post) {
                    id="livia_seo_title"
                    name="livia_seo_title"
                    value="<?php echo esc_attr($seo_title); ?>"
-                   placeholder="<?php echo esc_attr($post->post_title . ' — Livia Med Spa'); ?>"
+                   placeholder="<?php echo esc_attr($post->post_title . ' — LIVIA Med Spa'); ?>"
                    maxlength="120">
             <span class="livia-seo-hint">Recommended: 50–60 characters. Leave blank to use default.</span>
             <span class="livia-seo-counter" id="seo-title-counter">0/60</span>
@@ -1290,7 +1290,7 @@ function livia_seo_meta_html($post) {
         <div class="livia-seo-preview">
             <div class="livia-seo-preview__label">Google Search Preview</div>
             <div class="livia-seo-preview__title" id="seo-preview-title">
-                <?php echo esc_html($seo_title ?: $post->post_title . ' — Livia Med Spa'); ?>
+                <?php echo esc_html($seo_title ?: $post->post_title . ' — LIVIA Med Spa'); ?>
             </div>
             <div class="livia-seo-preview__url">
                 <?php echo esc_url(get_permalink($post->ID)); ?>
@@ -1309,7 +1309,7 @@ function livia_seo_meta_html($post) {
         var descCounter  = document.getElementById('seo-desc-counter');
         var previewTitle = document.getElementById('seo-preview-title');
         var previewDesc  = document.getElementById('seo-preview-desc');
-        var defaultTitle = <?php echo json_encode($post->post_title . ' — Livia Med Spa'); ?>;
+        var defaultTitle = <?php echo json_encode($post->post_title . ' — LIVIA Med Spa'); ?>;
 
         function updateCounter(input, counter, ideal) {
             var len = input.value.length;
@@ -1360,20 +1360,20 @@ function livia_custom_title($title) {
     // Homepage
     if (is_front_page()) {
         $title['title'] = 'Medical Spa in Tampa, FL';
-        $title['site']  = 'Livia Med Spa';
+        $title['site']  = 'LIVIA Med Spa';
         return $title;
     }
-    // Service pages: "Botox in Tampa, FL | Livia Med Spa"
+    // Service pages: "Botox in Tampa, FL | LIVIA Med Spa"
     if (is_singular('service')) {
         $custom = get_post_meta(get_the_ID(), '_livia_seo_title', true);
         $title['title'] = !empty($custom) ? $custom : get_the_title() . ' in Tampa, FL';
-        $title['site']  = 'Livia Med Spa';
+        $title['site']  = 'LIVIA Med Spa';
         return $title;
     }
     // Product pages
     if (is_singular('product')) {
         $title['title'] = get_the_title() . ' | Medical-Grade Skincare';
-        $title['site']  = 'Livia Med Spa';
+        $title['site']  = 'LIVIA Med Spa';
         return $title;
     }
     // All other singular pages — use custom SEO title if set
@@ -1405,7 +1405,7 @@ function livia_seo_head_tags() {
         echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
         echo '<meta property="og:type" content="website">' . "\n";
         echo '<meta property="og:url" content="' . esc_url(get_permalink($post_id)) . '">' . "\n";
-        echo '<meta property="og:site_name" content="Livia Med Spa">' . "\n";
+        echo '<meta property="og:site_name" content="LIVIA Med Spa">' . "\n";
         echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
         echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
 
@@ -1489,7 +1489,7 @@ function livia_handle_contact_form() {
     if ( empty($recipients) ) $recipients = ['support@liviamedspa.com'];
     $to = $recipients;
 
-    $subject = '✨ New Message — Livia Med Spa Website';
+    $subject = '✨ New Message — LIVIA Med Spa Website';
 
     // ── Prepare substitution values ─────────────────────────────────
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -1542,7 +1542,7 @@ function livia_default_email_template() {
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
         <tr>
           <td style="background:linear-gradient(135deg,#0f0720 0%,#1a0a35 60%,#2d0d5e 100%);padding:40px 40px 32px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">Livia Med Spa</p>
+            <p style="margin:0 0 8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,169,110,0.9);">LIVIA Med Spa</p>
             <h1 style="margin:0;font-size:26px;font-weight:300;color:#f0ebe3;letter-spacing:1px;">New Website Message</h1>
             <div style="width:40px;height:2px;background:linear-gradient(90deg,#AC13F9,#C9A96E);margin:16px auto 0;border-radius:2px;"></div>
           </td>
@@ -1591,7 +1591,7 @@ function livia_default_email_template() {
         </tr>
         <tr>
           <td style="background:#0f0720;padding:24px 40px;text-align:center;">
-            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">Livia Med Spa &middot; Tampa, FL &middot; <a href="https://liviamedspa.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">liviamedspa.com</a></p>
+            <p style="margin:0;font-size:11px;color:rgba(240,235,227,0.4);letter-spacing:1px;">LIVIA Med Spa &middot; Tampa, FL &middot; <a href="https://liviamedspa.com" style="color:rgba(172,19,249,0.7);text-decoration:none;">liviamedspa.com</a></p>
           </td>
         </tr>
       </table>
@@ -1601,7 +1601,7 @@ function livia_default_email_template() {
 </html>';
 }
 
-// ── Livia Settings Page (Admin Dashboard) ──────────────────────────
+// ── LIVIA Settings Page (Admin Dashboard) ──────────────────────────
 function livia_settings_page_html() {
     if ( ! current_user_can('manage_options') ) return;
 
@@ -1623,7 +1623,7 @@ function livia_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">✨</span> Livia Med Spa — Settings
+            <span style="font-size:1.4rem;">✨</span> LIVIA Med Spa — Settings
         </h1>
 
         <form method="post">
@@ -1707,8 +1707,8 @@ function livia_settings_page_html() {
 
 function livia_add_settings_menu() {
     add_options_page(
-        'Livia Med Spa Settings',
-        '✨ Livia Settings',
+        'LIVIA Med Spa Settings',
+        '✨ LIVIA Settings',
         'manage_options',
         'livia-settings',
         'livia_settings_page_html'
@@ -1818,7 +1818,7 @@ function livia_popup_customizer($wp_customize) {
 }
 
 
-// -- Service Page Extras � Video & Benefits Meta Box ----------------
+// -- Service Page Extras � Video & Benefits Meta Box ----------------
 add_action('add_meta_boxes', 'livia_service_extras_meta_box');
 function livia_service_extras_meta_box() {
     add_meta_box('livia_service_extras','?? Video & Key Benefits','livia_service_extras_html','service','normal','high');
@@ -1878,7 +1878,7 @@ function livia_importer_admin_notice() {
 
     echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
     echo '<div>';
-    echo '<strong>?? Livia Med Spa Theme</strong> � ';
+    echo '<strong>?? LIVIA Med Spa Theme</strong> � ';
     echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
     echo '</div>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';
@@ -1908,7 +1908,7 @@ function livia_run_demo_import() {
     $xml_file = get_stylesheet_directory() . '/demo-content/content.xml';
     if ( ! file_exists( $xml_file ) ) {
         add_action( 'admin_notices', function() {
-            echo '<div class="notice notice-error"><p><strong>Livia Importer:</strong> demo-content/content.xml not found.</p></div>';
+            echo '<div class="notice notice-error"><p><strong>LIVIA Importer:</strong> demo-content/content.xml not found.</p></div>';
         });
         return;
     }
@@ -1944,7 +1944,7 @@ function livia_run_demo_import() {
         exit;
 
     } else {
-        // WordPress Importer plugin not active � fall back to lightweight WXR parser
+        // WordPress Importer plugin not active � fall back to lightweight WXR parser
         livia_lightweight_wxr_import( $xml_file );
         update_option( 'livia_demo_imported', current_time( 'mysql' ) );
         delete_transient( 'livia_just_activated' );
@@ -2067,7 +2067,7 @@ add_action( 'admin_notices', 'livia_import_success_notice' );
 function livia_import_success_notice() {
     if ( ! isset( $_GET['livia_imported'] ) ) return;
     echo '<div class="notice notice-success is-dismissible"><p>';
-    echo '? <strong>Livia Demo Content imported successfully!</strong> ';
+    echo '? <strong>LIVIA Demo Content imported successfully!</strong> ';
     echo 'Your services, posts, and categories have been restored. ';
     echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services ?</a>';
     echo '</p></div>';
@@ -2092,10 +2092,10 @@ function livia_importer_page() {
         'livia_import_nonce'
     );
     echo '<div class="wrap">';
-    echo '<h1>?? Livia Demo Content Importer</h1>';
+    echo '<h1>?? LIVIA Demo Content Importer</h1>';
     if ( $already && $already !== 'dismissed' ) {
         echo '<p>Content was last imported on <strong>' . esc_html( $already ) . '</strong>.</p>';
-        echo '<p>You can re-import at any time � existing posts with the same slug will be skipped.</p>';
+        echo '<p>You can re-import at any time � existing posts with the same slug will be skipped.</p>';
     }
     echo '<p>This will import all services, pages, blog posts, categories, and custom field data from the bundled <code>demo-content/content.xml</code> file.</p>';
     echo '<p><strong>Note:</strong> Images won\'t be re-uploaded automatically unless the WordPress Importer plugin is active and the original URLs are reachable.</p>';

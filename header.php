@@ -2,7 +2,7 @@
 
 /**
 
- * Livia Med Spa — Header Template
+ * LIVIA Med Spa — Header Template
 
  * Performance-optimized with critical CSS inlining
 
@@ -40,23 +40,23 @@
 
     if (is_front_page()) {
 
-        $meta_desc = 'Livia Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN — serving Tampa, FL. Book today.';
+        $meta_desc = 'LIVIA Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN — serving Tampa, FL. Book today.';
 
     } elseif (is_singular('service')) {
 
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at Livia Med Spa — board-certified provider, natural results.';
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at LIVIA Med Spa — board-certified provider, natural results.';
 
     } elseif (is_singular('product')) {
 
-        $meta_desc = get_the_title() . ' — Medical-grade skincare products available at Livia Med Spa in Tampa, FL.';
+        $meta_desc = get_the_title() . ' — Medical-grade skincare products available at LIVIA Med Spa in Tampa, FL.';
 
     } elseif (is_page()) {
 
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'Livia Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'LIVIA Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
 
     } else {
 
-        $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
+        $meta_desc = 'LIVIA Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
 
     }
 
@@ -82,7 +82,7 @@
 
     $og_default_height = 932;
 
-    $og_default_alt    = 'Livia Med Spa - Tampa Aesthetic Studio';
+    $og_default_alt    = 'LIVIA Med Spa - Tampa Aesthetic Studio';
 
 
 
@@ -116,7 +116,7 @@
 
     $og_title = is_front_page()
 
-        ? 'Livia Med Spa | Medical Spa in Tampa, FL'
+        ? 'LIVIA Med Spa | Medical Spa in Tampa, FL'
 
         : wp_get_document_title();
 
@@ -134,7 +134,7 @@
 
     ?>
 
-    <meta property="og:site_name"        content="Livia Med Spa">
+    <meta property="og:site_name"        content="LIVIA Med Spa">
 
     <meta property="og:type"             content="<?php echo esc_attr( $og_type ); ?>">
 
@@ -444,9 +444,9 @@
 
         <div class="site-header__inner">
 
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa — Home">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="LIVIA Med Spa — Home">
 
-                <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="160" height="40" loading="eager" decoding="async">
+                <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="LIVIA Med Spa" class="site-logo__img" width="160" height="40" loading="eager" decoding="async">
 
             </a>
 
@@ -870,7 +870,7 @@
 
                                 <div class="mega-menu__column">
 
-                                    <span class="mega-menu__heading">About Livia</span>
+                                    <span class="mega-menu__heading">About LIVIA</span>
 
                                     <div class="mega-menu__items">
 
@@ -1024,7 +1024,7 @@
 
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
 
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="140" height="75">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="LIVIA Med Spa" class="site-logo__img" width="140" height="75">
 
                 </a>
 

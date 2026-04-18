@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Homepage
- * Livia Med Spa — Front Page
+ * LIVIA Med Spa — Front Page
  * Performance-optimized: lazy loading, fetchpriority, semantic HTML
  */
 get_header(); ?>
@@ -14,8 +14,8 @@ get_header(); ?>
     "@context": "https://schema.org",
     "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
     "@id": "<?php echo esc_url(home_url('/')); ?>#business",
-    "name": "Livia Med Spa",
-    "alternateName": "Livia Medical Spa Tampa",
+    "name": "LIVIA Med Spa",
+    "alternateName": "LIVIA Medical Spa Tampa",
     "description": "Tampa's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, and medical-grade skincare led by Angela Spicola, APRN.",
     "url": "<?php echo esc_url(home_url('/')); ?>",
     "telephone": "+18132302219",
@@ -96,7 +96,7 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          HERO SECTION — above the fold, no lazy loading
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="hero" id="hero" aria-label="Welcome to Livia Med Spa">
+    <section class="hero" id="hero" aria-label="Welcome to LIVIA Med Spa">
 
         <!-- Background layers -->
         <div class="hero__bg-overlay" aria-hidden="true"></div>
@@ -163,7 +163,7 @@ get_header(); ?>
                 <!-- Cutout model image with bottom fade -->
                 <div class="hero__model">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png"
-                         alt="Livia Med Spa aesthetic treatment model"
+                         alt="LIVIA Med Spa aesthetic treatment model"
                          class="hero__model-img"
                          fetchpriority="high"
                          decoding="async"
@@ -533,7 +533,7 @@ get_header(); ?>
                     <div class="product-showcase__image-wrapper">
                         <div class="product-showcase__ring" aria-hidden="true"></div>
                         <img src="https://liviamedspa.com/wp-content/uploads/2026/04/Hydrinity.png"
-                             alt="Hydrinity medical-grade skincare products available at Livia Med Spa"
+                             alt="Hydrinity medical-grade skincare products available at LIVIA Med Spa"
                              class="product-showcase__image"
                              loading="lazy"
                              decoding="async"
@@ -566,10 +566,10 @@ get_header(); ?>
                     <p class="supplements__text">Every product in our Fullscript store is hand-selected by our clinical team — pharmaceutical-grade, third-party tested, and shipped directly to your door at a practitioner discount.</p>
                     <div class="supplements__cta-row">
                         <a href="https://us.fullscript.com/welcome/liviamedspa" class="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Shop Our Supplement Store →</a>
-                        <span class="supplements__discount">10% off retail — exclusive to Livia patients</span>
+                        <span class="supplements__discount">10% off retail — exclusive to LIVIA patients</span>
                     </div>
                     <div class="supplements__partnership">
-                        <span class="supplements__partner-label">Livia Med Spa</span>
+                        <span class="supplements__partner-label">LIVIA Med Spa</span>
                         <span class="supplements__partner-x">×</span>
                         <span class="supplements__partner-powered">Powered by</span>
                         <span class="supplements__partner-brand">Fullscript</span>
@@ -607,11 +607,11 @@ get_header(); ?>
     <!-- ═══════════════════════════════════════════════════════════════
          WHY LIVIA SECTION
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="why-us" aria-label="Why choose Livia Med Spa">
+    <section class="why-us" aria-label="Why choose LIVIA Med Spa">
         <div class="section__inner">
             <div class="why-us__grid">
                 <div class="why-us__content reveal">
-                    <span class="section__label">The Livia Difference</span>
+                    <span class="section__label">The LIVIA Difference</span>
                     <h2 class="section__title">Why Tampa Trusts Us</h2>
                     <p class="section__desc">We don't believe in one-size-fits-all. Every treatment plan is crafted around your unique anatomy, goals, and lifestyle.</p>
                     <div class="why-us__features">
@@ -678,7 +678,7 @@ get_header(); ?>
                 <div class="testimonials-split__visual reveal">
                     <div class="testimonials-split__img-wrap">
                         <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Livia-visual-3-1-e1770845322806-768x924.png"
-                             alt="Livia Med Spa client"
+                             alt="LIVIA Med Spa client"
                              width="768" height="924"
                              loading="lazy" decoding="async">
                     </div>
@@ -693,7 +693,7 @@ get_header(); ?>
                 <div class="testimonials-split__content reveal">
                     <span class="section__label">Client Love</span>
                     <h2 class="section__title">Real Results,<br><em>Real Stories</em></h2>
-                    <p class="section__desc">Hear what our clients have to say about their experience at Livia Med Spa.</p>
+                    <p class="section__desc">Hear what our clients have to say about their experience at LIVIA Med Spa.</p>
 
                     <div class="testimonials-split__cards">
                         <article class="testimonial-card-v2">
@@ -829,7 +829,7 @@ get_header(); ?>
                                 <span class="blog-card__date">Coming Soon</span>
                             </div>
                             <h3 class="blog-card__title">What to Expect at Your First Med Spa Visit</h3>
-                            <p class="blog-card__excerpt">A complete walkthrough of your consultation, treatment, and aftercare at Livia Med Spa.</p>
+                            <p class="blog-card__excerpt">A complete walkthrough of your consultation, treatment, and aftercare at LIVIA Med Spa.</p>
                             <span class="blog-card__read">Read More →</span>
                         </div>
                     </article>

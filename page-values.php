@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Values
- * Livia Med Spa — Our Mission & Values Page
+ * LIVIA Med Spa — Our Mission & Values Page
  */
 get_header(); ?>
 
@@ -22,7 +22,7 @@ get_header(); ?>
                 <div class="mission-statement__quote">
                     "We believe that true beauty isn't about changing who you are — it's about revealing the best version of yourself."
                 </div>
-                <span class="mission-statement__author">— The Livia Med Spa Team</span>
+                <span class="mission-statement__author">— The LIVIA Med Spa Team</span>
             </div>
 
             <div class="mission-pillars reveal">
@@ -58,7 +58,7 @@ get_header(); ?>
             <div class="section__header reveal">
                 <span class="section__label"><span aria-hidden="true">💎</span> What We Believe</span>
                 <h2 class="section__title">Our Values</h2>
-                <p class="section__desc">The principles that guide every decision, every treatment, and every interaction at Livia Med Spa.</p>
+                <p class="section__desc">The principles that guide every decision, every treatment, and every interaction at LIVIA Med Spa.</p>
             </div>
             <div class="values-detailed">
 
@@ -106,7 +106,7 @@ get_header(); ?>
                     <div class="value-detail__number" aria-hidden="true">06</div>
                     <div class="value-detail__content">
                         <h3 class="value-detail__title">Community First</h3>
-                        <p class="value-detail__text">We're proud to be part of Tampa's community. From partnering with local charities to offering educational workshops on skin health, we believe in giving back to the community that has given us so much. When you choose Livia, you're supporting a local, women-owned business.</p>
+                        <p class="value-detail__text">We're proud to be part of Tampa's community. From partnering with local charities to offering educational workshops on skin health, we believe in giving back to the community that has given us so much. When you choose LIVIA, you're supporting a local, women-owned business.</p>
                     </div>
                 </div>
 

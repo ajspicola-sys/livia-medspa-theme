@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Blog/Archive Template
+ * LIVIA Med Spa — Blog/Archive Template
  * Performance-optimized: lazy loading, semantic HTML, category filters
  */
 get_header(); ?>
@@ -105,7 +105,7 @@ get_header(); ?>
                 <div class="blog-empty reveal">
                     <span class="blog-empty__icon" aria-hidden="true">📝</span>
                     <h2 class="blog-empty__title">Coming Soon</h2>
-                    <p class="blog-empty__text">Our blog is launching soon with beauty tips, treatment guides, and expert insights from the Livia Med Spa team.</p>
+                    <p class="blog-empty__text">Our blog is launching soon with beauty tips, treatment guides, and expert insights from the LIVIA Med Spa team.</p>
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--primary">Back to Home</a>
                 </div>
             <?php endif; ?>

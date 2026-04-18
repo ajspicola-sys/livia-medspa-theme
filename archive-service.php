@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Services Archive
+ * LIVIA Med Spa — Services Archive
  * Premium redesign: category filter tabs, rich grid, CTA section.
  */
 get_header();
@@ -19,7 +19,7 @@ $all_cats = get_terms([
 {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Livia Med Spa Services in Tampa, FL",
+    "name": "LIVIA Med Spa Services in Tampa, FL",
     "url": "<?php echo esc_url( home_url('/services/') ); ?>",
     "description": "Advanced medical spa treatments including Botox, fillers, RF microneedling, laser hair removal, and medical-grade skincare.",
     "itemListOrder": "https://schema.org/ItemListOrderAscending"
@@ -158,17 +158,17 @@ $all_cats = get_terms([
     <!-- ═══════════════════════════════════════════════════════
          WHY LIVIA (Static Trust Section)
          ═══════════════════════════════════════════════════════ -->
-    <section class="service-why-us" aria-label="Why choose Livia Med Spa">
+    <section class="service-why-us" aria-label="Why choose LIVIA Med Spa">
         <div class="section__inner">
             <div class="section__header reveal">
-                <span class="section__label">Why Livia</span>
-                <h2 class="section__title">Why People Choose Livia</h2>
+                <span class="section__label">Why LIVIA</span>
+                <h2 class="section__title">Why People Choose LIVIA</h2>
             </div>
             <div class="service-why-us__grid reveal">
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">⚡</div>
                     <h3 class="service-why-us__card-title">Advanced, High-Quality Treatments</h3>
-                    <p class="service-why-us__card-text">Livia Med Spa specializes in modern, results-driven treatments designed to enhance natural beauty while maintaining a refreshed, natural look.</p>
+                    <p class="service-why-us__card-text">LIVIA Med Spa specializes in modern, results-driven treatments designed to enhance natural beauty while maintaining a refreshed, natural look.</p>
                 </div>
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">🛡️</div>
@@ -178,7 +178,7 @@ $all_cats = get_terms([
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">✨</div>
                     <h3 class="service-why-us__card-title">Personalized Experience</h3>
-                    <p class="service-why-us__card-text">Every client is unique. At Livia Med Spa, we tailor treatments to your individual goals so you receive care that fits your needs.</p>
+                    <p class="service-why-us__card-text">Every client is unique. At LIVIA Med Spa, we tailor treatments to your individual goals so you receive care that fits your needs.</p>
                 </div>
             </div>
         </div>

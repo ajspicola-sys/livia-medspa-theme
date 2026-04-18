@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Search Results Template
+ * LIVIA Med Spa — Search Results Template
  */
 get_header(); ?>
 

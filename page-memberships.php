@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Memberships
- * Livia Med Spa — LIVIA Luxe Membership Tiers
+ * LIVIA Med Spa — LIVIA Luxe Membership Tiers
  */
 get_header(); ?>
 

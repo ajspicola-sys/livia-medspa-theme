@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Products
- * Livia Med Spa — Products Page (Dynamic)
+ * LIVIA Med Spa — Products Page (Dynamic)
  * Pulls products from the product custom post type
  */
 get_header(); ?>

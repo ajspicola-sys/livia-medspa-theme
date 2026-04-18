@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Footer Template
+ * LIVIA Med Spa — Footer Template
  * Performance-optimized: deferred JS, passive listeners, requestIdleCallback
  */
 ?>
@@ -16,7 +16,7 @@
             <div class="client-portal__phone reveal">
                 <div class="client-portal__phone-wrapper">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/02/Phone-mockup-1-scaled-e1770923706701-768x979.png"
-                         alt="Livia Med Spa Client Portal on Phone"
+                         alt="LIVIA Med Spa Client Portal on Phone"
                          class="client-portal__phone-img"
                          loading="lazy"
                          decoding="async"
@@ -28,7 +28,7 @@
             <div class="client-portal__content reveal">
                 <span class="section__label">Client Portal</span>
                 <h2 class="section__title">Click. Book. <em>Glow.</em></h2>
-                <p class="client-portal__text">Access the Livia Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
+                <p class="client-portal__text">Access the LIVIA Med Spa Client Portal to easily manage your appointments, view your vouchers and memberships, and share referral links with friends. Enjoy a seamless, secure experience that puts all your spa benefits and perks right at your fingertips.</p>
                 <div class="client-portal__features">
                     <div class="client-portal__feature">
                         <span class="client-portal__feature-check">✓</span>
@@ -68,8 +68,8 @@
         <div class="footer__inner">
             <!-- Brand Column -->
             <div class="footer__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="Livia Med Spa — Home">
-                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="Livia Med Spa" width="160" height="86" loading="lazy" decoding="async">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="LIVIA Med Spa — Home">
+                    <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="LIVIA Med Spa" width="160" height="86" loading="lazy" decoding="async">
                 </a>
             <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics, proudly serving South Tampa, Hyde Park, Westchase, Brandon, and St. Petersburg.</p>
                 <div class="footer__social">
@@ -155,7 +155,7 @@
     <!-- Bottom bar -->
     <div class="footer__bottom">
         <div class="footer__inner">
-            <p class="footer__copyright">© <?php echo date('Y'); ?> Livia Med Spa. All rights reserved.</p>
+            <p class="footer__copyright">© <?php echo date('Y'); ?> LIVIA Med Spa. All rights reserved.</p>
             <div class="footer__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>

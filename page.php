@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Generic Page Template
+ * LIVIA Med Spa — Generic Page Template
  * Auto-routes to custom templates based on page slug
  */
 

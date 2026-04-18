@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Single Post Template
+ * LIVIA Med Spa — Single Post Template
  * Performance-optimized: lazy loading, optimized WP_Query, semantic HTML
  */
 get_header(); ?>

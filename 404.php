@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — 404 Error Page
+ * LIVIA Med Spa — 404 Error Page
  * Premium design with animated elements
  */
 get_header(); ?>

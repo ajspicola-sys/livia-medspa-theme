@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Beauty Bank Membership Page
+ * LIVIA Med Spa — Beauty Bank Membership Page
  */
 get_header(); ?>
 
@@ -34,7 +34,7 @@ get_header(); ?>
                 <div class="beauty-bank-step">
                     <div class="beauty-bank-step__num">02</div>
                     <h3>Spend Your Way</h3>
-                    <p>Those funds can be applied toward most treatments and services at Livia Med Spa.</p>
+                    <p>Those funds can be applied toward most treatments and services at LIVIA Med Spa.</p>
                 </div>
                 <div class="beauty-bank-step">
                     <div class="beauty-bank-step__num">03</div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Parties
- * Livia Med Spa — Botox & Glo2Facial Parties
+ * LIVIA Med Spa — Botox & Glo2Facial Parties
  */
 get_header(); ?>
 
@@ -11,7 +11,7 @@ get_header(); ?>
     <section class="page-hero page-hero--parties" aria-label="Beauty parties">
         <div class="page-hero__inner">
             <span class="section__label"><span aria-hidden="true">🥂</span> Beauty & Wellness Parties</span>
-            <h1 class="page-hero__title">Host a Glamorous Event<br>with <em>Livia Med Spa</em></h1>
+            <h1 class="page-hero__title">Host a Glamorous Event<br>with <em>LIVIA Med Spa</em></h1>
             <p class="page-hero__desc">Whether it's a girls' night, birthday bash, bridal event, or corporate wellness day — our parties combine luxury, laughter, and expert care in one unforgettable experience.</p>
             <div class="hero__actions" style="justify-content:center;">
                 <a href="#book-now" class="btn btn--primary btn--lg">Book a Party →</a>
@@ -109,8 +109,8 @@ get_header(); ?>
                     <div class="party-block__visual">
                         <div class="party-block__video-wrapper">
                             <iframe
-                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 .5em black}</style><a href='https://www.youtube.com/embed/cXLYHldxOy8?autoplay=1'><img src='https://img.youtube.com/vi/cXLYHldxOy8/hqdefault.jpg' alt='Livia Glo2Facial Party Video'><span>&#x25B6;</span></a>"
-                                title="Livia Glo2Facial Party"
+                                srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 .5em black}</style><a href='https://www.youtube.com/embed/cXLYHldxOy8?autoplay=1'><img src='https://img.youtube.com/vi/cXLYHldxOy8/hqdefault.jpg' alt='LIVIA Glo2Facial Party Video'><span>&#x25B6;</span></a>"
+                                title="LIVIA Glo2Facial Party"
                                 frameborder="0"
                                 loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

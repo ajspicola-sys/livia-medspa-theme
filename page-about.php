@@ -1,18 +1,18 @@
 <?php
 /**
  * Template Name: About
- * Livia Med Spa — About Page
+ * LIVIA Med Spa — About Page
  * Simplified: Meet the Team + Our Values only
  */
 get_header(); ?>
 
 <main class="site-main" id="main-content">
 
-    <section class="page-hero" aria-label="About Livia Med Spa">
+    <section class="page-hero" aria-label="About LIVIA Med Spa">
         <div class="page-hero__inner">
-            <span class="section__label">About Livia Med Spa</span>
+            <span class="section__label">About LIVIA Med Spa</span>
             <h1 class="page-hero__title">Who We Are</h1>
-            <p class="page-hero__desc">Board-certified providers and core values that make Livia Tampa's most trusted name in aesthetics.</p>
+            <p class="page-hero__desc">Board-certified providers and core values that make LIVIA Tampa's most trusted name in aesthetics.</p>
         </div>
     </section>
 
@@ -141,7 +141,7 @@ get_header(); ?>
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Start Your Journey</span>
             <h2 class="cta-section__title">Ready to Meet Us?</h2>
-            <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts Livia Med Spa.</p>
+            <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts LIVIA Med Spa.</p>
             <div class="cta-section__actions">
                 <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>

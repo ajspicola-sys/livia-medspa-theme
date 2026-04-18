@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Single Service Template
+ * LIVIA Med Spa — Single Service Template
  * Premium redesign: 2-col hero with image, content + sidebar,
  * conditional benefits grid, conditional video section.
  */
@@ -205,12 +205,12 @@ $has_image     = has_post_thumbnail();
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">See It In Action</span>
-                <h2 class="section__title"><?php the_title(); ?> at Livia Med Spa</h2>
+                <h2 class="section__title"><?php the_title(); ?> at LIVIA Med Spa</h2>
             </div>
             <div class="service-video__wrap reveal">
                 <iframe
                     src="<?php echo esc_url($video_embed); ?>"
-                    title="<?php the_title_attribute(); ?> treatment video at Livia Med Spa Tampa"
+                    title="<?php the_title_attribute(); ?> treatment video at LIVIA Med Spa Tampa"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
@@ -224,17 +224,17 @@ $has_image     = has_post_thumbnail();
     <!-- ═══════════════════════════════════════════════════════
          WHY PEOPLE CHOOSE LIVIA (Static)
          ═══════════════════════════════════════════════════════ -->
-    <section class="service-why-us" aria-label="Why choose Livia Med Spa">
+    <section class="service-why-us" aria-label="Why choose LIVIA Med Spa">
         <div class="section__inner">
             <div class="section__header reveal">
-                <span class="section__label">Why Livia</span>
-                <h2 class="section__title">Why People Choose Livia</h2>
+                <span class="section__label">Why LIVIA</span>
+                <h2 class="section__title">Why People Choose LIVIA</h2>
             </div>
             <div class="service-why-us__grid reveal">
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">⚡</div>
                     <h3 class="service-why-us__card-title">Advanced, High-Quality Treatments</h3>
-                    <p class="service-why-us__card-text">Livia Med Spa specializes in modern, results-driven treatments designed to enhance natural beauty while maintaining a refreshed, natural look.</p>
+                    <p class="service-why-us__card-text">LIVIA Med Spa specializes in modern, results-driven treatments designed to enhance natural beauty while maintaining a refreshed, natural look.</p>
                 </div>
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">🛡️</div>
@@ -244,7 +244,7 @@ $has_image     = has_post_thumbnail();
                 <div class="service-why-us__card">
                     <div class="service-why-us__icon" aria-hidden="true">✨</div>
                     <h3 class="service-why-us__card-title">Personalized Experience</h3>
-                    <p class="service-why-us__card-text">Every client is unique. At Livia Med Spa, we tailor treatments to your individual goals so you receive care that fits your needs and helps you feel your absolute best.</p>
+                    <p class="service-why-us__card-text">Every client is unique. At LIVIA Med Spa, we tailor treatments to your individual goals so you receive care that fits your needs and helps you feel your absolute best.</p>
                 </div>
             </div>
         </div>

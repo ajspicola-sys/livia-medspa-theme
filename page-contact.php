@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Contact
- * Livia Med Spa — Contact Page
+ * LIVIA Med Spa — Contact Page
  * Performance-optimized with form validation
  */
 get_header(); ?>
@@ -162,7 +162,7 @@ get_header(); ?>
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Livia Med Spa location in Tampa, FL">
+                title="LIVIA Med Spa location in Tampa, FL">
             </iframe>
         </div>
     </section>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Team
- * Livia Med Spa — Meet the Team Page (Dynamic)
+ * LIVIA Med Spa — Meet the Team Page (Dynamic)
  * Pulls team members from the team_member custom post type
  */
 get_header(); ?>

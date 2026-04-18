@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Financing
- * Livia Med Spa — Payment Plans / Cherry Financing
+ * LIVIA Med Spa — Payment Plans / Cherry Financing
  */
 get_header(); ?>
 
@@ -103,7 +103,7 @@ _hw(
         debug: false,
         variables: {
             slug: "livia-med-spa",
-            name: "Livia Med Spa",
+            name: "LIVIA Med Spa",
         },
         styles: {
             primaryColor: "#AC13F9",

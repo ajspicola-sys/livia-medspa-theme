@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Privacy Policy Page
+ * LIVIA Med Spa — Privacy Policy Page
  */
 get_header(); ?>
 
@@ -18,7 +18,7 @@ get_header(); ?>
         <div class="legal-page__inner">
 
             <div class="legal-page__intro">
-                <p>This Privacy Notice for <strong>Livia Med Spa</strong> ("we," "us," or "our") describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services, including when you visit our website at <a href="http://www.liviamedspa.com">www.liviamedspa.com</a> or engage with us in other related ways, including any sales, marketing, or events.</p>
+                <p>This Privacy Notice for <strong>LIVIA Med Spa</strong> ("we," "us," or "our") describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services, including when you visit our website at <a href="http://www.liviamedspa.com">www.liviamedspa.com</a> or engage with us in other related ways, including any sales, marketing, or events.</p>
                 <p><strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:Support@liviamedspa.com">Support@liviamedspa.com</a>.</p>
             </div>
 
@@ -280,7 +280,7 @@ get_header(); ?>
                     <h2>13. How Can You Contact Us About This Notice?</h2>
                     <p>If you have questions or comments about this notice, you may email us at <a href="mailto:Support@liviamedspa.com">Support@liviamedspa.com</a> or contact us by post at:</p>
                     <address class="legal-address">
-                        Livia Med Spa<br>
+                        LIVIA Med Spa<br>
                         10043 N Dale Mabry Hwy<br>
                         Tampa, FL 33618<br>
                         United States

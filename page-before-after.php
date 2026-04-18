@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Before After
- * Livia Med Spa — Before & After Gallery
+ * LIVIA Med Spa — Before & After Gallery
  */
 get_header(); ?>
 
@@ -11,7 +11,7 @@ get_header(); ?>
         <div class="page-hero__inner">
             <span class="section__label">Real Results</span>
             <h1 class="page-hero__title">Before & After</h1>
-            <p class="page-hero__desc">See the transformations our clients have experienced. All results shown are from actual Livia Med Spa patients.</p>
+            <p class="page-hero__desc">See the transformations our clients have experienced. All results shown are from actual LIVIA Med Spa patients.</p>
         </div>
     </section>
 
@@ -133,7 +133,7 @@ get_header(); ?>
             </div>
 
             <div class="gallery-disclaimer reveal">
-                <p>* Individual results may vary. All photos are of actual Livia Med Spa patients and are unretouched.</p>
+                <p>* Individual results may vary. All photos are of actual LIVIA Med Spa patients and are unretouched.</p>
             </div>
         </div>
     </section>

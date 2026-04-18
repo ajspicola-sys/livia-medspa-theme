@@ -1,6 +1,6 @@
 <?php
 /**
- * Livia Med Spa — Cancellation & Financial Policy Page
+ * LIVIA Med Spa — Cancellation & Financial Policy Page
  */
 get_header(); ?>
 
@@ -103,7 +103,7 @@ get_header(); ?>
                     <p>We are committed to serving you with the highest quality care at an affordable cost. If you have questions regarding these policies, please reach out at any time. Thank you for your cooperation.</p>
                     <blockquote class="legal-quote">
                         <strong>I have read and understand this Financial Policy and Agreement.</strong><br><br>
-                        I authorize <strong>Livia Med Spa / Angela Spicola, APRN</strong> to charge my credit card for no-show appointments, late cancellation fees, Beauty Bank early-cancellation penalties, and statement balances.
+                        I authorize <strong>LIVIA Med Spa / Angela Spicola, APRN</strong> to charge my credit card for no-show appointments, late cancellation fees, Beauty Bank early-cancellation penalties, and statement balances.
                     </blockquote>
                     <div style="margin-top:2rem;text-align:center;">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn--primary">Questions? Contact Us</a>
