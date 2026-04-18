@@ -102,7 +102,7 @@
             <div class="footer__col">
                 <h4 class="footer__heading">Popular Treatments</h4>
                 <ul class="footer__links">
-                    <li><a href="<?php echo esc_url(home_url('/services/botox/')); ?>">Botox &amp; Dysport</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/services/botox/')); ?>">Botox</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/dermal-fillers/')); ?>">Dermal Fillers</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/microneedling/')); ?>">Microneedling</a></li>
                     <li><a href="<?php echo esc_url(home_url('/services/chemical-peels/')); ?>">Chemical Peels</a></li>
