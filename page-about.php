@@ -114,13 +114,13 @@ get_header(); ?>
             <div class="values-grid reveal">
                 <article class="value-card">
                     <div class="value-card__number" aria-hidden="true">01</div>
-                    <h3 class="value-card__title">Natural Results</h3>
-                    <p class="value-card__text">We enhance your unique beauty — never overdo. Our goal is for people to say you look refreshed, not "done."</p>
+                    <h3 class="value-card__title">Patient First</h3>
+                    <p class="value-card__text">Your safety, comfort, and goals drive every decision we make. We never push treatments you don't need.</p>
                 </article>
                 <article class="value-card">
                     <div class="value-card__number" aria-hidden="true">02</div>
-                    <h3 class="value-card__title">Patient First</h3>
-                    <p class="value-card__text">Your safety, comfort, and goals drive every decision we make. We never push treatments you don't need.</p>
+                    <h3 class="value-card__title">Natural Results</h3>
+                    <p class="value-card__text">We enhance your unique beauty — never overdo. Our goal is for people to say you look refreshed, not "done."</p>
                 </article>
                 <article class="value-card">
                     <div class="value-card__number" aria-hidden="true">03</div>
@@ -143,7 +143,7 @@ get_header(); ?>
             <h2 class="cta-section__title">Ready to Meet Us?</h2>
             <p class="cta-section__text">Book a complimentary consultation and see why Tampa trusts Livia Med Spa.</p>
             <div class="cta-section__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

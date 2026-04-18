@@ -173,13 +173,13 @@ get_header(); ?>
 
                 <!-- Floating treatment badges -->
                 <div class="hero__visual-badge hero__visual-badge--1">
-                    <span>💉</span> Botox &amp; Fillers
+                    <span>&#x2726;</span> Botox &amp; Fillers
                 </div>
                 <div class="hero__visual-badge hero__visual-badge--2">
-                    <span>✨</span> Laser Treatments
+                    <span>&#x2726;</span> Laser Treatments
                 </div>
                 <div class="hero__visual-badge hero__visual-badge--3">
-                    <span>🌿</span> Medical-Grade Skincare
+                    <span>&#x2726;</span> Medical-Grade Skincare
                 </div>
             </div>
         </div>
@@ -205,6 +205,7 @@ get_header(); ?>
                 <span class="trust-ticker__item">✦ HIPAA Compliant</span>
                 <span class="trust-ticker__item">✦ Allergan Partner</span>
                 <span class="trust-ticker__item">✦ Galderma Partner</span>
+                <span class="trust-ticker__item">✦ Tampa's Only Helix CO2 Laser</span>
                 <span class="trust-ticker__item">✦ Complimentary Consultations</span>
                 <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
                 <!-- Duplicate for seamless loop -->
@@ -214,6 +215,7 @@ get_header(); ?>
                 <span class="trust-ticker__item">✦ HIPAA Compliant</span>
                 <span class="trust-ticker__item">✦ Allergan Partner</span>
                 <span class="trust-ticker__item">✦ Galderma Partner</span>
+                <span class="trust-ticker__item">✦ Tampa's Only Helix CO2 Laser</span>
                 <span class="trust-ticker__item">✦ Complimentary Consultations</span>
                 <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
             </div>
@@ -510,15 +512,15 @@ get_header(); ?>
                     <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
                     <div class="product-showcase__features">
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon" aria-hidden="true">🔬</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">&#x25C9;</span>
                             <span class="product-showcase__feature-text">Physician-Strength Formulas</span>
                         </div>
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon" aria-hidden="true">✨</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">&#x25C9;</span>
                             <span class="product-showcase__feature-text">Clinically Proven Results</span>
                         </div>
                         <div class="product-showcase__feature">
-                            <span class="product-showcase__feature-icon" aria-hidden="true">🛡️</span>
+                            <span class="product-showcase__feature-icon" aria-hidden="true">&#x25C9;</span>
                             <span class="product-showcase__feature-text">FDA-Approved Ingredients</span>
                         </div>
                     </div>
@@ -538,11 +540,11 @@ get_header(); ?>
                              width="280"
                              height="378">
                         <div class="product-showcase__badge product-showcase__badge--1" aria-hidden="true">
-                            <span class="product-showcase__badge-icon">⭐</span>
+                            <span class="product-showcase__badge-icon">&#x2605;</span>
                             <span class="product-showcase__badge-text">Best Seller</span>
                         </div>
                         <div class="product-showcase__badge product-showcase__badge--2" aria-hidden="true">
-                            <span class="product-showcase__badge-icon">👩‍⚕️</span>
+                            <span class="product-showcase__badge-icon">&#x2665;</span>
                             <span class="product-showcase__badge-text">Dr. Recommended</span>
                         </div>
                     </div>
@@ -577,24 +579,24 @@ get_header(); ?>
                 <!-- Right: Feature Cards -->
                 <div class="supplements__features reveal">
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon" aria-hidden="true">🏆</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">&#x2726;</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Pharmaceutical-Grade Quality</h3>
                             <p class="supplement-feature__text">Top-tier, certified brands hand-picked by our clinical team</p>
                         </div>
                     </div>
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon" aria-hidden="true">🔬</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">&#x2726;</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Third-Party Tested</h3>
                             <p class="supplement-feature__text">Every product verified for purity and potency</p>
                         </div>
                     </div>
                     <div class="supplement-feature">
-                        <div class="supplement-feature__icon" aria-hidden="true">📦</div>
+                        <div class="supplement-feature__icon" aria-hidden="true">&#x2726;</div>
                         <div class="supplement-feature__content">
                             <h3 class="supplement-feature__title">Delivered to Your Door</h3>
-                            <p class="supplement-feature__text">Fast shipping with 10% off retail for Livia patients</p>
+                            <p class="supplement-feature__text">Fast shipping with 10% off retail for LIVIA patients</p>
                         </div>
                     </div>
                 </div>
@@ -614,24 +616,24 @@ get_header(); ?>
                     <p class="section__desc">We don't believe in one-size-fits-all. Every treatment plan is crafted around your unique anatomy, goals, and lifestyle.</p>
                     <div class="why-us__features">
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon" aria-hidden="true">🏆</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">&#x2726;</div>
                             <div>
                                 <h4 class="why-us__feature-title">Board-Certified Team</h4>
                                 <p class="why-us__feature-text">Our providers hold advanced certifications in aesthetic medicine.</p>
                             </div>
                         </div>
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon" aria-hidden="true">🎯</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">&#x2726;</div>
                             <div>
                                 <h4 class="why-us__feature-title">Precision Artistry</h4>
                                 <p class="why-us__feature-text">Subtle, natural-looking results that enhance — never overdo.</p>
                             </div>
                         </div>
                         <div class="why-us__feature">
-                            <div class="why-us__feature-icon" aria-hidden="true">🔬</div>
+                            <div class="why-us__feature-icon" aria-hidden="true">&#x2726;</div>
                             <div>
-                                <h4 class="why-us__feature-title">Latest Technology</h4>
-                                <p class="why-us__feature-text">We invest in the newest FDA-approved devices and techniques.</p>
+                                <h4 class="why-us__feature-title">Tampa's Only Helix CO2 Laser</h4>
+                                <p class="why-us__feature-text">LIVIA is the only med spa in Tampa offering the Helix CO2 Laser — the most advanced skin resurfacing technology available.</p>
                             </div>
                         </div>
                     </div>
@@ -840,9 +842,9 @@ get_header(); ?>
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Start Your Journey</span>
             <h2 class="cta-section__title">Ready to Reveal<br>Your Best Self?</h2>
-            <p class="cta-section__text">Book a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
+            <p class="cta-section__text">Book a complimentary consultation and let our experts create a personalized treatment plan just for you. Proudly serving South Tampa, Hyde Park, Westchase, Brandon, St. Petersburg, and surrounding areas.</p>
             <div class="cta-section__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>

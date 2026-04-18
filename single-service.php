@@ -325,7 +325,7 @@ $has_image     = has_post_thumbnail();
             <h2 class="cta-section__title">Ready to Book<br>Your <?php the_title(); ?>?</h2>
             <p class="cta-section__text">Schedule a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
             <div class="cta-section__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="<?php echo get_post_type_archive_link('service'); ?>" class="btn btn--outline btn--lg">← All Services</a>
             </div>
         </div>

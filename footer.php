@@ -71,7 +71,7 @@
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="Livia Med Spa — Home">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="Livia Med Spa" width="160" height="86" loading="lazy" decoding="async">
                 </a>
-                <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics. We combine artistry with science to enhance your natural beauty.</p>
+            <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics, proudly serving South Tampa, Hyde Park, Westchase, Brandon, and St. Petersburg.</p>
                 <div class="footer__social">
                     <a href="https://www.instagram.com/liviamedspa/" class="footer__social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -554,9 +554,9 @@
 
         // ── Social Proof Notification ─────────────────────────────
         if (window.innerWidth > 768) {
-            var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.'];
-            var proofServices = ['Botox','Dermal Fillers','Chemical Peel','Microneedling','IV Therapy','Laser Treatment'];
-            var proofTimes    = ['2 minutes','5 minutes','12 minutes','23 minutes','1 hour'];
+            var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.'];
+            var proofServices = ['Botox','Dermal Fillers','Chemical Peel','Microneedling','IV Therapy','Laser Treatment','Lip Filler','Skincare Consultation','RF Microneedling','Helix CO2 Laser'];
+            var proofTimes    = ['2 minutes','5 minutes','12 minutes','23 minutes','1 hour','just now'];
             function showSocialProof() {
                 var existing = document.getElementById('social-proof');
                 if (existing) existing.remove();
@@ -565,7 +565,7 @@
                 var time    = proofTimes[Math.floor(Math.random() * proofTimes.length)];
                 var el = document.createElement('div');
                 el.id = 'social-proof'; el.className = 'social-proof';
-                el.innerHTML = '<div class="social-proof__icon">✨</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
+                el.innerHTML = '<div class="social-proof__icon">✦</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
                 document.body.appendChild(el);
                 requestAnimationFrame(function() { el.classList.add('is-visible'); });
                 setTimeout(function() { el.classList.remove('is-visible'); setTimeout(function() { el.remove(); }, 400); }, 5000);

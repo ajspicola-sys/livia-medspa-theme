@@ -10,7 +10,7 @@ get_header(); ?>
     <!-- Hero -->
     <section class="page-hero page-hero--memberships" aria-label="LIVIA Luxe Membership">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">💎</span> Exclusive Membership Program</span>
+            <span class="section__label">Exclusive Membership Program</span>
             <h1 class="page-hero__title">LIVIA Luxe<br><em>Membership</em></h1>
             <p class="page-hero__desc">Unlock exclusive savings, priority scheduling, and VIP perks with Tampa's most luxurious med spa membership. Choose the tier that fits your lifestyle and start glowing.</p>
             <div class="hero__actions" style="justify-content:center;">
@@ -51,6 +51,10 @@ get_header(); ?>
                         <ul class="tier-card__perks">
                             <li class="tier-card__perk">
                                 <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>$1 off/unit</strong> of Tox</span>
+                            </li>
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
                                 <span><strong>10%</strong> Savings on Skincare</span>
                             </li>
                             <li class="tier-card__perk">
@@ -89,6 +93,10 @@ get_header(); ?>
                             </div>
                         </div>
                         <ul class="tier-card__perks">
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>$2 off/unit</strong> of Tox</span>
+                            </li>
                             <li class="tier-card__perk">
                                 <span class="tier-card__perk-icon">✓</span>
                                 <span><strong>15%</strong> Savings on Skincare</span>
@@ -132,6 +140,10 @@ get_header(); ?>
                             </div>
                         </div>
                         <ul class="tier-card__perks">
+                            <li class="tier-card__perk">
+                                <span class="tier-card__perk-icon">✓</span>
+                                <span><strong>$3 off/unit</strong> of Tox</span>
+                            </li>
                             <li class="tier-card__perk">
                                 <span class="tier-card__perk-icon">✓</span>
                                 <span><strong>20%</strong> Savings on Skincare</span>
@@ -235,25 +247,25 @@ get_header(); ?>
             </div>
             <div class="membership-steps reveal">
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">💎</div>
+                    <div class="membership-step__icon" aria-hidden="true">✦</div>
                     <div class="membership-step__number">01</div>
                     <h3 class="membership-step__title">Choose Your Tier</h3>
                     <p class="membership-step__text">Pick LIVIA Luxe, Signature, or Prestige based on your beauty goals and budget.</p>
                 </div>
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">📋</div>
+                    <div class="membership-step__icon" aria-hidden="true">✦</div>
                     <div class="membership-step__number">02</div>
                     <h3 class="membership-step__title">Enroll Online or In-Spa</h3>
                     <p class="membership-step__text">Sign up in minutes — our team will walk you through everything and answer any questions.</p>
                 </div>
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">✨</div>
+                    <div class="membership-step__icon" aria-hidden="true">✦</div>
                     <div class="membership-step__number">03</div>
                     <h3 class="membership-step__title">Start Saving Instantly</h3>
                     <p class="membership-step__text">Your member discounts apply immediately on skincare products and all eligible services.</p>
                 </div>
                 <div class="membership-step">
-                    <div class="membership-step__icon" aria-hidden="true">🎁</div>
+                    <div class="membership-step__icon" aria-hidden="true">✦</div>
                     <div class="membership-step__number">04</div>
                     <h3 class="membership-step__title">Enjoy VIP Perks</h3>
                     <p class="membership-step__text">Unlock priority scheduling, exclusive member pricing, and first access to promotions.</p>

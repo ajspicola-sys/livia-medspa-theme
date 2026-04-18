@@ -191,7 +191,7 @@ $all_cats = get_terms([
             <h2 class="cta-section__title">Find Your<br>Perfect Treatment</h2>
             <p class="cta-section__text">Not sure which service is right for you? Book a complimentary consultation and let our experts guide you.</p>
             <div class="cta-section__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">Book Free Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
             </div>
         </div>
