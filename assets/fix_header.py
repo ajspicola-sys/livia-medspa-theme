@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fix broken emoji/mojibake in header.php using the correct byte sequences."""
+"""One-shot complete fix for ALL mojibake in header.php using raw byte replacement."""
 import sys
 
 filepath = r"c:\Users\ajspi\.gemini\antigravity\scratch\livia-medspa-theme\header.php"
@@ -7,70 +7,58 @@ filepath = r"c:\Users\ajspi\.gemini\antigravity\scratch\livia-medspa-theme\heade
 with open(filepath, "rb") as f:
     raw = f.read()
 
-sys.stderr.write(f"File size: {len(raw)} bytes\n")
+sys.stderr.write(f"Original size: {len(raw)} bytes\n")
 
-def moji_bytes(chars_as_unicode):
-    """Convert a string of mojibake codepoints to their UTF-8 byte representation."""
-    return chars_as_unicode.encode("utf-8")
-
-bottle_svg = (
-    '<svg width="14" height="16" viewBox="0 0 20 32" fill="none" stroke="currentColor" '
-    'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-    '<rect x="7" y="1" width="6" height="4" rx="1"/>'
-    '<path d="M7 5C4.5 7 4 9 4 11"/>'
-    '<path d="M13 5C15.5 7 16 9 16 11"/>'
-    '<rect x="4" y="11" width="12" height="18" rx="3"/>'
-    '<line x1="7" y1="17" x2="13" y2="17"/>'
-    '<line x1="7" y1="21" x2="11" y2="21"/>'
-    '</svg>'
-).encode("utf-8")
-
-person_svg = (
-    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-    '<circle cx="12" cy="8" r="4"/>'
-    '<path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>'
-    '</svg>'
-).encode("utf-8")
-
-# Mojibake characters (as unicode strings), paired with replacements (as bytes)
-# All identified from the char inspection at their actual codepoints in the file
+# All fixes: (bad_hex, good_bytes, description)
 fixes = [
-    # Shopping bag 🛍️: U+00F0 U+0178 U+203A U+008D U+00EF U+00B8 U+008F
-    (
-        moji_bytes(chr(0x00f0)+chr(0x0178)+chr(0x203a)+chr(0x008d)+chr(0x00ef)+chr(0x00b8)+chr(0x008f)),
-        bottle_svg
-    ),
-    # Doctor 👩‍⚕️: U+00F0 U+0178 U+2018 U+00A9 U+00E2 U+20AC U+008D U+00E2 U+0161 U+2022 U+00EF U+00B8 U+008F
-    (
-        moji_bytes(chr(0x00f0)+chr(0x0178)+chr(0x2018)+chr(0x00a9)+chr(0x00e2)+chr(0x20ac)+chr(0x008d)+chr(0x00e2)+chr(0x0161)+chr(0x2022)+chr(0x00ef)+chr(0x00b8)+chr(0x008f)),
-        person_svg
-    ),
-    # Money bag 💰: U+00F0 U+0178 U+2019 U+00B0
-    (
-        moji_bytes(chr(0x00f0)+chr(0x0178)+chr(0x2019)+chr(0x00b0)),
-        "\u2726".encode("utf-8")
-    ),
-    # Question mark ❓: U+00E2 U+009D U+201C  
-    (
-        moji_bytes(chr(0x00e2)+chr(0x009d)+chr(0x201c)),
-        b"?"
-    ),
+    # â€" (em dash) -> — (U+2014)
+    (bytes.fromhex("c3a2e282ace2809d"), "\u2014".encode("utf-8"), "em-dash"),
+    # â€" (en dash variant) -> —
+    (bytes.fromhex("c3a2e282ace2809c"), "\u2013".encode("utf-8"), "en-dash"),
+    # â–¾ (▾ small triangle) -> ▾ (U+25BE)
+    (bytes.fromhex("c3a2e28093c2be"), "\u25be".encode("utf-8"), "triangle-down"),
+    # âœ¨ (sparkles) -> ✦ (U+2726 four-pointed star)
+    (bytes.fromhex("c3a2c593c2a8"), "\u2726".encode("utf-8"), "sparkles->star"),
+    # â†' (right arrow) -> → (U+2192)
+    (bytes.fromhex("c3a2e280a0e28099"), "\u2192".encode("utf-8"), "right-arrow"),
+    # âœ¦ (star) -> ✦ (U+2726)
+    (bytes.fromhex("c3a2c593c2a6"), "\u2726".encode("utf-8"), "star"),
+    # ðŸŽ¯ (target emoji) -> target SVG
+    (bytes.fromhex("c3b0c5b8c5bdc2af"), (
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/>'
+        '<circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>'
+    ).encode("utf-8"), "target-emoji->SVG"),
+    # âœ• (ballot x) -> × (HTML times)
+    (bytes.fromhex("c3a2c593e280a2"), "\u00d7".encode("utf-8"), "x-mark"),
 ]
 
-for bad_b, good_b in fixes:
-    n = raw.count(bad_b)
-    sys.stderr.write(f"Searching {bad_b[:4].hex()}...: found {n}\n")
+for bad, good, desc in fixes:
+    n = raw.count(bad)
+    sys.stderr.write(f"  {desc}: found {n}x\n")
     if n:
-        raw = raw.replace(bad_b, good_b)
+        raw = raw.replace(bad, good)
 
 with open(filepath, "wb") as f:
     f.write(raw)
 
-sys.stderr.write(f"Written {len(raw)} bytes\n")
+sys.stderr.write(f"Written: {len(raw)} bytes\n")
 
+# Verify no broken sequences remain
 with open(filepath, "rb") as f:
     check = f.read()
-has_svg = b'viewBox="0 0 20 32"' in check
-sys.stderr.write(f"Bottle SVG present: {has_svg}\n")
-sys.stderr.write("DONE\n")
+
+remaining = []
+for bad, _, desc in fixes:
+    n = check.count(bad)
+    if n:
+        remaining.append(f"{desc}: {n} remaining")
+
+if remaining:
+    sys.stderr.write("STILL BROKEN: " + ", ".join(remaining) + "\n")
+else:
+    sys.stderr.write("ALL CLEAN - no broken sequences remain.\n")
+
+sys.stderr.write("Arrow present: " + str(b'\xe2\x86\x92' in check) + "\n")
+sys.stderr.write("Triangle present: " + str(b'\xe2\x96\xbe' in check) + "\n")

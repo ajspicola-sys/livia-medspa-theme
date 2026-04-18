@@ -2,7 +2,7 @@
 
 /**
 
- * Livia Med Spa â€” Header Template
+ * Livia Med Spa — Header Template
 
  * Performance-optimized with critical CSS inlining
 
@@ -40,23 +40,23 @@
 
     if (is_front_page()) {
 
-        $meta_desc = 'Livia Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN â€” serving Tampa, FL. Book today.';
+        $meta_desc = 'Livia Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN — serving Tampa, FL. Book today.';
 
     } elseif (is_singular('service')) {
 
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at Livia Med Spa â€” board-certified provider, natural results.';
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at Livia Med Spa — board-certified provider, natural results.';
 
     } elseif (is_singular('product')) {
 
-        $meta_desc = get_the_title() . ' â€” Medical-grade skincare products available at Livia Med Spa in Tampa, FL.';
+        $meta_desc = get_the_title() . ' — Medical-grade skincare products available at Livia Med Spa in Tampa, FL.';
 
     } elseif (is_page()) {
 
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'Livia Med Spa â€” Tampa\'s trusted medical spa for advanced aesthetic treatments.';
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'Livia Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
 
     } else {
 
-        $meta_desc = 'Livia Med Spa â€” Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
+        $meta_desc = 'Livia Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
 
     }
 
@@ -186,7 +186,7 @@
 
     <?php
 
-    // Preload main stylesheet â€” fetched at high priority, applied non-blocking
+    // Preload main stylesheet — fetched at high priority, applied non-blocking
 
     $theme_ver = filemtime( get_stylesheet_directory() . '/style.css' );
 
@@ -438,13 +438,13 @@
 
 
 
-    <!-- HEADER â€“ uses will-change for GPU compositing during scroll -->
+    <!-- HEADER – uses will-change for GPU compositing during scroll -->
 
     <header class="site-header" id="site-header" role="banner">
 
         <div class="site-header__inner">
 
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa â€” Home">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="Livia Med Spa — Home">
 
                 <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="Livia Med Spa" class="site-logo__img" width="160" height="40" loading="eager" decoding="async">
 
@@ -466,7 +466,7 @@
 
                         <a href="<?php echo esc_url(home_url('/services/')); ?>" class="nav__link">Services <span
 
-                                class="nav__arrow">â–¾</span></a>
+                                class="nav__arrow">▾</span></a>
 
                         <div class="mega-menu">
 
@@ -474,7 +474,7 @@
 
                                 <?php
 
-                                // Icon color palette â€” rotates per service
+                                // Icon color palette — rotates per service
 
                                 $icon_colors = [
 
@@ -558,7 +558,7 @@
 
                                                         $cat_services->the_post();
 
-                                                        $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: 'âœ¨';
+                                                        $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✦';
 
                                                         $c = $icon_colors[$color_index % count($icon_colors)];
 
@@ -582,7 +582,7 @@
 
                                                             </span>
 
-                                                            <span class="mega-menu__item-arrow">â†’</span>
+                                                            <span class="mega-menu__item-arrow">→</span>
 
                                                         </a>
 
@@ -602,7 +602,7 @@
 
                                 else:
 
-                                    // No categories â€” show all services in one column
+                                    // No categories — show all services in one column
 
                                     $all_services = new WP_Query([
 
@@ -632,7 +632,7 @@
 
                                                     $all_services->the_post();
 
-                                                    $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: 'âœ¨';
+                                                    $icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✦';
 
                                                     $c = $icon_colors[$color_index % count($icon_colors)];
 
@@ -656,7 +656,7 @@
 
                                                         </span>
 
-                                                        <span class="mega-menu__item-arrow">â†’</span>
+                                                        <span class="mega-menu__item-arrow">→</span>
 
                                                     </a>
 
@@ -684,7 +684,7 @@
 
                                     <div>
 
-                                        <span class="mega-menu__promo-label">âœ¦ New Client Special</span>
+                                        <span class="mega-menu__promo-label">✦ New Client Special</span>
 
                                         <h3 class="mega-menu__promo-title">$50 Off Your First Visit</h3>
 
@@ -696,7 +696,7 @@
 
                                     <a href="#book-now"
 
-                                        class="mega-menu__promo-cta">Book Now â†’</a>
+                                        class="mega-menu__promo-cta">Book Now →</a>
 
                                 </div>
 
@@ -718,7 +718,7 @@
 
                                 <a href="<?php echo esc_url(home_url('/services/')); ?>"
 
-                                    class="mega-menu__bottom-cta">View All Services â†’</a>
+                                    class="mega-menu__bottom-cta">View All Services →</a>
 
                             </div>
 
@@ -734,7 +734,7 @@
 
                         <a href="<?php echo esc_url(home_url('/products/')); ?>" class="nav__link">Products <span
 
-                                class="nav__arrow">â–¾</span></a>
+                                class="nav__arrow">▾</span></a>
 
                         <div class="mega-menu">
 
@@ -808,7 +808,7 @@
 
                                                     </span>
 
-                                                    <span class="mega-menu__item-arrow">â†’</span>
+                                                    <span class="mega-menu__item-arrow">→</span>
 
                                                 </a>
 
@@ -832,7 +832,7 @@
 
                                     <div>
 
-                                        <span class="mega-menu__promo-label">âœ¦ Curated Collection</span>
+                                        <span class="mega-menu__promo-label">✦ Curated Collection</span>
 
                                         <h3 class="mega-menu__promo-title">Medical-Grade Products</h3>
 
@@ -844,7 +844,7 @@
 
                                     <a href="<?php echo esc_url(home_url('/products/')); ?>"
 
-                                        class="mega-menu__promo-cta">View All Products â†’</a>
+                                        class="mega-menu__promo-cta">View All Products →</a>
 
                                 </div>
 
@@ -862,7 +862,7 @@
 
                         <a href="<?php echo esc_url(home_url('/about/')); ?>" class="nav__link">About <span
 
-                                class="nav__arrow">â–¾</span></a>
+                                class="nav__arrow">▾</span></a>
 
                         <div class="mega-menu">
 
@@ -888,7 +888,7 @@
 
                                             </span>
 
-                                            <span class="mega-menu__item-arrow">â†’</span>
+                                            <span class="mega-menu__item-arrow">→</span>
 
                                         </a>
 
@@ -896,7 +896,7 @@
 
                                             <span class="mega-menu__item-icon"
 
-                                                style="background:rgba(143,170,143,0.12);color:#8faa8f;">ðŸŽ¯</span>
+                                                style="background:rgba(143,170,143,0.12);color:#8faa8f;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg></span>
 
                                             <span class="mega-menu__item-content">
 
@@ -906,7 +906,7 @@
 
                                             </span>
 
-                                            <span class="mega-menu__item-arrow">â†’</span>
+                                            <span class="mega-menu__item-arrow">→</span>
 
                                         </a>
 
@@ -918,7 +918,7 @@
 
                                     <div>
 
-                                        <span class="mega-menu__promo-label">âœ¦ Meet Our Experts</span>
+                                        <span class="mega-menu__promo-label">✦ Meet Our Experts</span>
 
                                         <h3 class="mega-menu__promo-title">World-Class Care</h3>
 
@@ -930,7 +930,7 @@
 
                                     <a href="<?php echo esc_url(home_url('/team/')); ?>"
 
-                                        class="mega-menu__promo-cta">Meet the Team â†’</a>
+                                        class="mega-menu__promo-cta">Meet the Team →</a>
 
                                 </div>
 
@@ -1028,7 +1028,7 @@
 
                 </a>
 
-                <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation menu">âœ•</button>
+                <button class="mobile-menu__close" id="mobile-close" aria-label="Close navigation menu">×</button>
 
             </div>
 
