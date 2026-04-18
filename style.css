@@ -2644,6 +2644,18 @@ html {
   background:
     radial-gradient(ellipse at 30% 40%, rgba(172, 19, 249, 0.15) 0%, transparent 60%),
     radial-gradient(ellipse at 70% 70%, rgba(172, 19, 249, 0.08) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.why-us__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  z-index: 0;
 }
 
 .why-us__stat-card {

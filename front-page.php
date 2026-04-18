@@ -653,6 +653,13 @@ get_header(); ?>
                         <span class="why-us__stat-label">Years Experience</span>
                     </div>
                     <div class="why-us__image-placeholder">
+                        <img src="https://liviamedspa.com/wp-content/uploads/2026/03/IMG_2626-scaled-e1775741183210.jpg"
+                             alt="LIVIA Med Spa treatment room — Tampa's premier medical spa"
+                             class="why-us__image"
+                             loading="lazy"
+                             decoding="async"
+                             width="600"
+                             height="750">
                         <div class="why-us__image-gradient" aria-hidden="true"></div>
                     </div>
                 </div>
