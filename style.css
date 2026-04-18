@@ -8380,6 +8380,34 @@ a.contact-card__text:hover {
   color: #AC13F9;
 }
 
+/* Tox Discount highlight row */
+.compare-table__highlight {
+  background: linear-gradient(90deg, rgba(172, 19, 249, 0.04) 0%, rgba(172, 19, 249, 0.08) 50%, rgba(172, 19, 249, 0.04) 100%);
+}
+
+.compare-table__highlight td {
+  color: #1A0E2E;
+  font-weight: 700;
+  border-top: 1px solid rgba(172, 19, 249, 0.15);
+  border-bottom: 1px solid rgba(172, 19, 249, 0.15);
+}
+
+.compare-table__highlight td:not(:first-child) {
+  font-size: 1.1rem;
+  color: #AC13F9;
+}
+
+.compare-table__highlight td small {
+  font-size: 0.65em;
+  font-weight: 500;
+  color: #A899AD;
+  margin-left: 1px;
+}
+
+.compare-table__highlight td.compare-table__featured {
+  background: rgba(172, 19, 249, 0.14);
+}
+
 .compare-check {
   display: inline-flex;
   align-items: center;

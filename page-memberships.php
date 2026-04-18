@@ -201,6 +201,12 @@ get_header(); ?>
                             <td class="compare-table__featured">$199.99</td>
                             <td>$299.99</td>
                         </tr>
+                        <tr class="compare-table__highlight">
+                            <td><strong>Tox Discount</strong></td>
+                            <td><strong>$1<small>/unit</small></strong></td>
+                            <td class="compare-table__featured"><strong>$2<small>/unit</small></strong></td>
+                            <td><strong>$3<small>/unit</small></strong></td>
+                        </tr>
                         <tr>
                             <td>Skincare Savings</td>
                             <td>10%</td>
