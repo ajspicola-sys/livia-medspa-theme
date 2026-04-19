@@ -576,7 +576,7 @@
 
                                                                 <span
 
-                                                                    class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                                                    class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
 
                                                             </span>
 
@@ -650,7 +650,7 @@
 
                                                             <span
 
-                                                                class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                                                class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
 
                                                         </span>
 
@@ -802,7 +802,7 @@
 
                                                         <span
 
-                                                            class="mega-menu__item-desc"><?php echo wp_trim_words(get_the_excerpt(), 6); ?></span>
+                                                            class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
 
                                                     </span>
 
