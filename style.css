@@ -658,7 +658,7 @@ html {
 
 .mega-menu__item-title {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(0.78rem, 0.73rem + 0.22vw, 0.85rem);
+  font-size: 0.82rem;
   font-weight: 600;
   color: #1A0E2E;
   display: block;
@@ -666,10 +666,11 @@ html {
 }
 
 .mega-menu__item-desc {
-  font-size: 0.7rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
   color: #A899AD;
-  line-height: 1.4;
-  margin-top: 2px;
+  line-height: 1.35;
+  margin-top: 1px;
   display: block;
 }
 
