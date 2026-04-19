@@ -284,7 +284,7 @@ get_header(); ?>
                                     <div class="carousel-card__body">
                                         <div class="carousel-card__icon"><?php echo esc_html($icon); ?></div>
                                         <h3 class="carousel-card__title"><?php the_title(); ?></h3>
-                                        <p class="carousel-card__text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                                        <p class="carousel-card__text"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 20); ?></p>
                                         <?php if ($price) : ?>
                                             <span class="carousel-card__price">From <?php echo esc_html($price); ?></span>
                                         <?php endif; ?>
@@ -299,13 +299,13 @@ get_header(); ?>
                                 <div class="carousel-card">
                                     <div class="carousel-card__image">
                                         <div class="carousel-card__placeholder">
-                                            <span><?php echo $svc['icon']; ?></span>
+                                            <span><?php echo esc_html($svc['icon']); ?></span>
                                         </div>
                                     </div>
                                     <div class="carousel-card__body">
-                                        <div class="carousel-card__icon"><?php echo $svc['icon']; ?></div>
-                                        <h3 class="carousel-card__title"><?php echo $svc['title']; ?></h3>
-                                        <p class="carousel-card__text"><?php echo $svc['text']; ?></p>
+                                        <div class="carousel-card__icon"><?php echo esc_html($svc['icon']); ?></div>
+                                        <h3 class="carousel-card__title"><?php echo esc_html($svc['title']); ?></h3>
+                                        <p class="carousel-card__text"><?php echo esc_html($svc['text']); ?></p>
                                         <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary btn--sm">View Treatment →</a>
                                     </div>
                                 </div>

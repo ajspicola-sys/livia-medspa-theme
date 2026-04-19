@@ -283,8 +283,13 @@
         // ── Page exit transition ──────────────────────────────────
         document.querySelectorAll('a[href]').forEach(function(link) {
             var href = link.getAttribute('href');
-            if (href && href.charAt(0) !== '#' && !href.startsWith('tel:') && !href.startsWith('mailto:') &&
-                !link.hasAttribute('target') && href.indexOf(window.location.hostname) !== -1 || (href && href.charAt(0) === '/')) {
+            if (href &&
+                href.charAt(0) !== '#' &&
+                href.indexOf('#book') === -1 &&
+                !href.startsWith('tel:') &&
+                !href.startsWith('mailto:') &&
+                !link.hasAttribute('target') &&
+                (href.indexOf(window.location.hostname) !== -1 || href.charAt(0) === '/')) {
                 link.addEventListener('click', function(e) {
                     if (e.ctrlKey || e.metaKey || e.shiftKey) return;
                     e.preventDefault();
@@ -535,7 +540,7 @@
         // ── Stats bar counter (About page) ────────────────────────
         var statsBar = document.querySelector('.stats-bar');
         if (statsBar) {
-            new IntersectionObserver(function(entries) {
+            var statsBarObserver = new IntersectionObserver(function(entries) {
                 if (!entries[0].isIntersecting) return;
                 entries[0].target.querySelectorAll('.stats-bar__number').forEach(function(el) {
                     var match = el.textContent.trim().match(/^([\d,]+)(\+?)$/);
@@ -549,7 +554,8 @@
                     })(startTime);
                 });
                 statsBarObserver.unobserve(entries[0].target);
-            }, { threshold: 0.3 }).observe(statsBar);
+            }, { threshold: 0.3 });
+            statsBarObserver.observe(statsBar);
         }
 
         // ── Gallery Filters (Before & After) ─────────────────────
@@ -644,9 +650,10 @@
 
             var aiSection = document.getElementById('ai-preview');
             if (aiSection) {
-                new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) { restartAIScan(); this.unobserve(aiSection); }
-                }, { threshold: 0.2 }).observe(aiSection);
+                var aiEntryObserver = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) { restartAIScan(); aiEntryObserver.unobserve(aiSection); }
+                }, { threshold: 0.2 });
+                aiEntryObserver.observe(aiSection);
             }
         }
 
