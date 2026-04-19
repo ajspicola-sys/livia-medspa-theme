@@ -42,15 +42,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* FOUC Prevention — hides body until JS removes .livia-loading from <html> */
-html.livia-loading body {
-  opacity: 0 !important;
-  pointer-events: none;
-}
 
-body {
-  transition: opacity 0.25s ease;
-}
 
 /* Skip-to-content (accessibility) */
 .skip-to-content {

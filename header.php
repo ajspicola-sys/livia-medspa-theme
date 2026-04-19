@@ -416,9 +416,7 @@
 
 
 
-    <!-- FOUC Prevention: hides body until stylesheets are applied -->
 
-    <script>(function(){document.documentElement.classList.add('livia-loading');var t=setTimeout(function(){document.documentElement.classList.remove('livia-loading');},800);document.addEventListener('DOMContentLoaded',function(){clearTimeout(t);document.documentElement.classList.remove('livia-loading');});})();</script>
 
 </head>
 
