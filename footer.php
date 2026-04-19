@@ -199,6 +199,35 @@
     // Mark page as loaded (removes FOUC guard)
     document.body.classList.add('is-loaded');
 
+    // ── Scroll Reveal (TIER 0 — synchronous, critical) ────────────
+    // MUST run here, NOT in rIC. Running reveal inside rIC causes the
+    // "flash then disappear" bug: CSS applies opacity:0 immediately,
+    // but rIC defers is-visible until the browser is idle — too late.
+    (function initReveal() {
+        var revealObserver = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('is-visible');
+                    revealObserver.unobserve(entries[i].target);
+                }
+            }
+        }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('is-visible'); // already on screen
+            } else {
+                revealObserver.observe(el);
+            }
+        });
+        // Absolute safety net — reveal anything still hidden after 1.5s
+        setTimeout(function() {
+            document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) {
+                el.classList.add('is-visible');
+            });
+        }, 1500);
+    })();
+
     // Header scroll — rAF-throttled for 60fps
     function onScroll() {
         lastScrollY = window.scrollY;
@@ -271,34 +300,9 @@
             else { img.addEventListener('load', function() { this.classList.add('is-loaded'); }); }
         });
 
-        // ── Scroll Reveal ─────────────────────────────────────────
-        // NOTE: Observer runs inside rIC (deferred) so elements already
-        // in the viewport when it registers won't fire isIntersecting.
-        // We manually check & reveal them immediately to avoid blank sections.
-        var revealObserver = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) {
-                    entries[i].target.classList.add('is-visible');
-                    revealObserver.unobserve(entries[i].target);
-                }
-            }
-        }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-        document.querySelectorAll('.reveal').forEach(function(el) {
-            var rect = el.getBoundingClientRect();
-            // Already visible on screen — reveal immediately
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.classList.add('is-visible');
-            } else {
-                revealObserver.observe(el);
-            }
-        });
-        // Safety net: if any .reveal elements are still invisible after 2.5s
-        // (e.g. observer never fired due to timing), force-reveal them all.
-        setTimeout(function() {
-            document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) {
-                el.classList.add('is-visible');
-            });
-        }, 2500);
+        // ── Scroll Reveal moved to Tier 0 (synchronous) ──────────
+        // (Reveal observer is now initialized in Tier 0 above to prevent
+        //  the "loads then disappears" flash caused by rIC deferral.)
 
         // ── Services Carousel ─────────────────────────────────────
         var carousel = document.getElementById('services-carousel');
