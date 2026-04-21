@@ -562,6 +562,10 @@
 
                                                         $color_index++;
 
+                                                        $svc_exc  = wp_strip_all_tags(get_the_excerpt());
+                                                        $svc_dur  = get_post_meta(get_the_ID(), '_service_duration', true);
+                                                        $svc_desc = $svc_exc ? wp_trim_words($svc_exc, 6) : ($svc_dur ? esc_html($svc_dur) : 'Aesthetic treatment');
+
                                                         ?>
 
                                                         <a href="<?php the_permalink(); ?>" class="mega-menu__item">
@@ -574,9 +578,7 @@
 
                                                                 <span class="mega-menu__item-title"><?php the_title(); ?></span>
 
-                                                                <span
-
-                                                                    class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
+                                                                <span class="mega-menu__item-desc"><?php echo $svc_desc; ?></span>
 
                                                             </span>
 
@@ -636,6 +638,10 @@
 
                                                     $color_index++;
 
+                                                    $svc_exc  = wp_strip_all_tags(get_the_excerpt());
+                                                    $svc_dur  = get_post_meta(get_the_ID(), '_service_duration', true);
+                                                    $svc_desc = $svc_exc ? wp_trim_words($svc_exc, 6) : ($svc_dur ? esc_html($svc_dur) : 'Aesthetic treatment');
+
                                                     ?>
 
                                                     <a href="<?php the_permalink(); ?>" class="mega-menu__item">
@@ -648,9 +654,7 @@
 
                                                             <span class="mega-menu__item-title"><?php the_title(); ?></span>
 
-                                                            <span
-
-                                                                class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
+                                                            <span class="mega-menu__item-desc"><?php echo $svc_desc; ?></span>
 
                                                         </span>
 
@@ -786,6 +790,9 @@
 
                                                 $pi++;
 
+                                                $prod_exc  = wp_strip_all_tags(get_the_excerpt());
+                                                $prod_desc = $prod_exc ? wp_trim_words($prod_exc, 6) : 'Medical-grade skincare';
+
                                                 ?>
 
                                                 <a href="<?php echo esc_url($p_url); ?>" class="mega-menu__item" target="_blank"
@@ -800,9 +807,7 @@
 
                                                         <span class="mega-menu__item-title"><?php the_title(); ?></span>
 
-                                                        <span
-
-                                                            class="mega-menu__item-desc"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 6); ?></span>
+                                                        <span class="mega-menu__item-desc"><?php echo $prod_desc; ?></span>
 
                                                     </span>
 
