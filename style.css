@@ -3325,19 +3325,19 @@ html {
   gap: 0.4rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(250, 248, 245, 0.6);
+  color: #6B5B73;
   text-decoration: none;
   padding: 1rem 0.5rem;
   border-radius: 16px;
-  border: 1px solid rgba(172, 19, 249, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(172, 19, 249, 0.15);
+  background: rgba(255, 255, 255, 0.55);
   transition: all 0.3s ease;
 }
 
 .error-404__links-grid a:hover {
-  color: #F0EBE3;
+  color: #1A0E2E;
   background: rgba(172, 19, 249, 0.08);
-  border-color: rgba(172, 19, 249, 0.2);
+  border-color: rgba(172, 19, 249, 0.3);
   transform: translateY(-2px);
 }
 
@@ -3352,7 +3352,7 @@ html {
 
 .error-404__search-text {
   font-size: 0.8rem;
-  color: rgba(250, 248, 245, 0.4);
+  color: #6B5B73;
   margin-bottom: 0.75rem;
 }
 
@@ -3366,10 +3366,10 @@ html {
 .error-404__search-input {
   flex: 1;
   padding: 0.7rem 1rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(250, 248, 245, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(172, 19, 249, 0.25);
   border-radius: 10px;
-  color: #F0EBE3;
+  color: #1A0E2E;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.85rem;
   outline: none;
@@ -3377,7 +3377,7 @@ html {
 }
 
 .error-404__search-input::placeholder {
-  color: rgba(250, 248, 245, 0.3);
+  color: #A899AD;
 }
 
 .error-404__search-input:focus {
