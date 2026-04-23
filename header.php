@@ -707,15 +707,8 @@
                             <div class="mega-menu__bottom">
 
                                 <div class="mega-menu__bottom-links">
-
-                                    <a href="<?php echo esc_url(home_url('/memberships/')); ?>"
-
-                                        class="mega-menu__bottom-link">✦ Memberships</a>
-
-                                    <a href="<?php echo esc_url(home_url('/contact/')); ?>"
-
-                                        class="mega-menu__bottom-link">? FAQ</a>
-
+                                    <a href="<?php echo esc_url(home_url('/memberships/')); ?>" class="mega-menu__bottom-link">✦ Memberships</a>
+                                    <a href="<?php echo esc_url(home_url('/faq/')); ?>" class="mega-menu__bottom-link">✦ FAQ</a>
                                 </div>
 
                                 <a href="<?php echo esc_url(home_url('/services/')); ?>"

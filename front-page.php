@@ -739,8 +739,16 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         LATEST FROM THE BLOG
+         LATEST FROM THE BLOG — only renders when published posts exist
          ═══════════════════════════════════════════════════════════════ -->
+    <?php
+    $blog_posts = new WP_Query([
+        'post_type'      => 'post',
+        'posts_per_page' => 3,
+        'post_status'    => 'publish',
+        'no_found_rows'  => true,
+    ]);
+    if ($blog_posts->have_posts()) : ?>
     <section class="blog-section" aria-label="Latest blog posts">
         <div class="section__inner">
             <div class="section__header reveal">
@@ -748,20 +756,10 @@ get_header(); ?>
                 <h2 class="section__title">Latest from the Blog</h2>
                 <p class="section__desc">Expert tips, treatment guides, and the latest in aesthetic medicine.</p>
             </div>
-
             <div class="blog-grid">
-                <?php
-                $blog_posts = new WP_Query([
-                    'post_type'      => 'post',
-                    'posts_per_page' => 3,
-                    'post_status'    => 'publish',
-                    'no_found_rows'  => true,
-                ]);
-
-                if ($blog_posts->have_posts()) :
-                    while ($blog_posts->have_posts()) : $blog_posts->the_post();
-                        $categories = get_the_category();
-                        $cat_name = !empty($categories) ? $categories[0]->name : 'Beauty';
+                <?php while ($blog_posts->have_posts()) : $blog_posts->the_post();
+                    $categories = get_the_category();
+                    $cat_name = !empty($categories) ? $categories[0]->name : 'Beauty';
                 ?>
                     <article class="blog-card reveal">
                         <a href="<?php the_permalink(); ?>" class="blog-card__link">
@@ -769,9 +767,7 @@ get_header(); ?>
                                 <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async']); ?>
                                 <?php else : ?>
-                                    <div class="blog-card__img--placeholder">
-                                        <span>📝</span>
-                                    </div>
+                                    <div class="blog-card__img--placeholder"><span>📝</span></div>
                                 <?php endif; ?>
                             </div>
                             <div class="blog-card__body">
@@ -785,62 +781,14 @@ get_header(); ?>
                             </div>
                         </a>
                     </article>
-                <?php
-                    endwhile;
-                    wp_reset_postdata();
-                else :
-                ?>
-                    <!-- Placeholder cards when no posts exist yet -->
-                    <article class="blog-card reveal">
-                        <div class="blog-card__img">
-                            <div class="blog-card__img--placeholder"><span>💉</span></div>
-                        </div>
-                        <div class="blog-card__body">
-                            <div class="blog-card__meta">
-                                <span class="blog-card__cat">Injectables</span>
-                                <span class="blog-card__date">Coming Soon</span>
-                            </div>
-                            <h3 class="blog-card__title">Botox vs. Fillers: Which Is Right for You?</h3>
-                            <p class="blog-card__excerpt">Understanding the difference between neuromodulators and dermal fillers to choose the best treatment.</p>
-                            <span class="blog-card__read">Read More →</span>
-                        </div>
-                    </article>
-                    <article class="blog-card reveal">
-                        <div class="blog-card__img">
-                            <div class="blog-card__img--placeholder"><span>✨</span></div>
-                        </div>
-                        <div class="blog-card__body">
-                            <div class="blog-card__meta">
-                                <span class="blog-card__cat">Skincare</span>
-                                <span class="blog-card__date">Coming Soon</span>
-                            </div>
-                            <h3 class="blog-card__title">The Ultimate Guide to Medical-Grade Skincare</h3>
-                            <p class="blog-card__excerpt">Why medical-grade products outperform drugstore brands and how to build your routine.</p>
-                            <span class="blog-card__read">Read More →</span>
-                        </div>
-                    </article>
-                    <article class="blog-card reveal">
-                        <div class="blog-card__img">
-                            <div class="blog-card__img--placeholder"><span>🔬</span></div>
-                        </div>
-                        <div class="blog-card__body">
-                            <div class="blog-card__meta">
-                                <span class="blog-card__cat">Treatments</span>
-                                <span class="blog-card__date">Coming Soon</span>
-                            </div>
-                            <h3 class="blog-card__title">What to Expect at Your First Med Spa Visit</h3>
-                            <p class="blog-card__excerpt">A complete walkthrough of your consultation, treatment, and aftercare at LIVIA Med Spa.</p>
-                            <span class="blog-card__read">Read More →</span>
-                        </div>
-                    </article>
-                <?php endif; ?>
+                <?php endwhile; wp_reset_postdata(); ?>
             </div>
-
             <div style="text-align:center; margin-top:2.5rem;">
                 <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">View All Posts →</a>
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════════════
          CTA SECTION
