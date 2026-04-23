@@ -389,9 +389,14 @@
                     var headerHeight = header ? header.offsetHeight : 0;
                     var y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
                     window.scrollTo({ top: y, behavior: 'smooth' });
-                } else if (targetId === '#book-now') {
+                } else if (targetId === '#book-now' || targetId.indexOf('#book') === 0) {
                     e.preventDefault();
-                    window.location.href = '<?php echo esc_url(home_url("/contact/")); ?>';
+                    if (typeof blvd !== 'undefined' && blvd.openBookingWidget) {
+                        blvd.openBookingWidget();
+                    } else {
+                        // Boulevard not yet loaded — wait for it then open
+                        window.__blvdPendingOpen = true;
+                    }
                 }
             });
         });
@@ -757,6 +762,11 @@ if ($popup_active) :
     c.async = true;
     c.onload = function () {
         blvd.init(b);
+        // If user clicked "Book Now" before Boulevard finished loading, open now
+        if (window.__blvdPendingOpen) {
+            window.__blvdPendingOpen = false;
+            blvd.openBookingWidget();
+        }
     };
     d.parentNode.insertBefore(c, d);
 })(document);
