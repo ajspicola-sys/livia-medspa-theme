@@ -418,6 +418,41 @@
 
 
 
+    <!-- ═══ FOUC Prevention ═══════════════════════════════════════════════
+         Hides the page until the main stylesheet is confirmed applied.
+         Works even when LiteSpeed/caching plugins async-load CSS.
+         Failsafe at 1.5s ensures nothing stays invisible if things go wrong.
+         ═══════════════════════════════════════════════════════════════════ -->
+    <script>
+    !function(){
+        var h = document.documentElement;
+        // Hide immediately (synchronous — runs before any paint)
+        h.style.cssText = 'visibility:hidden';
+        // Failsafe: never stay hidden more than 1.5 seconds
+        var safe = setTimeout(function(){ h.style.cssText = ''; }, 1500);
+        function show() { clearTimeout(safe); h.style.cssText = ''; }
+        // Poll styleSheets until our main stylesheet is loaded & applied
+        function checkCSS() {
+            var ss = document.styleSheets;
+            for (var i = ss.length - 1; i >= 0; i--) {
+                try {
+                    if (ss[i].href && ss[i].href.indexOf('/style') !== -1) {
+                        show(); return; // Found it — CSS is applied
+                    }
+                } catch(e) {}
+            }
+            requestAnimationFrame(checkCSS); // Not yet, check next frame
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                requestAnimationFrame(checkCSS);
+            });
+        } else {
+            checkCSS();
+        }
+    }();
+    </script>
+
 </head>
 
 
