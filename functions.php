@@ -1911,6 +1911,19 @@ function livia_popup_customizer($wp_customize) {
         'description' => 'How many days before the same visitor sees it again.',
         'input_attrs' => ['min' => 1, 'max' => 90, 'step' => 1],
     ]);
+
+    // Popup Image (optional — shown above the badge/title)
+    $wp_customize->add_setting('livia_popup_image', [
+        'default'           => '',
+        'sanitize_callback' => 'absint', // stores attachment ID
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'livia_popup_image', [
+        'section'     => 'livia_popup',
+        'label'       => 'Popup Image (optional)',
+        'description' => 'Shows above the headline. Pick from the Media Library or upload a new image. Leave blank to hide.',
+        'mime_type'   => 'image',
+    ]));
 }
 
 

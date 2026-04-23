@@ -682,6 +682,12 @@ if ($popup_active) :
     $p_btn_url  = esc_url(get_theme_mod('livia_popup_btn_url',   '#book-now'));
     $p_delay    = absint(get_theme_mod('livia_popup_delay',      5)) * 1000;
     $p_freq     = absint(get_theme_mod('livia_popup_frequency',  7));
+    $p_img_id   = absint(get_theme_mod('livia_popup_image',      0));
+    $p_img_html = $p_img_id ? wp_get_attachment_image($p_img_id, 'large', false, [
+        'class'   => 'deal-popup__img',
+        'loading' => 'eager',
+        'alt'     => esc_attr(get_theme_mod('livia_popup_title', 'Special Offer')),
+    ]) : '';
 ?>
 <div class="deal-popup" id="deal-popup" role="dialog" aria-modal="true" aria-label="Special offer" aria-hidden="true">
     <div class="deal-popup__overlay" id="deal-popup-overlay"></div>
@@ -691,6 +697,11 @@ if ($popup_active) :
         </button>
         <div class="deal-popup__glow" aria-hidden="true"></div>
         <div class="deal-popup__content">
+            <?php if ($p_img_html) : ?>
+            <div class="deal-popup__image-wrap">
+                <?php echo $p_img_html; ?>
+            </div>
+            <?php endif; ?>
             <span class="deal-popup__badge"><?php echo $p_badge; ?></span>
             <h2 class="deal-popup__title"><?php echo $p_title; ?></h2>
             <p class="deal-popup__text"><?php echo $p_text; ?></p>
