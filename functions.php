@@ -1927,6 +1927,132 @@ function livia_popup_customizer($wp_customize) {
 }
 
 
+// ── Deal Popup 2 — Follow-Up Popup Customizer Controls ─────────────────────
+// A second popup that fires after Popup 1 is dismissed (or independently).
+// Appearance → Customize → 🎯 Deal Popup 2 — Follow-Up
+add_action('customize_register', 'livia_popup2_customizer');
+function livia_popup2_customizer($wp_customize) {
+
+    $wp_customize->add_section('livia_popup2', [
+        'title'       => '🎯 Deal Popup 2 — Follow-Up',
+        'priority'    => 31,
+        'description' => 'An optional second popup. Show it after Popup 1 closes or independently after a set time. Perfect for newsletter signups, a second offer, or a reminder.',
+    ]);
+
+    // Enable toggle
+    $wp_customize->add_setting('livia_popup2_enabled', ['default' => false, 'sanitize_callback' => 'rest_sanitize_boolean', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_enabled', [
+        'type'    => 'checkbox',
+        'section' => 'livia_popup2',
+        'label'   => 'Enable Follow-Up Popup',
+    ]);
+
+    // Trigger mode
+    $wp_customize->add_setting('livia_popup2_trigger', ['default' => 'after_dismiss', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_trigger', [
+        'type'        => 'select',
+        'section'     => 'livia_popup2',
+        'label'       => 'When to Show',
+        'description' => '"After Popup 1 closes" waits until the visitor dismisses the first popup. "From page load" fires independently.',
+        'choices'     => [
+            'after_dismiss' => 'After Popup 1 is closed',
+            'from_pageload' => 'From page load (independent)',
+        ],
+    ]);
+
+    // Delay
+    $wp_customize->add_setting('livia_popup2_delay', ['default' => 30, 'sanitize_callback' => 'absint', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_delay', [
+        'type'        => 'number',
+        'section'     => 'livia_popup2',
+        'label'       => 'Delay (seconds)',
+        'description' => 'Seconds to wait after Popup 1 closes — or after page load if set to "independent".',
+        'input_attrs' => ['min' => 0, 'max' => 3600, 'step' => 5],
+    ]);
+
+    // Badge
+    $wp_customize->add_setting('livia_popup2_badge', ['default' => '✦ Don\'t Miss Out', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_badge', [
+        'type'    => 'text',
+        'section' => 'livia_popup2',
+        'label'   => 'Badge Label',
+    ]);
+
+    // Title
+    $wp_customize->add_setting('livia_popup2_title', ['default' => 'Still Interested?', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_title', [
+        'type'    => 'text',
+        'section' => 'livia_popup2',
+        'label'   => 'Headline',
+    ]);
+
+    // Body text
+    $wp_customize->add_setting('livia_popup2_text', ['default' => 'Book your free consultation today — no commitment required.', 'sanitize_callback' => 'sanitize_textarea_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_text', [
+        'type'    => 'textarea',
+        'section' => 'livia_popup2',
+        'label'   => 'Message',
+    ]);
+
+    // Discount code (optional)
+    $wp_customize->add_setting('livia_popup2_code', ['default' => '', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_code', [
+        'type'        => 'text',
+        'section'     => 'livia_popup2',
+        'label'       => 'Discount Code (optional)',
+        'description' => 'Leave blank to hide the code box.',
+    ]);
+
+    // Button text
+    $wp_customize->add_setting('livia_popup2_btn_text', ['default' => 'Book My Free Consultation', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_btn_text', [
+        'type'    => 'text',
+        'section' => 'livia_popup2',
+        'label'   => 'Button Text',
+    ]);
+
+    // Button URL
+    $wp_customize->add_setting('livia_popup2_btn_url', ['default' => '#book-now', 'sanitize_callback' => 'esc_url_raw', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_btn_url', [
+        'type'        => 'url',
+        'section'     => 'livia_popup2',
+        'label'       => 'Button Link',
+        'description' => 'Use #book-now to open the booking widget.',
+    ]);
+
+    // Expiry date
+    $wp_customize->add_setting('livia_popup2_expiry', ['default' => '', 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_expiry', [
+        'type'        => 'date',
+        'section'     => 'livia_popup2',
+        'label'       => 'Offer Expiry Date (optional)',
+        'description' => 'Auto-disables after this date. Leave blank = no expiry.',
+    ]);
+
+    // Frequency
+    $wp_customize->add_setting('livia_popup2_frequency', ['default' => 7, 'sanitize_callback' => 'absint', 'transport' => 'refresh']);
+    $wp_customize->add_control('livia_popup2_frequency', [
+        'type'        => 'number',
+        'section'     => 'livia_popup2',
+        'label'       => 'Show Again After (days)',
+        'input_attrs' => ['min' => 1, 'max' => 90, 'step' => 1],
+    ]);
+
+    // Image
+    $wp_customize->add_setting('livia_popup2_image', [
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'livia_popup2_image', [
+        'section'   => 'livia_popup2',
+        'label'     => 'Popup Image (optional)',
+        'description' => 'Shows above the headline. Leave blank to hide.',
+        'mime_type' => 'image',
+    ]));
+}
+
+
 // -- Service Page Extras � Video & Benefits Meta Box ----------------
 add_action('add_meta_boxes', 'livia_service_extras_meta_box');
 function livia_service_extras_meta_box() {

@@ -735,7 +735,7 @@ if ($popup_active) :
     var overlay  = document.getElementById('deal-popup-overlay');
     var closeBtn = document.getElementById('deal-popup-close');
     function open()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); }
+    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); window.__liviaP1Closed = Date.now(); }
     setTimeout(open, DELAY);
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', close);
@@ -744,6 +744,105 @@ if ($popup_active) :
         document.addEventListener('mouseleave', function(e){
             if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
         }, {once:true});
+    }
+})();</script>
+<?php endif; ?>
+
+<?php
+// ── Deal Popup 2 — Follow-Up ────────────────────────────────────────────────
+$p2_enabled = get_theme_mod('livia_popup2_enabled', false);
+$p2_expiry  = get_theme_mod('livia_popup2_expiry', '');
+$p2_active  = $p2_enabled;
+if ($p2_active && !empty($p2_expiry)) {
+    if (strtotime($p2_expiry) && strtotime($p2_expiry) < time()) {
+        $p2_active = false;
+    }
+}
+if ($p2_active) :
+    $p2_badge    = esc_html(get_theme_mod('livia_popup2_badge',    '✦ Don\'t Miss Out'));
+    $p2_title    = esc_html(get_theme_mod('livia_popup2_title',    'Still Interested?'));
+    $p2_text     = esc_html(get_theme_mod('livia_popup2_text',     'Book your free consultation today — no commitment required.'));
+    $p2_code     = esc_html(get_theme_mod('livia_popup2_code',     ''));
+    $p2_btn_text = esc_html(get_theme_mod('livia_popup2_btn_text', 'Book My Free Consultation'));
+    $p2_btn_url  = esc_url(get_theme_mod('livia_popup2_btn_url',   '#book-now'));
+    $p2_delay    = absint(get_theme_mod('livia_popup2_delay',      30));
+    $p2_freq     = absint(get_theme_mod('livia_popup2_frequency',  7));
+    $p2_trigger  = sanitize_text_field(get_theme_mod('livia_popup2_trigger', 'after_dismiss'));
+    $p2_img_id   = absint(get_theme_mod('livia_popup2_image', 0));
+    $p2_img_html = $p2_img_id ? wp_get_attachment_image($p2_img_id, 'large', false, [
+        'class'   => 'deal-popup__img',
+        'loading' => 'eager',
+        'alt'     => esc_attr(get_theme_mod('livia_popup2_title', 'Special Offer')),
+    ]) : '';
+?>
+<div class="deal-popup" id="deal-popup-2" role="dialog" aria-modal="true" aria-label="Follow-up offer" aria-hidden="true">
+    <div class="deal-popup__overlay" id="deal-popup-2-overlay"></div>
+    <div class="deal-popup__modal">
+        <button class="deal-popup__close" id="deal-popup-2-close" aria-label="Close offer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="deal-popup__glow" aria-hidden="true"></div>
+        <div class="deal-popup__content">
+            <?php if ($p2_img_html) : ?>
+            <div class="deal-popup__image-wrap">
+                <?php echo $p2_img_html; ?>
+            </div>
+            <?php endif; ?>
+            <span class="deal-popup__badge"><?php echo $p2_badge; ?></span>
+            <h2 class="deal-popup__title"><?php echo $p2_title; ?></h2>
+            <p class="deal-popup__text"><?php echo $p2_text; ?></p>
+            <?php if ($p2_code) : ?>
+            <div class="deal-popup__code-wrap">
+                <span class="deal-popup__code-label">Use Code</span>
+                <span class="deal-popup__code"><?php echo $p2_code; ?></span>
+                <button class="deal-popup__copy" onclick="navigator.clipboard.writeText('<?php echo esc_js($p2_code); ?>');this.textContent='✓ Copied!'">Copy</button>
+            </div>
+            <?php endif; ?>
+            <a href="<?php echo $p2_btn_url; ?>" class="btn btn--primary btn--lg deal-popup__btn">
+                <?php echo $p2_btn_text; ?>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <p class="deal-popup__fine">No commitment required · Free consultation</p>
+        </div>
+    </div>
+</div>
+<script>(function(){
+    var KEY     = 'livia-popup2-dismissed';
+    var FREQ    = <?php echo $p2_freq; ?>;
+    var DELAY   = <?php echo $p2_delay; ?> * 1000;
+    var TRIGGER = '<?php echo esc_js($p2_trigger); ?>';
+    var P1_EXISTS = !!document.getElementById('deal-popup');
+
+    // Already dismissed recently? Skip entirely.
+    var last = localStorage.getItem(KEY);
+    if (last && (Date.now() - parseInt(last, 10)) / 86400000 < FREQ) return;
+
+    var popup    = document.getElementById('deal-popup-2');
+    var overlay  = document.getElementById('deal-popup-2-overlay');
+    var closeBtn = document.getElementById('deal-popup-2-close');
+
+    function open2()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function close2() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); }
+
+    closeBtn.addEventListener('click', close2);
+    overlay.addEventListener('click', close2);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close2(); });
+
+    if (TRIGGER === 'after_dismiss' && P1_EXISTS) {
+        // Poll every 500ms to see if Popup 1 has been dismissed
+        var startTime = Date.now();
+        var maxWait   = 10 * 60 * 1000; // give up after 10 minutes
+        var interval  = setInterval(function() {
+            if (window.__liviaP1Closed) {
+                clearInterval(interval);
+                setTimeout(open2, DELAY);
+            } else if (Date.now() - startTime > maxWait) {
+                clearInterval(interval); // visitor never dismissed — don't force it
+            }
+        }, 500);
+    } else {
+        // "from_pageload" mode OR Popup 1 isn't enabled — fire after delay
+        setTimeout(open2, DELAY);
     }
 })();</script>
 <?php endif; ?>
