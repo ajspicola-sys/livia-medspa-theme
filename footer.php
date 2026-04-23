@@ -779,20 +779,72 @@ document.addEventListener('click', function(e) {
     var href = link.getAttribute('href') || '';
     var text = (link.textContent || '').trim().toLowerCase();
 
-    // Match booking-related links
+    // Match booking-related links (contact page + book/consult/schedule text)
     var isBookingLink = (
         href.indexOf('/contact/') !== -1 &&
         (text.indexOf('book') !== -1 || text.indexOf('consultation') !== -1 || text.indexOf('schedule') !== -1)
     );
 
-    // Also catch links with #book hash
-    if (href.indexOf('#book') !== -1) isBookingLink = true;
+    // #book* hash links are handled by the anchor scroll handler above —
+    // skip here to avoid calling openBookingWidget twice
+    if (href.indexOf('#book') !== -1) isBookingLink = false;
 
     if (isBookingLink && typeof blvd !== 'undefined' && blvd.openBookingWidget) {
         e.preventDefault();
         blvd.openBookingWidget();
     }
 });
+
+// ── Boulevard scroll-lock recovery ────────────────────────────────────────────
+// Boulevard locks body scroll when its widget opens (overflow:hidden on <body>
+// or <html>). When it closes it doesn't always clean up. We watch for its
+// injected elements leaving the DOM and restore scroll automatically.
+(function blvdScrollRecovery() {
+    function isSafeToUnlock() {
+        var dealPopup   = document.getElementById('deal-popup');
+        var mobileMenu  = document.getElementById('mobile-menu');
+        var dealOpen    = dealPopup  && dealPopup.classList.contains('is-open');
+        var menuOpen    = mobileMenu && mobileMenu.classList.contains('is-open');
+        return !dealOpen && !menuOpen;
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+        var blvdGone = false;
+        for (var i = 0; i < mutations.length; i++) {
+            var removed = mutations[i].removedNodes;
+            for (var j = 0; j < removed.length; j++) {
+                var el = removed[j];
+                if (el && el.nodeType === 1) {
+                    var id  = el.id  || '';
+                    var cls = typeof el.className === 'string' ? el.className : '';
+                    if (id.indexOf('blvd') !== -1 || id.indexOf('boulevard') !== -1 ||
+                        cls.indexOf('blvd') !== -1 || cls.indexOf('boulevard') !== -1 ||
+                        el.tagName === 'IFRAME') {
+                        blvdGone = true;
+                    }
+                }
+            }
+        }
+        if (blvdGone && isSafeToUnlock()) {
+            document.body.style.overflow     = '';
+            document.documentElement.style.overflow = '';
+        }
+    });
+
+    // Also watch <html> for any overflow style left by Boulevard
+    document.addEventListener('click', function checkAfterClose() {
+        setTimeout(function() {
+            if (isSafeToUnlock()) {
+                var bStyle = window.getComputedStyle(document.body).overflow;
+                var hStyle = window.getComputedStyle(document.documentElement).overflow;
+                if (bStyle === 'hidden') document.body.style.overflow = '';
+                if (hStyle === 'hidden') document.documentElement.style.overflow = '';
+            }
+        }, 600); // 600ms — enough for Boulevard close animation
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+})();
 </script>
 
 </body>
