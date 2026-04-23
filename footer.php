@@ -696,17 +696,17 @@ if ($popup_active) :
 ?>
 <div class="deal-popup" id="deal-popup" role="dialog" aria-modal="true" aria-label="Special offer" aria-hidden="true">
     <div class="deal-popup__overlay" id="deal-popup-overlay"></div>
-    <div class="deal-popup__modal">
+    <div class="deal-popup__modal<?php echo $p_img_html ? ' deal-popup__modal--has-image' : ''; ?>">
         <button class="deal-popup__close" id="deal-popup-close" aria-label="Close offer">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
         </button>
+        <?php if ($p_img_html) : ?>
+        <div class="deal-popup__image-wrap">
+            <?php echo $p_img_html; ?>
+        </div>
+        <?php endif; ?>
         <div class="deal-popup__glow" aria-hidden="true"></div>
         <div class="deal-popup__content">
-            <?php if ($p_img_html) : ?>
-            <div class="deal-popup__image-wrap">
-                <?php echo $p_img_html; ?>
-            </div>
-            <?php endif; ?>
             <span class="deal-popup__badge"><?php echo $p_badge; ?></span>
             <h2 class="deal-popup__title"><?php echo $p_title; ?></h2>
             <p class="deal-popup__text"><?php echo $p_text; ?></p>

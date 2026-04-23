@@ -9681,17 +9681,26 @@ a.contact-card__text:hover {
     border-radius: 20px;
   }
 }
-/* Popup image — full-bleed above badge, clips to modal corners */
+/* ==========================================================================
+   POPUP IMAGE — direct child of modal, no negative margins needed
+   ========================================================================== */
+
+/* When image is present, remove top padding so image sits flush at top */
+.deal-popup__modal--has-image {
+  padding-top: 0;
+}
+
+/* Image wrap: cancel the modal's horizontal padding to bleed edge-to-edge */
 .deal-popup__image-wrap {
-  margin: -3rem -2.5rem 1.75rem; /* exact match to modal padding */
-  border-radius: 24px 24px 0 0;  /* matches modal border-radius exactly */
+  margin: 0 -2.5rem 1.75rem;  /* -2.5rem cancels the modal's side padding */
   overflow: hidden;
   line-height: 0;
+  border-radius: 24px 24px 0 0; /* match modal corners exactly */
 }
 
 .deal-popup__img {
   width: 100%;
-  height: 220px;           /* fixed height = consistent bleed */
+  height: 220px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -9699,7 +9708,7 @@ a.contact-card__text:hover {
 
 @media (max-width: 480px) {
   .deal-popup__image-wrap {
-    margin: -2.5rem -1.5rem 1.5rem; /* match mobile modal padding */
+    margin: 0 -1.5rem 1.5rem;  /* match mobile modal side padding */
     border-radius: 20px 20px 0 0;
   }
   .deal-popup__img {
