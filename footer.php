@@ -726,25 +726,30 @@ if ($popup_active) :
     </div>
 </div>
 <script>(function(){
-    var KEY   = 'livia-popup-dismissed';
-    var FREQ  = <?php echo $p_freq; ?>;
-    var DELAY = <?php echo $p_delay; ?>;
-    var last  = localStorage.getItem(KEY);
-    if (last && (Date.now() - parseInt(last, 10)) / 86400000 < FREQ) return;
     var popup    = document.getElementById('deal-popup');
     var overlay  = document.getElementById('deal-popup-overlay');
     var closeBtn = document.getElementById('deal-popup-close');
     function open()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); window.__liviaP1Closed = Date.now(); }
-    setTimeout(open, DELAY);
+    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; <?php if (!is_customize_preview()) : ?>localStorage.setItem('livia-popup-dismissed', Date.now()); window.__liviaP1Closed = Date.now();<?php endif; ?> }
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', close);
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close(); });
-    if (window.innerWidth > 768) {
-        document.addEventListener('mouseleave', function(e){
-            if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
-        }, {once:true});
+<?php if (is_customize_preview()) : ?>
+    // Customizer preview: always show immediately, skip localStorage gate
+    setTimeout(open, 800);
+<?php else : ?>
+    var KEY  = 'livia-popup-dismissed';
+    var FREQ = <?php echo $p_freq; ?>;
+    var last = localStorage.getItem(KEY);
+    if (!last || (Date.now() - parseInt(last, 10)) / 86400000 >= FREQ) {
+        setTimeout(open, <?php echo $p_delay; ?>);
+        if (window.innerWidth > 768) {
+            document.addEventListener('mouseleave', function(e){
+                if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
+            }, {once:true});
+        }
     }
+<?php endif; ?>
 })();</script>
 <?php endif; ?>
 
@@ -758,7 +763,8 @@ if ($p2_active && !empty($p2_expiry)) {
         $p2_active = false;
     }
 }
-if ($p2_active) :
+// Always render in Customizer preview so client can see & edit it live
+if ($p2_active || is_customize_preview()) :
     $p2_badge    = esc_html(get_theme_mod('livia_popup2_badge',    '✦ Don\'t Miss Out'));
     $p2_title    = esc_html(get_theme_mod('livia_popup2_title',    'Still Interested?'));
     $p2_text     = esc_html(get_theme_mod('livia_popup2_text',     'Book your free consultation today — no commitment required.'));
@@ -807,43 +813,40 @@ if ($p2_active) :
     </div>
 </div>
 <script>(function(){
-    var KEY     = 'livia-popup2-dismissed';
-    var FREQ    = <?php echo $p2_freq; ?>;
-    var DELAY   = <?php echo $p2_delay; ?> * 1000;
-    var TRIGGER = '<?php echo esc_js($p2_trigger); ?>';
-    var P1_EXISTS = !!document.getElementById('deal-popup');
-
-    // Already dismissed recently? Skip entirely.
-    var last = localStorage.getItem(KEY);
-    if (last && (Date.now() - parseInt(last, 10)) / 86400000 < FREQ) return;
-
     var popup    = document.getElementById('deal-popup-2');
     var overlay  = document.getElementById('deal-popup-2-overlay');
     var closeBtn = document.getElementById('deal-popup-2-close');
-
     function open2()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function close2() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; localStorage.setItem(KEY, Date.now()); }
-
+    function close2() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; <?php if (!is_customize_preview()) : ?>localStorage.setItem('livia-popup2-dismissed', Date.now());<?php endif; ?> }
     closeBtn.addEventListener('click', close2);
     overlay.addEventListener('click', close2);
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close2(); });
-
+<?php if (is_customize_preview()) : ?>
+    // Customizer preview: always open after popup 1 (1.5s stagger)
+    setTimeout(open2, 1500);
+<?php else : ?>
+    var KEY       = 'livia-popup2-dismissed';
+    var FREQ      = <?php echo $p2_freq; ?>;
+    var DELAY     = <?php echo $p2_delay; ?> * 1000;
+    var TRIGGER   = '<?php echo esc_js($p2_trigger); ?>';
+    var P1_EXISTS = !!document.getElementById('deal-popup');
+    var last = localStorage.getItem(KEY);
+    if (last && (Date.now() - parseInt(last, 10)) / 86400000 < FREQ) return;
     if (TRIGGER === 'after_dismiss' && P1_EXISTS) {
-        // Poll every 500ms to see if Popup 1 has been dismissed
         var startTime = Date.now();
-        var maxWait   = 10 * 60 * 1000; // give up after 10 minutes
+        var maxWait   = 10 * 60 * 1000;
         var interval  = setInterval(function() {
             if (window.__liviaP1Closed) {
                 clearInterval(interval);
                 setTimeout(open2, DELAY);
             } else if (Date.now() - startTime > maxWait) {
-                clearInterval(interval); // visitor never dismissed — don't force it
+                clearInterval(interval);
             }
         }, 500);
     } else {
-        // "from_pageload" mode OR Popup 1 isn't enabled — fire after delay
         setTimeout(open2, DELAY);
     }
+<?php endif; ?>
 })();</script>
 <?php endif; ?>
 
