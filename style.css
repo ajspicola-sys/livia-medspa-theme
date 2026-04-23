@@ -1,4 +1,4 @@
-﻿/*
+/*
 Theme Name:       Livia Med Spa
 Theme URI:        https://liviamedspa.com
 Author:           Livia Med Spa
@@ -63,9 +63,9 @@ Text Domain:      livia-medspa
 }
 
 
-/* Fonts loaded via wp_enqueue_style in functions.php — no @import needed */
+/* Fonts loaded via wp_enqueue_style in functions.php � no @import needed */
 
-/* Cookie banner: hidden by default via CSS — JS reveals after 5s.
+/* Cookie banner: hidden by default via CSS � JS reveals after 5s.
    contain:strict + content-visibility:hidden excludes it from LCP calculation. */
 .cookie-banner {
   display: none !important;
@@ -315,10 +315,10 @@ h6 {
   transition: padding 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* ── WordPress Admin Bar Fix ─────────────────────────────────────
+/* -- WordPress Admin Bar Fix -------------------------------------
    When logged in, WP adds a 32px admin bar at top.
    This hides it on the frontend so it doesn't break the layout.
-   ──────────────────────────────────────────────────────────────── */
+   ---------------------------------------------------------------- */
 #wpadminbar {
   display: none !important;
 }
@@ -361,7 +361,7 @@ html {
   gap: 2rem;
 }
 
-/* ── Logo ──────────────────────────────────────────────────────── */
+/* -- Logo -------------------------------------------------------- */
 .site-logo {
   display: flex;
   flex-direction: column;
@@ -416,7 +416,7 @@ html {
   letter-spacing: 0.4em;
 }
 
-/* ── Desktop Nav ───────────────────────────────────────────────── */
+/* -- Desktop Nav ------------------------------------------------- */
 .site-header__nav {
   flex: 1;
   display: flex;
@@ -492,7 +492,7 @@ html {
   height: 20px;
 }
 
-/* ── Header Actions ────────────────────────────────────────────── */
+/* -- Header Actions ---------------------------------------------- */
 .site-header__actions {
   display: flex;
   align-items: center;
@@ -524,7 +524,7 @@ html {
   background: linear-gradient(to bottom, transparent, #ddd, transparent);
 }
 
-/* ── Buttons ───────────────────────────────────────────────────── */
+/* -- Buttons ----------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1138,7 +1138,7 @@ html {
   }
 }
 
-/* Scroll reveal — GPU-accelerated */
+/* Scroll reveal � GPU-accelerated */
 .reveal {
   opacity: 0;
   transform: translateY(30px) translateZ(0);
@@ -1152,7 +1152,7 @@ html {
   will-change: auto;
 }
 
-/* ── Section Shared ────────────────────────────────────────────── */
+/* -- Section Shared ---------------------------------------------- */
 .section__inner {
   max-width: 1280px;
   margin: 0 auto;
@@ -1209,7 +1209,7 @@ html {
   contain: layout style;
 }
 
-/* ── Aurora blobs ─────────────────────────────────────────────── */
+/* -- Aurora blobs ----------------------------------------------- */
 .hero__aurora {
   position: absolute;
   inset: 0;
@@ -1285,7 +1285,7 @@ html {
   animation: float 6s ease-in-out var(--delay) infinite;
 }
 
-/* ── Layout ────────────────────────────────────────────────────── */
+/* -- Layout ------------------------------------------------------ */
 .hero__inner {
   position: relative;
   z-index: 2;
@@ -1297,7 +1297,7 @@ html {
   gap: clamp(3rem, 2rem + 5vw, 7rem);
 }
 
-/* ── Left content ──────────────────────────────────────────────── */
+/* -- Left content ------------------------------------------------ */
 .hero__content {
   text-align: left;
 }
@@ -1386,7 +1386,7 @@ html {
   background: rgba(var(--brand-rgb), 0.08);
 }
 
-/* ── Stats row ─────────────────────────────────────────────────── */
+/* -- Stats row --------------------------------------------------- */
 .hero__stats {
   display: flex;
   align-items: center;
@@ -1423,8 +1423,8 @@ html {
   flex-shrink: 0;
 }
 
-/* ── Right visual panel ─────────────────────────────────────────── */
-/* ── Right: Model image ─────────────────────────────────────────── */
+/* -- Right visual panel ------------------------------------------- */
+/* -- Right: Model image ------------------------------------------- */
 .hero__visual {
   position: relative;
   display: flex;
@@ -1434,7 +1434,7 @@ html {
   animation: fadeIn 1.2s ease 0.5s both;
 }
 
-/* ── Background lighting glows (behind the model) ─────────────── */
+/* -- Background lighting glows (behind the model) --------------- */
 .hero__model-glow {
   position: absolute;
   border-radius: 50%;
@@ -1466,7 +1466,7 @@ html {
   to   { opacity: 1;   transform: translateX(-50%) scale(1.05); }
 }
 
-/* ── Model container with bottom fade ─────────────────────────── */
+/* -- Model container with bottom fade --------------------------- */
 .hero__model {
   position: relative;
   z-index: 2;
@@ -1482,7 +1482,7 @@ html {
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  /* Bottom fade — blends into the light hero background */
+  /* Bottom fade � blends into the light hero background */
   -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
@@ -1525,7 +1525,7 @@ html {
   animation: float 7s ease-in-out 1s infinite;
 }
 
-/* ── Scroll indicator ──────────────────────────────────────────── */
+/* -- Scroll indicator -------------------------------------------- */
 .hero__scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -1576,7 +1576,7 @@ html {
   color: rgba(122, 11, 184, 0.6);
 }
 
-/* ── Responsive ─────────────────────────────────────────────────── */
+/* -- Responsive --------------------------------------------------- */
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: 1fr;
@@ -1754,7 +1754,7 @@ html {
 
 /* Gold dot separator between items */
 .trust-ticker__item::after {
-  content: '✦';
+  content: '?';
   position: absolute;
   right: -0.15rem;
   top: 50%;
@@ -2756,7 +2756,7 @@ html {
 }
 
 /* ==========================================================================
-   TESTIMONIALS — Split Layout
+   TESTIMONIALS � Split Layout
    ========================================================================== */
 .testimonials-split {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
@@ -3772,7 +3772,7 @@ html {
   color: var(--brand);
 }
 
-/* ── Newsletter ────────────────────────────────────────────── */
+/* -- Newsletter ---------------------------------------------- */
 .footer__newsletter {
   border-top: 1px solid rgba(var(--brand-rgb), 0.1);
   padding: 2.5rem 0;
@@ -3849,7 +3849,7 @@ html {
   margin-top: 0.5rem;
 }
 
-/* ── Cookie Banner ─────────────────────────────────────────── */
+/* -- Cookie Banner ------------------------------------------- */
 .cookie-banner {
   position: fixed;
   bottom: 0;
@@ -4334,12 +4334,12 @@ a.contact-card__text:hover {
   margin-right: 0.5rem;
 }
 
-/* Blog listing (index.php) — Archive Grid */
+/* Blog listing (index.php) � Archive Grid */
 .blog-archive {
   padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
 }
 
-/* ── Category Filters ─────────────────────────────────────── */
+/* -- Category Filters --------------------------------------- */
 .blog-filters {
   padding: 1.5rem 0 0;
   background: var(--bg-cream);
@@ -4383,7 +4383,7 @@ a.contact-card__text:hover {
   box-shadow: 0 4px 12px rgba(var(--brand-rgb), 0.25);
 }
 
-/* ── Blog Grid ────────────────────────────────────────────── */
+/* -- Blog Grid ---------------------------------------------- */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4412,7 +4412,7 @@ a.contact-card__text:hover {
   border-color: rgba(var(--brand-rgb), 0.15);
 }
 
-/* ── Hero Card (first post) ───────────────────────────────── */
+/* -- Hero Card (first post) --------------------------------- */
 .blog-card--hero {
   grid-column: 1 / -1;
   flex-direction: row;
@@ -4439,7 +4439,7 @@ a.contact-card__text:hover {
   max-width: 520px;
 }
 
-/* ── Card Image ───────────────────────────────────────────── */
+/* -- Card Image --------------------------------------------- */
 .blog-card__img {
   height: 200px;
   overflow: hidden;
@@ -4466,7 +4466,7 @@ a.contact-card__text:hover {
   height: 100%;
 }
 
-/* ── Card Body ────────────────────────────────────────────── */
+/* -- Card Body ---------------------------------------------- */
 .blog-card__body {
   padding: 1.5rem;
   flex: 1;
@@ -4536,7 +4536,7 @@ a.contact-card__text:hover {
   transform: translateX(4px);
 }
 
-/* ── Pagination ───────────────────────────────────────────── */
+/* -- Pagination --------------------------------------------- */
 .blog-pagination {
   display: flex;
   justify-content: center;
@@ -4593,7 +4593,7 @@ a.contact-card__text:hover {
   letter-spacing: 0.04em;
 }
 
-/* ── Empty State ──────────────────────────────────────────── */
+/* -- Empty State -------------------------------------------- */
 .blog-empty {
   text-align: center;
   padding: clamp(4rem, 3rem + 4vw, 7rem) 2rem;
@@ -4621,7 +4621,7 @@ a.contact-card__text:hover {
   margin: 0 auto 2rem;
 }
 
-/* ── Blog Responsive ──────────────────────────────────────── */
+/* -- Blog Responsive ---------------------------------------- */
 @media (max-width: 960px) {
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -4673,7 +4673,7 @@ a.contact-card__text:hover {
   background: var(--bg-cream);
 }
 
-/* ── Category Filter Tabs ─────────────────────────────────────── */
+/* -- Category Filter Tabs --------------------------------------- */
 .services-filter {
   background: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -4718,7 +4718,7 @@ a.contact-card__text:hover {
   color: #fff;
 }
 
-/* ── Service Card Body wrapper (archive variant) ─────────────── */
+/* -- Service Card Body wrapper (archive variant) --------------- */
 .service-card__body {
   display: flex;
   flex-direction: column;
@@ -4736,7 +4736,7 @@ a.contact-card__text:hover {
   margin-bottom: 0.5rem;
 }
 
-/* ── No Results State ─────────────────────────────────────────── */
+/* -- No Results State ------------------------------------------- */
 .services-no-results {
   text-align: center;
   padding: 4rem 0;
@@ -4748,7 +4748,7 @@ a.contact-card__text:hover {
    SINGLE SERVICE PAGE
    ========================================================================== */
 
-/* ── Service Hero ──────────────────────────────────────────────── */
+/* -- Service Hero ------------------------------------------------ */
 .service-hero {
   background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-lavender) 60%, var(--bg-lavender-deep) 100%);
   padding: clamp(5rem, 4rem + 5vw, 9rem) 0 clamp(3rem, 2.5rem + 3vw, 5rem);
@@ -4781,7 +4781,7 @@ a.contact-card__text:hover {
   gap: clamp(3rem, 2rem + 5vw, 7rem);
 }
 
-/* No thumbnail — revert to centered single column */
+/* No thumbnail � revert to centered single column */
 .service-hero--no-image .service-hero__inner {
   max-width: 860px;
   grid-template-columns: 1fr;
@@ -4920,7 +4920,7 @@ a.contact-card__text:hover {
   border-color: var(--brand);
 }
 
-/* ── Service Body: content + sticky sidebar ────────────────────── */
+/* -- Service Body: content + sticky sidebar ---------------------- */
 .service-body {
   padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
   background: #fff;
@@ -5029,7 +5029,7 @@ a.contact-card__text:hover {
   .service-body__sidebar { position: static; }
 }
 
-/* ── Service Content typography (shared via .service-content__body) ── */
+/* -- Service Content typography (shared via .service-content__body) -- */
 .service-content__body {
   min-width: 0;
 }
@@ -5096,7 +5096,7 @@ a.contact-card__text:hover {
 }
 
 .service-content__body ul li::before {
-  content: '✦';
+  content: '?';
   position: absolute;
   left: 0;
   color: var(--brand);
@@ -5130,7 +5130,7 @@ a.contact-card__text:hover {
   font-weight: 600;
 }
 
-/* ── Benefits Grid (conditional) ───────────────────────────────── */
+/* -- Benefits Grid (conditional) --------------------------------- */
 .service-benefits {
   padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
   background: var(--bg-cream);
@@ -5178,7 +5178,7 @@ a.contact-card__text:hover {
   margin-top: 1px;
 }
 
-/* ── Video Section (conditional) ───────────────────────────────── */
+/* -- Video Section (conditional) --------------------------------- */
 .service-video {
   padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
   background: #fff;
@@ -5202,7 +5202,7 @@ a.contact-card__text:hover {
   border: none;
 }
 
-/* ── Why People Choose Livia (Static) ──────────────────────────── */
+/* -- Why People Choose Livia (Static) ---------------------------- */
 
 .service-why-us {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
@@ -5530,7 +5530,7 @@ a.contact-card__text:hover {
   margin: 0 auto;
 }
 
-/* ── Product Card ──────────────────────────────────────────────── */
+/* -- Product Card ------------------------------------------------ */
 .product-card {
   position: relative;
   background: #fff;
@@ -5551,7 +5551,7 @@ a.contact-card__text:hover {
               0 8px 30px rgba(var(--brand-rgb), 0.08);
 }
 
-/* ── Video Background ──────────────────────────────────────────── */
+/* -- Video Background -------------------------------------------- */
 .product-card__video-wrap {
   position: absolute;
   top: 0;
@@ -5582,14 +5582,14 @@ a.contact-card__text:hover {
   z-index: 1;
 }
 
-/* ── Card Inner ────────────────────────────────────────────────── */
+/* -- Card Inner -------------------------------------------------- */
 .product-card__inner {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* ── Product Image ─────────────────────────────────────────────── */
+/* -- Product Image ----------------------------------------------- */
 .product-card__image {
   position: relative;
   background: linear-gradient(160deg, var(--bg-lavender) 0%, var(--bg-lavender-deep) 60%, var(--bg-petal) 100%);
@@ -5657,7 +5657,7 @@ a.contact-card__text:hover {
   background: transparent;
 }
 
-/* ── Product Content ───────────────────────────────────────────── */
+/* -- Product Content --------------------------------------------- */
 .product-card__content {
   padding: clamp(1.5rem, 1rem + 1vw, 2rem);
   display: flex;
@@ -5798,7 +5798,7 @@ a.contact-card__text:hover {
   gap: clamp(3rem, 2rem + 4vw, 5rem);
 }
 
-/* ── Team Member Card ──────────────────────────────────────────── */
+/* -- Team Member Card -------------------------------------------- */
 .team-member {
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -5825,7 +5825,7 @@ a.contact-card__text:hover {
   direction: ltr;
 }
 
-/* ── Photo Area — colored background for cutouts ───────────────── */
+/* -- Photo Area � colored background for cutouts ----------------- */
 .team-member__image {
   position: relative;
   background: linear-gradient(160deg, var(--bg-lavender) 0%, var(--bg-lavender-deep) 60%, var(--bg-petal) 100%);
@@ -5889,7 +5889,7 @@ a.contact-card__text:hover {
   font-family: 'Cormorant Garamond', serif;
 }
 
-/* ── Info Area ─────────────────────────────────────────────────── */
+/* -- Info Area --------------------------------------------------- */
 .team-member__info {
   padding: clamp(2.5rem, 2rem + 2vw, 3.5rem);
   display: flex;
@@ -5934,7 +5934,7 @@ a.contact-card__text:hover {
   margin-bottom: 1.5rem;
 }
 
-/* ── Credential Badges ─────────────────────────────────────────── */
+/* -- Credential Badges ------------------------------------------- */
 .team-member__credentials {
   display: flex;
   flex-wrap: wrap;
@@ -5952,7 +5952,7 @@ a.contact-card__text:hover {
   letter-spacing: 0.03em;
 }
 
-/* ── Bio Area ──────────────────────────────────────────────────── */
+/* -- Bio Area ---------------------------------------------------- */
 .team-member__bio {
   font-size: 0.92rem;
   color: var(--text-mid);
@@ -5970,7 +5970,7 @@ a.contact-card__text:hover {
   margin-bottom: 0;
 }
 
-/* ── Specialty Tags ────────────────────────────────────────────── */
+/* -- Specialty Tags ---------------------------------------------- */
 .team-member__specialties {
   display: flex;
   flex-wrap: wrap;
@@ -6542,7 +6542,7 @@ a.contact-card__text:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* Inside the service hero — no bar, just an inline trail */
+/* Inside the service hero � no bar, just an inline trail */
 .breadcrumbs--hero {
   background: none;
   border: none;
@@ -7105,7 +7105,7 @@ a.contact-card__text:hover {
 }
 
 .reward-card--featured::before {
-  content: '★ Most Popular';
+  content: '? Most Popular';
   position: absolute;
   top: -10px;
   left: 50%;
@@ -7869,7 +7869,7 @@ a.contact-card__text:hover {
     margin-top: 6rem;
   }
 
-  /* Hide scroll indicator — desktop-only hint */
+  /* Hide scroll indicator � desktop-only hint */
   .hero__scroll-indicator {
     display: none;
   }
@@ -7962,7 +7962,7 @@ a.contact-card__text:hover {
   }
 }
 
-/* WP Admin bar — handled dynamically via JS */
+/* WP Admin bar � handled dynamically via JS */
 
 /* ==========================================================================
    PERFORMANCE: Reduce motion for users who prefer it
@@ -8122,7 +8122,7 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
-   MEMBERSHIP TIERS — LIVIA Luxe Cards
+   MEMBERSHIP TIERS � LIVIA Luxe Cards
    ========================================================================== */
 .membership-tiers {
   padding: clamp(5rem, 10vw, 8rem) 0;
@@ -8138,7 +8138,7 @@ a.contact-card__text:hover {
   margin-top: 1rem;
 }
 
-/* ── Individual Card ──────────────────────────────────────── */
+/* -- Individual Card ---------------------------------------- */
 .tier-card {
   background: #fff;
   border-radius: 1.5rem;
@@ -8157,7 +8157,7 @@ a.contact-card__text:hover {
   box-shadow: 0 20px 60px rgba(var(--ink-rgb), 0.12);
 }
 
-/* ── Card Image ───────────────────────────────────────────── */
+/* -- Card Image --------------------------------------------- */
 .tier-card__image {
   position: relative;
   width: 100%;
@@ -8201,7 +8201,7 @@ a.contact-card__text:hover {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* ── Card Body ────────────────────────────────────────────── */
+/* -- Card Body ---------------------------------------------- */
 .tier-card__body {
   padding: 2rem 1.75rem 2.25rem;
   display: flex;
@@ -8265,7 +8265,7 @@ a.contact-card__text:hover {
   font-weight: 500;
 }
 
-/* ── Perks List ───────────────────────────────────────────── */
+/* -- Perks List --------------------------------------------- */
 .tier-card__perks {
   list-style: none;
   padding: 0;
@@ -8309,13 +8309,13 @@ a.contact-card__text:hover {
   margin-top: 2px;
 }
 
-/* ── CTA Button ───────────────────────────────────────────── */
+/* -- CTA Button --------------------------------------------- */
 .tier-card__btn {
   width: 100%;
   margin-top: 2rem;
 }
 
-/* ── Featured Card (Signature) ────────────────────────────── */
+/* -- Featured Card (Signature) ------------------------------ */
 .tier-card--featured {
   border: 2px solid var(--brand);
   box-shadow: 0 8px 40px rgba(var(--brand-rgb), 0.18);
@@ -8346,7 +8346,7 @@ a.contact-card__text:hover {
   box-shadow: 0 4px 16px rgba(var(--brand-rgb), 0.3);
 }
 
-/* ── Prestige Card styling ────────────────────────────────── */
+/* -- Prestige Card styling ---------------------------------- */
 .tier-card--prestige .tier-card__image-overlay {
   background: linear-gradient(180deg, transparent 20%, rgba(var(--ink-rgb), 0.65) 100%);
 }
@@ -8490,7 +8490,7 @@ a.contact-card__text:hover {
   font-size: 1.1rem;
 }
 
-/* ── Tier Cards Responsive ─────────────────────────────────── */
+/* -- Tier Cards Responsive ----------------------------------- */
 @media (max-width: 960px) {
   .tier-cards {
     grid-template-columns: 1fr;
@@ -8522,7 +8522,7 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
-   AI PREVIEW — Ageless Before/After Transformation
+   AI PREVIEW � Ageless Before/After Transformation
    ========================================================================== */
 .ai-preview {
   width: 100%;
@@ -8586,7 +8586,7 @@ a.contact-card__text:hover {
   min-width: 0;
 }
 
-/* ── Header ────────────────────────────────────────────────── */
+/* -- Header -------------------------------------------------- */
 .ai-preview__header {
   text-align: left;
   margin-bottom: 2rem;
@@ -8604,7 +8604,7 @@ a.contact-card__text:hover {
   color: var(--brand);
 }
 
-/* ── Carousel ──────────────────────────────────────────────── */
+/* -- Carousel ------------------------------------------------ */
 .ai-preview__carousel {
   position: relative;
   width: 100%;
@@ -8627,7 +8627,7 @@ a.contact-card__text:hover {
   width: 100%;
 }
 
-/* ── Card ──────────────────────────────────────────────────── */
+/* -- Card ---------------------------------------------------- */
 .ai-preview__card {
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(16px);
@@ -8638,7 +8638,7 @@ a.contact-card__text:hover {
   box-shadow: 0 12px 48px rgba(var(--ink-rgb), 0.08);
 }
 
-/* ── Slider Image Area ─────────────────────────────────────── */
+/* -- Slider Image Area --------------------------------------- */
 .ai-preview__slider {
   position: relative;
   width: 100%;
@@ -8707,7 +8707,7 @@ a.contact-card__text:hover {
   pointer-events: none;
 }
 
-/* ── Card Footer ───────────────────────────────────────────── */
+/* -- Card Footer --------------------------------------------- */
 .ai-preview__card-footer {
   padding: 1.15rem 1.5rem 1.25rem;
   display: flex;
@@ -8738,7 +8738,7 @@ a.contact-card__text:hover {
   flex: 1;
 }
 
-/* AI badge — margin-left: auto pushes it right without a wrapper div */
+/* AI badge � margin-left: auto pushes it right without a wrapper div */
 .ai-preview__badge {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.55rem;
@@ -8768,7 +8768,7 @@ a.contact-card__text:hover {
   50%      { opacity: 0.5; transform: scale(0.7); }
 }
 
-/* ── Dots ───────────────────────────────────────────────────── */
+/* -- Dots ----------------------------------------------------- */
 .ai-preview__dots {
   display: flex;
   align-items: center;
@@ -8794,7 +8794,7 @@ a.contact-card__text:hover {
   background: linear-gradient(90deg, var(--brand), var(--brand-mid));
 }
 
-/* ── CTA ───────────────────────────────────────────────────── */
+/* -- CTA ----------------------------------------------------- */
 .ai-preview__cta {
   display: flex;
   flex-direction: column;
@@ -8826,7 +8826,7 @@ a.contact-card__text:hover {
   flex-shrink: 0;
 }
 
-/* ── Powered-By Badge ──────────────────────────────────────── */
+/* -- Powered-By Badge ---------------------------------------- */
 .ai-preview__powered {
   display: flex;
   align-items: center;
@@ -8849,9 +8849,9 @@ a.contact-card__text:hover {
   display: inline-block;
 }
 
-/* ── AI Preview Responsive ─────────────────────────────────── */
+/* -- AI Preview Responsive ----------------------------------- */
 @media (max-width: 860px) {
-  /* Use explicit flex column stack — display:contents is buggy on older iOS Safari */
+  /* Use explicit flex column stack � display:contents is buggy on older iOS Safari */
   .ai-preview__layout {
     display: flex;
     flex-direction: column;
@@ -9024,7 +9024,7 @@ a.contact-card__text:hover {
 }
 
 .legal-page__summary ul li::before {
-  content: '›';
+  content: '�';
   position: absolute;
   left: 0;
   color: var(--brand);
@@ -9224,21 +9224,21 @@ a.contact-card__text:hover {
   opacity: 0.85;
 }
 
-/* Warn — 50% */
+/* Warn � 50% */
 .cancellation-card--warn {
   background: #fff8e1;
   border-color: #f6d860;
   color: #7a5c00;
 }
 
-/* Danger — 100% / No-show */
+/* Danger � 100% / No-show */
 .cancellation-card--danger {
   background: #fff0f0;
   border-color: #fc8181;
   color: #7a0000;
 }
 
-/* Info — Repeat / Prepay */
+/* Info � Repeat / Prepay */
 .cancellation-card--info {
   background: #f3f0ff;
   border-color: var(--brand);
@@ -9472,7 +9472,7 @@ a.contact-card__text:hover {
 }
 
 .beauty-bank-policy-card li::before {
-  content: '›';
+  content: '�';
   position: absolute;
   left: 0;
   color: var(--brand);
@@ -9681,25 +9681,28 @@ a.contact-card__text:hover {
     border-radius: 20px;
   }
 }
-/* Popup image — shown above badge when set in Customizer */
+/* Popup image � full-bleed above badge, clips to modal corners */
 .deal-popup__image-wrap {
-  margin: -3rem -2.5rem 1.75rem;
-  border-radius: 20px 20px 0 0;
+  margin: -3rem -2.5rem 1.75rem; /* exact match to modal padding */
+  border-radius: 24px 24px 0 0;  /* matches modal border-radius exactly */
   overflow: hidden;
   line-height: 0;
 }
 
 .deal-popup__img {
   width: 100%;
-  max-height: 220px;
+  height: 220px;           /* fixed height = consistent bleed */
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   display: block;
 }
 
 @media (max-width: 480px) {
   .deal-popup__image-wrap {
-    margin: -2.5rem -1.5rem 1.5rem;
-    border-radius: 16px 16px 0 0;
+    margin: -2.5rem -1.5rem 1.5rem; /* match mobile modal padding */
+    border-radius: 20px 20px 0 0;
+  }
+  .deal-popup__img {
+    height: 170px;
   }
 }
