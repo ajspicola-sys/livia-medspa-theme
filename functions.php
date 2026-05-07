@@ -21,7 +21,7 @@ add_action('after_setup_theme', 'livia_setup');
 // ── SEO: Keyword-rich title tags (fixes "Home - liviamedspa.com" issue) ─────
 function livia_seo_title( $title_parts ) {
     if ( is_front_page() ) {
-        $title_parts['title']   = 'LIVIA Med Spa | Medical Spa in Tampa, FL';
+        $title_parts['title']   = 'Med Spa Tampa | LIVIA Medical Spa & Aesthetics';
         unset( $title_parts['tagline'] );
         unset( $title_parts['site'] );
     } elseif ( is_singular('service') ) {

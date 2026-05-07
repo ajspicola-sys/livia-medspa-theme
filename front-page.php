@@ -163,7 +163,7 @@ get_header(); ?>
                 <!-- Cutout model image with bottom fade -->
                 <div class="hero__model">
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png"
-                         alt="LIVIA Med Spa aesthetic treatment model"
+                         alt="LIVIA Med Spa Tampa — Botox, fillers & aesthetic treatments by Angela Spicola APRN"
                          class="hero__model-img"
                          fetchpriority="high"
                          decoding="async"
@@ -230,7 +230,7 @@ get_header(); ?>
             <div class="section__header reveal">
                 <span class="section__label">Our Expertise</span>
                 <h2 class="section__title">Tampa Med Spa Treatments</h2>
-                <p class="section__desc">Each treatment is customized to your unique goals, delivered with precision in a luxurious environment.</p>
+                <p class="section__desc">LIVIA Med Spa in Tampa offers Botox, dermal fillers, RF microneedling, laser resurfacing, and more — every treatment customized to your goals by board-certified providers.</p>
             </div>
 
             <?php
@@ -469,7 +469,7 @@ get_header(); ?>
             <div class="section__header reveal">
                 <span class="section__label">How It Works</span>
                 <h2 class="section__title">Your Botox & Filler Journey in Tampa</h2>
-                <p class="section__desc">From consultation to results — we make every step seamless and luxurious.</p>
+                <p class="section__desc">From your first free consultation to your final results — our Tampa med spa team makes every step seamless, safe, and luxurious.</p>
             </div>
             <div class="journey-steps reveal">
                 <div class="journey-step">
@@ -509,7 +509,7 @@ get_header(); ?>
                 <div class="product-showcase__content reveal">
                     <span class="section__label">Medical-Grade Skincare</span>
                     <h2 class="section__title">Medical-Grade Skincare Products,<br>Exceptional Results</h2>
-                    <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
+                    <p class="product-showcase__text">Available exclusively at our Tampa med spa location — we carry only the most trusted, clinically-proven skincare lines handpicked by Angela Spicola, APRN, to complement your in-office treatments and deliver visible results at home.</p>
                     <div class="product-showcase__features">
                         <div class="product-showcase__feature">
                             <span class="product-showcase__feature-icon" aria-hidden="true">&#x25C9;</span>
@@ -613,7 +613,7 @@ get_header(); ?>
                 <div class="why-us__content reveal">
                     <span class="section__label">The LIVIA Difference</span>
                     <h2 class="section__title">Why Tampa Chooses LIVIA Med Spa</h2>
-                    <p class="section__desc">We don't believe in one-size-fits-all. Every treatment plan is crafted around your unique anatomy, goals, and lifestyle.</p>
+                    <p class="section__desc">Tampa patients choose LIVIA because we don't believe in one-size-fits-all. Every med spa treatment plan is crafted around your unique anatomy, goals, and lifestyle — with results that look natural, never overdone.</p>
                     <div class="why-us__features">
                         <div class="why-us__feature">
                             <div class="why-us__feature-icon" aria-hidden="true">&#x2726;</div>
@@ -645,8 +645,8 @@ get_header(); ?>
                         <span class="why-us__stat-label">Patients Treated</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--2">
-                        <span class="why-us__stat-number">70+</span>
-                        <span class="why-us__stat-label">5-Star Reviews</span>
+                        <span class="why-us__stat-number">75+</span>
+                        <span class="why-us__stat-label">5-Star Google Reviews</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--3">
                         <span class="why-us__stat-number">3+</span>
@@ -654,7 +654,7 @@ get_header(); ?>
                     </div>
                     <div class="why-us__image-placeholder">
                         <img src="https://liviamedspa.com/wp-content/uploads/2026/03/IMG_2626-scaled-e1775741183210.jpg"
-                             alt="LIVIA Med Spa treatment room — Tampa's premier medical spa"
+                             alt="Inside LIVIA Med Spa Tampa — luxury medical spa treatment room on Dale Mabry Hwy"
                              class="why-us__image"
                              loading="lazy"
                              decoding="async"
@@ -685,7 +685,7 @@ get_header(); ?>
                     <!-- Google Rating Badge -->
                     <div class="testimonials-split__badge">
                         <div class="testimonials-split__badge-stars">★★★★★</div>
-                        <span class="testimonials-split__badge-text">5.0 on Google · 70+ Reviews</span>
+                        <span class="testimonials-split__badge-text">5.0 on Google · 75+ Tampa Reviews</span>
                     </div>
                 </div>
 
@@ -693,7 +693,7 @@ get_header(); ?>
                 <div class="testimonials-split__content reveal">
                     <span class="section__label">Client Love</span>
                     <h2 class="section__title">Real Tampa Patient Results,<br><em>Real Stories</em></h2>
-                    <p class="section__desc">Hear what our clients have to say about their experience at LIVIA Med Spa.</p>
+                    <p class="section__desc">See what Tampa med spa patients say about their Botox, filler, and laser results at LIVIA.</p>
 
                     <div class="testimonials-split__cards">
                         <article class="testimonial-card-v2">
@@ -754,7 +754,7 @@ get_header(); ?>
             <div class="section__header reveal">
                 <span class="section__label">Beauty Intel</span>
                 <h2 class="section__title">Tampa Med Spa Tips & Guides</h2>
-                <p class="section__desc">Expert tips, treatment guides, and the latest in aesthetic medicine.</p>
+                <p class="section__desc">Expert Botox aftercare tips, filler guides, and the latest in aesthetic medicine from Tampa's premier med spa team.</p>
             </div>
             <div class="blog-grid">
                 <?php while ($blog_posts->have_posts()) : $blog_posts->the_post();
@@ -796,8 +796,8 @@ get_header(); ?>
     <section class="cta-section" id="book" aria-label="Book a consultation">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Start Your Journey</span>
-            <h2 class="cta-section__title">Ready to Reveal<br>Your Best Self?</h2>
-            <p class="cta-section__text">Book a complimentary consultation and let our experts create a personalized treatment plan just for you. Proudly serving South Tampa, Hyde Park, Westchase, Brandon, St. Petersburg, and surrounding areas.</p>
+            <h2 class="cta-section__title">Book Your Tampa<br>Med Spa Consultation</h2>
+            <p class="cta-section__text">Start with a free consultation at LIVIA Med Spa — Tampa's #1 rated medical spa on Dale Mabry Hwy. Our providers will build a personalized treatment plan just for you. Serving Carrollwood, Westchase, North Tampa, Hyde Park, and surrounding areas.</p>
             <div class="cta-section__actions">
                 <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
