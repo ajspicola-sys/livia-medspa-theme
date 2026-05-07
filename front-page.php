@@ -76,7 +76,7 @@ get_header(); ?>
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "70",
+        "reviewCount": "75",
         "bestRating": "5",
         "worstRating": "1"
     },
@@ -119,16 +119,16 @@ get_header(); ?>
         <div class="hero__inner">
             <!-- LEFT: Content -->
             <div class="hero__content">
-                <span class="hero__badge">✦ Tampa's Premier Aesthetics Studio</span>
+                <span class="hero__badge">✦ Tampa's #1 Med Spa</span>
 
                 <h1 class="hero__title">
-                    Where Science<br>
-                    Meets <em>Beauty</em>
+                    Tampa's Premier
+                    <em>Med Spa</em>
                 </h1>
 
                 <div class="hero__divider" aria-hidden="true"></div>
 
-                <p class="hero__subtitle">Advanced aesthetic treatments tailored to enhance your natural beauty — delivered by Tampa's most trusted medical professionals.</p>
+                <p class="hero__subtitle">Advanced aesthetic treatments in Tampa, FL — Botox, fillers, laser & RF microneedling delivered by Angela Spicola, APRN.</p>
 
                 <div class="hero__actions">
                     <a href="#book-now" class="btn btn--primary btn--lg">
@@ -201,7 +201,7 @@ get_header(); ?>
             <div class="trust-ticker__items">
                 <span class="trust-ticker__item">✦ FDA Approved Products</span>
                 <span class="trust-ticker__item">✦ Board-Certified Providers</span>
-                <span class="trust-ticker__item">✦ 70+ Five-Star Reviews</span>
+                <span class="trust-ticker__item">✦ 75+ Five-Star Reviews</span>
                 <span class="trust-ticker__item">✦ HIPAA Compliant</span>
                 <span class="trust-ticker__item">✦ Allergan Partner</span>
                 <span class="trust-ticker__item">✦ Galderma Partner</span>
@@ -211,7 +211,7 @@ get_header(); ?>
                 <!-- Duplicate for seamless loop -->
                 <span class="trust-ticker__item">✦ FDA Approved Products</span>
                 <span class="trust-ticker__item">✦ Board-Certified Providers</span>
-                <span class="trust-ticker__item">✦ 70+ Five-Star Reviews</span>
+                <span class="trust-ticker__item">✦ 75+ Five-Star Reviews</span>
                 <span class="trust-ticker__item">✦ HIPAA Compliant</span>
                 <span class="trust-ticker__item">✦ Allergan Partner</span>
                 <span class="trust-ticker__item">✦ Galderma Partner</span>
