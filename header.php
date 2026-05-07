@@ -36,23 +36,43 @@
 
     <?php
 
-    // Dynamic meta description
+    // ── SEO Meta Tags — Smart Plugin Detection ─────────────────────────────
+    // Yoast SEO and Rank Math both output <meta name="description">, og:*, and
+    // twitter:* tags via wp_head(). If either plugin is active, we skip the
+    // theme's own output entirely to prevent duplicates.
+    // The theme tags only fire as a safety fallback when NO SEO plugin is installed.
+    $livia_seo_plugin_active = defined('WPSEO_VERSION')       // Yoast SEO
+                            || defined('RANK_MATH_VERSION')    // Rank Math
+                            || defined('AIOSEOP_VERSION');     // All in One SEO
 
+    // ── Build meta description (used by fallback AND OG block below) ────────
     if (is_front_page()) {
 
         $meta_desc = 'Tampa\'s premier med spa — Botox, fillers, RF microneedling & laser treatments by Angela Spicola, APRN. Serving Tampa, FL. Book your free consultation today.';
 
+    } elseif (is_singular('post')) {
+
+        // Blog posts: use post excerpt for unique, content-specific descriptions
+        $post_excerpt = wp_strip_all_tags(get_the_excerpt());
+        $meta_desc = $post_excerpt
+            ? wp_trim_words($post_excerpt, 25)
+            : get_the_title() . ' — Expert insights from LIVIA Med Spa, Tampa\'s premier medical spa. Read more on our blog.';
+
     } elseif (is_singular('service')) {
 
-        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' treatment in Tampa, FL at LIVIA Med Spa — board-certified provider, natural results.';
+        $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' in Tampa, FL at LIVIA Med Spa — board-certified provider, natural results.';
 
     } elseif (is_singular('product')) {
 
-        $meta_desc = get_the_title() . ' — Medical-grade skincare products available at LIVIA Med Spa in Tampa, FL.';
+        $meta_desc = get_the_title() . ' — Medical-grade skincare available at LIVIA Med Spa in Tampa, FL.';
 
     } elseif (is_page()) {
 
         $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'LIVIA Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
+
+    } elseif (is_home() || is_category() || is_tag() || is_archive()) {
+
+        $meta_desc = 'Expert skincare tips, treatment guides, and aesthetic medicine insights from LIVIA Med Spa in Tampa, FL.';
 
     } else {
 
@@ -60,84 +80,52 @@
 
     }
 
-    ?>
+    // ── Output meta description ONLY when no SEO plugin is handling it ──────
+    if ( ! $livia_seo_plugin_active ) : ?>
 
     <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
 
+    <?php endif; ?>
+
 
     <?php
-    // NOTE: The canonical tag is managed by the active SEO plugin (Rank Math / Yoast).
-    // Removing the manual canonical here prevents the duplicate canonical issue
-    // flagged in the SEOptimer audit. Do NOT add it back.
+    // NOTE: Canonical tag is owned by the SEO plugin. Do NOT add it back here.
     ?>
 
 
-
-    <!-- Open Graph / Press Wire / Social Preview -->
-
     <?php
+    // ── Open Graph & Twitter — fallback only when no SEO plugin active ──────
+    // Yoast/Rank Math output og:* and twitter:* via wp_head() when enabled.
+    // Only output below if no plugin is present.
 
-    // Default OG image: Hero shot (600x932, absolute URL, PNG)
-
-    // Press wire services need og:image:width + og:image:height to validate.
+    // Build OG variables regardless (used even in plugin-active mode for
+    // og:image which Yoast sometimes misses on custom post types).
 
     $og_default_img    = 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
-
     $og_default_width  = 600;
-
     $og_default_height = 932;
-
     $og_default_alt    = 'LIVIA Med Spa - Tampa Aesthetic Studio';
 
-
-
     if ( has_post_thumbnail() ) {
-
         $thumb_id   = get_post_thumbnail_id();
-
         $thumb_data = wp_get_attachment_image_src( $thumb_id, 'full' );
-
         $og_img     = $thumb_data ? esc_url( $thumb_data[0] ) : $og_default_img;
-
         $og_img_w   = $thumb_data ? (int) $thumb_data[1]     : $og_default_width;
-
         $og_img_h   = $thumb_data ? (int) $thumb_data[2]     : $og_default_height;
-
         $og_img_alt = esc_attr( get_post_meta( $thumb_id, '_wp_attachment_image_alt', true ) ?: $og_default_alt );
-
     } else {
-
         $og_img     = $og_default_img;
-
         $og_img_w   = $og_default_width;
-
         $og_img_h   = $og_default_height;
-
         $og_img_alt = esc_attr( $og_default_alt );
-
     }
 
+    $og_title = is_front_page() ? 'LIVIA Med Spa | Medical Spa in Tampa, FL' : wp_get_document_title();
+    $og_desc  = $meta_desc ?: 'Tampa\'s premier boutique medical spa — Botox, fillers, laser, RF microneedling & skincare. Led by Angela Spicola, APRN.';
+    $og_url   = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
+    $og_type  = (is_front_page() || is_page()) ? 'website' : 'article';
 
-
-    $og_title = is_front_page()
-
-        ? 'LIVIA Med Spa | Medical Spa in Tampa, FL'
-
-        : wp_get_document_title();
-
-
-
-    $og_desc = $meta_desc
-
-        ?: 'Tampa\'s premier boutique medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN.';
-
-
-
-    $og_url  = is_front_page() ? home_url( '/' ) : ( get_permalink() ?: home_url( '/' ) );
-
-    $og_type = ( is_front_page() || is_page() ) ? 'website' : 'article';
-
-    ?>
+    if ( ! $livia_seo_plugin_active ) : ?>
 
     <meta property="og:site_name"        content="LIVIA Med Spa">
 
@@ -179,6 +167,7 @@
 
     <meta name="twitter:image:alt"   content="<?php echo esc_attr( $og_img_alt ); ?>">
 
+    <?php endif; // end: ! $livia_seo_plugin_active — Yoast/RankMath handles OG+Twitter ?>
 
 
     <!-- Preconnect for Google Fonts performance -->
