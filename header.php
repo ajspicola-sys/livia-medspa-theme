@@ -737,7 +737,7 @@
 
                                 <div class="mega-menu__bottom-links">
                                     <a href="<?php echo esc_url(home_url('/memberships/')); ?>" class="mega-menu__bottom-link">✦ Memberships</a>
-                                    <a href="<?php echo esc_url(home_url('/faq/')); ?>" class="mega-menu__bottom-link">✦ FAQ</a>
+                                    <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="mega-menu__bottom-link">✦ Financing</a>
                                 </div>
 
                                 <a href="<?php echo esc_url(home_url('/services/')); ?>"
