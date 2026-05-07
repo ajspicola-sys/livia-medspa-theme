@@ -605,7 +605,7 @@ function livia_page_slug_exists( $slug ) {
 
 // ── Auto-create Privacy Policy page ───────────────────────────────────
 function livia_create_privacy_page() {
-    if ( get_option('livia_privacy_page_created_v1') ) return;
+    if ( get_option('livia_privacy_page_created_v2') ) return; // v2: force re-check for missing page
     if ( ! livia_page_slug_exists('privacy-policy') ) {
         wp_insert_post([
             'post_title'   => 'Privacy Policy',
@@ -615,7 +615,7 @@ function livia_create_privacy_page() {
             'post_type'    => 'page',
         ]);
     }
-    update_option('livia_privacy_page_created_v1', true);
+    update_option('livia_privacy_page_created_v2', true);
 }
 add_action('init', 'livia_create_privacy_page');
 
