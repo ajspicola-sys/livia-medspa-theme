@@ -40,7 +40,7 @@
 
     if (is_front_page()) {
 
-        $meta_desc = 'LIVIA Med Spa is Tampa\'s premier medical spa offering Botox, dermal fillers, laser treatments, RF microneedling, and medical-grade skincare. Led by Angela Spicola, APRN — serving Tampa, FL. Book today.';
+        $meta_desc = 'Tampa\'s premier med spa — Botox, fillers, RF microneedling & laser treatments by Angela Spicola, APRN. Serving Tampa, FL. Book your free consultation today.';
 
     } elseif (is_singular('service')) {
 
@@ -64,7 +64,12 @@
 
     <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
 
-    <link rel="canonical" href="<?php echo esc_url(get_permalink() ?: home_url('/')); ?>">
+
+    <?php
+    // NOTE: The canonical tag is managed by the active SEO plugin (Rank Math / Yoast).
+    // Removing the manual canonical here prevents the duplicate canonical issue
+    // flagged in the SEOptimer audit. Do NOT add it back.
+    ?>
 
 
 
@@ -1113,7 +1118,7 @@
 
                 </a>
 
-                <a href="mailto:support@liviamedspa.com" class="mobile-menu__contact-item">
+                <a href="mailto:<?php echo antispambot('support@liviamedspa.com'); ?>" class="mobile-menu__contact-item">
 
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 
@@ -1123,7 +1128,7 @@
 
                     </svg>
 
-                    support@liviamedspa.com
+                    <?php echo antispambot('support@liviamedspa.com'); ?>
 
                 </a>
 

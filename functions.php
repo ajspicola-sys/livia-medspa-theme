@@ -18,6 +18,101 @@ function livia_setup() {
 }
 add_action('after_setup_theme', 'livia_setup');
 
+// ── SEO: Keyword-rich title tags (fixes "Home - liviamedspa.com" issue) ─────
+function livia_seo_title( $title_parts ) {
+    if ( is_front_page() ) {
+        $title_parts['title']   = 'LIVIA Med Spa | Medical Spa in Tampa, FL';
+        unset( $title_parts['tagline'] );
+        unset( $title_parts['site'] );
+    } elseif ( is_singular('service') ) {
+        $title_parts['title'] = get_the_title() . ' in Tampa, FL | LIVIA Med Spa';
+        unset( $title_parts['site'] );
+    } elseif ( is_singular('product') ) {
+        $title_parts['title'] = get_the_title() . ' | Medical-Grade Skincare | LIVIA Med Spa Tampa';
+        unset( $title_parts['site'] );
+    } elseif ( is_post_type_archive('service') ) {
+        $title_parts['title'] = 'All Treatments | Tampa Med Spa Services | LIVIA';
+        unset( $title_parts['site'] );
+    } elseif ( is_page('about') ) {
+        $title_parts['title'] = 'About LIVIA Med Spa | Angela Spicola, APRN — Tampa, FL';
+        unset( $title_parts['site'] );
+    } elseif ( is_page('contact') ) {
+        $title_parts['title'] = 'Book a Consultation | LIVIA Med Spa Tampa';
+        unset( $title_parts['site'] );
+    } elseif ( is_page('memberships') ) {
+        $title_parts['title'] = 'Beauty Bank Memberships | LIVIA Med Spa Tampa';
+        unset( $title_parts['site'] );
+    } elseif ( is_page('before-after') ) {
+        $title_parts['title'] = 'Before & After Results | LIVIA Med Spa Tampa';
+        unset( $title_parts['site'] );
+    } elseif ( is_page() ) {
+        $title_parts['site'] = 'LIVIA Med Spa Tampa';
+    } elseif ( is_home() || is_archive() ) {
+        $title_parts['site'] = 'LIVIA Med Spa Tampa';
+    } elseif ( is_404() ) {
+        $title_parts['title'] = 'Page Not Found | LIVIA Med Spa';
+        unset( $title_parts['site'] );
+    }
+    return $title_parts;
+}
+add_filter( 'document_title_parts', 'livia_seo_title', 20 );
+
+// ── SEO: Favicon fallback (if no WP site icon is set) ───────────────────────
+function livia_favicon_fallback() {
+    // wp_site_icon() handles favicon if set via WP Customizer.
+    // This adds a PNG fallback pointing to the brand logo for browsers
+    // that don't receive a site icon from WordPress.
+    if ( ! has_site_icon() ) {
+        $logo_url = 'https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png';
+        echo '<link rel="icon" type="image/png" href="' . esc_url( $logo_url ) . '">' . "\n";
+        echo '<link rel="apple-touch-icon" href="' . esc_url( $logo_url ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'livia_favicon_fallback', 2 );
+
+// ── Analytics: Google Analytics 4 ───────────────────────────────────────────
+// TODO: Replace YOUR_GA4_ID with your actual Measurement ID (format: G-XXXXXXXXXX)
+// Get it from: analytics.google.com → Admin → Data Streams → your stream → Measurement ID
+function livia_ga4_tracking() {
+    $ga4_id = get_option( 'livia_ga4_id', '' ); // Set via WP Admin or replace '' with 'G-XXXXXXXXXX'
+    if ( empty( $ga4_id ) || is_admin() ) return;
+    ?>
+    <!-- Google Analytics 4 | LIVIA Med Spa -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga4_id ); ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<?php echo esc_js( $ga4_id ); ?>', {
+        page_path: window.location.pathname,
+      });
+    </script>
+    <?php
+}
+add_action( 'wp_head', 'livia_ga4_tracking', 99 );
+
+// ── Analytics: GA4 ID setting in WP Admin (Settings > General) ──────────────
+function livia_register_ga4_setting() {
+    register_setting( 'general', 'livia_ga4_id', [
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ]);
+    add_settings_field(
+        'livia_ga4_id',
+        'Google Analytics 4 ID',
+        function() {
+            $val = get_option( 'livia_ga4_id', '' );
+            echo '<input type="text" name="livia_ga4_id" value="' . esc_attr( $val ) . '" class="regular-text" placeholder="G-XXXXXXXXXX">';
+            echo '<p class="description">Enter your GA4 Measurement ID. Find it in Google Analytics → Admin → Data Streams.</p>';
+        },
+        'general',
+        'default',
+        [ 'label_for' => 'livia_ga4_id' ]
+    );
+}
+add_action( 'admin_init', 'livia_register_ga4_setting' );
+
 // ── Performance: Disable WP Emoji Scripts ──────────────────────────
 function livia_disable_emojis() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);

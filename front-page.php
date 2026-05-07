@@ -229,7 +229,7 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Our Expertise</span>
-                <h2 class="section__title">Premium Treatments</h2>
+                <h2 class="section__title">Tampa Med Spa Treatments</h2>
                 <p class="section__desc">Each treatment is customized to your unique goals, delivered with precision in a luxurious environment.</p>
             </div>
 
@@ -468,7 +468,7 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">How It Works</span>
-                <h2 class="section__title">Your Beauty Journey</h2>
+                <h2 class="section__title">Your Botox & Filler Journey in Tampa</h2>
                 <p class="section__desc">From consultation to results — we make every step seamless and luxurious.</p>
             </div>
             <div class="journey-steps reveal">
@@ -508,7 +508,7 @@ get_header(); ?>
             <div class="product-showcase__layout">
                 <div class="product-showcase__content reveal">
                     <span class="section__label">Medical-Grade Skincare</span>
-                    <h2 class="section__title">Professional Products,<br>Exceptional Results</h2>
+                    <h2 class="section__title">Medical-Grade Skincare Products,<br>Exceptional Results</h2>
                     <p class="product-showcase__text">We carry only the most trusted, clinically-proven skincare lines — handpicked by our providers to complement your in-office treatments and deliver visible results at home.</p>
                     <div class="product-showcase__features">
                         <div class="product-showcase__feature">
@@ -612,7 +612,7 @@ get_header(); ?>
             <div class="why-us__grid">
                 <div class="why-us__content reveal">
                     <span class="section__label">The LIVIA Difference</span>
-                    <h2 class="section__title">Why Tampa Trusts Us</h2>
+                    <h2 class="section__title">Why Tampa Chooses LIVIA Med Spa</h2>
                     <p class="section__desc">We don't believe in one-size-fits-all. Every treatment plan is crafted around your unique anatomy, goals, and lifestyle.</p>
                     <div class="why-us__features">
                         <div class="why-us__feature">
@@ -692,7 +692,7 @@ get_header(); ?>
                 <!-- Right: Reviews -->
                 <div class="testimonials-split__content reveal">
                     <span class="section__label">Client Love</span>
-                    <h2 class="section__title">Real Results,<br><em>Real Stories</em></h2>
+                    <h2 class="section__title">Real Tampa Patient Results,<br><em>Real Stories</em></h2>
                     <p class="section__desc">Hear what our clients have to say about their experience at LIVIA Med Spa.</p>
 
                     <div class="testimonials-split__cards">
@@ -753,7 +753,7 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">Beauty Intel</span>
-                <h2 class="section__title">Latest from the Blog</h2>
+                <h2 class="section__title">Tampa Med Spa Tips & Guides</h2>
                 <p class="section__desc">Expert tips, treatment guides, and the latest in aesthetic medicine.</p>
             </div>
             <div class="blog-grid">
