@@ -159,6 +159,44 @@ function livia_disable_oembed() {
 }
 add_action('init', 'livia_disable_oembed', 9999);
 
+// ── Legacy 301 Redirects — fixes Ahrefs-flagged 404s ──────────────────────
+// Maps old/broken URLs (from previous site version or backlinks) to the
+// closest relevant live page. Uses 301 (permanent) so link equity transfers.
+function livia_legacy_redirects() {
+    $path = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+
+    // Old service-type URLs → Services archive
+    $to_services = [
+        'iv-therapy-2',
+        'service/micorneedling',        // typo slug from old site
+        'service/microneedling',
+        'service/prp-facial-2',
+        'service/neurotoxins',
+        'service/botox-2',
+        'service/dermal-fillers-2',
+        'cellenis-derma-prp',
+        'face-prp-near-me-tampa',
+    ];
+
+    // Old blog/content URLs → Blog index (or closest service)
+    $to_blog = [
+        'med-spa-tampa-treatments-that-work',
+        'microneedling-recovery-time-guide',
+        'benefits-of-botox-treatments-in-tampa',
+    ];
+
+    if ( in_array( $path, $to_services, true ) ) {
+        wp_redirect( home_url( '/services/' ), 301 );
+        exit;
+    }
+
+    if ( in_array( $path, $to_blog, true ) ) {
+        wp_redirect( home_url( '/blog/' ), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'livia_legacy_redirects', 1 );
+
 // ── Performance: Dequeue block library CSS on frontend ─────────────
 function livia_dequeue_block_styles() {
     if (!is_admin()) {
