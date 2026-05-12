@@ -78,6 +78,124 @@ function livia_voice_search_schema() {
 }
 add_action( 'wp_head', 'livia_voice_search_schema', 3 );
 
+// ── Article Schema — blog posts only ─────────────────────────────────────────
+// Signals authorship + publish date to Google. Uses only safe WP functions.
+// No content parsing — zero risk of errors.
+function livia_article_schema() {
+    if ( ! is_singular( 'post' ) ) return;
+
+    $id       = get_the_ID();
+    if ( ! $id ) return;
+
+    $thumb = get_the_post_thumbnail_url( $id, 'large' );
+    if ( ! $thumb ) {
+        $thumb = 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
+    }
+
+    $data = array(
+        '@context'         => 'https://schema.org',
+        '@type'            => 'Article',
+        'headline'         => get_the_title( $id ),
+        'image'            => $thumb,
+        'datePublished'    => get_the_date( 'c', $id ),
+        'dateModified'     => get_the_modified_date( 'c', $id ),
+        'url'              => get_permalink( $id ),
+        'inLanguage'       => 'en-US',
+        'author'           => array(
+            '@type'    => 'Person',
+            'name'     => 'Angela Spicola',
+            'jobTitle' => 'APRN, Founder & Lead Aesthetic Provider',
+            'url'      => 'https://liviamedspa.com/about/',
+        ),
+        'publisher'        => array(
+            '@type' => 'Organization',
+            'name'  => 'LIVIA Med Spa',
+            'logo'  => array(
+                '@type' => 'ImageObject',
+                'url'   => 'https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png',
+            ),
+        ),
+        'mainEntityOfPage' => get_permalink( $id ),
+    );
+
+    echo '<script type="application/ld+json">'
+        . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+        . '</script>' . "\n";
+}
+add_action( 'wp_head', 'livia_article_schema', 6 );
+
+// ── BreadcrumbList Schema — pages, posts, and services ───────────────────────
+// Enables "Home > Services > Botox" path display in Google search results.
+// Uses only safe WP conditional functions — no content access.
+function livia_breadcrumb_schema() {
+    if ( is_front_page() || is_home() ) return;
+    if ( ! is_singular() && ! is_post_type_archive( 'service' ) ) return;
+
+    $home = array(
+        '@type'    => 'ListItem',
+        'position' => 1,
+        'name'     => 'Home',
+        'item'     => home_url( '/' ),
+    );
+
+    $items = array( $home );
+
+    if ( is_singular( 'service' ) ) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 2,
+            'name'     => 'Services',
+            'item'     => home_url( '/services/' ),
+        );
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 3,
+            'name'     => get_the_title(),
+            'item'     => get_permalink(),
+        );
+    } elseif ( is_singular( 'post' ) ) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 2,
+            'name'     => 'Blog',
+            'item'     => home_url( '/blog/' ),
+        );
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 3,
+            'name'     => get_the_title(),
+            'item'     => get_permalink(),
+        );
+    } elseif ( is_page() ) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 2,
+            'name'     => get_the_title(),
+            'item'     => get_permalink(),
+        );
+    } elseif ( is_post_type_archive( 'service' ) ) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => 2,
+            'name'     => 'Services',
+            'item'     => home_url( '/services/' ),
+        );
+    }
+
+    if ( count( $items ) < 2 ) return;
+
+    $data = array(
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => $items,
+    );
+
+    echo '<script type="application/ld+json">'
+        . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+        . '</script>' . "\n";
+}
+add_action( 'wp_head', 'livia_breadcrumb_schema', 7 );
+
 // ── Analytics: Google Analytics 4 ───────────────────────────────────────────
 // TODO: Replace YOUR_GA4_ID with your actual Measurement ID (format: G-XXXXXXXXXX)
 // Get it from: analytics.google.com → Admin → Data Streams → your stream → Measurement ID
