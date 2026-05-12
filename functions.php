@@ -70,6 +70,14 @@ function livia_favicon_fallback() {
 }
 add_action( 'wp_head', 'livia_favicon_fallback', 2 );
 
+// ── Voice Search: LocalBusiness + FAQ schema ─────────────────────────────────
+// Optimised for "Hey Google / Siri / Alexa" address and phone queries.
+function livia_voice_search_schema() {
+    echo '<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Livia Med Spa","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"Tampa","addressRegion":"FL","postalCode":"33618","streetAddress":"10043 North Dale Mabry Highway"},"telephone":"(813) 230-2219","url":"https://liviamedspa.com","geo":{"@type":"GeoCoordinates","latitude":28.0427042,"longitude":-82.5039551}}</script>' . "\n";
+    echo '<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"what is your business address?","acceptedAnswer":{"@type":"Answer","text":"10043 North Dale Mabry Highway, Tampa, FL 33618, US"}},{"@type":"Question","name":"What is the phone number to a business?","acceptedAnswer":{"@type":"Answer","text":"(813) 230-2219"}}]}</script>' . "\n";
+}
+add_action( 'wp_head', 'livia_voice_search_schema', 3 );
+
 // ── Analytics: Google Analytics 4 ───────────────────────────────────────────
 // TODO: Replace YOUR_GA4_ID with your actual Measurement ID (format: G-XXXXXXXXXX)
 // Get it from: analytics.google.com → Admin → Data Streams → your stream → Measurement ID
