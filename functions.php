@@ -185,17 +185,6 @@ function livia_legacy_redirects() {
         'benefits-of-botox-treatments-in-tampa',
     ];
 
-    // Specific 404 fixes — crawl-confirmed broken URLs
-    $specific = [
-        'laser-treatments-tampa'   => '/services/laser-treatments/',
-        'laser-treatments-tampa/'  => '/services/laser-treatments/',
-    ];
-
-    if ( isset( $specific[ $path ] ) ) {
-        wp_redirect( home_url( $specific[ $path ] ), 301 );
-        exit;
-    }
-
     if ( in_array( $path, $to_services, true ) ) {
         wp_redirect( home_url( '/services/' ), 301 );
         exit;
@@ -535,235 +524,32 @@ function livia_schema_markup() {
 
     // ── Enhanced Service schema — singular service pages only ─────────────────
     if (is_singular('service')) {
-        $post_id  = get_the_ID();
-        $excerpt  = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at LIVIA Med Spa in Tampa, FL.');
+        $post_id   = get_the_ID();
+        $price     = get_post_meta($post_id, '_service_price', true);
+        $duration  = get_post_meta($post_id, '_service_duration', true);
+        $cats      = get_the_terms($post_id, 'service_category');
+        $cat_name  = ($cats && !is_wp_error($cats)) ? $cats[0]->name : 'Aesthetic Treatment';
+        $excerpt   = wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at LIVIA Med Spa in Tampa, FL.');
 
         $service_schema = [
             '@context'    => 'https://schema.org',
             '@type'       => ['Service', 'MedicalProcedure'],
             '@id'         => get_permalink($post_id) . '#service',
             'name'        => get_the_title(),
-            'description' => $excerpt,
-            'url'         => get_permalink($post_id),
+            'description' => wp_strip_all_tags(get_the_excerpt() ?: get_the_title() . ' treatment at LIVIA Med Spa in Tampa, FL.'),
             'provider'    => [
-                '@id'   => esc_url(home_url('/')) . '#livia-med-spa',
                 '@type' => 'MedicalBusiness',
                 'name'  => 'LIVIA Med Spa',
             ],
-            'areaServed' => [
-                '@type'  => 'City',
-                'name'   => 'Tampa',
-                'sameAs' => 'https://en.wikipedia.org/wiki/Tampa,_Florida',
-            ],
-            'availableChannel' => [
-                '@type'           => 'ServiceChannel',
-                'serviceUrl'      => esc_url(home_url('/contact/')),
-                'servicePhone'    => '+18132302219',
-                'availableLanguage' => 'English',
-            ],
-            'offers' => [
-                '@type'       => 'Offer',
-                'price'       => '0',
-                'priceCurrency' => 'USD',
-                'name'        => 'Free Consultation',
-                'url'         => esc_url(home_url('/contact/')),
-            ],
-            'image' => get_the_post_thumbnail_url($post_id, 'large') ?: 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png',
+            'areaServed'  => 'Tampa, FL',
+            'url'         => get_permalink($post_id),
         ];
         echo '<script type="application/ld+json">' . wp_json_encode($service_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
     }
 }
 add_action('wp_head', 'livia_schema_markup', 5);
 
-// ── 2. Article Schema — blog posts only ───────────────────────────────────────
-// Signals authorship, publish date, and topic to Google for rich results.
-function livia_article_schema() {
-    if ( ! is_singular('post') ) return;
-
-    $post_id      = get_the_ID();
-    $post         = get_post($post_id);
-    $excerpt      = wp_strip_all_tags(get_the_excerpt() ?: wp_trim_words(get_the_content(), 30));
-    $thumb        = get_the_post_thumbnail_url($post_id, 'large') ?: 'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png';
-    $publish_date = get_the_date('c', $post_id);
-    $modify_date  = get_the_modified_date('c', $post_id);
-
-    $article = [
-        '@context'         => 'https://schema.org',
-        '@type'            => 'Article',
-        '@id'              => get_permalink($post_id) . '#article',
-        'headline'         => get_the_title($post_id),
-        'description'      => $excerpt,
-        'image'            => $thumb,
-        'datePublished'    => $publish_date,
-        'dateModified'     => $modify_date,
-        'inLanguage'       => 'en-US',
-        'url'              => get_permalink($post_id),
-        'isPartOf'         => [ '@id' => esc_url(home_url('/')) . '#website' ],
-        'author'           => [
-            '@type'       => 'Person',
-            '@id'         => esc_url(home_url('/')) . '#angela-spicola',
-            'name'        => 'Angela Spicola',
-            'jobTitle'    => 'APRN, Founder & Lead Aesthetic Provider',
-            'url'         => esc_url(home_url('/about/')),
-        ],
-        'publisher'        => [
-            '@id'  => esc_url(home_url('/')) . '#livia-med-spa',
-            '@type' => 'Organization',
-            'name' => 'LIVIA Med Spa',
-            'logo' => [
-                '@type' => 'ImageObject',
-                'url'   => 'https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png',
-            ],
-        ],
-        'mainEntityOfPage' => [ '@id' => get_permalink($post_id) ],
-    ];
-    echo '<script type="application/ld+json">' . wp_json_encode($article, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
-}
-add_action('wp_head', 'livia_article_schema', 6);
-
-// ── 3. FAQPage Schema — auto-extracted from content ───────────────────────────
-// Parses h3 headings followed by paragraphs in FAQ sections to build
-// FAQPage schema. Works on both service pages and blog posts.
-// Unlocks Google FAQ rich results (expandable Q&A under the search result).
-function livia_faq_schema() {
-    if ( ! is_singular(['post', 'service', 'page']) ) return;
-
-    $content = get_the_content();
-    if ( empty($content) ) return;
-
-    // Only run if the post actually contains an FAQ heading
-    if ( stripos($content, 'faq') === false && stripos($content, 'frequently asked') === false ) return;
-
-    // Strip wp:block comments, keep HTML
-    $content = preg_replace('/<!--.*?-->/s', '', $content);
-
-    // Match h3 tags followed by a p tag — FAQ pattern
-    preg_match_all('/<h3[^>]*>(.*?)<\/h3>\s*<p[^>]*>(.*?)<\/p>/si', $content, $matches, PREG_SET_ORDER);
-
-    if ( empty($matches) ) return;
-
-    $faqs = [];
-    foreach ($matches as $match) {
-        $question = wp_strip_all_tags($match[1]);
-        $answer   = wp_strip_all_tags($match[2]);
-        if ( strlen($question) > 10 && strlen($answer) > 20 ) {
-            $faqs[] = [
-                '@type'          => 'Question',
-                'name'           => $question,
-                'acceptedAnswer' => [
-                    '@type' => 'Answer',
-                    'text'  => $answer,
-                ],
-            ];
-        }
-    }
-
-    if ( empty($faqs) ) return;
-
-    $faq_schema = [
-        '@context'   => 'https://schema.org',
-        '@type'      => 'FAQPage',
-        '@id'        => get_permalink() . '#faq',
-        'url'        => get_permalink(),
-        'name'       => get_the_title(),
-        'mainEntity' => $faqs,
-    ];
-    echo '<script type="application/ld+json">' . wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
-}
-add_action('wp_head', 'livia_faq_schema', 7);
-
-// ── 4. BreadcrumbList Schema — all singular pages/posts/services ──────────────
-// Tells Google the hierarchical path to each page — enables breadcrumb
-// display in search results and improves crawl structure signals.
-function livia_breadcrumb_schema() {
-    if ( is_front_page() || is_home() ) return;
-    if ( ! is_singular() && ! is_post_type_archive() ) return;
-
-    $items = [
-        [
-            '@type'    => 'ListItem',
-            'position' => 1,
-            'name'     => 'Home',
-            'item'     => esc_url(home_url('/')),
-        ],
-    ];
-
-    if ( is_singular('service') ) {
-        $items[] = [
-            '@type'    => 'ListItem',
-            'position' => 2,
-            'name'     => 'Services',
-            'item'     => esc_url(home_url('/services/')),
-        ];
-        $items[] = [
-            '@type'    => 'ListItem',
-            'position' => 3,
-            'name'     => get_the_title(),
-            'item'     => get_permalink(),
-        ];
-    } elseif ( is_singular('post') ) {
-        $cats = get_the_category();
-        if ( $cats ) {
-            $items[] = [
-                '@type'    => 'ListItem',
-                'position' => 2,
-                'name'     => 'Blog',
-                'item'     => esc_url(home_url('/blog/')),
-            ];
-            $items[] = [
-                '@type'    => 'ListItem',
-                'position' => 3,
-                'name'     => esc_html($cats[0]->name),
-                'item'     => esc_url(get_category_link($cats[0]->term_id)),
-            ];
-            $items[] = [
-                '@type'    => 'ListItem',
-                'position' => 4,
-                'name'     => get_the_title(),
-                'item'     => get_permalink(),
-            ];
-        } else {
-            $items[] = [
-                '@type'    => 'ListItem',
-                'position' => 2,
-                'name'     => 'Blog',
-                'item'     => esc_url(home_url('/blog/')),
-            ];
-            $items[] = [
-                '@type'    => 'ListItem',
-                'position' => 3,
-                'name'     => get_the_title(),
-                'item'     => get_permalink(),
-            ];
-        }
-    } elseif ( is_page() ) {
-        $items[] = [
-            '@type'    => 'ListItem',
-            'position' => 2,
-            'name'     => get_the_title(),
-            'item'     => get_permalink(),
-        ];
-    } elseif ( is_post_type_archive('service') ) {
-        $items[] = [
-            '@type'    => 'ListItem',
-            'position' => 2,
-            'name'     => 'Services',
-            'item'     => esc_url(home_url('/services/')),
-        ];
-    }
-
-    if ( count($items) < 2 ) return;
-
-    $breadcrumb = [
-        '@context'        => 'https://schema.org',
-        '@type'           => 'BreadcrumbList',
-        'itemListElement' => $items,
-    ];
-    echo '<script type="application/ld+json">' . wp_json_encode($breadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
-}
-add_action('wp_head', 'livia_breadcrumb_schema', 8);
-
-
+// ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
     if (get_option('livia_pages_created_v5')) return;
 
