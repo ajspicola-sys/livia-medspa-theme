@@ -259,6 +259,7 @@
         toggle.classList.remove('is-active');
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = ''; // also clear <html> in case Boulevard or another overlay locked it
         toggle.focus();
     }
     if (toggle) toggle.addEventListener('click', openMenu);
@@ -587,7 +588,7 @@
 
         // ── Social Proof Notification ─────────────────────────────
         if (window.innerWidth > 768) {
-            var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.'];
+            var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.','Brooke A.','Samantha J.','Christina L.','Vanessa T.','Amber N.','Tiffany K.','Kaitlyn R.','Lindsey M.','Alyssa B.','Savannah C.'];
             var proofServices = ['Botox','Dermal Fillers','Chemical Peel','Microneedling','IV Therapy','Laser Treatment','Lip Filler','Skincare Consultation','RF Microneedling','Helix CO2 Laser'];
             var proofTimes    = ['2 minutes','5 minutes','12 minutes','23 minutes','1 hour','just now'];
             function showSocialProof() {
@@ -812,6 +813,13 @@ document.addEventListener('click', function(e) {
         var menuOpen    = mobileMenu && mobileMenu.classList.contains('is-open');
         return !dealOpen && !menuOpen;
     }
+    function tryUnlock() {
+        if (!isSafeToUnlock()) return;
+        var bStyle = window.getComputedStyle(document.body).overflow;
+        var hStyle = window.getComputedStyle(document.documentElement).overflow;
+        if (bStyle === 'hidden') document.body.style.overflow = '';
+        if (hStyle === 'hidden') document.documentElement.style.overflow = '';
+    }
 
     var observer = new MutationObserver(function(mutations) {
         var blvdGone = false;
@@ -830,23 +838,21 @@ document.addEventListener('click', function(e) {
                 }
             }
         }
-        if (blvdGone && isSafeToUnlock()) {
-            document.body.style.overflow     = '';
-            document.documentElement.style.overflow = '';
-        }
+        if (blvdGone) setTimeout(tryUnlock, 650);
     });
 
-    // Also watch <html> for any overflow style left by Boulevard
-    document.addEventListener('click', function checkAfterClose() {
-        setTimeout(function() {
-            if (isSafeToUnlock()) {
-                var bStyle = window.getComputedStyle(document.body).overflow;
-                var hStyle = window.getComputedStyle(document.documentElement).overflow;
-                if (bStyle === 'hidden') document.body.style.overflow = '';
-                if (hStyle === 'hidden') document.documentElement.style.overflow = '';
-            }
-        }, 600); // 600ms — enough for Boulevard close animation
-    });
+    // Click-based recovery (covers Boulevard close button)
+    document.addEventListener('click', function() { setTimeout(tryUnlock, 650); });
+
+    // ── WATCHDOG: periodic safety net every 2s ─────────────────────────────────
+    // If anything leaves overflow:hidden on <body> or <html> with no modal open,
+    // this clears it. This is the fix for the "breaks after 7 hours" bug caused
+    // by Boulevard or the booking widget leaving a stale scroll lock on the page.
+    setInterval(tryUnlock, 2000);
+
+    // Boulevard emits a custom event when its widget closes — hook it directly
+    document.addEventListener('blvd:close', function() { setTimeout(tryUnlock, 300); });
+    document.addEventListener('blvd:widget:close', function() { setTimeout(tryUnlock, 300); });
 
     observer.observe(document.body, { childList: true, subtree: true });
 })();
