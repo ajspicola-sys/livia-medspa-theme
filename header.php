@@ -413,38 +413,37 @@
 
 
     <!-- ═══ FOUC Prevention ═══════════════════════════════════════════════
-         Hides the page until the main stylesheet is confirmed applied.
-         Works even when LiteSpeed/caching plugins async-load CSS.
-         Failsafe at 1.5s ensures nothing stays invisible if things go wrong.
+         Adds .fouc-guard to <html> before any paint. The main stylesheet
+         link fires onload to remove it. Hard failsafe at 800ms ensures
+         nothing stays invisible. Works regardless of CDN/caching rewrites.
          ═══════════════════════════════════════════════════════════════════ -->
+    <style>.fouc-guard{visibility:hidden!important}</style>
     <script>
-    !function(){
-        var h = document.documentElement;
-        // Hide immediately (synchronous — runs before any paint)
-        h.style.cssText = 'visibility:hidden';
-        // Failsafe: never stay hidden more than 1.5 seconds
-        var safe = setTimeout(function(){ h.style.cssText = ''; }, 1500);
-        function show() { clearTimeout(safe); h.style.cssText = ''; }
-        // Poll styleSheets until our main stylesheet is loaded & applied
-        function checkCSS() {
-            var ss = document.styleSheets;
-            for (var i = ss.length - 1; i >= 0; i--) {
-                try {
-                    if (ss[i].href && ss[i].href.indexOf('/style') !== -1) {
-                        show(); return; // Found it — CSS is applied
-                    }
-                } catch(e) {}
+    (function(){
+        // Apply guard class instantly (before first paint)
+        document.documentElement.classList.add('fouc-guard');
+
+        // Hard failsafe — never stay hidden more than 800ms
+        var safeTimer = setTimeout(reveal, 800);
+
+        function reveal() {
+            clearTimeout(safeTimer);
+            document.documentElement.classList.remove('fouc-guard');
+        }
+
+        // Export so the stylesheet onload can call it
+        window.__liviaReveal = reveal;
+
+        // BFCache / back-forward navigation: strip is-leaving and reveal immediately
+        window.addEventListener('pageshow', function(e) {
+            reveal();
+            if (document.body) {
+                document.body.classList.remove('is-leaving');
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
             }
-            requestAnimationFrame(checkCSS); // Not yet, check next frame
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-                requestAnimationFrame(checkCSS);
-            });
-        } else {
-            checkCSS();
-        }
-    }();
+        });
+    }());
     </script>
 
 </head>

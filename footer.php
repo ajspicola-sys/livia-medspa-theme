@@ -258,8 +258,12 @@
         mobileMenu.setAttribute('aria-hidden', 'true');
         toggle.classList.remove('is-active');
         toggle.setAttribute('aria-expanded', 'false');
+        // Always clear overflow on both body AND html — Boulevard and other
+        // overlays may lock either one and not clean up after themselves.
         document.body.style.overflow = '';
-        document.documentElement.style.overflow = ''; // also clear <html> in case Boulevard or another overlay locked it
+        document.body.style.overflowY = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.overflowY = '';
         toggle.focus();
     }
     if (toggle) toggle.addEventListener('click', openMenu);
@@ -282,6 +286,12 @@
     rIC(function() {
 
         // ── Page exit transition ──────────────────────────────────
+        // Note: We no longer call e.preventDefault() or redirect via
+        // setTimeout — doing so breaks the browser's back/forward cache
+        // (bfcache) and causes the page to flash then "reload itself".
+        // Instead we just apply is-leaving for the CSS fade; the browser
+        // navigates naturally. The pageshow handler in header.php strips
+        // is-leaving when the page is restored from bfcache.
         document.querySelectorAll('a[href]').forEach(function(link) {
             var href = link.getAttribute('href');
             if (href &&
@@ -293,9 +303,7 @@
                 (href.indexOf(window.location.hostname) !== -1 || href.charAt(0) === '/')) {
                 link.addEventListener('click', function(e) {
                     if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-                    e.preventDefault();
                     document.body.classList.add('is-leaving');
-                    setTimeout(function() { window.location.href = href; }, 250);
                 });
             }
         });
@@ -731,7 +739,16 @@ if ($popup_active) :
     var overlay  = document.getElementById('deal-popup-overlay');
     var closeBtn = document.getElementById('deal-popup-close');
     function open()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function close() { popup.classList.remove('is-open'); popup.setAttribute('aria-hidden','true');  document.body.style.overflow=''; <?php if (!is_customize_preview()) : ?>localStorage.setItem('livia-popup-dismissed', Date.now());<?php endif; ?> }
+    function close() {
+        popup.classList.remove('is-open');
+        popup.setAttribute('aria-hidden','true');
+        // Clear overflow on both body AND html to prevent scroll-lock
+        document.body.style.overflow = '';
+        document.body.style.overflowY = '';
+        document.documentElement.style.overflow = '';
+        document.documentElement.style.overflowY = '';
+        <?php if (!is_customize_preview()) : ?>localStorage.setItem('livia-popup-dismissed', Date.now());<?php endif; ?>
+    }
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', close);
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close(); });

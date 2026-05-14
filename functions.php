@@ -395,12 +395,32 @@ function livia_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 
-// ── Performance: Make only Google Fonts non-render-blocking ───────────
-// The main stylesheet MUST be render-blocking to prevent FOUC.
-// Google Fonts can safely load async since system fonts render as fallback.
+// ── Performance: Stylesheet loading — FOUC reveal + async Google Fonts ──
+// Main stylesheet: render-blocking (prevents FOUC) + fires __liviaReveal
+//   onload so the FOUC guard class is removed the instant CSS is applied,
+//   regardless of how caching plugins rewrote the URL.
+// Google Fonts: deferred (media=print swap) — safe because system fonts
+//   render as fallback while the web fonts load.
 function livia_async_styles($html, $handle) {
-    // Only defer Google Fonts — NOT the main theme stylesheet
-    if ( $handle === 'livia-google-fonts' && !is_admin() ) {
+    if ( is_admin() ) return $html;
+
+    // ── Main theme stylesheet: inject onload reveal hook ──────────────────
+    if ( $handle === 'livia-style' ) {
+        // Inject onload callback — fires when the stylesheet is parsed & applied
+        $html = str_replace(
+            " rel='stylesheet'",
+            " rel='stylesheet' onload=\"window.__liviaReveal&&window.__liviaReveal()\"",
+            $html
+        );
+        $html = str_replace(
+            ' rel="stylesheet"',
+            ' rel="stylesheet" onload="window.__liviaReveal&&window.__liviaReveal()"',
+            $html
+        );
+    }
+
+    // ── Google Fonts: non-render-blocking (media swap) ────────────────────
+    if ( $handle === 'livia-google-fonts' ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);
         $html = str_replace('media="all"', "media=\"print\" onload=\"this.media='all'\"", $html);
         $noscript = '<noscript>' . str_replace(
@@ -410,6 +430,7 @@ function livia_async_styles($html, $handle) {
         ) . '</noscript>';
         $html .= $noscript;
     }
+
     return $html;
 }
 add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
