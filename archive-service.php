@@ -89,7 +89,6 @@ $all_cats = get_terms([
                     ?>
                         <a href="<?php the_permalink(); ?>"
                            class="service-card reveal"
-                           aria-label="<?php the_title_attribute(); ?>"
                            data-cats="<?php echo esc_attr( $cat_slugs ); ?>"
                            itemscope
                            itemtype="https://schema.org/MedicalProcedure">

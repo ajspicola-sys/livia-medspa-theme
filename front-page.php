@@ -131,11 +131,11 @@ get_header(); ?>
                 <p class="hero__subtitle">Advanced aesthetic treatments in Tampa, FL — Botox, fillers, laser & RF microneedling delivered by Angela Spicola, APRN.</p>
 
                 <div class="hero__actions">
-                    <a href="#book-now" class="btn btn--primary btn--lg" aria-label="Book a consultation at LIVIA Med Spa">
+                    <a href="#book-now" class="btn btn--primary btn--lg">
                         Book Consultation
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg" aria-label="View all aesthetic services">View Services</a>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
                 </div>
 
                 <!-- Stats row -->
@@ -291,7 +291,7 @@ get_header(); ?>
                                         <?php if ($price) : ?>
                                             <span class="carousel-card__price">From <?php echo esc_html($price); ?></span>
                                         <?php endif; ?>
-                                        <a href="<?php the_permalink(); ?>" class="btn btn--primary btn--sm" aria-label="View <?php the_title_attribute(); ?> treatment details">View Treatment →</a>
+                                        <a href="<?php the_permalink(); ?>" class="btn btn--primary btn--sm" aria-label="View Treatment — <?php the_title_attribute(); ?>">View Treatment →</a>
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@ get_header(); ?>
                                         <div class="carousel-card__icon"><?php echo esc_html($svc['icon']); ?></div>
                                         <h3 class="carousel-card__title"><?php echo esc_html($svc['title']); ?></h3>
                                         <p class="carousel-card__text"><?php echo esc_html($svc['text']); ?></p>
-                                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary btn--sm" aria-label="View <?php echo esc_attr($svc['title']); ?> treatment details">View Treatment →</a>
+                                        <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary btn--sm" aria-label="View Treatment — <?php echo esc_attr($svc['title']); ?>">View Treatment →</a>
                                     </div>
                                 </div>
                             </div>
@@ -787,7 +787,7 @@ get_header(); ?>
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>
             <div style="text-align:center; margin-top:2.5rem;">
-                <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline" aria-label="View all blog articles and guides">View All Posts →</a>
+                <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">View All Posts →</a>
             </div>
         </div>
     </section>

@@ -58,8 +58,7 @@ get_header(); ?>
                 <div class="blog-grid blog-grid--featured">
                     <?php while (have_posts()) : the_post(); $post_count++; ?>
                         <a href="<?php the_permalink(); ?>"
-                           class="blog-card <?php echo $post_count === 1 ? 'blog-card--hero' : ''; ?> reveal"
-                           aria-label="Read: <?php the_title_attribute(); ?>">
+                           class="blog-card <?php echo $post_count === 1 ? 'blog-card--hero' : ''; ?> reveal">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="blog-card__img">
                                     <?php the_post_thumbnail('medium_large', [

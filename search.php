@@ -35,7 +35,7 @@ get_header(); ?>
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
                                 <p class="search-result-card__excerpt"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
-                                <a href="<?php the_permalink(); ?>" class="search-result-card__link">View →</a>
+                                <a href="<?php the_permalink(); ?>" class="search-result-card__link" aria-label="View — <?php the_title_attribute(); ?>">View →</a>
                             </div>
                         </div>
                     <?php endwhile; ?>

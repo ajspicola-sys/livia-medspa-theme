@@ -1017,7 +1017,7 @@
 
                 <a href="#book-now"
 
-                    class="btn btn--primary btn--sm nav__cta-desktop" aria-label="Book a consultation at LIVIA Med Spa">Book Now</a>
+                    class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
 
             </div>
 
