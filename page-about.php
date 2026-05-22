@@ -45,7 +45,7 @@ get_header(); ?>
                         }
                         $initials = substr($initials, 0, 2);
                 ?>
-                    <article class="team-card">
+                    <div class="team-card">
                         <div class="team-card__image">
                             <?php if (has_post_thumbnail()) : ?>
                                 <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
@@ -60,42 +60,42 @@ get_header(); ?>
                         <?php if (has_excerpt()) : ?>
                             <p class="team-card__bio"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
                         <?php endif; ?>
-                    </article>
+                    </div>
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
                     <!-- Fallback when no team members yet -->
-                    <article class="team-card">
+                    <div class="team-card">
                         <div class="team-card__image">
                             <div class="team-card__placeholder" aria-hidden="true">DR</div>
                         </div>
                         <h3 class="team-card__name">Dr. Rachel Torres</h3>
                         <span class="team-card__role">Medical Director</span>
                         <p class="team-card__bio">Board-certified with 12+ years in aesthetic medicine. Specializes in advanced injectables and facial rejuvenation.</p>
-                    </article>
-                    <article class="team-card">
+                    </div>
+                    <div class="team-card">
                         <div class="team-card__image">
                             <div class="team-card__placeholder" aria-hidden="true">SM</div>
                         </div>
                         <h3 class="team-card__name">Sarah Mitchell, PA-C</h3>
                         <span class="team-card__role">Lead Injector</span>
                         <p class="team-card__bio">Physician assistant with specialized training in dermal fillers and neurotoxins. Known for her artistic eye.</p>
-                    </article>
-                    <article class="team-card">
+                    </div>
+                    <div class="team-card">
                         <div class="team-card__image">
                             <div class="team-card__placeholder" aria-hidden="true">JC</div>
                         </div>
                         <h3 class="team-card__name">Jennifer Chen, RN</h3>
                         <span class="team-card__role">Aesthetic Nurse</span>
                         <p class="team-card__bio">Registered nurse specializing in laser treatments and skin rejuvenation. Passionate about patient education.</p>
-                    </article>
-                    <article class="team-card">
+                    </div>
+                    <div class="team-card">
                         <div class="team-card__image">
                             <div class="team-card__placeholder" aria-hidden="true">AL</div>
                         </div>
                         <h3 class="team-card__name">Amanda Lopez</h3>
                         <span class="team-card__role">Patient Coordinator</span>
                         <p class="team-card__bio">Your first point of contact. Amanda ensures every visit is seamless from booking to aftercare follow-up.</p>
-                    </article>
+                    </div>
                 <?php endif; ?>
             </div>
             <div style="text-align:center;margin-top:2.5rem;" class="reveal">
@@ -112,26 +112,26 @@ get_header(); ?>
                 <h2 class="section__title">Our Core Values</h2>
             </div>
             <div class="values-grid reveal">
-                <article class="value-card">
+                <div class="value-card">
                     <div class="value-card__number" aria-hidden="true">01</div>
                     <h3 class="value-card__title">Patient First</h3>
                     <p class="value-card__text">Your safety, comfort, and goals drive every decision we make. We never push treatments you don't need.</p>
-                </article>
-                <article class="value-card">
+                </div>
+                <div class="value-card">
                     <div class="value-card__number" aria-hidden="true">02</div>
                     <h3 class="value-card__title">Natural Results</h3>
                     <p class="value-card__text">We enhance your unique beauty — never overdo. Our goal is for people to say you look refreshed, not "done."</p>
-                </article>
-                <article class="value-card">
+                </div>
+                <div class="value-card">
                     <div class="value-card__number" aria-hidden="true">03</div>
                     <h3 class="value-card__title">Continuous Innovation</h3>
                     <p class="value-card__text">We invest in the latest FDA-approved technologies and ongoing education to offer you the best options available.</p>
-                </article>
-                <article class="value-card">
+                </div>
+                <div class="value-card">
                     <div class="value-card__number" aria-hidden="true">04</div>
                     <h3 class="value-card__title">Transparency</h3>
                     <p class="value-card__text">Honest pricing, realistic expectations, and thorough consultations. No hidden fees, no pressure — ever.</p>
-                </article>
+                </div>
             </div>
         </div>
     </section>

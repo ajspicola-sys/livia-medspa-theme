@@ -45,18 +45,16 @@ $all_cats = get_terms([
     <?php if ( $all_cats && !is_wp_error($all_cats) ) : ?>
     <section class="services-filter" aria-label="Filter treatments by category">
         <div class="section__inner">
-            <div class="services-filter__bar" role="tablist" aria-label="Service categories">
+            <div class="services-filter__bar" aria-label="Service categories">
                 <button class="services-filter__btn is-active"
-                        role="tab"
-                        aria-selected="true"
+                        aria-pressed="true"
                         data-filter="all"
                         id="filter-all">
                     All Treatments
                 </button>
                 <?php foreach ( $all_cats as $cat ) : ?>
                 <button class="services-filter__btn"
-                        role="tab"
-                        aria-selected="false"
+                        aria-pressed="false"
                         data-filter="<?php echo esc_attr( $cat->slug ); ?>"
                         id="filter-<?php echo esc_attr( $cat->slug ); ?>">
                     <?php echo esc_html( $cat->name ); ?>
@@ -221,7 +219,7 @@ $all_cats = get_terms([
         // Update tab state
         bar.querySelectorAll('.services-filter__btn').forEach(function (b) {
             b.classList.toggle('is-active', b === btn);
-            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
         });
 
         // Show/hide cards

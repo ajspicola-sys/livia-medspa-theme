@@ -32,7 +32,7 @@ get_header(); ?>
             <div class="tier-cards reveal">
 
                 <!-- Tier 1: LIVIA Luxe -->
-                <article class="tier-card" id="tier-luxe">
+                <div class="tier-card" id="tier-luxe">
                     <div class="tier-card__image">
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-luxe.png"
                              alt="LIVIA Luxe membership — spa facial treatment"
@@ -72,10 +72,10 @@ get_header(); ?>
                         </ul>
                         <a href="#book-now" class="btn btn--outline btn--lg tier-card__btn">Enroll Now →</a>
                     </div>
-                </article>
+                </div>
 
                 <!-- Tier 2: LIVIA Luxe Signature (FEATURED) -->
-                <article class="tier-card tier-card--featured" id="tier-signature">
+                <div class="tier-card tier-card--featured" id="tier-signature">
                     <div class="tier-card__popular-badge">Most Popular</div>
                     <div class="tier-card__image">
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-signature.png"
@@ -120,10 +120,10 @@ get_header(); ?>
                         </ul>
                         <a href="#book-now" class="btn btn--primary btn--lg tier-card__btn">Enroll Now →</a>
                     </div>
-                </article>
+                </div>
 
                 <!-- Tier 3: LIVIA Luxe Prestige -->
-                <article class="tier-card tier-card--prestige" id="tier-prestige">
+                <div class="tier-card tier-card--prestige" id="tier-prestige">
                     <div class="tier-card__image">
                         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-prestige.png"
                              alt="LIVIA Luxe Prestige — ultra-premium aesthetic experience"
@@ -171,7 +171,7 @@ get_header(); ?>
                         </ul>
                         <a href="#book-now" class="btn btn--outline btn--lg tier-card__btn tier-card__btn--prestige">Enroll Now →</a>
                     </div>
-                </article>
+                </div>
 
             </div>
         </div>
@@ -290,7 +290,7 @@ get_header(); ?>
             </div>
             <div class="rewards-grid reveal">
                 <!-- Allē -->
-                <article class="reward-card">
+                <div class="reward-card">
                     <div class="reward-card__badge">Allergan</div>
                     <h3 class="reward-card__title">Allē Rewards</h3>
                     <p class="reward-card__text">Earn points on every Allergan product — Botox, Juvéderm, CoolSculpting, and more. Every 200 points = <strong>$20 in savings</strong>.</p>
@@ -303,14 +303,14 @@ get_header(); ?>
                         <a href="#" class="btn btn--primary btn--sm">Download for Apple</a>
                         <a href="#" class="btn btn--outline btn--sm">Download for Android</a>
                     </div>
-                </article>
+                </div>
 
                 <!-- Aspire -->
-                <article class="reward-card reward-card--featured">
+                <div class="reward-card reward-card--featured">
                     <div class="reward-card__badge">Galderma</div>
                     <h3 class="reward-card__title">Aspire Rewards</h3>
                     <p class="reward-card__text">Join free and receive a welcome savings of <strong>$20 off</strong>! After that, every 100 points = <strong>$10 in savings</strong> on treatments you love.</p>
-                    <div class="reward-card__perks">
+                    <div class="rewards-grid reveal">
                         <span class="reward-card__perk">✓ Free to join</span>
                         <span class="reward-card__perk">✓ $20 welcome bonus</span>
                         <span class="reward-card__perk">✓ $10 per 100 points</span>
@@ -319,10 +319,10 @@ get_header(); ?>
                         <a href="#" class="btn btn--primary btn--sm">Download for Apple</a>
                         <a href="#" class="btn btn--outline btn--sm">Download for Android</a>
                     </div>
-                </article>
+                </div>
 
                 <!-- Evolus -->
-                <article class="reward-card">
+                <div class="reward-card">
                     <div class="reward-card__badge">Evolus</div>
                     <h3 class="reward-card__title">Evolus Rewards</h3>
                     <p class="reward-card__text">Earn rewards on Jeuveau™ treatments and save on your next visit. Join the program and start saving today.</p>
@@ -334,7 +334,7 @@ get_header(); ?>
                     <div class="reward-card__downloads">
                         <a href="#" class="btn btn--primary btn--sm">Learn More</a>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>

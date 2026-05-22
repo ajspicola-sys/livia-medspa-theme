@@ -68,16 +68,16 @@
         <div class="footer__inner">
             <!-- Brand Column -->
             <div class="footer__brand">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="LIVIA Med Spa — Home">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo" aria-label="LIVIA Med Spa — Home"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png" alt="LIVIA Med Spa" width="160" height="86" loading="lazy" decoding="async">
                 </a>
             <p class="footer__brand-text">Tampa's premier destination for advanced aesthetics, proudly serving South Tampa, Hyde Park, Westchase, Brandon, and St. Petersburg.</p>
                 <div class="footer__social">
                     <a href="https://www.instagram.com/liviamedspa/" class="footer__social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                     </a>
                     <a href="https://www.facebook.com/p/Livia-Med-Spa-61561610168278/" class="footer__social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
                 </div>
             </div>
@@ -116,15 +116,15 @@
                 <h4 class="footer__heading">Visit Us</h4>
                 <div class="footer__contact">
                     <div class="footer__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         <span>10043 N Dale Mabry Hwy, Tampa, FL 33618</span>
                     </div>
                     <div class="footer__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                         <a href="tel:8132302219">(813) 230-2219</a>
                     </div>
                     <div class="footer__contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         <span>Mon–Wed: 9am–7pm &nbsp;|&nbsp; Thu–Sat: 9am–4pm</span>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
 
 <!-- Scroll to Top -->
 <button class="scroll-top" id="scroll-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"/></svg>
 </button>
 
 <!-- ════════════════════════════════════════════════════════════════════
@@ -196,8 +196,11 @@
     // TIER 0 — CRITICAL: runs synchronously, must be instant
     // ══════════════════════════════════════════════════════════════
 
-    // Mark page as loaded (removes FOUC guard)
+    // Mark page as loaded (removes FOUC guard) and clean transition states
     document.body.classList.add('is-loaded');
+    document.body.classList.remove('is-leaving');
+    document.documentElement.classList.remove('has-scroll-lock');
+    document.body.classList.remove('has-scroll-lock');
 
     // ── Scroll Reveal (TIER 0 — synchronous, critical) ────────────
     // MUST run here, NOT in rIC. Running reveal inside rIC causes the
@@ -208,22 +211,28 @@
             for (var i = 0; i < entries.length; i++) {
                 if (entries[i].isIntersecting) {
                     entries[i].target.classList.add('is-visible');
+                    entries[i].target.classList.remove('reveal-active');
                     revealObserver.unobserve(entries[i].target);
                 }
             }
         }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
         document.querySelectorAll('.reveal').forEach(function(el) {
             var rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.classList.add('is-visible'); // already on screen
+            // viewport check: any element already partially in or above the viewport
+            // must be set is-visible immediately to prevent race conditions on delay-load.
+            if (rect.top < window.innerHeight) {
+                el.classList.add('is-visible'); // already on screen or scrolled past
             } else {
+                el.classList.remove('is-visible');
+                el.classList.add('reveal-active'); // prepare below-the-fold only
                 revealObserver.observe(el);
             }
         });
         // Absolute safety net — reveal anything still hidden after 1.5s
         setTimeout(function() {
-            document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) {
+            document.querySelectorAll('.reveal').forEach(function(el) {
                 el.classList.add('is-visible');
+                el.classList.remove('reveal-active');
             });
         }, 1500);
     })();
@@ -250,7 +259,8 @@
         mobileMenu.setAttribute('aria-hidden', 'false');
         toggle.classList.add('is-active');
         toggle.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add('has-scroll-lock');
+        document.body.classList.add('has-scroll-lock');
         if (mobileClose) mobileClose.focus();
     }
     function closeMenu() {
@@ -258,6 +268,9 @@
         mobileMenu.setAttribute('aria-hidden', 'true');
         toggle.classList.remove('is-active');
         toggle.setAttribute('aria-expanded', 'false');
+        // Clear scroll lock class
+        document.documentElement.classList.remove('has-scroll-lock');
+        document.body.classList.remove('has-scroll-lock');
         // Always clear overflow on both body AND html — Boulevard and other
         // overlays may lock either one and not clean up after themselves.
         document.body.style.overflow = '';
@@ -285,28 +298,7 @@
     // ══════════════════════════════════════════════════════════════
     rIC(function() {
 
-        // ── Page exit transition ──────────────────────────────────
-        // Note: We no longer call e.preventDefault() or redirect via
-        // setTimeout — doing so breaks the browser's back/forward cache
-        // (bfcache) and causes the page to flash then "reload itself".
-        // Instead we just apply is-leaving for the CSS fade; the browser
-        // navigates naturally. The pageshow handler in header.php strips
-        // is-leaving when the page is restored from bfcache.
-        document.querySelectorAll('a[href]').forEach(function(link) {
-            var href = link.getAttribute('href');
-            if (href &&
-                href.charAt(0) !== '#' &&
-                href.indexOf('#book') === -1 &&
-                !href.startsWith('tel:') &&
-                !href.startsWith('mailto:') &&
-                !link.hasAttribute('target') &&
-                (href.indexOf(window.location.hostname) !== -1 || href.charAt(0) === '/')) {
-                link.addEventListener('click', function(e) {
-                    if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-                    document.body.classList.add('is-leaving');
-                });
-            }
-        });
+        // ── Page exit transition (Removed to prevent FOUC/BFCache glitches) ──────
 
         // ── Lazy image fade-in ────────────────────────────────────
         document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
@@ -332,8 +324,6 @@
                 for (var d = 0; d < total; d++) {
                     var dot = document.createElement('button');
                     dot.className = 'carousel__dot' + (d === 0 ? ' is-active' : '');
-                    dot.setAttribute('role', 'tab');
-                    dot.setAttribute('aria-selected', d === 0 ? 'true' : 'false');
                     dot.setAttribute('aria-label', 'Go to slide ' + (d + 1));
                     (function(idx) { dot.addEventListener('click', function() { goTo(idx); }); })(d);
                     dotsC.appendChild(dot);
@@ -367,7 +357,6 @@
                     for (var j = 0; j < dots.length; j++) {
                         var isActive = j === current;
                         dots[j].classList.toggle('is-active', isActive);
-                        dots[j].setAttribute('aria-selected', isActive ? 'true' : 'false');
                     }
                 }
                 function goTo(idx) { current = mod(idx, total); updateSlides(); }
@@ -734,14 +723,21 @@ if ($popup_active) :
         </div>
     </div>
 </div>
-<script>(function(){
+<script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">(function(){
     var popup    = document.getElementById('deal-popup');
     var overlay  = document.getElementById('deal-popup-overlay');
     var closeBtn = document.getElementById('deal-popup-close');
-    function open()  { popup.classList.add('is-open');    popup.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function open() {
+        popup.classList.add('is-open');
+        popup.setAttribute('aria-hidden','false');
+        document.documentElement.classList.add('has-scroll-lock');
+        document.body.classList.add('has-scroll-lock');
+    }
     function close() {
         popup.classList.remove('is-open');
         popup.setAttribute('aria-hidden','true');
+        document.documentElement.classList.remove('has-scroll-lock');
+        document.body.classList.remove('has-scroll-lock');
         // Clear overflow on both body AND html to prevent scroll-lock
         document.body.style.overflow = '';
         document.body.style.overflowY = '';
@@ -752,22 +748,28 @@ if ($popup_active) :
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', close);
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && popup.classList.contains('is-open')) close(); });
-<?php if (is_customize_preview()) : ?>
-    // Customizer preview: always show immediately, skip localStorage gate
-    setTimeout(open, 800);
-<?php else : ?>
-    var KEY  = 'livia-popup-dismissed';
-    var FREQ = <?php echo $p_freq; ?>;
-    var last = localStorage.getItem(KEY);
-    if (!last || (Date.now() - parseInt(last, 10)) / 86400000 >= FREQ) {
-        setTimeout(open, <?php echo $p_delay; ?>);
-        if (window.innerWidth > 768) {
-            document.addEventListener('mouseleave', function(e){
-                if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
-            }, {once:true});
-        }
+
+    // Exclude automated headless crawlers (Lighthouse/LiteSpeed/PageSpeed optimizer generators)
+    // from triggering the popup to prevent them from capturing & caching a scroll-locked/modal-open state.
+    var isCrawler = navigator.webdriver || /Lighthouse|Chrome-Lighthouse|GTmetrix|Pingdom|PageSpeed/i.test(navigator.userAgent);
+    if (!isCrawler) {
+        <?php if (is_customize_preview()) : ?>
+            // Customizer preview: always show immediately, skip localStorage gate
+            setTimeout(open, 800);
+        <?php else : ?>
+            var KEY  = 'livia-popup-dismissed';
+            var FREQ = <?php echo $p_freq; ?>;
+            var last = localStorage.getItem(KEY);
+            if (!last || (Date.now() - parseInt(last, 10)) / 86400000 >= FREQ) {
+                setTimeout(open, <?php echo $p_delay; ?>);
+                if (window.innerWidth > 768) {
+                    document.addEventListener('mouseleave', function(e){
+                        if (e.clientY < 10 && !popup.classList.contains('is-open') && !localStorage.getItem(KEY)) open();
+                    }, {once:true});
+                }
+            }
+        <?php endif; ?>
     }
-<?php endif; ?>
 })();</script>
 <?php endif; ?>
 
@@ -832,10 +834,22 @@ document.addEventListener('click', function(e) {
     }
     function tryUnlock() {
         if (!isSafeToUnlock()) return;
-        var bStyle = window.getComputedStyle(document.body).overflow;
-        var hStyle = window.getComputedStyle(document.documentElement).overflow;
-        if (bStyle === 'hidden') document.body.style.overflow = '';
-        if (hStyle === 'hidden') document.documentElement.style.overflow = '';
+        
+        // Remove class scroll lock
+        document.documentElement.classList.remove('has-scroll-lock');
+        document.body.classList.remove('has-scroll-lock');
+
+        var bStyle = window.getComputedStyle(document.body);
+        var hStyle = window.getComputedStyle(document.documentElement);
+        
+        if (bStyle.overflow === 'hidden' || bStyle.overflowY === 'hidden') {
+            document.body.style.overflow = '';
+            document.body.style.overflowY = '';
+        }
+        if (hStyle.overflow === 'hidden' || hStyle.overflowY === 'hidden') {
+            document.documentElement.style.overflow = '';
+            document.documentElement.style.overflowY = '';
+        }
     }
 
     var observer = new MutationObserver(function(mutations) {
@@ -872,6 +886,60 @@ document.addEventListener('click', function(e) {
     document.addEventListener('blvd:widget:close', function() { setTimeout(tryUnlock, 300); });
 
     observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+<!-- ═══ Tier C: DOM Reset Guard (Instant State & Visibility Sanitization) ═══
+     Runs synchronously during HTML parsing at the bottom of the page, ensuring
+     the DOM is fully reconstructed but not yet painted. Restores a clean,
+     unlocked, and fully visible state, bypassing deferred event-listeners.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
+(function() {
+    var doc = document.documentElement;
+    var body = document.body;
+    
+    // 1. Double check and clear scroll locks on html and body
+    if (doc) {
+        doc.classList.remove('has-scroll-lock');
+        doc.style.overflow = '';
+        doc.style.overflowY = '';
+    }
+    if (body) {
+        body.classList.remove('has-scroll-lock');
+        body.classList.remove('modal-open');
+        body.classList.remove('is-leaving');
+        body.style.overflow = '';
+        body.style.overflowY = '';
+    }
+
+    // 2. Clear cached open states on modals to prevent overlay blocks
+    var dealPopup = document.getElementById('deal-popup');
+    if (dealPopup) {
+        dealPopup.classList.remove('is-open');
+        dealPopup.setAttribute('aria-hidden', 'true');
+    }
+    var mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+    var mobileToggle = document.getElementById('mobile-toggle');
+    if (mobileToggle) {
+        mobileToggle.classList.remove('is-active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+    }
+    var mobileOverlay = document.getElementById('mobile-overlay');
+    if (mobileOverlay) {
+        mobileOverlay.style.display = '';
+    }
+
+    // 3. Reset scroll reveal elements to prevent blank pages on load
+    var reveals = document.querySelectorAll('.reveal');
+    for (var i = 0; i < reveals.length; i++) {
+        reveals[i].classList.remove('reveal-active');
+        reveals[i].classList.add('is-visible');
+    }
 })();
 </script>
 

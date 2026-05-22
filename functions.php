@@ -404,21 +404,6 @@ add_action('wp_enqueue_scripts', 'livia_enqueue_styles');
 function livia_async_styles($html, $handle) {
     if ( is_admin() ) return $html;
 
-    // ── Main theme stylesheet: inject onload reveal hook ──────────────────
-    if ( $handle === 'livia-style' ) {
-        // Inject onload callback — fires when the stylesheet is parsed & applied
-        $html = str_replace(
-            " rel='stylesheet'",
-            " rel='stylesheet' onload=\"window.__liviaReveal&&window.__liviaReveal()\"",
-            $html
-        );
-        $html = str_replace(
-            ' rel="stylesheet"',
-            ' rel="stylesheet" onload="window.__liviaReveal&&window.__liviaReveal()"',
-            $html
-        );
-    }
-
     // ── Google Fonts: non-render-blocking (media swap) ────────────────────
     if ( $handle === 'livia-google-fonts' ) {
         $html = str_replace("media='all'", "media='print' onload=\"this.media='all'\"", $html);

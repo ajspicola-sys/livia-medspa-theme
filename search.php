@@ -23,7 +23,7 @@ get_header(); ?>
             <?php if (have_posts()) : ?>
                 <div class="search-results__grid reveal">
                     <?php while (have_posts()) : the_post(); ?>
-                        <article class="search-result-card">
+                        <div class="search-result-card">
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="search-result-card__img">
                                     <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
@@ -37,7 +37,7 @@ get_header(); ?>
                                 <p class="search-result-card__excerpt"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
                                 <a href="<?php the_permalink(); ?>" class="search-result-card__link">View →</a>
                             </div>
-                        </article>
+                        </div>
                     <?php endwhile; ?>
                 </div>
 

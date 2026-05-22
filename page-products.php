@@ -37,7 +37,7 @@ get_header(); ?>
                         $btn_text = get_post_meta(get_the_ID(), '_product_btn_text', true) ?: 'Shop Now';
                         $has_video = !empty($video);
                 ?>
-                    <article class="product-card reveal<?php echo $has_video ? ' product-card--has-video' : ''; ?>">
+                    <div class="product-card reveal<?php echo $has_video ? ' product-card--has-video' : ''; ?>">
                         <?php if ($has_video) : ?>
                             <div class="product-card__video-wrap" aria-hidden="true">
                                 <video class="product-card__video" autoplay muted loop playsinline preload="metadata">
@@ -81,7 +81,7 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                         </div>
-                    </article>
+                    </div>
 
                 <?php endwhile; wp_reset_postdata();
                 else : ?>

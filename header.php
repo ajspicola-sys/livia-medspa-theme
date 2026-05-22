@@ -412,35 +412,31 @@
 
 
 
-    <!-- ═══ FOUC Prevention ═══════════════════════════════════════════════
-         Adds .fouc-guard to <html> before any paint. The main stylesheet
-         link fires onload to remove it. Hard failsafe at 800ms ensures
-         nothing stays invisible. Works regardless of CDN/caching rewrites.
+    <!-- ═══ Tier A: Head Guard (Instant Document Sanitization) ═══════════════
+         Prevents cached scroll-locks from freezing the page during HTML parse.
          ═══════════════════════════════════════════════════════════════════ -->
-    <style>.fouc-guard{visibility:hidden!important}</style>
-    <script>
+    <script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
     (function(){
-        // Apply guard class instantly (before first paint)
-        document.documentElement.classList.add('fouc-guard');
-
-        // Hard failsafe — never stay hidden more than 800ms
-        var safeTimer = setTimeout(reveal, 800);
-
-        function reveal() {
-            clearTimeout(safeTimer);
-            document.documentElement.classList.remove('fouc-guard');
+        var doc = document.documentElement;
+        if (doc) {
+            doc.style.overflow = '';
+            doc.style.overflowY = '';
+            doc.classList.remove('fouc-guard');
+            doc.classList.remove('has-scroll-lock');
         }
-
-        // Export so the stylesheet onload can call it
-        window.__liviaReveal = reveal;
-
-        // BFCache / back-forward navigation: strip is-leaving and reveal immediately
+        // BFCache / back-forward navigation recovery
         window.addEventListener('pageshow', function(e) {
-            reveal();
-            if (document.body) {
-                document.body.classList.remove('is-leaving');
-                document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
+            var body = document.body;
+            if (body) {
+                body.classList.remove('is-leaving');
+                body.classList.remove('has-scroll-lock');
+                body.style.overflow = '';
+                body.style.overflowY = '';
+            }
+            if (doc) {
+                doc.classList.remove('has-scroll-lock');
+                doc.style.overflow = '';
+                doc.style.overflowY = '';
             }
         });
     }());
@@ -451,6 +447,19 @@
 
 
 <body <?php body_class(); ?>>
+    <!-- ═══ Tier B: Body Open Guard (Instant Viewport Sanitization) ══════════ -->
+    <script data-no-optimize="1" data-no-defer="1" data-cfasync="false" class="no-defer">
+    (function(){
+        var body = document.body;
+        if (body) {
+            body.classList.remove('has-scroll-lock');
+            body.classList.remove('modal-open');
+            body.classList.remove('is-leaving');
+            body.style.overflow = '';
+            body.style.overflowY = '';
+        }
+    }());
+    </script>
 
     <?php wp_body_open(); ?>
 
@@ -470,7 +479,7 @@
 
         <div class="site-header__inner">
 
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="LIVIA Med Spa — Home">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="LIVIA Med Spa — Home"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>
 
                 <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="LIVIA Med Spa" class="site-logo__img" width="160" height="40" loading="eager" decoding="async">
 
@@ -484,7 +493,7 @@
 
                     <li class="nav__item<?php if (is_front_page()) echo ' nav__item--active'; ?>">
 
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="nav__link">Home</a>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="nav__link"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>Home</a>
 
                     </li>
 
@@ -994,7 +1003,7 @@
 
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
 
-                        stroke-linecap="round" stroke-linejoin="round">
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 
                         <path
 
@@ -1008,7 +1017,7 @@
 
                 <a href="#book-now"
 
-                    class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>
+                    class="btn btn--primary btn--sm nav__cta-desktop" aria-label="Book a consultation at LIVIA Med Spa">Book Now</a>
 
             </div>
 
@@ -1046,7 +1055,7 @@
 
             <div class="mobile-menu__header">
 
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>
 
                     <img src="https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png" alt="LIVIA Med Spa" class="site-logo__img" width="140" height="75">
 
@@ -1060,7 +1069,7 @@
 
                 <ul class="mobile-menu__links">
 
-                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php echo is_front_page() ? ' aria-current="page"' : ''; ?>>Home</a></li>
 
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
 
@@ -1094,7 +1103,7 @@
 
                 <a href="tel:8132302219" class="mobile-menu__contact-item">
 
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
 
                         <path
 
@@ -1108,7 +1117,7 @@
 
                 <a href="mailto:<?php echo antispambot('support@liviamedspa.com'); ?>" class="mobile-menu__contact-item">
 
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
 
                         <rect x="2" y="4" width="20" height="16" rx="2" />
 

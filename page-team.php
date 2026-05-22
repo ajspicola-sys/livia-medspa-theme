@@ -47,7 +47,7 @@ get_header(); ?>
                         }
                         $initials = substr($initials, 0, 2);
                 ?>
-                    <article class="team-member<?php echo $reverse; ?> reveal">
+                    <div class="team-member<?php echo $reverse; ?> reveal">
                         <div class="team-member__image">
                             <?php if (has_post_thumbnail()) : ?>
                                 <?php the_post_thumbnail('large', [
@@ -90,7 +90,7 @@ get_header(); ?>
                                 </div>
                             <?php endif; ?>
                         </div>
-                    </article>
+                    </div>
 
                 <?php endwhile; wp_reset_postdata();
                 else : ?>

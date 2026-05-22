@@ -63,9 +63,9 @@ Text Domain:      livia-medspa
 }
 
 
-/* Fonts loaded via wp_enqueue_style in functions.php — no @import needed */
+/* Fonts loaded via wp_enqueue_style in functions.php  no @import needed */
 
-/* Cookie banner: hidden by default via CSS — JS reveals after 5s.
+/* Cookie banner: hidden by default via CSS  JS reveals after 5s.
    contain:strict + content-visibility:hidden excludes it from LCP calculation. */
 .cookie-banner {
   display: none !important;
@@ -89,6 +89,7 @@ Text Domain:      livia-medspa
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 130px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -146,9 +147,11 @@ body {
   background: linear-gradient(180deg, #d4b87a, var(--brand));
 }
 
-body.is-leaving {
-  opacity: 0;
-  transition: opacity 0.25s ease;
+/* Unified Scroll-Lock Classes */
+html.has-scroll-lock,
+body.has-scroll-lock {
+  overflow: hidden !important;
+  overflow-y: hidden !important;
 }
 
 a {
@@ -218,6 +221,7 @@ h6 {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
   border-radius: 4px;
+  scroll-margin-top: 130px;
 }
 
 :focus:not(:focus-visible) {
@@ -1138,11 +1142,17 @@ html {
   }
 }
 
-/* Scroll reveal — GPU-accelerated */
+/* Scroll reveal  GPU-accelerated (progressive reveal) */
 .reveal {
   opacity: 0;
   transform: translateY(30px) translateZ(0);
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-active {
+  opacity: 0;
+  transform: translateY(30px) translateZ(0);
   will-change: opacity, transform;
 }
 
@@ -1482,7 +1492,7 @@ html {
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
-  /* Bottom fade — blends into the light hero background */
+  /* Bottom fade  blends into the light hero background */
   -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
@@ -1738,6 +1748,12 @@ html {
   white-space: nowrap;
   animation: ticker-scroll 35s linear infinite;
   will-change: transform;
+}
+
+.trust-ticker__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .trust-ticker__item {
@@ -2756,7 +2772,7 @@ html {
 }
 
 /* ==========================================================================
-   TESTIMONIALS — Split Layout
+   TESTIMONIALS  Split Layout
    ========================================================================== */
 .testimonials-split {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
@@ -4334,7 +4350,7 @@ a.contact-card__text:hover {
   margin-right: 0.5rem;
 }
 
-/* Blog listing (index.php) — Archive Grid */
+/* Blog listing (index.php)  Archive Grid */
 .blog-archive {
   padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
 }
@@ -4781,7 +4797,7 @@ a.contact-card__text:hover {
   gap: clamp(3rem, 2rem + 5vw, 7rem);
 }
 
-/* No thumbnail — revert to centered single column */
+/* No thumbnail  revert to centered single column */
 .service-hero--no-image .service-hero__inner {
   max-width: 860px;
   grid-template-columns: 1fr;
@@ -5825,7 +5841,7 @@ a.contact-card__text:hover {
   direction: ltr;
 }
 
-/* -- Photo Area — colored background for cutouts ----------------- */
+/* -- Photo Area  colored background for cutouts ----------------- */
 .team-member__image {
   position: relative;
   background: linear-gradient(160deg, var(--bg-lavender) 0%, var(--bg-lavender-deep) 60%, var(--bg-petal) 100%);
@@ -6542,7 +6558,7 @@ a.contact-card__text:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* Inside the service hero — no bar, just an inline trail */
+/* Inside the service hero  no bar, just an inline trail */
 .breadcrumbs--hero {
   background: none;
   border: none;
@@ -7869,7 +7885,7 @@ a.contact-card__text:hover {
     margin-top: 6rem;
   }
 
-  /* Hide scroll indicator — desktop-only hint */
+  /* Hide scroll indicator  desktop-only hint */
   .hero__scroll-indicator {
     display: none;
   }
@@ -7962,7 +7978,7 @@ a.contact-card__text:hover {
   }
 }
 
-/* WP Admin bar — handled dynamically via JS */
+/* WP Admin bar  handled dynamically via JS */
 
 /* ==========================================================================
    PERFORMANCE: Reduce motion for users who prefer it
@@ -8122,7 +8138,7 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
-   MEMBERSHIP TIERS — LIVIA Luxe Cards
+   MEMBERSHIP TIERS  LIVIA Luxe Cards
    ========================================================================== */
 .membership-tiers {
   padding: clamp(5rem, 10vw, 8rem) 0;
@@ -8522,7 +8538,7 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
-   AI PREVIEW — Ageless Before/After Transformation
+   AI PREVIEW  Ageless Before/After Transformation
    ========================================================================== */
 .ai-preview {
   width: 100%;
@@ -8738,7 +8754,7 @@ a.contact-card__text:hover {
   flex: 1;
 }
 
-/* AI badge — margin-left: auto pushes it right without a wrapper div */
+/* AI badge  margin-left: auto pushes it right without a wrapper div */
 .ai-preview__badge {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.55rem;
@@ -8851,7 +8867,7 @@ a.contact-card__text:hover {
 
 /* -- AI Preview Responsive ----------------------------------- */
 @media (max-width: 860px) {
-  /* Use explicit flex column stack — display:contents is buggy on older iOS Safari */
+  /* Use explicit flex column stack  display:contents is buggy on older iOS Safari */
   .ai-preview__layout {
     display: flex;
     flex-direction: column;
@@ -9024,7 +9040,7 @@ a.contact-card__text:hover {
 }
 
 .legal-page__summary ul li::before {
-  content: '›';
+  content: '';
   position: absolute;
   left: 0;
   color: var(--brand);
@@ -9224,21 +9240,21 @@ a.contact-card__text:hover {
   opacity: 0.85;
 }
 
-/* Warn — 50% */
+/* Warn  50% */
 .cancellation-card--warn {
   background: #fff8e1;
   border-color: #f6d860;
   color: #7a5c00;
 }
 
-/* Danger — 100% / No-show */
+/* Danger  100% / No-show */
 .cancellation-card--danger {
   background: #fff0f0;
   border-color: #fc8181;
   color: #7a0000;
 }
 
-/* Info — Repeat / Prepay */
+/* Info  Repeat / Prepay */
 .cancellation-card--info {
   background: #f3f0ff;
   border-color: var(--brand);
@@ -9472,7 +9488,7 @@ a.contact-card__text:hover {
 }
 
 .beauty-bank-policy-card li::before {
-  content: '›';
+  content: '';
   position: absolute;
   left: 0;
   color: var(--brand);
@@ -9682,7 +9698,7 @@ a.contact-card__text:hover {
   }
 }
 /* ==========================================================================
-   POPUP IMAGE — direct child of modal, no negative margins needed
+   POPUP IMAGE  direct child of modal, no negative margins needed
    ========================================================================== */
 
 /* When image is present, remove top padding so image sits flush at top */
