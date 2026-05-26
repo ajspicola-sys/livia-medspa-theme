@@ -365,7 +365,7 @@ get_header(); ?>
                     <div class="reward-card__badge">Galderma</div>
                     <h3 class="reward-card__title">Aspire Rewards</h3>
                     <p class="reward-card__text">Join free and receive a welcome savings of <strong>$20 off</strong>! After that, every 100 points = <strong>$10 in savings</strong> on treatments you love.</p>
-                    <div class="rewards-grid reveal">
+                    <div class="reward-card__perks">
                         <span class="reward-card__perk">✓ Free to join</span>
                         <span class="reward-card__perk">✓ $20 welcome bonus</span>
                         <span class="reward-card__perk">✓ $10 per 100 points</span>
