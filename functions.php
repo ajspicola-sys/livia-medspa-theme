@@ -2420,18 +2420,28 @@ add_action('add_meta_boxes', 'livia_service_bottom_photo_meta_box');
 
 function livia_service_bottom_photo_html($post) {
     wp_nonce_field('livia_service_bottom_photo_nonce_action', 'livia_service_bottom_photo_nonce');
-    $photo = get_post_meta($post->ID, '_service_bottom_photo', true);
+    $photo_id = get_post_meta($post->ID, '_service_bottom_photo_id', true);
+    $photo_url = '';
+    if ($photo_id) {
+        $photo_url = wp_get_attachment_url($photo_id);
+    }
     ?>
-    <div style="padding: 10px 0;">
-        <label for="service_bottom_photo" style="display:block;font-weight:600;margin-bottom:8px;">Bottom Photo URL</label>
-        <div style="display:flex;gap:10px;align-items:center;">
-            <input type="text" id="service_bottom_photo" name="service_bottom_photo" value="<?php echo esc_url($photo); ?>" style="flex:1;padding:8px 10px;border:1px solid #ddd;border-radius:4px;" placeholder="https://...">
-            <button type="button" class="button button-secondary" id="livia_bottom_photo_upload_btn">Select Image</button>
+    <div style="padding: 10px 0; text-align: center;">
+        <input type="hidden" id="service_bottom_photo_id" name="service_bottom_photo_id" value="<?php echo esc_attr($photo_id); ?>">
+        
+        <div id="livia_bottom_photo_preview_container" style="margin-bottom: 15px; <?php echo empty($photo_url) ? 'display:none;' : ''; ?>">
+            <img id="livia_bottom_photo_preview" src="<?php echo esc_url($photo_url); ?>" style="max-width:300px; max-height:200px; border:1px solid #ddd; border-radius:8px; padding:4px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
         </div>
-        <p class="description" style="margin-top:6px;">Select a photo from the Media Library or upload a new one. It will be centered at the bottom of the service page in its natural dimensions.</p>
-        <div style="margin-top: 15px; text-align: center;">
-            <img id="livia_bottom_photo_preview" src="<?php echo esc_url($photo); ?>" style="max-width:300px; max-height:200px; border:1px solid #ddd; border-radius:4px; padding:4px; background:#fff; <?php echo empty($photo) ? 'display:none;' : ''; ?>">
+        
+        <div style="display:flex; justify-content:center; gap:10px;">
+            <button type="button" class="button button-primary" id="livia_bottom_photo_upload_btn">
+                <?php echo empty($photo_url) ? 'Upload / Choose Image' : 'Change Image'; ?>
+            </button>
+            <button type="button" class="button button-link-delete" id="livia_bottom_photo_remove_btn" style="<?php echo empty($photo_url) ? 'display:none;' : ''; ?> color:#a00; font-weight:600; text-decoration:none;">
+                Remove Image
+            </button>
         </div>
+        <p class="description" style="margin-top:8px; text-align:center;">Choose a photo from your Media Library or upload a new one. It will be centered at the bottom of the service page in its natural dimensions.</p>
     </div>
     <?php
 }
@@ -2440,8 +2450,8 @@ function livia_save_service_bottom_photo($post_id) {
     if (!isset($_POST['livia_service_bottom_photo_nonce']) || !wp_verify_nonce($_POST['livia_service_bottom_photo_nonce'], 'livia_service_bottom_photo_nonce_action')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (!current_user_can('edit_post', $post_id)) return;
-    if (isset($_POST['service_bottom_photo'])) {
-        update_post_meta($post_id, '_service_bottom_photo', esc_url_raw($_POST['service_bottom_photo']));
+    if (isset($_POST['service_bottom_photo_id'])) {
+        update_post_meta($post_id, '_service_bottom_photo_id', sanitize_text_field($_POST['service_bottom_photo_id']));
     }
 }
 add_action('save_post_service', 'livia_save_service_bottom_photo');
@@ -2453,26 +2463,36 @@ function livia_service_bottom_photo_admin_scripts() {
         ?>
         <script>
         jQuery(document).ready(function($){
-            $('#livia_bottom_photo_upload_btn').click(function(e) {
+            var file_frame;
+            $('#livia_bottom_photo_upload_btn').on('click', function(e) {
                 e.preventDefault();
-                var image = wp.media({ 
-                    title: 'Select Bottom Photo',
-                    multiple: false
-                }).open()
-                .on('select', function(e){
-                    var uploaded_image = image.state().get('selection').first();
-                    var image_url = uploaded_image.toJSON().url;
-                    $('#service_bottom_photo').val(image_url);
-                    $('#livia_bottom_photo_preview').attr('src', image_url).show();
-                });
-            });
-            $('#service_bottom_photo').on('input', function() {
-                var url = $(this).val();
-                if (url) {
-                    $('#livia_bottom_photo_preview').attr('src', url).show();
-                } else {
-                    $('#livia_bottom_photo_preview').hide();
+                if (file_frame) {
+                    file_frame.open();
+                    return;
                 }
+                file_frame = wp.media({
+                    title: 'Select Bottom Photo',
+                    button: { text: 'Use this photo' },
+                    multiple: false
+                });
+                file_frame.on('select', function() {
+                    var attachment = file_frame.state().get('selection').first().toJSON();
+                    $('#service_bottom_photo_id').val(attachment.id);
+                    $('#livia_bottom_photo_preview').attr('src', attachment.url);
+                    $('#livia_bottom_photo_preview_container').show();
+                    $('#livia_bottom_photo_upload_btn').text('Change Image');
+                    $('#livia_bottom_photo_remove_btn').show();
+                });
+                file_frame.open();
+            });
+            
+            $('#livia_bottom_photo_remove_btn').on('click', function(e) {
+                e.preventDefault();
+                $('#service_bottom_photo_id').val('');
+                $('#livia_bottom_photo_preview_container').hide();
+                $('#livia_bottom_photo_preview').attr('src', '');
+                $('#livia_bottom_photo_upload_btn').text('Upload / Choose Image');
+                $(this).hide();
             });
         });
         </script>
