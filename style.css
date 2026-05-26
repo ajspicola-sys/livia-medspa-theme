@@ -502,10 +502,10 @@ html {
 .nav__item--has-mega>.nav__link::after {
   content: '';
   position: absolute;
-  bottom: -20px;
+  bottom: -45px;
   left: 0;
   right: 0;
-  height: 20px;
+  height: 45px;
 }
 
 /* -- Header Actions ---------------------------------------------- */
