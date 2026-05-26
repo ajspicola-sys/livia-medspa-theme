@@ -888,11 +888,14 @@ services_data = {
 print(f"Loading {source_path}...")
 with open(source_path, mode='r', encoding='utf-8') as infile:
     reader = csv.DictReader(infile)
-    fieldnames = reader.fieldnames
     rows = list(reader)
+
+# Only output standard columns: id, Title, Content, Excerpt
+fieldnames = ["id", "Title", "Content", "Excerpt"]
 
 print("Enriching target services...")
 updated_count = 0
+filtered_rows = []
 for row in rows:
     title = row.get("Title", "").strip()
     if title in services_data:
@@ -904,17 +907,18 @@ for row in rows:
             data = services_data[title]
             row["Content"] = data["Content"]
             row["Excerpt"] = data["Excerpt"]
-            row["_yoast_wpseo_title"] = data["_yoast_wpseo_title"]
-            row["_yoast_wpseo_metadesc"] = data["_yoast_wpseo_metadesc"]
-            row["_yoast_wpseo_focuskw"] = data["_yoast_wpseo_focuskw"]
             updated_count += 1
         else:
             print(f"  Skipped {title} (already has content)")
+            
+    # Filter row to only keep standard columns
+    filtered_row = {k: row.get(k, "") for k in fieldnames}
+    filtered_rows.append(filtered_row)
 
 print(f"Writing enriched output to {output_path}...")
 with open(output_path, mode='w', encoding='utf-8', newline='') as outfile:
     writer = csv.DictWriter(outfile, fieldnames=fieldnames, lineterminator='\n')
     writer.writeheader()
-    writer.writerows(rows)
+    writer.writerows(filtered_rows)
 
-print(f"SUCCESS: Enriched {updated_count} services!")
+print(f"SUCCESS: Enriched {updated_count} services without custom fields!")
