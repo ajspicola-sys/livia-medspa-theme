@@ -387,7 +387,7 @@ get_header(); ?>
                         <span class="reward-card__perk">Exclusive member offers</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="https://evolus.com/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Learn More →</a>
+                        <a href="https://www.evolus.com/consumer-rewards" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Learn More →</a>
                     </div>
                 </div>
             </div>
