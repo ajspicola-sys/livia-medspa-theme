@@ -433,7 +433,7 @@ function livia_resource_hints() {
 add_action('wp_head', 'livia_resource_hints', 1);
 
 // ── Performance: External image proxy & WebP cache ─────────────────
-// Fetches third-party images (e.g. Ageless AI before/after), resizes to
+// Fetches third-party images, resizes to
 // max 800px wide, converts to WebP, and caches in wp-uploads.
 // Subsequent requests serve the local WebP — eliminates 9+ MB of PNG downloads.
 function livia_cached_image_url( $src_url, $max_w = 800 ) {
