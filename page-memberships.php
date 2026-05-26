@@ -177,6 +177,61 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- Specialty Memberships -->
+    <section class="specialty-membership" id="specialty-membership" aria-label="Specialty memberships">
+        <div class="section__inner">
+            <div class="specialty-banner reveal">
+                <div class="specialty-banner__image">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/membership-laser.png"
+                         alt="LIVIA Laser Hair Membership — smooth skin made simple"
+                         loading="lazy" decoding="async" width="800" height="500">
+                    <div class="specialty-banner__image-overlay"></div>
+                </div>
+                <div class="specialty-banner__body">
+                    <div class="specialty-banner__header">
+                        <span class="specialty-banner__badge">Specialty Program</span>
+                        <h3 class="specialty-banner__title">LIVIA Laser Hair <em>Membership</em></h3>
+                        <p class="specialty-banner__tagline">Smooth skin made simple — and affordable.</p>
+                        <div class="specialty-banner__price-row">
+                            <span class="specialty-banner__price"><span class="specialty-banner__currency">$</span>99</span>
+                            <span class="specialty-banner__period">/month</span>
+                        </div>
+                    </div>
+                    
+                    <p class="specialty-banner__desc">Our Laser Hair Membership is designed for clients who want consistent maintenance, flexibility, and long-term results without the commitment of large upfront packages. Keep your skin permanently smooth year-round.</p>
+                    
+                    <div class="specialty-banner__grid">
+                        <div class="specialty-banner__col">
+                            <h4>What You Receive</h4>
+                            <ul class="specialty-banner__perks">
+                                <li>One Small or Medium Area treatment each month</li>
+                                <li>Ability to rotate treatment areas monthly</li>
+                                <li>Exclusive member-only pricing and perks</li>
+                                <li>Ongoing maintenance for smooth, confident skin</li>
+                            </ul>
+                        </div>
+                        <div class="specialty-banner__col">
+                            <h4>Popular Treatment Areas</h4>
+                            <ul class="specialty-banner__perks specialty-banner__perks--areas">
+                                <li>Underarms & Bikini Line</li>
+                                <li>Front or Back of Neck</li>
+                                <li>Upper Lip, Chin & Jawline</li>
+                                <li>Lower Arms & Shoulders</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="specialty-banner__footer">
+                        <div class="specialty-banner__notes">
+                            <strong>Why Clients Love It:</strong> Safe for all skin tones using gold-standard Candela medical lasers. Minimal downtime.
+                        </div>
+                        <a href="#book-now" class="btn btn--primary btn--lg specialty-banner__btn">Enroll Online Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Comparison Table -->
     <section class="membership-compare" aria-label="Membership comparison">
         <div class="section__inner">
