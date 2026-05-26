@@ -775,9 +775,11 @@ document.addEventListener('click', function(e) {
     function isSafeToUnlock() {
         var dealPopup   = document.getElementById('deal-popup');
         var mobileMenu  = document.getElementById('mobile-menu');
+        var lightbox    = document.querySelector('.livia-lightbox-overlay');
         var dealOpen    = dealPopup  && dealPopup.classList.contains('is-open');
         var menuOpen    = mobileMenu && mobileMenu.classList.contains('is-open');
-        return !dealOpen && !menuOpen;
+        var lightboxOpen = lightbox && lightbox.classList.contains('is-active');
+        return !dealOpen && !menuOpen && !lightboxOpen;
     }
     function tryUnlock() {
         if (!isSafeToUnlock()) return;
