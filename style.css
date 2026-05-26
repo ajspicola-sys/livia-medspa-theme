@@ -7278,11 +7278,12 @@ a.contact-card__text:hover {
 
 .reward-card__downloads .btn {
   flex: 1;
-  min-width: 110px;
+  min-width: 100px;
   justify-content: center;
   padding: 0.65rem 0.5rem;
   font-size: 0.72rem;
   border-radius: 99px;
+  white-space: nowrap;
 }
 
 /* ==========================================================================

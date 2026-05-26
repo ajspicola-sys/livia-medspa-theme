@@ -350,13 +350,13 @@ get_header(); ?>
                     <h3 class="reward-card__title">Allē Rewards</h3>
                     <p class="reward-card__text">Earn points on every Allergan product — Botox, Juvéderm, CoolSculpting, and more. Every 200 points = <strong>$20 in savings</strong>.</p>
                     <div class="reward-card__perks">
-                        <span class="reward-card__perk">✓ Points on every visit</span>
-                        <span class="reward-card__perk">✓ $20 per 200 points</span>
-                        <span class="reward-card__perk">✓ Works on all Allergan products</span>
+                        <span class="reward-card__perk">Points on every visit</span>
+                        <span class="reward-card__perk">$20 per 200 points</span>
+                        <span class="reward-card__perk">Works on all Allergan products</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="#" class="btn btn--primary btn--sm">Download for Apple</a>
-                        <a href="#" class="btn btn--outline btn--sm">Download for Android</a>
+                        <a href="https://apps.apple.com/us/app/all%C4%93/id1482811400" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.allergan.alle" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
                     </div>
                 </div>
 
@@ -366,13 +366,13 @@ get_header(); ?>
                     <h3 class="reward-card__title">Aspire Rewards</h3>
                     <p class="reward-card__text">Join free and receive a welcome savings of <strong>$20 off</strong>! After that, every 100 points = <strong>$10 in savings</strong> on treatments you love.</p>
                     <div class="reward-card__perks">
-                        <span class="reward-card__perk">✓ Free to join</span>
-                        <span class="reward-card__perk">✓ $20 welcome bonus</span>
-                        <span class="reward-card__perk">✓ $10 per 100 points</span>
+                        <span class="reward-card__perk">Free to join</span>
+                        <span class="reward-card__perk">$20 welcome bonus</span>
+                        <span class="reward-card__perk">$10 per 100 points</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="#" class="btn btn--primary btn--sm">Download for Apple</a>
-                        <a href="#" class="btn btn--outline btn--sm">Download for Android</a>
+                        <a href="https://apps.apple.com/us/app/aspire-galderma-aesthetic/id952824683" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.galderma.aspire" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
                     </div>
                 </div>
 
@@ -382,12 +382,12 @@ get_header(); ?>
                     <h3 class="reward-card__title">Evolus Rewards</h3>
                     <p class="reward-card__text">Earn rewards on Jeuveau™ treatments and save on your next visit. Join the program and start saving today.</p>
                     <div class="reward-card__perks">
-                        <span class="reward-card__perk">✓ Savings on Jeuveau™</span>
-                        <span class="reward-card__perk">✓ Easy enrollment</span>
-                        <span class="reward-card__perk">✓ Exclusive member offers</span>
+                        <span class="reward-card__perk">Savings on Jeuveau™</span>
+                        <span class="reward-card__perk">Easy enrollment</span>
+                        <span class="reward-card__perk">Exclusive member offers</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="#" class="btn btn--primary btn--sm">Learn More</a>
+                        <a href="https://evolus.com/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Learn More →</a>
                     </div>
                 </div>
             </div>
