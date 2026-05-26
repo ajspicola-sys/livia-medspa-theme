@@ -355,8 +355,8 @@ get_header(); ?>
                         <span class="reward-card__perk">Works on all Allergan products</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="https://apps.apple.com/us/app/all%C4%93/id1482811400" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.allergan.alle" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
+                        <a href="https://apps.apple.com/us/app/all%C4%93/id720207987" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.allergan.bd.bdmobileapp&hl=en_US" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
                     </div>
                 </div>
 
@@ -371,8 +371,8 @@ get_header(); ?>
                         <span class="reward-card__perk">$10 per 100 points</span>
                     </div>
                     <div class="reward-card__downloads">
-                        <a href="https://apps.apple.com/us/app/aspire-galderma-aesthetic/id952824683" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.galderma.aspire" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
+                        <a href="https://apps.apple.com/us/app/aspire-galderma-rewards/id1501759750" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.galderma.aspirerewards&hl=en_US" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Google Play</a>
                     </div>
                 </div>
 
