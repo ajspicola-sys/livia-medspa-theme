@@ -2404,3 +2404,80 @@ function livia_review_schema() {
     echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
 }
 add_action('wp_head', 'livia_review_schema', 8);
+
+// ── Service Bottom Photo Meta Box ──────────────────────────────────
+function livia_service_bottom_photo_meta_box() {
+    add_meta_box(
+        'livia_service_bottom_photo',
+        'Service Bottom Photo',
+        'livia_service_bottom_photo_html',
+        'service',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'livia_service_bottom_photo_meta_box');
+
+function livia_service_bottom_photo_html($post) {
+    wp_nonce_field('livia_service_bottom_photo_nonce_action', 'livia_service_bottom_photo_nonce');
+    $photo = get_post_meta($post->ID, '_service_bottom_photo', true);
+    ?>
+    <div style="padding: 10px 0;">
+        <label for="service_bottom_photo" style="display:block;font-weight:600;margin-bottom:8px;">Bottom Photo URL</label>
+        <div style="display:flex;gap:10px;align-items:center;">
+            <input type="text" id="service_bottom_photo" name="service_bottom_photo" value="<?php echo esc_url($photo); ?>" style="flex:1;padding:8px 10px;border:1px solid #ddd;border-radius:4px;" placeholder="https://...">
+            <button type="button" class="button button-secondary" id="livia_bottom_photo_upload_btn">Select Image</button>
+        </div>
+        <p class="description" style="margin-top:6px;">Select a photo from the Media Library or upload a new one. It will be centered at the bottom of the service page in its natural dimensions.</p>
+        <div style="margin-top: 15px; text-align: center;">
+            <img id="livia_bottom_photo_preview" src="<?php echo esc_url($photo); ?>" style="max-width:300px; max-height:200px; border:1px solid #ddd; border-radius:4px; padding:4px; background:#fff; <?php echo empty($photo) ? 'display:none;' : ''; ?>">
+        </div>
+    </div>
+    <?php
+}
+
+function livia_save_service_bottom_photo($post_id) {
+    if (!isset($_POST['livia_service_bottom_photo_nonce']) || !wp_verify_nonce($_POST['livia_service_bottom_photo_nonce'], 'livia_service_bottom_photo_nonce_action')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+    if (isset($_POST['service_bottom_photo'])) {
+        update_post_meta($post_id, '_service_bottom_photo', esc_url_raw($_POST['service_bottom_photo']));
+    }
+}
+add_action('save_post_service', 'livia_save_service_bottom_photo');
+
+function livia_service_bottom_photo_admin_scripts() {
+    global $pagenow;
+    if (($pagenow == 'post.php' || $pagenow == 'post-new.php') && get_post_type() == 'service') {
+        wp_enqueue_media();
+        ?>
+        <script>
+        jQuery(document).ready(function($){
+            $('#livia_bottom_photo_upload_btn').click(function(e) {
+                e.preventDefault();
+                var image = wp.media({ 
+                    title: 'Select Bottom Photo',
+                    multiple: false
+                }).open()
+                .on('select', function(e){
+                    var uploaded_image = image.state().get('selection').first();
+                    var image_url = uploaded_image.toJSON().url;
+                    $('#service_bottom_photo').val(image_url);
+                    $('#livia_bottom_photo_preview').attr('src', image_url).show();
+                });
+            });
+            $('#service_bottom_photo').on('input', function() {
+                var url = $(this).val();
+                if (url) {
+                    $('#livia_bottom_photo_preview').attr('src', url).show();
+                } else {
+                    $('#livia_bottom_photo_preview').hide();
+                }
+            });
+        });
+        </script>
+        <?php
+    }
+}
+add_action('admin_footer', 'livia_service_bottom_photo_admin_scripts');
+

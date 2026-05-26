@@ -317,6 +317,25 @@ $has_image     = has_post_thumbnail();
     <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════
+         BOTTOM PHOTO (Conditional)
+         ═══════════════════════════════════════════════════════ -->
+    <?php
+    $bottom_photo = get_post_meta($post_id, '_service_bottom_photo', true);
+    if (!empty($bottom_photo)): ?>
+    <section class="service-bottom-photo" aria-label="Additional service image">
+        <div class="section__inner" style="display:flex; justify-content:center; align-items:center; width:100%; padding:4rem 1.5rem 2rem; max-width:1200px; margin:0 auto;">
+            <div class="service-bottom-photo__wrap" style="text-align:center; max-width:100%;">
+                <img src="<?php echo esc_url($bottom_photo); ?>" 
+                     alt="<?php the_title_attribute(); ?> bottom photo" 
+                     style="max-width:100%; height:auto; display:inline-block; border-radius:16px; box-shadow:0 15px 45px rgba(0,0,0,0.05); border:1px solid rgba(var(--brand-rgb), 0.08);" 
+                     loading="lazy" 
+                     decoding="async">
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
          CTA (Static)
          ═══════════════════════════════════════════════════════ -->
     <section class="cta-section" aria-label="Book a consultation">
