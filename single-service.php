@@ -144,7 +144,9 @@ $has_image     = has_post_thumbnail();
                         if (!empty($bottom_photo_html)):
                         ?>
                         <div class="service-bottom-photo" style="text-align:center; width:100%; margin-top:2.5rem;">
-                            <?php echo $bottom_photo_html; ?>
+                            <a href="<?php echo esc_url(wp_get_attachment_url($bottom_photo_id)); ?>" class="service-bottom-photo__lightbox-trigger" aria-label="Zoom bottom photo">
+                                <?php echo $bottom_photo_html; ?>
+                            </a>
                         </div>
                         <?php 
                         endif;
@@ -350,6 +352,56 @@ $has_image     = has_post_thumbnail();
             </div>
         </div>
     </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         LIGHTBOX CONTAINER & LOGIC (Vanilla JS)
+         ═══════════════════════════════════════════════════════ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const trigger = document.querySelector('.service-bottom-photo__lightbox-trigger');
+        if (!trigger) return;
+
+        // Create overlay element dynamically
+        const overlay = document.createElement('div');
+        overlay.className = 'livia-lightbox-overlay';
+        overlay.innerHTML = `
+            <button class="livia-lightbox-close" aria-label="Close Image">&times;</button>
+            <img class="livia-lightbox-image" src="" alt="Zoomed Service Image">
+        `;
+        document.body.appendChild(overlay);
+
+        const lightboxImg = overlay.querySelector('.livia-lightbox-image');
+        const closeBtn = overlay.querySelector('.livia-lightbox-close');
+
+        // Open lightbox
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const imgUrl = this.getAttribute('href');
+            lightboxImg.src = imgUrl;
+            overlay.classList.add('is-active');
+            document.body.style.overflow = 'hidden'; // block page scroll
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            overlay.classList.remove('is-active');
+            document.body.style.overflow = ''; // restore page scroll
+            setTimeout(() => { lightboxImg.src = ''; }, 400); // clear src after animation finishes
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeLightbox();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
+                closeLightbox();
+            }
+        });
+    });
+    </script>
 
 </main>
 
