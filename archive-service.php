@@ -163,17 +163,23 @@ $all_cats = get_terms([
             </div>
             <div class="service-why-us__grid reveal">
                 <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">⚡</div>
+                    <div class="service-why-us__icon" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
                     <h3 class="service-why-us__card-title">Advanced, High-Quality Treatments</h3>
                     <p class="service-why-us__card-text">LIVIA Med Spa specializes in modern, results-driven treatments designed to enhance natural beauty while maintaining a refreshed, natural look.</p>
                 </div>
                 <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">🛡️</div>
+                    <div class="service-why-us__icon" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
                     <h3 class="service-why-us__card-title">Safety &amp; Professional Care</h3>
                     <p class="service-why-us__card-text">Our services are performed with a focus on safety, precision, and professionalism, using trusted products and techniques to deliver reliable results.</p>
                 </div>
                 <div class="service-why-us__card">
-                    <div class="service-why-us__icon" aria-hidden="true">✨</div>
+                    <div class="service-why-us__icon" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    </div>
                     <h3 class="service-why-us__card-title">Personalized Experience</h3>
                     <p class="service-why-us__card-text">Every client is unique. At LIVIA Med Spa, we tailor treatments to your individual goals so you receive care that fits your needs.</p>
                 </div>

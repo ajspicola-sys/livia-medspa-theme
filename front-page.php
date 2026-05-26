@@ -347,25 +347,33 @@ get_header(); ?>
             <div class="journey-steps reveal">
                 <div class="journey-step">
                     <div class="journey-step__number">01</div>
-                    <div class="journey-step__icon">📋</div>
+                    <div class="journey-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
+                    </div>
                     <h3 class="journey-step__title">Free Consultation</h3>
                     <p class="journey-step__text">Meet with our providers to discuss your goals and get a perfect treatment plan.</p>
                 </div>
                 <div class="journey-step">
                     <div class="journey-step__number">02</div>
-                    <div class="journey-step__icon">🎯</div>
+                    <div class="journey-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/><path d="m19.07 4.93-1.41 1.41M6.34 17.66l-1.41 1.41M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
                     <h3 class="journey-step__title">Custom Plan</h3>
                     <p class="journey-step__text">Tailored to your unique anatomy, skin type, and aesthetic goals. No cookie-cutter solutions.</p>
                 </div>
                 <div class="journey-step">
                     <div class="journey-step__number">03</div>
-                    <div class="journey-step__icon">✨</div>
+                    <div class="journey-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/></svg>
+                    </div>
                     <h3 class="journey-step__title">Expert Treatment</h3>
                     <p class="journey-step__text">Relax in our luxury suite while certified professionals deliver precision treatments.</p>
                 </div>
                 <div class="journey-step">
                     <div class="journey-step__number">04</div>
-                    <div class="journey-step__icon">🌟</div>
+                    <div class="journey-step__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="m5 3 1 2M3 4h2M19 17l1 2M17 18h2"/></svg>
+                    </div>
                     <h3 class="journey-step__title">Glow Up!</h3>
                     <p class="journey-step__text">Walk out feeling radiant and confident with aftercare guidance for lasting results.</p>
                 </div>

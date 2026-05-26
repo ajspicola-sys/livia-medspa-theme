@@ -10,7 +10,7 @@ get_header(); ?>
     <!-- Blog Hero -->
     <section class="page-hero page-hero--blog" aria-label="Blog">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">📝</span> Our Journal</span>
+            <span class="section__label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: inline-block; vertical-align: middle; margin-right: 4px; position: relative; top: -1px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Our Journal</span>
             <h1 class="page-hero__title">Beauty Tips &amp;<br><em>Treatment Insights</em></h1>
             <p class="page-hero__desc">Stay informed with expert advice, skincare tips, and the latest treatments from our clinical team.</p>
         </div>
@@ -71,11 +71,8 @@ get_header(); ?>
                                     ]); ?>
                                 </div>
                             <?php else : ?>
-                                <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true">
-                                    <span><?php
-                                        $icons = ['💉', '✨', '🔬', '🧴', '💎', '📝'];
-                                        echo $icons[array_rand($icons)];
-                                    ?></span>
+                                <div class="blog-card__img blog-card__img--placeholder" aria-hidden="true" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--bg-cream), var(--bg-lavender));">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.45;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                                 </div>
                             <?php endif; ?>
                             <div class="blog-card__body">
@@ -105,8 +102,10 @@ get_header(); ?>
                     ?>
                 </nav>
             <?php else : ?>
-                <div class="blog-empty reveal">
-                    <span class="blog-empty__icon" aria-hidden="true">📝</span>
+                <div class="blog-empty reveal" style="text-align: center; padding: 4rem 2rem;">
+                    <div class="blog-empty__icon-wrap" style="margin-bottom: 1.5rem;">
+                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: inline-block;"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                    </div>
                     <h2 class="blog-empty__title">Coming Soon</h2>
                     <p class="blog-empty__text">Our blog is launching soon with beauty tips, treatment guides, and expert insights from the LIVIA Med Spa team.</p>
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--primary">Back to Home</a>
