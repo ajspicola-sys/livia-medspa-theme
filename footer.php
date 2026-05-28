@@ -583,6 +583,26 @@
             });
         }
 
+        // ── Interactive Before/After Sliders ─────────────────────
+        var sliders = document.querySelectorAll('.before-after-slider');
+        if (sliders.length) {
+            sliders.forEach(function(slider) {
+                var range  = slider.querySelector('.slider-range');
+                var after  = slider.querySelector('.gallery-card__after');
+                var handle = slider.querySelector('.slider-handle');
+                if (range && after && handle) {
+                    var updateSlider = function() {
+                        var val = range.value;
+                        after.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
+                        handle.style.left = val + '%';
+                    };
+                    range.addEventListener('input', updateSlider);
+                    range.addEventListener('change', updateSlider);
+                    updateSlider();
+                }
+            });
+        }
+
         // ── Social Proof Notification ─────────────────────────────
         if (window.innerWidth > 768) {
             var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.','Brooke A.','Samantha J.','Christina L.','Vanessa T.','Amber N.','Tiffany K.','Kaitlyn R.','Lindsey M.','Alyssa B.','Savannah C.'];
