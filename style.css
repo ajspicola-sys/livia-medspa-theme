@@ -6432,7 +6432,9 @@ a.contact-card__text:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  transition: clip-path 0.05s linear;
 }
 
 .before-after-slider .gallery-card__after {
@@ -6441,9 +6443,12 @@ a.contact-card__text:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-  transition: clip-path 0.05s linear;
+  z-index: 1;
+}
+
+.before-after-slider .gallery-card__label--after {
+  left: auto;
+  right: 0.75rem;
 }
 
 .before-after-slider .gallery-card__placeholder,

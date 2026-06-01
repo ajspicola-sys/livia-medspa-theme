@@ -588,12 +588,12 @@
         if (sliders.length) {
             sliders.forEach(function(slider) {
                 var range  = slider.querySelector('.slider-range');
-                var after  = slider.querySelector('.gallery-card__after');
+                var before = slider.querySelector('.gallery-card__before');
                 var handle = slider.querySelector('.slider-handle');
-                if (range && after && handle) {
+                if (range && before && handle) {
                     var updateSlider = function() {
                         var val = range.value;
-                        after.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
+                        before.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
                         handle.style.left = val + '%';
                     };
                     range.addEventListener('input', updateSlider);
