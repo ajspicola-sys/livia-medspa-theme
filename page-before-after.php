@@ -98,6 +98,14 @@ get_header(); ?>
                             <div class="gallery-card__info">
                                 <h3 class="gallery-card__title"><?php the_title(); ?></h3>
                                 <div class="gallery-card__desc"><?php the_content(); ?></div>
+                                <?php
+                                $credits = get_post_meta(get_the_ID(), '_photo_credits', true);
+                                if ( !empty($credits) ) :
+                                ?>
+                                    <div class="gallery-card__credits">
+                                        <span class="gallery-card__credits-label">Credit:</span> <?php echo esc_html($credits); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php
@@ -129,6 +137,9 @@ get_header(); ?>
                         <div class="gallery-card__info">
                             <h3 class="gallery-card__title">Botox — Forehead & Crow's Feet</h3>
                             <p class="gallery-card__desc">40 units of Botox to smooth forehead lines and crow's feet. Results shown at 2 weeks post-treatment.</p>
+                            <div class="gallery-card__credits">
+                                <span class="gallery-card__credits-label">Credit:</span> Dr. Sarah Jenkins, MD
+                            </div>
                         </div>
                     </div>
 
@@ -155,6 +166,9 @@ get_header(); ?>
                         <div class="gallery-card__info">
                             <h3 class="gallery-card__title">Lip Filler — Natural Enhancement</h3>
                             <p class="gallery-card__desc">1 syringe of Juvederm Ultra for subtle volume and definition. Results shown at 2 weeks.</p>
+                            <div class="gallery-card__credits">
+                                <span class="gallery-card__credits-label">Credit:</span> Livia Med Spa Archives
+                            </div>
                         </div>
                     </div>
 

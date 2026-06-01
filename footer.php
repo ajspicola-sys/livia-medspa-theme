@@ -613,6 +613,7 @@
             var afterEl  = card.querySelector('.gallery-card__after');
             var titleEl  = card.querySelector('.gallery-card__title');
             var descEl   = card.querySelector('.gallery-card__desc');
+            var creditsEl = card.querySelector('.gallery-card__credits');
 
             if (!beforeEl || !afterEl) return;
 
@@ -620,6 +621,7 @@
             var afterContentHtml  = afterEl.innerHTML;
             var titleText         = titleEl ? titleEl.innerText : '';
             var descHtml          = descEl ? descEl.innerHTML : '';
+            var creditsHtml       = creditsEl ? creditsEl.innerHTML : '';
 
             var modal = document.getElementById('ba-modal');
             if (!modal) {
@@ -638,13 +640,14 @@
                                 '<div class="slider-handle__line"></div>' +
                                 '<div class="slider-handle__circle">' +
                                     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="8 17 3 12 8 7"/><polyline points="16 7 21 12 16 17"/></svg>' +
-                                '</div>' +
+                                </div>' +
                                 '<div class="slider-handle__line"></div>' +
                             '</div>' +
                         '</div>' +
                         '<div class="ba-modal__info">' +
                             '<h3 class="ba-modal__title"></h3>' +
                             '<div class="ba-modal__desc"></div>' +
+                            '<div class="ba-modal__credits" style="display:none;"></div>' +
                         '</div>' +
                     '</div>';
                 document.body.appendChild(modal);
@@ -660,6 +663,12 @@
             modal.querySelector('.ba-modal__slider .gallery-card__after').innerHTML  = afterContentHtml;
             modal.querySelector('.ba-modal__title').innerText = titleText;
             modal.querySelector('.ba-modal__desc').innerHTML  = descHtml;
+
+            var modalCredits = modal.querySelector('.ba-modal__credits');
+            if (modalCredits) {
+                modalCredits.innerHTML = creditsHtml;
+                modalCredits.style.display = creditsHtml ? '' : 'none';
+            }
 
             // Remove float expand button from the modal slider to avoid infinite nesting
             var nestedExpand = modal.querySelector('.ba-modal__slider .gallery-card__expand');

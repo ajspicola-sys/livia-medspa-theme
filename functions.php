@@ -2610,6 +2610,14 @@ function livia_before_after_meta_html($post) {
             </div>
         </div>
     </div>
+
+    <!-- Photo Credits Input Field -->
+    <?php $credits = get_post_meta($post->ID, '_photo_credits', true); ?>
+    <div style="margin-top: 1.5rem; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1.5rem;">
+        <label for="photo_credits" style="display: block; font-weight: 600; font-size: 1.1em; margin-bottom: 0.5rem; color: #23282d;">Photo / Case Credits (Optional)</label>
+        <input type="text" id="photo_credits" name="photo_credits" value="<?php echo esc_attr($credits); ?>" class="regular-text" style="width: 100%; max-width: 500px;" placeholder="e.g. Dr. Jane Smith, MD or Courtesy of Partner Clinic">
+        <p class="description">If you acquired these comparison photos from somewhere else, enter the credits here to display them on the gallery card.</p>
+    </div>
     <?php
 }
 
@@ -2623,6 +2631,9 @@ function livia_save_before_after_meta($post_id) {
     }
     if (isset($_POST['after_image_id'])) {
         update_post_meta($post_id, '_after_image_id', sanitize_text_field($_POST['after_image_id']));
+    }
+    if (isset($_POST['photo_credits'])) {
+        update_post_meta($post_id, '_photo_credits', sanitize_text_field($_POST['photo_credits']));
     }
 }
 add_action('save_post_before_after', 'livia_save_before_after_meta');
