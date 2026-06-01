@@ -6353,7 +6353,7 @@ a.contact-card__text:hover {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -8035,7 +8035,7 @@ a.contact-card__text:hover {
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .careers-perks {
@@ -10078,6 +10078,9 @@ a.contact-card__text:hover {
 
 /* Responsive adjustment for modal */
 @media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
   .ba-modal__slider {
     height: 40vh;
     border-radius: 16px;
