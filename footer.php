@@ -583,22 +583,154 @@
             });
         }
 
-        // ── Interactive Before/After Sliders ─────────────────────
+        // ── Interactive Before/After Sliders & Lightbox Modal ─────────────────────
+        function initBeforeAfterSlider(slider) {
+            var range  = slider.querySelector('.slider-range');
+            var before = slider.querySelector('.gallery-card__before');
+            var handle = slider.querySelector('.slider-handle');
+            if (range && before && handle) {
+                var updateSlider = function() {
+                    var val = range.value;
+                    before.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
+                    handle.style.left = val + '%';
+                };
+                range.addEventListener('input', updateSlider);
+                range.addEventListener('change', updateSlider);
+                updateSlider();
+            }
+        }
+
+        function closeBAModal() {
+            var modal = document.getElementById('ba-modal');
+            if (modal) {
+                modal.classList.remove('is-active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function openBAModal(card) {
+            var beforeEl = card.querySelector('.gallery-card__before');
+            var afterEl  = card.querySelector('.gallery-card__after');
+            var titleEl  = card.querySelector('.gallery-card__title');
+            var descEl   = card.querySelector('.gallery-card__desc');
+
+            if (!beforeEl || !afterEl) return;
+
+            var beforeContentHtml = beforeEl.innerHTML;
+            var afterContentHtml  = afterEl.innerHTML;
+            var titleText         = titleEl ? titleEl.innerText : '';
+            var descHtml          = descEl ? descEl.innerHTML : '';
+
+            var modal = document.getElementById('ba-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'ba-modal';
+                modal.className = 'ba-modal';
+                modal.innerHTML = 
+                    '<div class="ba-modal__backdrop"></div>' +
+                    '<div class="ba-modal__wrapper">' +
+                        '<button class="ba-modal__close" aria-label="Close modal">&times;</button>' +
+                        '<div class="ba-modal__slider before-after-slider">' +
+                            '<div class="gallery-card__before"></div>' +
+                            '<div class="gallery-card__after"></div>' +
+                            '<input type="range" min="0" max="100" value="50" class="slider-range" aria-label="Before and after comparison slider">' +
+                            '<div class="slider-handle" aria-hidden="true">' +
+                                '<div class="slider-handle__line"></div>' +
+                                '<div class="slider-handle__circle">' +
+                                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="8 17 3 12 8 7"/><polyline points="16 7 21 12 16 17"/></svg>' +
+                                '</div>' +
+                                '<div class="slider-handle__line"></div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="ba-modal__info">' +
+                            '<h3 class="ba-modal__title"></h3>' +
+                            '<div class="ba-modal__desc"></div>' +
+                        '</div>' +
+                    '</div>';
+                document.body.appendChild(modal);
+
+                modal.querySelector('.ba-modal__close').addEventListener('click', closeBAModal);
+                modal.querySelector('.ba-modal__backdrop').addEventListener('click', closeBAModal);
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeBAModal();
+                });
+            }
+
+            modal.querySelector('.ba-modal__slider .gallery-card__before').innerHTML = beforeContentHtml;
+            modal.querySelector('.ba-modal__slider .gallery-card__after').innerHTML  = afterContentHtml;
+            modal.querySelector('.ba-modal__title').innerText = titleText;
+            modal.querySelector('.ba-modal__desc').innerHTML  = descHtml;
+
+            // Remove float expand button from the modal slider to avoid infinite nesting
+            var nestedExpand = modal.querySelector('.ba-modal__slider .gallery-card__expand');
+            if (nestedExpand) nestedExpand.remove();
+
+            // Reset slider input range to 50
+            var modalRange = modal.querySelector('.slider-range');
+            modalRange.value = 50;
+
+            // Re-initialize slider logic on the modal slider
+            var modalSlider = modal.querySelector('.ba-modal__slider');
+            initBeforeAfterSlider(modalSlider);
+
+            // Display the modal
+            modal.classList.add('is-active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Initialize standard inline sliders
         var sliders = document.querySelectorAll('.before-after-slider');
         if (sliders.length) {
             sliders.forEach(function(slider) {
-                var range  = slider.querySelector('.slider-range');
-                var before = slider.querySelector('.gallery-card__before');
-                var handle = slider.querySelector('.slider-handle');
-                if (range && before && handle) {
-                    var updateSlider = function() {
-                        var val = range.value;
-                        before.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
-                        handle.style.left = val + '%';
-                    };
-                    range.addEventListener('input', updateSlider);
-                    range.addEventListener('change', updateSlider);
-                    updateSlider();
+                initBeforeAfterSlider(slider);
+            });
+        }
+
+        // Setup click interaction to trigger the zoom modal
+        var galleryCards = document.querySelectorAll('.gallery-card');
+        if (galleryCards.length) {
+            galleryCards.forEach(function(card) {
+                var sliderContainer = card.querySelector('.gallery-card__images');
+                if (sliderContainer) {
+                    // Inject beautiful floating expand zoom button
+                    var expandBtn = document.createElement('button');
+                    expandBtn.className = 'gallery-card__expand';
+                    expandBtn.setAttribute('aria-label', 'Expand image comparison');
+                    expandBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>';
+                    sliderContainer.appendChild(expandBtn);
+
+                    expandBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openBAModal(card);
+                    });
+
+                    // Tapping/clicking anywhere on the slider container (non-dragging click) opens the modal
+                    var rangeInput = sliderContainer.querySelector('.slider-range');
+                    if (rangeInput) {
+                        var dragStartVal = null;
+                        
+                        rangeInput.addEventListener('mousedown', function() {
+                            dragStartVal = rangeInput.value;
+                        });
+                        
+                        rangeInput.addEventListener('mouseup', function(e) {
+                            if (dragStartVal !== null && dragStartVal === rangeInput.value) {
+                                openBAModal(card);
+                            }
+                            dragStartVal = null;
+                        });
+
+                        rangeInput.addEventListener('touchstart', function() {
+                            dragStartVal = rangeInput.value;
+                        });
+
+                        rangeInput.addEventListener('touchend', function(e) {
+                            if (dragStartVal !== null && dragStartVal === rangeInput.value) {
+                                openBAModal(card);
+                            }
+                            dragStartVal = null;
+                        });
+                    }
                 }
             });
         }

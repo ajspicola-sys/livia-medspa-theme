@@ -9900,4 +9900,205 @@ a.contact-card__text:hover {
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(var(--brand-rgb), 0.08);
+}
+
+/* -- Interactive Before/After Expanded Slider Modal -- */
+.before-after-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.ba-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ba-modal__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 12, 24, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.ba-modal__wrapper {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ba-modal.is-active .ba-modal__wrapper {
+  transform: scale(1);
+}
+
+.ba-modal__close {
+  position: absolute;
+  top: -3.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ba-modal__close:hover {
+  color: #120c18;
+  transform: rotate(90deg) scale(1.08);
+  background: #ffffff;
+}
+
+.ba-modal__slider {
+  width: 100%;
+  height: 60vh;
+  max-height: 550px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  background: #000;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ba-modal__slider .gallery-card__before,
+.ba-modal__slider .gallery-card__after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ba-modal__info {
+  width: 100%;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #fff;
+  padding: 0 1rem;
+}
+
+.ba-modal__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.ba-modal__desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Floating Expand Button on regular cards */
+.gallery-card__expand {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--brand);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.gallery-card__expand svg {
+  display: block;
+  stroke: var(--brand);
+}
+
+.gallery-card__expand:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: scale(1.1) !important;
+}
+
+.gallery-card__expand:hover svg {
+  stroke: #ffffff;
+}
+
+.gallery-card__images:hover .gallery-card__expand {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Make slider elements have standard zoom cursor */
+.gallery-card__images:not(.ba-modal__slider) {
+  cursor: zoom-in;
+}
+
+.gallery-card__images .slider-range {
+  cursor: ew-resize !important;
+}
+
+/* Responsive adjustment for modal */
+@media (max-width: 768px) {
+  .ba-modal__slider {
+    height: 40vh;
+    border-radius: 16px;
+  }
+  .ba-modal__close {
+    top: -3.5rem;
+    right: 0rem;
+  }
+  .ba-modal__title {
+    font-size: 1.15rem;
+  }
+  .ba-modal__desc {
+    font-size: 0.8rem;
+  }
+  .gallery-card__expand {
+    opacity: 0.9;
+    transform: scale(1);
+  }
 }
