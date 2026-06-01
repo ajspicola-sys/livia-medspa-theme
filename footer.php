@@ -691,6 +691,8 @@
         if (galleryCards.length) {
             galleryCards.forEach(function(card) {
                 var sliderContainer = card.querySelector('.gallery-card__images');
+                var infoContainer   = card.querySelector('.gallery-card__info');
+
                 if (sliderContainer) {
                     // Inject beautiful floating expand zoom button
                     var expandBtn = document.createElement('button');
@@ -703,34 +705,13 @@
                         e.stopPropagation();
                         openBAModal(card);
                     });
+                }
 
-                    // Tapping/clicking anywhere on the slider container (non-dragging click) opens the modal
-                    var rangeInput = sliderContainer.querySelector('.slider-range');
-                    if (rangeInput) {
-                        var dragStartVal = null;
-                        
-                        rangeInput.addEventListener('mousedown', function() {
-                            dragStartVal = rangeInput.value;
-                        });
-                        
-                        rangeInput.addEventListener('mouseup', function(e) {
-                            if (dragStartVal !== null && dragStartVal === rangeInput.value) {
-                                openBAModal(card);
-                            }
-                            dragStartVal = null;
-                        });
-
-                        rangeInput.addEventListener('touchstart', function() {
-                            dragStartVal = rangeInput.value;
-                        });
-
-                        rangeInput.addEventListener('touchend', function(e) {
-                            if (dragStartVal !== null && dragStartVal === rangeInput.value) {
-                                openBAModal(card);
-                            }
-                            dragStartVal = null;
-                        });
-                    }
+                if (infoContainer) {
+                    // Clicking anywhere on the white info box area opens the modal
+                    infoContainer.addEventListener('click', function() {
+                        openBAModal(card);
+                    });
                 }
             });
         }

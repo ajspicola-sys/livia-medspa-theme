@@ -10072,9 +10072,14 @@ a.contact-card__text:hover {
   transform: scale(1);
 }
 
-/* Make slider elements have standard zoom cursor */
-.gallery-card__images:not(.ba-modal__slider) {
+/* Make card info area clickable with hover feedback */
+.gallery-card__info {
   cursor: zoom-in;
+  transition: background-color 0.25s ease;
+}
+
+.gallery-card__info:hover {
+  background-color: #fafafc;
 }
 
 .gallery-card__images .slider-range {
