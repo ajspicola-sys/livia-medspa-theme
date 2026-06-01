@@ -691,7 +691,6 @@
         if (galleryCards.length) {
             galleryCards.forEach(function(card) {
                 var sliderContainer = card.querySelector('.gallery-card__images');
-                var infoContainer   = card.querySelector('.gallery-card__info');
 
                 if (sliderContainer) {
                     // Inject beautiful floating expand zoom button
@@ -703,13 +702,6 @@
 
                     expandBtn.addEventListener('click', function(e) {
                         e.stopPropagation();
-                        openBAModal(card);
-                    });
-                }
-
-                if (infoContainer) {
-                    // Clicking anywhere on the white info box area opens the modal
-                    infoContainer.addEventListener('click', function() {
                         openBAModal(card);
                     });
                 }
