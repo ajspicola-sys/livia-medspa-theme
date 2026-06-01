@@ -640,7 +640,7 @@
                                 '<div class="slider-handle__line"></div>' +
                                 '<div class="slider-handle__circle">' +
                                     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="8 17 3 12 8 7"/><polyline points="16 7 21 12 16 17"/></svg>' +
-                                </div>' +
+                                '</div>' +
                                 '<div class="slider-handle__line"></div>' +
                             '</div>' +
                         '</div>' +
