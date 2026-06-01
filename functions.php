@@ -1419,6 +1419,7 @@ function livia_rewrite_flush() {
     livia_register_services();
     livia_register_team();
     livia_register_products();
+    livia_register_before_after();
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'livia_rewrite_flush');
@@ -2500,4 +2501,262 @@ function livia_service_bottom_photo_admin_scripts() {
     }
 }
 add_action('admin_footer', 'livia_service_bottom_photo_admin_scripts');
+
+
+// ── Before & After Custom Post Type ──────────────────────────────────
+function livia_register_before_after() {
+    register_post_type('before_after', [
+        'labels' => [
+            'name'               => 'Before & Afters',
+            'singular_name'      => 'Before & After',
+            'add_new'            => 'Add New Item',
+            'add_new_item'       => 'Add New Gallery Item',
+            'edit_item'          => 'Edit Gallery Item',
+            'new_item'           => 'New Gallery Item',
+            'view_item'          => 'View Gallery Item',
+            'search_items'       => 'Search Gallery Items',
+            'not_found'          => 'No gallery items found',
+            'menu_name'          => '✨ Before & After',
+        ],
+        'public'             => true,
+        'has_archive'        => false,
+        'rewrite'            => ['slug' => 'before-after-entry'],
+        'menu_icon'          => 'dashicons-images-alt2',
+        'menu_position'      => 8,
+        'supports'           => ['title', 'editor', 'excerpt'],
+        'show_in_rest'       => true,
+    ]);
+
+    // Register Taxonomy
+    register_taxonomy('before_after_category', 'before_after', [
+        'labels' => [
+            'name'          => 'Categories',
+            'singular_name' => 'Category',
+            'add_new_item'  => 'Add Category',
+            'menu_name'     => 'Categories',
+        ],
+        'public'       => true,
+        'hierarchical' => true,
+        'rewrite'      => ['slug' => 'before-after-category'],
+        'show_in_rest' => true,
+    ]);
+}
+add_action('init', 'livia_register_before_after');
+
+// ── Before & After Image Meta Box ──────────────────────────────────
+function livia_before_after_meta_box() {
+    add_meta_box(
+        'livia_before_after_images',
+        'Before & After Images',
+        'livia_before_after_meta_html',
+        'before_after',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'livia_before_after_meta_box');
+
+function livia_before_after_meta_html($post) {
+    wp_nonce_field('livia_before_after_nonce_action', 'livia_before_after_nonce');
+    $before_id = get_post_meta($post->ID, '_before_image_id', true);
+    $after_id  = get_post_meta($post->ID, '_after_image_id', true);
+    
+    $before_url = $before_id ? wp_get_attachment_url($before_id) : '';
+    $after_url  = $after_id ? wp_get_attachment_url($after_id) : '';
+    ?>
+    <style>
+        .livia-ba-row { display: flex; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .livia-ba-col { flex: 1; min-width: 280px; background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1.5rem; text-align: center; }
+        .livia-ba-title { font-weight: 600; font-size: 1.1em; margin-top: 0; margin-bottom: 1rem; color: #23282d; }
+        .livia-ba-preview-container { margin-bottom: 15px; min-height: 150px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px dashed #ccc; border-radius: 6px; padding: 8px; }
+        .livia-ba-preview { max-width: 100%; max-height: 180px; border-radius: 4px; object-fit: contain; }
+        .livia-ba-placeholder { color: #aaa; font-style: italic; }
+        .livia-ba-buttons { display: flex; justify-content: center; gap: 8px; }
+    </style>
+    <div class="livia-ba-row">
+        <!-- Before Image Column -->
+        <div class="livia-ba-col">
+            <h3 class="livia-ba-title">Before Photo</h3>
+            <input type="hidden" id="before_image_id" name="before_image_id" value="<?php echo esc_attr($before_id); ?>">
+            <div class="livia-ba-preview-container">
+                <img id="before_preview" src="<?php echo esc_url($before_url); ?>" style="<?php echo empty($before_url) ? 'display:none;' : ''; ?>" class="livia-ba-preview">
+                <span id="before_placeholder" style="<?php echo !empty($before_url) ? 'display:none;' : ''; ?>" class="livia-ba-placeholder">No image selected (uses default placeholder)</span>
+            </div>
+            <div class="livia-ba-buttons">
+                <button type="button" class="button button-primary ba-upload-btn" data-target="before">
+                    <?php echo empty($before_url) ? 'Select Before Photo' : 'Change Photo'; ?>
+                </button>
+                <button type="button" class="button button-link-delete ba-remove-btn" data-target="before" style="<?php echo empty($before_url) ? 'display:none;' : ''; ?> color:#a00; font-weight:600; text-decoration:none;">
+                    Remove
+                </button>
+            </div>
+        </div>
+
+        <!-- After Image Column -->
+        <div class="livia-ba-col">
+            <h3 class="livia-ba-title">After Photo</h3>
+            <input type="hidden" id="after_image_id" name="after_image_id" value="<?php echo esc_attr($after_id); ?>">
+            <div class="livia-ba-preview-container">
+                <img id="after_preview" src="<?php echo esc_url($after_url); ?>" style="<?php echo empty($after_url) ? 'display:none;' : ''; ?>" class="livia-ba-preview">
+                <span id="after_placeholder" style="<?php echo !empty($after_url) ? 'display:none;' : ''; ?>" class="livia-ba-placeholder">No image selected (uses default placeholder)</span>
+            </div>
+            <div class="livia-ba-buttons">
+                <button type="button" class="button button-primary ba-upload-btn" data-target="after">
+                    <?php echo empty($after_url) ? 'Select After Photo' : 'Change Photo'; ?>
+                </button>
+                <button type="button" class="button button-link-delete ba-remove-btn" data-target="after" style="<?php echo empty($after_url) ? 'display:none;' : ''; ?> color:#a00; font-weight:600; text-decoration:none;">
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function livia_save_before_after_meta($post_id) {
+    if (!isset($_POST['livia_before_after_nonce']) || !wp_verify_nonce($_POST['livia_before_after_nonce'], 'livia_before_after_nonce_action')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    if (isset($_POST['before_image_id'])) {
+        update_post_meta($post_id, '_before_image_id', sanitize_text_field($_POST['before_image_id']));
+    }
+    if (isset($_POST['after_image_id'])) {
+        update_post_meta($post_id, '_after_image_id', sanitize_text_field($_POST['after_image_id']));
+    }
+}
+add_action('save_post_before_after', 'livia_save_before_after_meta');
+
+function livia_before_after_admin_scripts() {
+    global $pagenow;
+    if (($pagenow == 'post.php' || $pagenow == 'post-new.php') && get_post_type() == 'before_after') {
+        wp_enqueue_media();
+        ?>
+        <script>
+        jQuery(document).ready(function($){
+            var file_frames = {};
+            
+            $('.ba-upload-btn').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).data('target');
+                
+                if (file_frames[target]) {
+                    file_frames[target].open();
+                    return;
+                }
+                
+                file_frames[target] = wp.media({
+                    title: 'Select ' + (target === 'before' ? 'Before' : 'After') + ' Photo',
+                    button: { text: 'Use this photo' },
+                    multiple: false
+                });
+                
+                file_frames[target].on('select', function() {
+                    var attachment = file_frames[target].state().get('selection').first().toJSON();
+                    $('#' + target + '_image_id').val(attachment.id);
+                    $('#' + target + '_preview').attr('src', attachment.url).show();
+                    $('#' + target + '_placeholder').hide();
+                    $('button.ba-upload-btn[data-target="' + target + '"]').text('Change Photo');
+                    $('button.ba-remove-btn[data-target="' + target + '"]').show();
+                });
+                
+                file_frames[target].open();
+            });
+            
+            $('.ba-remove-btn').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).data('target');
+                $('#' + target + '_image_id').val('');
+                $('#' + target + '_preview').hide().attr('src', '');
+                $('#' + target + '_placeholder').show();
+                $('button.ba-upload-btn[data-target="' + target + '"]').text('Select ' + (target === 'before' ? 'Before' : 'After') + ' Photo');
+                $(this).hide();
+            });
+        });
+        </script>
+        <?php
+    }
+}
+add_action('admin_footer', 'livia_before_after_admin_scripts');
+
+// ── Before & After Auto Seeder ──────────────────────────────────────
+function livia_create_before_after_items() {
+    if (get_option('livia_before_after_created_v2')) return;
+
+    $categories = [
+        'Botox'         => 'botox',
+        'Fillers'       => 'fillers',
+        'Laser'         => 'laser',
+        'Peels'         => 'peels',
+        'Microneedling' => 'microneedling',
+    ];
+
+    $cat_ids = [];
+    foreach ($categories as $name => $slug) {
+        $existing = term_exists($name, 'before_after_category');
+        if ($existing) {
+            $cat_ids[$slug] = $existing['term_id'];
+        } else {
+            $term = wp_insert_term($name, 'before_after_category', ['slug' => $slug]);
+            if (!is_wp_error($term)) {
+                $cat_ids[$slug] = $term['term_id'];
+            }
+        }
+    }
+
+    $gallery_items = [
+        [
+            'title'       => 'Botox — Forehead & Crow\'s Feet',
+            'category'    => 'botox',
+            'description' => '40 units of Botox to smooth forehead lines and crow\'s feet. Results shown at 2 weeks post-treatment.',
+        ],
+        [
+            'title'       => 'Lip Filler — Natural Enhancement',
+            'category'    => 'fillers',
+            'description' => '1 syringe of Juvederm Ultra for subtle volume and definition. Results shown at 2 weeks.',
+        ],
+        [
+            'title'       => 'Laser Skin Rejuvenation',
+            'category'    => 'laser',
+            'description' => '3 sessions of laser resurfacing for sun damage and hyperpigmentation. Results at 6 weeks.',
+        ],
+        [
+            'title'       => 'Cheek & Jawline Fillers',
+            'category'    => 'fillers',
+            'description' => '2 syringes of Voluma for cheek augmentation and jawline contour. Results at 2 weeks.',
+        ],
+        [
+            'title'       => 'Microneedling — Acne Scarring',
+            'category'    => 'microneedling',
+            'description' => '4 sessions of microneedling with PRP for acne scar improvement. Results at 3 months.',
+        ],
+        [
+            'title'       => 'Chemical Peel — Melasma',
+            'category'    => 'peels',
+            'description' => 'Series of 3 VI Peels for melasma and uneven skin tone. Results at 8 weeks.',
+        ],
+    ];
+
+    foreach ($gallery_items as $item) {
+        $existing = get_page_by_title($item['title'], OBJECT, 'before_after');
+        if ($existing) continue;
+
+        $post_id = wp_insert_post([
+            'post_title'   => $item['title'],
+            'post_content' => $item['description'],
+            'post_status'  => 'publish',
+            'post_type'    => 'before_after',
+        ]);
+
+        if ($post_id && !is_wp_error($post_id)) {
+            if (isset($cat_ids[$item['category']])) {
+                wp_set_object_terms($post_id, (int) $cat_ids[$item['category']], 'before_after_category');
+            }
+        }
+    }
+
+    update_option('livia_before_after_created_v2', true);
+}
+add_action('after_switch_theme', 'livia_create_before_after_items');
+add_action('init', 'livia_create_before_after_items', 15);
 

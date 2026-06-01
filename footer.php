@@ -88,7 +88,6 @@
                 <ul class="footer__links">
                     <li><a href="<?php echo esc_url(home_url('/services/')); ?>">Services</a></li>
                     <li><a href="<?php echo esc_url(home_url('/products/')); ?>">Products</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/before-after/')); ?>">Before &amp; After</a></li>
                     <li><a href="<?php echo esc_url(home_url('/about/')); ?>">About Us</a></li>
                     <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
@@ -571,7 +570,8 @@
                     filterBtns.forEach(function(b) { b.classList.remove('is-active'); });
                     this.classList.add('is-active');
                     galleryCards.forEach(function(card) {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        var cardCats = card.getAttribute('data-category') || '';
+                        if (filter === 'all' || cardCats.split(' ').indexOf(filter) !== -1) {
                             card.style.display = ''; card.style.opacity = '0'; card.style.transform = 'translateY(12px)';
                             requestAnimationFrame(function() { card.style.transition = 'opacity 0.4s ease, transform 0.4s ease'; card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
                         } else {
