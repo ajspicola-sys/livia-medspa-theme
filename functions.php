@@ -425,10 +425,6 @@ add_filter('style_loader_tag', 'livia_async_styles', 10, 2);
 function livia_resource_hints() {
     // DNS prefetch for external image CDN
     echo '<link rel="dns-prefetch" href="//liviamedspa.com">' . "\n";
-
-    // Preload the most critical font files (the weights used above the fold)
-    echo '<link rel="preload" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
-    echo '<link rel="preload" href="https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JadbnoET0.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
 }
 add_action('wp_head', 'livia_resource_hints', 1);
 
