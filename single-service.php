@@ -69,6 +69,39 @@ for ($i = 1; $i <= 6; $i++) {
     }
 }
 
+// ── Retrieve Related Treatments ─────────────────────────────────────────────
+$related_args = [
+    'post_type'      => 'service',
+    'posts_per_page' => 3,
+    'post__not_in'   => [$post_id],
+    'orderby'        => 'rand',
+    'no_found_rows'  => true,
+];
+if ($categories && !is_wp_error($categories)) {
+    $related_args['tax_query'] = [[
+        'taxonomy' => 'service_category',
+        'field'    => 'term_id',
+        'terms'    => wp_list_pluck($categories, 'term_id'),
+    ]];
+}
+$related = new WP_Query($related_args);
+
+if ($related->post_count < 3 && $related->post_count > 0) {
+    $found_ids   = wp_list_pluck($related->posts, 'ID');
+    $exclude_ids = array_merge([$post_id], $found_ids);
+    $backfill    = new WP_Query([
+        'post_type'      => 'service',
+        'posts_per_page' => 3 - $related->post_count,
+        'post__not_in'   => $exclude_ids,
+        'orderby'        => 'rand',
+        'no_found_rows'  => true,
+    ]);
+    if ($backfill->have_posts()) {
+        $related->posts      = array_merge($related->posts, $backfill->posts);
+        $related->post_count = count($related->posts);
+    }
+}
+
 // Check if we have Custom Section layout data to show the premium sections
 $is_enriched = (
     !empty($sec_a_desc) || 
@@ -346,39 +379,7 @@ $is_enriched = (
     </section>
 
     <!-- Related Treatments section below alternating sections -->
-    <?php
-    $related_args = [
-        'post_type'      => 'service',
-        'posts_per_page' => 3,
-        'post__not_in'   => [$post_id],
-        'orderby'        => 'rand',
-        'no_found_rows'  => true,
-    ];
-    if ($categories && !is_wp_error($categories)) {
-        $related_args['tax_query'] = [[
-            'taxonomy' => 'service_category',
-            'field'    => 'term_id',
-            'terms'    => wp_list_pluck($categories, 'term_id'),
-        ]];
-    }
-    $related = new WP_Query($related_args);
-
-    if ($related->post_count < 3 && $related->post_count > 0) {
-        $found_ids   = wp_list_pluck($related->posts, 'ID');
-        $exclude_ids = array_merge([$post_id], $found_ids);
-        $backfill    = new WP_Query([
-            'post_type'      => 'service',
-            'posts_per_page' => 3 - $related->post_count,
-            'post__not_in'   => $exclude_ids,
-            'orderby'        => 'rand',
-            'no_found_rows'  => true,
-        ]);
-        if ($backfill->have_posts()) {
-            $related->posts      = array_merge($related->posts, $backfill->posts);
-            $related->post_count = count($related->posts);
-        }
-    }
-    if ($related->have_posts()): ?>
+    <?php if ($related->have_posts()): ?>
     <section class="related-services" aria-label="Related treatments">
         <div class="section__inner">
             <div class="section__header reveal">
