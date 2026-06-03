@@ -30,181 +30,52 @@ if ($video) {
     }
 }
 
-// ── Parse WordPress editor content into section blocks ───────────────────────
-$raw_content = get_the_content();
-$parts = preg_split('/<h2[^>]*>(.*?)<\/h2>/is', $raw_content, -1, PREG_SPLIT_DELIM_CAPTURE);
+// ── Retrieve Custom Fields Metadata ─────────────────────────────────────────
+$sec_a_title     = get_post_meta($post_id, '_service_sec_a_title', true);
+$sec_a_desc      = get_post_meta($post_id, '_service_sec_a_desc', true);
+$sec_a_checklist = get_post_meta($post_id, '_service_sec_a_checklist', true);
+$sec_a_image_id  = get_post_meta($post_id, '_service_sec_a_image_id', true);
 
-$intro_content = trim($parts[0]);
-$sections = [];
-for ($i = 1; $i < count($parts); $i += 2) {
-    if (empty($parts[$i])) continue;
-    $sections[] = [
-        'heading' => trim(strip_tags($parts[$i])),
-        'content' => isset($parts[$i+1]) ? trim($parts[$i+1]) : '',
-    ];
-}
+$sec_b_title     = get_post_meta($post_id, '_service_sec_b_title', true);
+$sec_b_desc      = get_post_meta($post_id, '_service_sec_b_desc', true);
+$sec_b_image_id  = get_post_meta($post_id, '_service_sec_b_image_id', true);
 
-$is_enriched = (count($sections) >= 3);
+$sec_c_title       = get_post_meta($post_id, '_service_sec_c_title', true);
+$sec_c_desc        = get_post_meta($post_id, '_service_sec_c_desc', true);
+$sec_c_bg_image_id = get_post_meta($post_id, '_service_sec_c_bg_image_id', true);
 
-// Helper functions for parsing content blocks
-if (!function_exists('get_list_from_html')) {
-    function get_list_from_html($html) {
-        if (preg_match('/<ul[^>]*>(.*?)<\/ul>/is', $html, $m)) {
-            return $m[1];
-        }
-        return '';
-    }
-}
+$sec_d_prep  = get_post_meta($post_id, '_service_sec_d_prep', true);
+$sec_d_after = get_post_meta($post_id, '_service_sec_d_after', true);
 
-if (!function_exists('strip_list_from_html')) {
-    function strip_list_from_html($html) {
-        return preg_replace('/<ul[^>]*>.*?<\/ul>/is', '', $html);
-    }
-}
+$sec_e_title     = get_post_meta($post_id, '_service_sec_e_title', true);
+$sec_e_desc      = get_post_meta($post_id, '_service_sec_e_desc', true);
+$sec_e_image_id  = get_post_meta($post_id, '_service_sec_e_image_id', true);
 
-// Match sections by keywords
-$what_is_sec = null;
-$treat_sec = null;
-$expect_sec = null;
-$aftercare_sec = null;
-$plan_sec = null;
-$faq_sec = null;
+// Parse checklists/guides by line breaks
+$sec_a_checklist_items = !empty($sec_a_checklist) ? array_filter(array_map('trim', explode("\n", $sec_a_checklist))) : [];
+$sec_d_prep_items      = !empty($sec_d_prep) ? array_filter(array_map('trim', explode("\n", $sec_d_prep))) : [];
+$sec_d_after_items     = !empty($sec_d_after) ? array_filter(array_map('trim', explode("\n", $sec_d_after))) : [];
 
-foreach ($sections as $sec) {
-    $h = strtolower($sec['heading']);
-    if (strpos($h, 'what is') !== false) {
-        $what_is_sec = $sec;
-    } elseif (strpos($h, 'treat') !== false || strpos($h, 'areas') !== false) {
-        $treat_sec = $sec;
-    } elseif (strpos($h, 'process') !== false || strpos($h, 'expect') !== false || strpos($h, 'works') !== false) {
-        $expect_sec = $sec;
-    } elseif (strpos($h, 'aftercare') !== false || strpos($h, 'preparation') !== false) {
-        $aftercare_sec = $sec;
-    } elseif (strpos($h, 'cost') !== false || strpos($h, 'price') !== false || strpos($h, 'choose') !== false || strpos($h, 'plan') !== false) {
-        $plan_sec = $sec;
-    } elseif (strpos($h, 'faq') !== false || strpos($h, 'frequently') !== false || strpos($h, 'question') !== false) {
-        $faq_sec = $sec;
-    }
-}
-
-// Image mapping logic for Livia Med Spa services
-$default_images = [
-    'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_376407063-scaled.jpeg',
-    'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_396759557-scaled.jpeg',
-    'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
-    'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
-];
-
-if (strpos($post_slug, 'laser') !== false || strpos($post_slug, 'hair') !== false) {
-    $service_imgs = [
-        'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_376407063-scaled.jpeg',
-        'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_396759557-scaled.jpeg',
-        'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
-        'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
-    ];
-} elseif (strpos($post_slug, 'botox') !== false || strpos($post_slug, 'xeomin') !== false || strpos($post_slug, 'jeuveau') !== false || strpos($post_slug, 'dysport') !== false) {
-    $service_imgs = [
-        'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/06/AdobeStock_538904225-scaled.jpeg',
-        'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/06/AdobeStock_446213685-scaled.jpeg',
-        'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
-        'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_374628525-scaled.jpeg'
-    ];
-} elseif (strpos($post_slug, 'filler') !== false || strpos($post_slug, 'radiesse') !== false || strpos($post_slug, 'sculptra') !== false) {
-    $service_imgs = [
-        'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_260345614-1-scaled.jpeg',
-        'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_474297401-1-scaled.jpeg',
-        'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
-        'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
-    ];
-} else {
-    $service_imgs = $default_images;
-}
-
-if (has_post_thumbnail()) {
-    $service_imgs['areas_treated'] = get_the_post_thumbnail_url($post_id, 'large');
-}
-
-$bottom_photo_id = get_post_meta($post_id, '_service_bottom_photo_id', true);
-if ($bottom_photo_id) {
-    $bottom_photo_url = wp_get_attachment_url($bottom_photo_id);
-    if ($bottom_photo_url) {
-        $service_imgs['plan'] = $bottom_photo_url;
-    }
-}
-
-// Generate pre-treatment & aftercare guidelines
-if (!function_exists('livia_get_prep_aftercare')) {
-    function livia_get_prep_aftercare($slug, $aftercare_sec) {
-        $after_list = '';
-        if ($aftercare_sec) {
-            $after_list = get_list_from_html($aftercare_sec['content']);
-        }
-        
-        $prep_items = [];
-        $after_items = [];
-        
-        if (strpos($slug, 'laser') !== false || strpos($slug, 'hair') !== false || strpos($slug, 'candela') !== false || strpos($slug, 'lhr') !== false) {
-            $prep_items = [
-                'Shave the treatment area completely 24 hours prior to your session.',
-                'Avoid plucking, waxing, or tweezing hair in the target area for 4 weeks.',
-                'Avoid direct sun exposure and tanning beds for at least 2 weeks.',
-                'Ensure skin is completely free of self-tanner, lotions, oils, and makeup on the day of treatment.'
-            ];
-            $after_items = [
-                'Avoid direct sun exposure on the treated areas and apply broad-spectrum SPF 30+ daily.',
-                'Avoid hot tubs, saunas, steam rooms, and hot showers for 24–48 hours.',
-                'Postpone strenuous exercise and excessive sweating for 24 hours.',
-                'Do not pluck, wax, or tweeze between sessions; shaving is the only permitted hair removal method.'
-            ];
-        } elseif (strpos($slug, 'botox') !== false || strpos($slug, 'xeomin') !== false || strpos($slug, 'jeuveau') !== false || strpos($slug, 'dysport') !== false) {
-            $prep_items = [
-                'Avoid alcohol and blood-thinning supplements for 24-48 hours before treatment.',
-                'Arrive with a clean, makeup-free face if possible.',
-                'Reschedule if you have an active skin rash, cold sore, or infection in the treatment area.'
-            ];
-            $after_items = [
-                'Keep your head elevated and avoid lying down for 4 hours after treatment.',
-                'Avoid rubbing, massaging, or placing pressure on the treated areas for 24 hours.',
-                'Postpone strenuous exercise and heavy sweating for 24 hours.',
-                'Avoid facials, chemical peels, and microdermabrasion for 2 weeks.'
-            ];
-        } elseif (strpos($slug, 'filler') !== false || strpos($slug, 'radiesse') !== false || strpos($slug, 'sculptra') !== false) {
-            $prep_items = [
-                'Avoid blood-thinning medications and supplements (like aspirin, fish oil) for 1 week prior.',
-                'Avoid alcohol intake for 24-48 hours prior to your appointment to minimize bruising.',
-                'Plan your treatment at least 2 weeks before any major social events.'
-            ];
-            $after_items = [
-                'Apply cold packs gently to the treated areas for 15-20 minutes at a time to reduce swelling.',
-                'Avoid touching, rubbing, or massaging the injection sites (except Sculptra 5-5-5 rule).',
-                'Avoid sleeping face-down; sleep on your back with head elevated on pillows for 2-3 nights.',
-                'Avoid strenuous exercise, saunas, and hot tubs for 24-48 hours.'
-            ];
-        } else {
-            if (!empty($after_list)) {
-                preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $after_list, $matches);
-                $after_items = !empty($matches[1]) ? $matches[1] : [];
-            }
-            if (empty($after_items)) {
-                $after_items = [
-                    'Follow all specific post-treatment instructions provided by your practitioner.',
-                    'Keep the treated area clean and hydrated with recommended skincare products.',
-                    'Apply broad-spectrum sunscreen daily and avoid direct sun exposure.'
-                ];
-            }
-            $prep_items = [
-                'Avoid facial treatments, chemical peels, or laser procedures for 2 weeks prior.',
-                'Arrive with clean skin, free of heavy makeup, lotions, or perfumes.',
-                'Stay well-hydrated and follow any specific pre-treatment advice.'
-            ];
-        }
-        
-        return [
-            'prep' => $prep_items,
-            'after' => $after_items
+// Retrieve FAQ items
+$faqs = [];
+for ($i = 1; $i <= 6; $i++) {
+    $q = get_post_meta($post_id, '_service_faq_q' . $i, true);
+    $a = get_post_meta($post_id, '_service_faq_a' . $i, true);
+    if (!empty($q)) {
+        $faqs[] = [
+            'q' => $q,
+            'a' => $a
         ];
     }
 }
+
+// Check if we have Custom Section layout data to show the premium sections
+$is_enriched = (
+    !empty($sec_a_desc) || 
+    !empty($sec_b_desc) || 
+    !empty($sec_c_desc) || 
+    !empty($sec_e_desc)
+);
 ?>
 
 <main class="site-main" id="main-content">
@@ -239,38 +110,37 @@ if (!function_exists('livia_get_prep_aftercare')) {
     <!-- ═══════════════════════════════════════════════════════
          SECTION 1: AREAS TREATED (Text left, Image right)
          ═══════════════════════════════════════════════════════ -->
-    <?php if ($treat_sec): 
-        $desc = strip_list_from_html($treat_sec['content']);
-        $list = get_list_from_html($treat_sec['content']);
+    <?php if (!empty($sec_a_desc)): 
+        $sec_a_display_title = !empty($sec_a_title) ? $sec_a_title : 'Areas Treated';
+        $sec_a_img_url = $sec_a_image_id ? wp_get_attachment_url($sec_a_image_id) : '';
     ?>
     <section class="service-section" aria-label="Areas Treated">
         <div class="service-section__inner">
             <div class="service-section__content reveal animate-slide-left">
                 <span class="service-section__label uppercase-brand">AREAS TREATED WITH <?php the_title(); ?></span>
-                <h1 class="service-section__title serif-title"><?php the_title(); ?></h1>
+                <h1 class="service-section__title serif-title"><?php echo esc_html($sec_a_display_title); ?></h1>
                 
                 <div class="service-section__desc">
-                    <?php echo $desc; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo wp_kses_post($sec_a_desc); ?>
                 </div>
 
-                <?php if (!empty($list)): ?>
+                <?php if (!empty($sec_a_checklist_items)): ?>
                 <ul class="service-checklist" role="list">
-                    <?php 
-                        preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $list, $matches);
-                        foreach ($matches[1] as $item):
-                    ?>
+                    <?php foreach ($sec_a_checklist_items as $item): ?>
                     <li class="service-checklist__item">
                         <span class="service-checklist__check" aria-hidden="true">✓</span>
-                        <span><?php echo trim(strip_tags($item)); ?></span>
+                        <span><?php echo esc_html($item); ?></span>
                     </li>
                     <?php endforeach; ?>
                 </ul>
                 <?php endif; ?>
             </div>
             
+            <?php if (!empty($sec_a_img_url)): ?>
             <div class="service-section__image reveal animate-slide-right">
-                <img src="<?php echo esc_url($service_imgs['areas_treated']); ?>" alt="<?php the_title_attribute(); ?> areas treated">
+                <img src="<?php echo esc_url($sec_a_img_url); ?>" alt="<?php the_title_attribute(); ?> areas treated">
             </div>
+            <?php endif; ?>
         </div>
     </section>
     <?php endif; ?>
@@ -278,15 +148,18 @@ if (!function_exists('livia_get_prep_aftercare')) {
     <!-- ═══════════════════════════════════════════════════════
          SECTION 2: HOW IT WORKS (Image left, Text right)
          ═══════════════════════════════════════════════════════ -->
-    <?php if ($what_is_sec): ?>
+    <?php if (!empty($sec_b_desc)): 
+        $sec_b_display_title = !empty($sec_b_title) ? $sec_b_title : 'How It Works';
+        $sec_b_img_url = $sec_b_image_id ? wp_get_attachment_url($sec_b_image_id) : '';
+    ?>
     <section class="service-section service-section--reverse" aria-label="How it works">
         <div class="service-section__inner">
             <div class="service-section__content reveal animate-slide-right">
                 <span class="service-section__label uppercase-brand">HOW <?php the_title(); ?> WORKS</span>
-                <h2 class="service-section__title serif-title"><?php echo esc_html($what_is_sec['heading']); ?></h2>
+                <h2 class="service-section__title serif-title"><?php echo esc_html($sec_b_display_title); ?></h2>
                 
                 <div class="service-section__desc">
-                    <?php echo $what_is_sec['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo wp_kses_post($sec_b_desc); ?>
                 </div>
                 
                 <div class="service-section__actions">
@@ -295,9 +168,11 @@ if (!function_exists('livia_get_prep_aftercare')) {
                 </div>
             </div>
             
+            <?php if (!empty($sec_b_img_url)): ?>
             <div class="service-section__image reveal animate-slide-left">
-                <img src="<?php echo esc_url($service_imgs['how_works']); ?>" alt="<?php the_title_attribute(); ?> mechanism of action">
+                <img src="<?php echo esc_url($sec_b_img_url); ?>" alt="<?php the_title_attribute(); ?> mechanism of action">
             </div>
+            <?php endif; ?>
         </div>
     </section>
     <?php endif; ?>
@@ -305,15 +180,18 @@ if (!function_exists('livia_get_prep_aftercare')) {
     <!-- ═══════════════════════════════════════════════════════
          SECTION 3: WHAT TO EXPECT (Full-width bg image with card overlay)
          ═══════════════════════════════════════════════════════ -->
-    <?php if ($expect_sec): ?>
-    <section class="service-expect-banner" style="background-image: url('<?php echo esc_url($service_imgs['expect_bg']); ?>');" aria-label="Expectations">
+    <?php if (!empty($sec_c_desc)): 
+        $sec_c_display_title = !empty($sec_c_title) ? $sec_c_title : 'What to Expect';
+        $sec_c_bg_url = $sec_c_bg_image_id ? wp_get_attachment_url($sec_c_bg_image_id) : '';
+    ?>
+    <section class="service-expect-banner" <?php echo !empty($sec_c_bg_url) ? 'style="background-image: url(\'' . esc_url($sec_c_bg_url) . '\');"' : ''; ?> aria-label="Expectations">
         <div class="service-expect-banner__overlay"></div>
         <div class="service-expect-banner__inner">
             <div class="service-expect-card reveal animate-fade">
                 <span class="service-expect-card__label uppercase-brand">Comfortable, In-Office Sessions</span>
-                <h2 class="service-expect-card__title serif-title"><?php echo esc_html($expect_sec['heading']); ?></h2>
+                <h2 class="service-expect-card__title serif-title"><?php echo esc_html($sec_c_display_title); ?></h2>
                 <div class="service-expect-card__desc">
-                    <?php echo $expect_sec['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo wp_kses_post($sec_c_desc); ?>
                 </div>
             </div>
         </div>
@@ -323,9 +201,7 @@ if (!function_exists('livia_get_prep_aftercare')) {
     <!-- ═══════════════════════════════════════════════════════
          SECTION 4: PREPARATION & AFTERCARE (Side-by-side Before/After columns)
          ═══════════════════════════════════════════════════════ -->
-    <?php 
-        $prep_after = livia_get_prep_aftercare($post_slug, $aftercare_sec);
-    ?>
+    <?php if (!empty($sec_d_prep_items) || !empty($sec_d_after_items)): ?>
     <section class="service-prep-aftercare" aria-label="Preparation and Aftercare">
         <div class="service-prep-aftercare__inner">
             <div class="service-prep-aftercare__header reveal">
@@ -335,10 +211,11 @@ if (!function_exists('livia_get_prep_aftercare')) {
             
             <div class="service-prep-aftercare__grid reveal">
                 <!-- Pre-Treatment (Before) -->
+                <?php if (!empty($sec_d_prep_items)): ?>
                 <div class="service-prep-aftercare__col">
                     <h3 class="service-prep-aftercare__subtitle">Before treatment, patients are typically advised to:</h3>
                     <ul class="service-checklist" role="list">
-                        <?php foreach ($prep_after['prep'] as $item): ?>
+                        <?php foreach ($sec_d_prep_items as $item): ?>
                         <li class="service-checklist__item">
                             <span class="service-checklist__check" aria-hidden="true">✓</span>
                             <span><?php echo esc_html($item); ?></span>
@@ -346,12 +223,14 @@ if (!function_exists('livia_get_prep_aftercare')) {
                         <?php endforeach; ?>
                     </ul>
                 </div>
+                <?php endif; ?>
                 
                 <!-- Post-Treatment (After) -->
+                <?php if (!empty($sec_d_after_items)): ?>
                 <div class="service-prep-aftercare__col">
                     <h3 class="service-prep-aftercare__subtitle">After treatment, patients should:</h3>
                     <ul class="service-checklist" role="list">
-                        <?php foreach ($prep_after['after'] as $item): ?>
+                        <?php foreach ($sec_d_after_items as $item): ?>
                         <li class="service-checklist__item">
                             <span class="service-checklist__check" aria-hidden="true">✓</span>
                             <span><?php echo esc_html($item); ?></span>
@@ -359,22 +238,27 @@ if (!function_exists('livia_get_prep_aftercare')) {
                         <?php endforeach; ?>
                     </ul>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════
          SECTION 5: TREATMENT PLAN & RESULTS (Image left, Text right)
          ═══════════════════════════════════════════════════════ -->
-    <?php if ($plan_sec): ?>
+    <?php if (!empty($sec_e_desc)): 
+        $sec_e_display_title = !empty($sec_e_title) ? $sec_e_title : 'Treatment Plan and Results';
+        $sec_e_img_url = $sec_e_image_id ? wp_get_attachment_url($sec_e_image_id) : '';
+    ?>
     <section class="service-section service-section--reverse" aria-label="Treatment Plan">
         <div class="service-section__inner">
             <div class="service-section__content reveal animate-slide-right">
                 <span class="service-section__label uppercase-brand">TREATMENT PLAN AND RESULTS</span>
-                <h2 class="service-section__title serif-title"><?php echo esc_html($plan_sec['heading']); ?></h2>
+                <h2 class="service-section__title serif-title"><?php echo esc_html($sec_e_display_title); ?></h2>
                 
                 <div class="service-section__desc">
-                    <?php echo $plan_sec['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo wp_kses_post($sec_e_desc); ?>
                 </div>
                 
                 <div class="service-section__provider-note">
@@ -382,9 +266,11 @@ if (!function_exists('livia_get_prep_aftercare')) {
                 </div>
             </div>
             
+            <?php if (!empty($sec_e_img_url)): ?>
             <div class="service-section__image reveal animate-slide-left">
-                <img src="<?php echo esc_url($service_imgs['plan']); ?>" alt="<?php the_title_attribute(); ?> treatment plan results">
+                <img src="<?php echo esc_url($sec_e_img_url); ?>" alt="<?php the_title_attribute(); ?> treatment plan results">
             </div>
+            <?php endif; ?>
         </div>
     </section>
     <?php endif; ?>
@@ -392,33 +278,27 @@ if (!function_exists('livia_get_prep_aftercare')) {
     <!-- ═══════════════════════════════════════════════════════
          SECTION 6: FAQS (Custom Accordion)
          ═══════════════════════════════════════════════════════ -->
-    <?php if ($faq_sec): 
-        $faq_parts = preg_split('/<h3[^>]*>(.*?)<\/h3>/is', $faq_sec['content'], -1, PREG_SPLIT_DELIM_CAPTURE);
-    ?>
+    <?php if (!empty($faqs)): ?>
     <section class="service-faqs" aria-label="Frequently Asked Questions">
         <div class="service-faqs__inner">
             <div class="service-faqs__header reveal">
-                <h2 class="service-faqs__title serif-title"><?php echo esc_html($faq_sec['heading']); ?></h2>
+                <h2 class="service-faqs__title serif-title">Frequently Asked Questions</h2>
             </div>
             
             <div class="faq-accordion reveal">
-                <?php for ($j = 1; $j < count($faq_parts); $j += 2): 
-                    $q = trim(strip_tags($faq_parts[$j]));
-                    $a = isset($faq_parts[$j+1]) ? trim($faq_parts[$j+1]) : '';
-                    if (empty($q)) continue;
-                ?>
+                <?php foreach ($faqs as $faq): ?>
                 <div class="faq-accordion__item">
                     <button class="faq-accordion__header" aria-expanded="false">
-                        <span class="faq-accordion__title"><?php echo esc_html($q); ?></span>
+                        <span class="faq-accordion__title"><?php echo esc_html($faq['q']); ?></span>
                         <span class="faq-accordion__icon" aria-hidden="true">+</span>
                     </button>
                     <div class="faq-accordion__content">
                         <div class="faq-accordion__content-inner">
-                            <?php echo $a; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                            <?php echo wp_kses_post($faq['a']); ?>
                         </div>
                     </div>
                 </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
