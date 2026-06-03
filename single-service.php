@@ -112,7 +112,7 @@ $is_enriched = (
          ═══════════════════════════════════════════════════════ -->
     <?php if (!empty($sec_a_desc)): 
         $sec_a_display_title = !empty($sec_a_title) ? $sec_a_title : 'Areas Treated';
-        $sec_a_img_url = $sec_a_image_id ? wp_get_attachment_url($sec_a_image_id) : '';
+        $sec_a_img_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : ($sec_a_image_id ? wp_get_attachment_url($sec_a_image_id) : '');
     ?>
     <section class="service-section" aria-label="Areas Treated">
         <div class="service-section__inner">
