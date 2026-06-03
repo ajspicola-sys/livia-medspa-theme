@@ -6,6 +6,992 @@
  * Supports fallback to classic 2-col layout if content is not section-enriched.
  */
 get_header();
+?>
+<style id="livia-single-service-inlined-css">
+
+/* --- Fallback Layout Styles --- */
+/* ==========================================================================
+   SINGLE SERVICE PAGE
+   ========================================================================== */
+
+/* -- Service Hero ------------------------------------------------ */
+.service-hero {
+  background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-lavender) 60%, var(--bg-lavender-deep) 100%);
+  padding: clamp(5rem, 4rem + 5vw, 9rem) 0 clamp(3rem, 2.5rem + 3vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--brand-rgb), 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.service-hero__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(3rem, 2rem + 5vw, 7rem);
+}
+
+/* No thumbnail  revert to centered single column */
+.service-hero--no-image .service-hero__inner {
+  max-width: 860px;
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.service-hero__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 1.7rem + 2.5vw, 3.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.service-hero__desc {
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.1rem);
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.service-hero--no-image .service-hero__desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-hero .section__label {
+  color: var(--brand);
+}
+
+/* Price & Duration badges */
+.service-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.service-hero--no-image .service-hero__meta {
+  justify-content: center;
+}
+
+.service-hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(var(--brand-rgb), 0.15);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  min-width: 140px;
+}
+
+.service-hero__meta-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.service-hero__meta-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--brand);
+}
+
+.service-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.service-hero--no-image .service-hero__actions {
+  justify-content: center;
+}
+
+/* Featured image column */
+.service-hero__image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(var(--brand-rgb), 0.08);
+  aspect-ratio: 4 / 3;
+  z-index: 1;
+}
+
+.service-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-hero__img-glow {
+  display: none;
+}
+
+.service-hero__location {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--brand);
+  -webkit-text-fill-color: var(--brand);
+  background: none;
+  font-size: 0.75em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .service-hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .service-hero__image {
+    order: -1;
+    aspect-ratio: 16 / 9;
+  }
+  .service-hero__meta { justify-content: center; }
+  .service-hero__actions { justify-content: center; }
+  .service-hero__desc { margin-left: auto; margin-right: auto; }
+}
+
+.service-hero__actions .btn--outline {
+  color: var(--text-dark);
+  border-color: rgba(var(--dark-rgb), 0.2);
+}
+
+.service-hero__actions .btn--outline:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+/* -- Service Body: content + sticky sidebar ---------------------- */
+.service-body {
+  padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
+  background: #fff;
+}
+
+.service-body__layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.service-body__main {
+  min-width: 0;
+}
+
+.service-body__sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.service-sidebar {
+  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-lavender) 100%);
+  border: 1px solid rgba(var(--brand-rgb), 0.1);
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(var(--dark-rgb), 0.04), 0 1px 3px rgba(var(--brand-rgb), 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.service-sidebar:hover {
+  box-shadow: 0 24px 48px rgba(var(--dark-rgb), 0.07), 0 1px 5px rgba(var(--brand-rgb), 0.04);
+}
+
+.service-sidebar__icon {
+  font-size: 2.2rem;
+  width: 68px;
+  height: 68px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(var(--brand-rgb), 0.12), 0 0 0 1px rgba(var(--brand-rgb), 0.04);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.service-sidebar:hover .service-sidebar__icon {
+  transform: scale(1.08) rotate(6deg);
+}
+
+.service-sidebar__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.service-sidebar__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(var(--brand-rgb), 0.08);
+  gap: 0.5rem;
+}
+
+.service-sidebar__row:last-of-type {
+  border-bottom: none;
+}
+
+.service-sidebar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-subtle);
+}
+
+.service-sidebar__value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: right;
+}
+
+.service-sidebar__divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--brand-rgb), 0.15), transparent);
+  margin: 1.5rem 0;
+}
+
+.service-sidebar__book {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 0.9rem 1.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 99px;
+  box-shadow: 0 8px 20px rgba(var(--brand-rgb), 0.2);
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+.service-sidebar__book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(var(--brand-rgb), 0.3);
+}
+
+.service-sidebar__call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+  padding: 0.75rem;
+  border-radius: 99px;
+  border: 1px solid rgba(var(--brand-rgb), 0.2);
+  background: transparent;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.service-sidebar__call:hover {
+  color: #FFFFFF;
+  background: var(--brand);
+  border-color: var(--brand);
+  box-shadow: 0 6px 15px rgba(var(--brand-rgb), 0.18);
+}
+
+.service-sidebar__call svg {
+  transition: transform 0.3s ease;
+}
+
+.service-sidebar__call:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.service-sidebar__fine {
+  font-size: 0.68rem;
+  color: var(--text-pale);
+  margin-top: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 860px) {
+  .service-body__layout {
+    grid-template-columns: 1fr;
+  }
+  .service-body__sidebar { position: static; }
+}
+
+/* -- Service Content typography (shared via .service-content__body) -- */
+.service-content__body {
+  min-width: 0;
+}
+
+
+.service-content__body h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.6rem, 1.3rem + 1.3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin: 3rem 0 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f0f0f4;
+  line-height: 1.25;
+}
+
+.service-content__body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.service-content__body h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin: 2rem 0 1rem;
+  line-height: 1.3;
+}
+
+.service-content__body p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.service-content__body img {
+  border-radius: 16px;
+  margin: 2rem 0;
+  width: 100%;
+  height: auto;
+}
+
+.service-content__body ul,
+.service-content__body ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.service-content__body ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.service-content__body ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.service-content__body ul li::before {
+  content: '?';
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-size: 0.7rem;
+  top: 0.35rem;
+}
+
+.service-content__body ol li {
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.service-content__body blockquote {
+  border-left: 3px solid var(--brand);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(var(--brand-rgb), 0.04);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+}
+
+.service-content__body blockquote p {
+  color: var(--text-dark);
+  margin-bottom: 0;
+}
+
+.service-content__body strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* -- Benefits Grid (conditional) --------------------------------- */
+.service-benefits {
+  padding: clamp(3rem, 2.5rem + 3vw, 5rem) 0;
+  background: var(--bg-cream);
+}
+
+/* --- Redesigned Enriched Layout Styles --- */
+   REDESIGNED SERVICE PAGES STYLES
+   ========================================================================== */
+
+.breadcrumbs--services {
+  padding: 2rem 0 1rem;
+  background: var(--bg-cream);
+}
+
+.service-section {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+  background: #fff;
+}
+
+.service-section:nth-of-type(even) {
+  background: var(--bg-cream);
+}
+
+.service-section__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.service-section--reverse .service-section__inner {
+  grid-template-columns: 1fr 1fr;
+}
+
+.service-section--reverse .service-section__content {
+  grid-column: 2;
+}
+
+.service-section--reverse .service-section__image {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.service-section__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-section__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 1rem;
+}
+
+.service-section__title {
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.4rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.service-section__desc {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.service-section__desc p {
+  margin-bottom: 1rem;
+}
+
+.service-section__desc p:last-child {
+  margin-bottom: 0;
+}
+
+.service-section__image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(var(--brand-rgb), 0.06);
+  aspect-ratio: 4 / 3;
+}
+
+.service-section__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-section__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.service-section__provider-note {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(var(--brand-rgb), 0.04);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 12px 12px 0;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.service-section__provider-note p {
+  margin-bottom: 0;
+}
+
+/* -- Checklist Items -- */
+.service-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.service-checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.service-checklist__check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand-bright));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* -- Section 3: Expectation Banner -- */
+.service-expect-banner {
+  padding: clamp(6rem, 5rem + 5vw, 10rem) 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.service-expect-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--dark-rgb), 0.15);
+  z-index: 1;
+}
+
+.service-expect-banner__inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.service-expect-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 28px;
+  padding: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+  max-width: 580px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+.service-expect-card__label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand-mid);
+  margin-bottom: 0.75rem;
+}
+
+.service-expect-card__title {
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.service-expect-card__desc {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.service-expect-card__desc p {
+  margin-bottom: 0.75rem;
+}
+
+.service-expect-card__desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* -- Section 4: Preparation & Aftercare -- */
+.service-prep-aftercare {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #fff;
+}
+
+.service-prep-aftercare__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+.service-prep-aftercare__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.service-prep-aftercare__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 0.75rem;
+}
+
+.service-prep-aftercare__title {
+  font-size: clamp(1.8rem, 1.5rem + 1.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.service-prep-aftercare__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+.service-prep-aftercare__subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* -- Section 6: FAQ Accordion -- */
+.service-faqs {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-cream);
+}
+
+.service-faqs__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+.service-faqs__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.service-faqs__title {
+  font-size: clamp(1.8rem, 1.5rem + 1.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.faq-accordion {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.faq-accordion__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.faq-accordion__header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.faq-accordion__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: color 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.faq-accordion__icon {
+  font-size: 1.3rem;
+  color: var(--brand);
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.faq-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-accordion__content-inner {
+  padding: 0 0.5rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.faq-accordion__content-inner p {
+  margin-bottom: 0.75rem;
+}
+
+.faq-accordion__content-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-accordion__item.is-active .faq-accordion__title {
+  color: var(--brand);
+}
+
+/* -- Section 7: Location Map Banner -- */
+.service-map-banner {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #fff;
+}
+
+.service-map-banner__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  display: grid;
+  grid-template-columns: 1.3fr 1.7fr;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+
+.service-map-banner__content {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-pink-mid) 100%);
+  color: #fff;
+  padding: clamp(2.5rem, 2rem + 3vw, 4rem) clamp(2rem, 1.5rem + 3vw, 3.5rem);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(var(--brand-rgb), 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-map-banner__label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.85rem;
+}
+
+.service-map-banner__title {
+  color: #fff;
+  font-size: clamp(1.8rem, 1.5rem + 1vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.service-map-banner__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.service-map-banner__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.service-map-banner__info-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  stroke: #fff;
+}
+
+.service-map-banner__info-item a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: border-bottom-color 0.25s;
+}
+
+.service-map-banner__info-item a:hover {
+  border-bottom-color: #fff;
+}
+
+.service-map-banner__actions {
+  width: 100%;
+}
+
+.service-map-banner__actions .btn {
+  background: #fff !important;
+  color: var(--brand) !important;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.service-map-banner__actions .btn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-map-banner__map {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  height: 480px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* -- Responsive styling -- */
+@media (max-width: 900px) {
+  .service-section__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .service-section--reverse .service-section__content {
+    grid-column: 1;
+  }
+
+  .service-section--reverse .service-section__image {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .service-section__content {
+    align-items: center;
+  }
+
+  .service-section__image {
+    order: -1;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+
+  .service-section__actions {
+    justify-content: center;
+  }
+
+  .service-section__provider-note {
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--brand);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .service-expect-banner {
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  .service-expect-card {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .service-prep-aftercare__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .service-map-banner__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .service-map-banner__map {
+    height: 350px;
+    order: -1;
+  }
+}
+
+</style>
+<?php
 
 $post_id      = get_the_ID();
 $icon         = get_post_meta($post_id, '_service_icon', true)     ?: '✨';
