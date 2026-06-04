@@ -474,18 +474,7 @@ html {
   color: var(--brand);
 }
 
-/* Active indicator dot */
-.nav__item--active>.nav__link::before {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--brand);
-}
+
 
 .nav__arrow {
   transition: transform 0.3s ease;
