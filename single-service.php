@@ -202,11 +202,11 @@ $is_enriched = (!empty($sec_a_desc) || !empty($sec_b_desc) || !empty($sec_c_desc
 
 // Image Resolutions
 $sec_a_img_url = '';
-if (!empty($sec_a_image_id) && is_numeric($sec_a_image_id) && intval($sec_a_image_id) > 0) {
-    $sec_a_img_url = wp_get_attachment_url(intval($sec_a_image_id));
-}
-if (!$sec_a_img_url && $has_image) {
+if ($has_image) {
     $sec_a_img_url = get_the_post_thumbnail_url($post_id, 'large');
+}
+if (!$sec_a_img_url && !empty($sec_a_image_id) && is_numeric($sec_a_image_id) && intval($sec_a_image_id) > 0) {
+    $sec_a_img_url = wp_get_attachment_url(intval($sec_a_image_id));
 }
 if (!$sec_a_img_url) {
     $sec_a_img_url = livia_get_service_image_url($sec_a_image_id, 'sec_a', $post_slug);
