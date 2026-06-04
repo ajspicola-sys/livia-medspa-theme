@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 /**
- * LIVIA Med Spa ΓÇö Single Service Template
- * Premium redesign: 2-col hero with image, content + sidebar,
- * conditional benefits grid, conditional video section.
+ * LIVIA Med Spa — Single Service Template
+ * Clean, premium rewrite of the single service page template.
+ * Supports both enriched (alternating sections) and classic content layouts.
  */
 get_header();
 ?>
@@ -876,6 +876,541 @@ get_header();
 }
 
 
+/* -- Redesigned Enriched Layout Styles -- */
+/* ==========================================================================
+   REDESIGNED SERVICE PAGES STYLES
+   ========================================================================== */
+
+.breadcrumbs--services {
+  padding: 2rem 0 1rem;
+  background: var(--bg-cream);
+}
+
+.service-section {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+  background: #fff;
+}
+
+.service-section:nth-of-type(even) {
+  background: var(--bg-cream);
+}
+
+.service-section__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.service-section--reverse .service-section__inner {
+  grid-template-columns: 1fr 1fr;
+}
+
+.service-section--reverse .service-section__content {
+  grid-column: 2;
+}
+
+.service-section--reverse .service-section__image {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.service-section__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-section__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 1rem;
+}
+
+.service-section__title {
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.4rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.service-section__desc {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.service-section__desc p {
+  margin-bottom: 1rem;
+}
+
+.service-section__desc p:last-child {
+  margin-bottom: 0;
+}
+
+.service-section__image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(var(--brand-rgb), 0.06);
+  aspect-ratio: 4 / 3;
+}
+
+.service-section__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-section__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.service-section__provider-note {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(var(--brand-rgb), 0.04);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 12px 12px 0;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.service-section__provider-note p {
+  margin-bottom: 0;
+}
+
+/* -- Checklist Items -- */
+.service-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.service-checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.service-checklist__check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand-bright));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* -- Section 3: Expectation Banner -- */
+.service-expect-banner {
+  padding: clamp(6rem, 5rem + 5vw, 10rem) 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.service-expect-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--dark-rgb), 0.15);
+  z-index: 1;
+}
+
+.service-expect-banner__inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.service-expect-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 28px;
+  padding: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+  max-width: 580px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+.service-expect-card__label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand-mid);
+  margin-bottom: 0.75rem;
+}
+
+.service-expect-card__title {
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.service-expect-card__desc {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.service-expect-card__desc p {
+  margin-bottom: 0.75rem;
+}
+
+.service-expect-card__desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* -- Section 4: Preparation & Aftercare -- */
+.service-prep-aftercare {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #fff;
+}
+
+.service-prep-aftercare__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+.service-prep-aftercare__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.service-prep-aftercare__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 0.75rem;
+}
+
+.service-prep-aftercare__title {
+  font-size: clamp(1.8rem, 1.5rem + 1.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.service-prep-aftercare__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+.service-prep-aftercare__subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* -- Section 6: FAQ Accordion -- */
+.service-faqs {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-cream);
+}
+
+.service-faqs__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+}
+
+.service-faqs__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.service-faqs__title {
+  font-size: clamp(1.8rem, 1.5rem + 1.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.faq-accordion {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.faq-accordion__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.faq-accordion__header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.faq-accordion__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: color 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.faq-accordion__icon {
+  font-size: 1.3rem;
+  color: var(--brand);
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.faq-accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-accordion__content-inner {
+  padding: 0 0.5rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.faq-accordion__content-inner p {
+  margin-bottom: 0.75rem;
+}
+
+.faq-accordion__content-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-accordion__item.is-active .faq-accordion__title {
+  color: var(--brand);
+}
+
+/* -- Section 7: Location Map Banner -- */
+.service-map-banner {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: #fff;
+}
+
+.service-map-banner__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  display: grid;
+  grid-template-columns: 1.3fr 1.7fr;
+  gap: clamp(3rem, 2rem + 4vw, 6rem);
+  align-items: center;
+}
+
+.service-map-banner__content {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-pink-mid) 100%);
+  color: #fff;
+  padding: clamp(2.5rem, 2rem + 3vw, 4rem) clamp(2rem, 1.5rem + 3vw, 3.5rem);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(var(--brand-rgb), 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service-map-banner__label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.85rem;
+}
+
+.service-map-banner__title {
+  color: #fff;
+  font-size: clamp(1.8rem, 1.5rem + 1vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.service-map-banner__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.service-map-banner__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.service-map-banner__info-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  stroke: #fff;
+}
+
+.service-map-banner__info-item a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: border-bottom-color 0.25s;
+}
+
+.service-map-banner__info-item a:hover {
+  border-bottom-color: #fff;
+}
+
+.service-map-banner__actions {
+  width: 100%;
+}
+
+.service-map-banner__actions .btn {
+  background: #fff !important;
+  color: var(--brand) !important;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.service-map-banner__actions .btn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-map-banner__map {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  height: 480px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* -- Responsive styling -- */
+@media (max-width: 900px) {
+  .service-section__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .service-section--reverse .service-section__content {
+    grid-column: 1;
+  }
+
+  .service-section--reverse .service-section__image {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .service-section__content {
+    align-items: center;
+  }
+
+  .service-section__image {
+    order: -1;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+
+  .service-section__actions {
+    justify-content: center;
+  }
+
+  .service-section__provider-note {
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--brand);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .service-expect-banner {
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  .service-expect-card {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .service-prep-aftercare__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .service-map-banner__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .service-map-banner__map {
+    height: 350px;
+    order: -1;
+  }
+}
+
+
 /* -- Responsive Overrides -- */
 
 @media (max-width: 576px) {
@@ -890,17 +1425,20 @@ get_header();
 
 </style>
 <?php
-
 $post_id      = get_the_ID();
-$icon         = get_post_meta($post_id, '_service_icon', true)     ?: 'Γ£¿';
+$icon         = get_post_meta($post_id, '_service_icon', true)     ?: '✨';
 $price        = get_post_meta($post_id, '_service_price', true);
 $duration     = get_post_meta($post_id, '_service_duration', true);
 $video        = get_post_meta($post_id, '_service_video', true);
 $benefits_raw = get_post_meta($post_id, '_service_benefits', true);
 $benefits     = $benefits_raw ? array_filter(array_map('trim', explode("\n", $benefits_raw))) : [];
 
-// Convert YouTube / Vimeo URL ΓåÆ embed URL
-// Accepts: watch?v=, youtu.be/, /shorts/, /embed/, /v/
+$categories    = get_the_terms($post_id, 'service_category');
+$category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : 'Treatment';
+$has_image     = has_post_thumbnail();
+$post_slug     = get_post_field('post_name', $post_id);
+
+// Convert YouTube / Vimeo URL → embed URL
 $video_embed = '';
 if ($video) {
     if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video, $m)) {
@@ -910,16 +1448,440 @@ if ($video) {
     }
 }
 
-$categories    = get_the_terms($post_id, 'service_category');
-$category_name = ($categories && !is_wp_error($categories)) ? $categories[0]->name : 'Treatment';
-$has_image     = has_post_thumbnail();
+// Retrieve Custom Fields Metadata for Sections
+$sec_a_title     = get_post_meta($post_id, '_service_sec_a_title', true);
+$sec_a_desc      = get_post_meta($post_id, '_service_sec_a_desc', true);
+$sec_a_checklist = get_post_meta($post_id, '_service_sec_a_checklist', true);
+$sec_a_image_id  = get_post_meta($post_id, '_service_sec_a_image_id', true);
+
+$sec_b_title     = get_post_meta($post_id, '_service_sec_b_title', true);
+$sec_b_desc      = get_post_meta($post_id, '_service_sec_b_desc', true);
+$sec_b_image_id  = get_post_meta($post_id, '_service_sec_b_image_id', true);
+
+$sec_c_title       = get_post_meta($post_id, '_service_sec_c_title', true);
+$sec_c_desc        = get_post_meta($post_id, '_service_sec_c_desc', true);
+$sec_c_bg_image_id = get_post_meta($post_id, '_service_sec_c_bg_image_id', true);
+
+$sec_d_prep  = get_post_meta($post_id, '_service_sec_d_prep', true);
+$sec_d_after = get_post_meta($post_id, '_service_sec_d_after', true);
+
+$sec_e_title     = get_post_meta($post_id, '_service_sec_e_title', true);
+$sec_e_desc      = get_post_meta($post_id, '_service_sec_e_desc', true);
+$sec_e_image_id  = get_post_meta($post_id, '_service_sec_e_image_id', true);
+
+// Parse checklists/guides by line breaks
+$sec_a_checklist_items = !empty($sec_a_checklist) ? array_filter(array_map('trim', explode("\n", $sec_a_checklist))) : [];
+$sec_d_prep_items      = !empty($sec_d_prep) ? array_filter(array_map('trim', explode("\n", $sec_d_prep))) : [];
+$sec_d_after_items     = !empty($sec_d_after) ? array_filter(array_map('trim', explode("\n", $sec_d_after))) : [];
+
+// Retrieve FAQ items
+$faqs = [];
+for ($i = 1; $i <= 6; $i++) {
+    $q = get_post_meta($post_id, '_service_faq_q' . $i, true);
+    $a = get_post_meta($post_id, '_service_faq_a' . $i, true);
+    if (!empty($q)) {
+        $faqs[] = [
+            'q' => $q,
+            'a' => $a
+        ];
+    }
+}
+
+// Check if we have Custom Section layout data to show the premium sections
+$is_enriched = (
+    !empty($sec_a_desc) || 
+    !empty($sec_b_desc) || 
+    !empty($sec_c_desc) || 
+    !empty($sec_e_desc)
+);
+
+// Helper function to resolve stock image URLs or custom uploads
+if (!function_exists('livia_get_service_image_url')) {
+    function livia_get_service_image_url($image_id, $type, $slug) {
+        if (!empty($image_id) && is_numeric($image_id)) {
+            $url = wp_get_attachment_url($image_id);
+            if (!empty($url)) {
+                return $url;
+            }
+        }
+        
+        // Stock fallbacks
+        $default_images = [
+            'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_376407063-scaled.jpeg',
+            'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_396759557-scaled.jpeg',
+            'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
+            'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
+        ];
+
+        if (strpos($slug, 'laser') !== false || strpos($slug, 'hair') !== false) {
+            $img_mapping = [
+                'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_376407063-scaled.jpeg',
+                'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_396759557-scaled.jpeg',
+                'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
+                'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
+            ];
+        } elseif (strpos($slug, 'botox') !== false || strpos($slug, 'xeomin') !== false || strpos($slug, 'jeuveau') !== false || strpos($slug, 'dysport') !== false) {
+            $img_mapping = [
+                'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/06/AdobeStock_538904225-scaled.jpeg',
+                'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/06/AdobeStock_446213685-scaled.jpeg',
+                'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
+                'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_374628525-scaled.jpeg'
+            ];
+        } elseif (strpos($slug, 'filler') !== false || strpos($slug, 'radiesse') !== false || strpos($slug, 'sculptra') !== false) {
+            $img_mapping = [
+                'areas_treated' => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_260345614-1-scaled.jpeg',
+                'how_works'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_474297401-1-scaled.jpeg',
+                'expect_bg'     => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_107647945-scaled.jpeg',
+                'plan'          => 'https://liviamedspa.com/wp-content/uploads/2025/04/AdobeStock_520811401-scaled.jpeg'
+            ];
+        } else {
+            $img_mapping = $default_images;
+        }
+        
+        return isset($img_mapping[$type]) ? $img_mapping[$type] : '';
+    }
+}
+
+// Helper function for default prep/aftercare
+if (!function_exists('livia_get_default_prep_aftercare')) {
+    function livia_get_default_prep_aftercare($slug) {
+        $prep = [];
+        $after = [];
+        
+        if (strpos($slug, 'laser') !== false || strpos($slug, 'hair') !== false || strpos($slug, 'candela') !== false || strpos($slug, 'lhr') !== false) {
+            $prep = [
+                'Shave the treatment area completely 24 hours prior to your session.',
+                'Avoid plucking, waxing, or tweezing hair in the target area for 4 weeks.',
+                'Avoid direct sun exposure and tanning beds for at least 2 weeks.',
+                'Ensure skin is completely free of self-tanner, lotions, oils, and makeup on the day of treatment.'
+            ];
+            $after = [
+                'Avoid direct sun exposure on the treated areas and apply broad-spectrum SPF 30+ daily.',
+                'Avoid hot tubs, saunas, steam rooms, and hot showers for 24–48 hours.',
+                'Postpone strenuous exercise and excessive sweating for 24 hours.',
+                'Do not pluck, wax, or tweeze between sessions; shaving is the only permitted hair removal method.'
+            ];
+        } elseif (strpos($slug, 'botox') !== false || strpos($slug, 'xeomin') !== false || strpos($slug, 'jeuveau') !== false || strpos($slug, 'dysport') !== false) {
+            $prep = [
+                'Avoid alcohol and blood-thinning supplements for 24-48 hours before treatment.',
+                'Arrive with a clean, makeup-free face if possible.',
+                'Reschedule if you have an active skin rash, cold sore, or infection in the treatment area.'
+            ];
+            $after = [
+                'Keep your head elevated and avoid lying down for 4 hours after treatment.',
+                'Avoid rubbing, massaging, or placing pressure on the treated areas for 24 hours.',
+                'Postpone strenuous exercise and heavy sweating for 24 hours.',
+                'Avoid facials, chemical peels, and microdermabrasion for 2 weeks.'
+            ];
+        } elseif (strpos($slug, 'filler') !== false || strpos($slug, 'radiesse') !== false || strpos($slug, 'sculptra') !== false) {
+            $prep = [
+                'Avoid blood-thinning medications and supplements (like aspirin, fish oil) for 1 week prior.',
+                'Avoid alcohol intake for 24-48 hours prior to your appointment to minimize bruising.',
+                'Plan your treatment at least 2 weeks before any major social events.'
+            ];
+            $after = [
+                'Apply cold packs gently to the treated areas for 15-20 minutes at a time to reduce swelling.',
+                'Avoid touching, rubbing, or massaging the injection sites (except Sculptra 5-5-5 rule).',
+                'Avoid sleeping face-down; sleep on your back with head elevated on pillows for 2-3 nights.',
+                'Avoid strenuous exercise, saunas, and hot tubs for 24-48 hours.'
+            ];
+        } else {
+            $prep = [
+                'Avoid facial treatments, chemical peels, or laser procedures for 2 weeks prior.',
+                'Arrive with clean skin, free of heavy makeup, lotions, or perfumes.',
+                'Stay well-hydrated and follow any specific pre-treatment advice.'
+            ];
+            $after = [
+                'Follow all specific post-treatment instructions provided by your practitioner.',
+                'Keep the treated area clean and hydrated with recommended skincare products.',
+                'Apply broad-spectrum sunscreen daily and avoid direct sun exposure.'
+            ];
+        }
+        
+        return ['prep' => $prep, 'after' => $after];
+    }
+}
 ?>
 
 <main class="site-main" id="main-content">
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         HERO ΓÇö 2-column when featured image exists, centered when not
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+<?php if ($is_enriched): ?>
+    
+    <!-- ═══════════════════════════════════════════════════════
+         BREADCRUMBS & TOP BAR (Enriched Layout)
+         ═══════════════════════════════════════════════════════ -->
+    <nav class="breadcrumbs breadcrumbs--services reveal" aria-label="Breadcrumb"
+         itemscope itemtype="https://schema.org/BreadcrumbList">
+        <div class="section__inner">
+            <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item"><span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li class="breadcrumbs__sep" aria-hidden="true">›</li>
+                <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" itemprop="item"><span itemprop="name">Services</span></a>
+                    <meta itemprop="position" content="2">
+                </li>
+                <li class="breadcrumbs__sep" aria-hidden="true">›</li>
+                <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+                    <span itemprop="name"><?php the_title(); ?></span>
+                    <meta itemprop="position" content="3">
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1: AREAS TREATED (Acting as Page Hero)
+         ═══════════════════════════════════════════════════════ -->
+    <?php 
+    $sec_a_display_title = !empty($sec_a_title) ? $sec_a_title : get_the_title();
+    $sec_a_display_desc = !empty($sec_a_desc) ? $sec_a_desc : get_the_excerpt();
+    $sec_a_img_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : livia_get_service_image_url($sec_a_image_id, 'areas_treated', $post_slug);
+    ?>
+    <section class="service-section" aria-label="Areas Treated">
+        <div class="service-section__inner">
+            <div class="service-section__content reveal">
+                <span class="service-section__label uppercase-brand">AREAS TREATED WITH <?php the_title(); ?></span>
+                <h1 class="service-section__title serif-title"><?php echo esc_html($sec_a_display_title); ?></h1>
+                
+                <div class="service-section__desc">
+                    <?php echo wp_kses_post($sec_a_display_desc); ?>
+                </div>
+
+                <?php if (!empty($sec_a_checklist_items)): ?>
+                <ul class="service-checklist" role="list">
+                    <?php foreach ($sec_a_checklist_items as $item): ?>
+                    <li class="service-checklist__item">
+                        <span class="service-checklist__check" aria-hidden="true">✓</span>
+                        <span><?php echo esc_html($item); ?></span>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            </div>
+            
+            <?php if (!empty($sec_a_img_url)): ?>
+            <div class="service-section__image reveal">
+                <img src="<?php echo esc_url($sec_a_img_url); ?>" alt="<?php the_title_attribute(); ?> areas treated">
+            </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2: HOW IT WORKS
+         ═══════════════════════════════════════════════════════ -->
+    <?php if (!empty($sec_b_desc)): 
+        $sec_b_display_title = !empty($sec_b_title) ? $sec_b_title : 'How It Works';
+        $sec_b_img_url = livia_get_service_image_url($sec_b_image_id, 'how_works', $post_slug);
+    ?>
+    <section class="service-section service-section--reverse" aria-label="How it works">
+        <div class="service-section__inner">
+            <div class="service-section__content reveal">
+                <span class="service-section__label uppercase-brand">HOW <?php the_title(); ?> WORKS</span>
+                <h2 class="service-section__title serif-title"><?php echo esc_html($sec_b_display_title); ?></h2>
+                
+                <div class="service-section__desc">
+                    <?php echo wp_kses_post($sec_b_desc); ?>
+                </div>
+                
+                <div class="service-section__actions">
+                    <a href="#book-now" class="btn btn--primary btn--lg">Book Treatment</a>
+                    <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>
+                </div>
+            </div>
+            
+            <?php if (!empty($sec_b_img_url)): ?>
+            <div class="service-section__image reveal">
+                <img src="<?php echo esc_url($sec_b_img_url); ?>" alt="<?php the_title_attribute(); ?> mechanism of action">
+            </div>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3: WHAT TO EXPECT (Full-width Banner)
+         ═══════════════════════════════════════════════════════ -->
+    <?php if (!empty($sec_c_desc)): 
+        $sec_c_display_title = !empty($sec_c_title) ? $sec_c_title : 'What to Expect';
+        $sec_c_bg_url = livia_get_service_image_url($sec_c_bg_image_id, 'expect_bg', $post_slug);
+    ?>
+    <section class="service-expect-banner" <?php echo !empty($sec_c_bg_url) ? 'style="background-image: url('' . esc_url($sec_c_bg_url) . '');"' : ''; ?> aria-label="Expectations">
+        <div class="service-expect-banner__overlay"></div>
+        <div class="service-expect-banner__inner">
+            <div class="service-expect-card reveal">
+                <span class="service-expect-card__label uppercase-brand">Comfortable, In-Office Sessions</span>
+                <h2 class="service-expect-card__title serif-title"><?php echo esc_html($sec_c_display_title); ?></h2>
+                <div class="service-expect-card__desc">
+                    <?php echo wp_kses_post($sec_c_desc); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4: PREPARATION & AFTERCARE
+         ═══════════════════════════════════════════════════════ -->
+    <?php 
+    $prep_items = $sec_d_prep_items;
+    $after_items = $sec_d_after_items;
+    if (empty($prep_items) && empty($after_items)) {
+        $defaults = livia_get_default_prep_aftercare($post_slug);
+        $prep_items = $defaults['prep'];
+        $after_items = $defaults['after'];
+    }
+    if (!empty($prep_items) || !empty($after_items)):
+    ?>
+    <section class="service-prep-aftercare" aria-label="Preparation and Aftercare">
+        <div class="service-prep-aftercare__inner">
+            <div class="service-prep-aftercare__header reveal">
+                <span class="service-prep-aftercare__label uppercase-brand">SUPPORTING SAFE AND EFFECTIVE TREATMENT</span>
+                <h2 class="service-prep-aftercare__title serif-title">Preparation and Aftercare</h2>
+            </div>
+            
+            <div class="service-prep-aftercare__grid reveal">
+                <?php if (!empty($prep_items)): ?>
+                <div class="service-prep-aftercare__col">
+                    <h3 class="service-prep-aftercare__subtitle">Before treatment, patients are typically advised to:</h3>
+                    <ul class="service-checklist" role="list">
+                        <?php foreach ($prep_items as $item): ?>
+                        <li class="service-checklist__item">
+                            <span class="service-checklist__check" aria-hidden="true">✓</span>
+                            <span><?php echo esc_html($item); ?></span>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
+                
+                <?php if (!empty($after_items)): ?>
+                <div class="service-prep-aftercare__col">
+                    <h3 class="service-prep-aftercare__subtitle">After treatment, patients should:</h3>
+                    <ul class="service-checklist" role="list">
+                        <?php foreach ($after_items as $item): ?>
+                        <li class="service-checklist__item">
+                            <span class="service-checklist__check" aria-hidden="true">✓</span>
+                            <span><?php echo esc_html($item); ?></span>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 5: TREATMENT PLAN & RESULTS
+         ═══════════════════════════════════════════════════════ -->
+    <?php if (!empty($sec_e_desc)): 
+        $sec_e_display_title = !empty($sec_e_title) ? $sec_e_title : 'Treatment Plan and Results';
+        $sec_e_img_url = livia_get_service_image_url($sec_e_image_id, 'plan', $post_slug);
+    ?>
+    <section class="service-section service-section--reverse" aria-label="Treatment Plan">
+        <div class="service-section__inner">
+            <div class="service-section__content reveal">
+                <span class="service-section__label uppercase-brand">TREATMENT PLAN AND RESULTS</span>
+                <h2 class="service-section__title serif-title"><?php echo esc_html($sec_e_display_title); ?></h2>
+                
+                <div class="service-section__desc">
+                    <?php echo wp_kses_post($sec_e_desc); ?>
+                </div>
+                
+                <div class="service-section__provider-note">
+                    <p>Treatments are performed by <strong>Angela Spicola, APRN</strong>; treatments are customized to your skin type, concerns, and goals, ensuring precise, safe, and effective care.</p>
+                </div>
+            </div>
+            
+            <?php if (!empty($sec_e_img_url)): ?>
+            <div class="service-section__image reveal">
+                <img src="<?php echo esc_url($sec_e_img_url); ?>" alt="<?php the_title_attribute(); ?> treatment plan results">
+            </div>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 6: FAQS
+         ═══════════════════════════════════════════════════════ -->
+    <?php if (!empty($faqs)): ?>
+    <section class="service-faqs" aria-label="Frequently Asked Questions">
+        <div class="service-faqs__inner">
+            <div class="service-faqs__header reveal">
+                <h2 class="service-faqs__title serif-title">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-accordion reveal">
+                <?php foreach ($faqs as $faq): ?>
+                <div class="faq-accordion__item">
+                    <button class="faq-accordion__header" aria-expanded="false">
+                        <span class="faq-accordion__title"><?php echo esc_html($faq['q']); ?></span>
+                        <span class="faq-accordion__icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-accordion__content">
+                        <div class="faq-accordion__content-inner">
+                            <?php echo wp_kses_post($faq['a']); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 7: LOCATION MAP BANNER
+         ═══════════════════════════════════════════════════════ -->
+    <section class="service-map-banner reveal" aria-label="Visit Our Spa">
+        <div class="service-map-banner__inner">
+            <div class="service-map-banner__content">
+                <span class="service-map-banner__label uppercase-brand">LOCATED IN TAMPA</span>
+                <h2 class="service-map-banner__title serif-title">Visit Livia Med Spa<br>in Tampa, FL</h2>
+                <div class="service-map-banner__info">
+                    <div class="service-map-banner__info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>10043 N Dale Mabry Hwy, Tampa, FL 33618</span>
+                    </div>
+                    <div class="service-map-banner__info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <a href="tel:8132302219">(813) 230-2219</a>
+                    </div>
+                    <div class="service-map-banner__info-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>Mon–Wed: 9am–7pm &nbsp;|&nbsp; Thu–Sat: 9am–4pm</span>
+                    </div>
+                </div>
+                <div class="service-map-banner__actions">
+                    <a href="#book-now" class="btn btn--primary btn--lg">Book Consultation</a>
+                </div>
+            </div>
+            
+            <div class="service-map-banner__map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3520.1062927231405!2d-82.5042456!3d28.0441617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c159265ea5e9%3A0xeab50c5d5e2fe10c!2sLivia%20Med%20Spa!5e0!3m2!1sen!2sus!4v1714490000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+<?php else: ?>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FALLBACK CLASSIC LAYOUT (For non-enriched services)
+         ═══════════════════════════════════════════════════════ -->
     <section class="service-hero<?php echo !$has_image ? ' service-hero--no-image' : ''; ?>"
              aria-label="Service details"
              itemscope itemtype="https://schema.org/MedicalProcedure">
@@ -927,10 +1889,7 @@ $has_image     = has_post_thumbnail();
         <span class="service-hero__glow" aria-hidden="true"></span>
 
         <div class="service-hero__inner">
-
-            <!-- Left: text content -->
             <div class="service-hero__content reveal">
-
                 <nav class="breadcrumbs breadcrumbs--hero" aria-label="Breadcrumb"
                      itemscope itemtype="https://schema.org/BreadcrumbList">
                     <ol class="breadcrumbs__list">
@@ -938,12 +1897,12 @@ $has_image     = has_post_thumbnail();
                             <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item"><span itemprop="name">Home</span></a>
                             <meta itemprop="position" content="1">
                         </li>
-                        <li class="breadcrumbs__sep" aria-hidden="true">ΓÇ║</li>
+                        <li class="breadcrumbs__sep" aria-hidden="true">›</li>
                         <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                             <a href="<?php echo esc_url(home_url('/services/')); ?>" itemprop="item"><span itemprop="name">Services</span></a>
                             <meta itemprop="position" content="2">
                         </li>
-                        <li class="breadcrumbs__sep" aria-hidden="true">ΓÇ║</li>
+                        <li class="breadcrumbs__sep" aria-hidden="true">›</li>
                         <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
                             <span itemprop="name"><?php the_title(); ?></span>
                             <meta itemprop="position" content="3">
@@ -989,7 +1948,6 @@ $has_image     = has_post_thumbnail();
                 </div>
             </div>
 
-            <!-- Right: featured image (only renders when thumbnail exists) -->
             <?php if ($has_image): ?>
             <div class="service-hero__image reveal" aria-hidden="true">
                 <?php the_post_thumbnail('large', [
@@ -1002,24 +1960,19 @@ $has_image     = has_post_thumbnail();
                 <span class="service-hero__img-glow"></span>
             </div>
             <?php endif; ?>
-
         </div>
     </section>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         CONTENT + STICKY SIDEBAR
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <!-- ═══════════════════════════════════════════════════════
+         SERVICE BODY: CONTENT + SIDEBAR
+         ═══════════════════════════════════════════════════════ -->
     <section class="service-body" aria-label="Treatment information">
         <div class="section__inner">
             <div class="service-body__layout">
-
-                <!-- Main WP editor content -->
                 <div class="service-body__main service-content__body reveal" itemprop="description">
                     <?php the_content(); ?>
-
                 </div>
 
-                <!-- Sticky quick-info & booking sidebar -->
                 <aside class="service-body__sidebar reveal" aria-label="Quick booking">
                     <div class="service-sidebar">
                         <div class="service-sidebar__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
@@ -1051,43 +2004,16 @@ $has_image     = has_post_thumbnail();
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             (813) 230-2219
                         </a>
-                        <p class="service-sidebar__fine">Free consultation ┬╖ No commitment required</p>
+                        <p class="service-sidebar__fine">Free consultation · No commitment required</p>
                     </div>
                 </aside>
-
             </div>
         </div>
     </section>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         STANDALONE BOTTOM PHOTO SECTION
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
-    <?php
-    $bottom_photo_id = get_post_meta($post_id, '_service_bottom_photo_id', true);
-    if (!empty($bottom_photo_id)):
-        $bottom_photo_html = wp_get_attachment_image($bottom_photo_id, 'full', false, [
-            'alt'      => get_the_title() . ' bottom photo',
-            'loading'  => 'lazy',
-            'decoding' => 'async'
-        ]);
-        if (!empty($bottom_photo_html)):
-        ?>
-        <section class="service-bottom-photo" aria-label="Additional service image">
-            <div class="service-bottom-photo__inner">
-                <div class="service-bottom-photo__wrap reveal">
-                    <a href="<?php echo esc_url(wp_get_attachment_url($bottom_photo_id)); ?>" class="service-bottom-photo__lightbox-trigger" aria-label="Zoom bottom photo">
-                        <?php echo $bottom_photo_html; ?>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <?php 
-        endif;
-    endif; ?>
-
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         BENEFITS GRID ΓÇö only renders when meta field has content
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <!-- ═══════════════════════════════════════════════════════
+         BENEFITS SECTION
+         ═══════════════════════════════════════════════════════ -->
     <?php if (!empty($benefits)): ?>
     <section class="service-benefits" aria-label="Treatment benefits">
         <div class="section__inner">
@@ -1109,9 +2035,9 @@ $has_image     = has_post_thumbnail();
     </section>
     <?php endif; ?>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         VIDEO SECTION ΓÇö only renders when _service_video meta set
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <!-- ═══════════════════════════════════════════════════════
+         VIDEO SECTION
+         ═══════════════════════════════════════════════════════ -->
     <?php if ($video_embed): ?>
     <section class="service-video" aria-label="Treatment video">
         <div class="section__inner">
@@ -1133,9 +2059,9 @@ $has_image     = has_post_thumbnail();
     </section>
     <?php endif; ?>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         WHY PEOPLE CHOOSE LIVIA (Static)
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+    <!-- ═══════════════════════════════════════════════════════
+         WHY CHOOSE US (Static cards)
+         ═══════════════════════════════════════════════════════ -->
     <section class="service-why-us" aria-label="Why choose LIVIA Med Spa">
         <div class="section__inner">
             <div class="section__header reveal">
@@ -1168,98 +2094,118 @@ $has_image     = has_post_thumbnail();
         </div>
     </section>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         RELATED SERVICES (Dynamic)
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
-    <?php
-    // Pull from same category first; backfill with random others if < 3 found
-    $related_args = [
+<?php endif; ?>
+
+<!-- ═══════════════════════════════════════════════════════
+     COMMON BOTTOM SECTIONS: BOTTOM PHOTO, RELATED, CTA
+     ═══════════════════════════════════════════════════════ -->
+
+<!-- Standalone Bottom Lightbox (Only for classic layout bottom photos) -->
+<?php
+$bottom_photo_id = get_post_meta($post_id, '_service_bottom_photo_id', true);
+if (!empty($bottom_photo_id) && !$is_enriched):
+    $bottom_photo_html = wp_get_attachment_image($bottom_photo_id, 'full', false, [
+        'alt'      => get_the_title() . ' bottom photo',
+        'loading'  => 'lazy',
+        'decoding' => 'async'
+    ]);
+    if (!empty($bottom_photo_html)):
+    ?>
+    <section class="service-bottom-photo" aria-label="Additional service image">
+        <div class="service-bottom-photo__inner">
+            <div class="service-bottom-photo__wrap reveal">
+                <a href="<?php echo esc_url(wp_get_attachment_url($bottom_photo_id)); ?>" class="service-bottom-photo__lightbox-trigger" aria-label="Zoom bottom photo">
+                    <?php echo $bottom_photo_html; ?>
+                </a>
+            </div>
+        </div>
+    </section>
+    <?php 
+    endif;
+endif; ?>
+
+<!-- Related Treatments -->
+<?php
+$related_args = [
+    'post_type'      => 'service',
+    'posts_per_page' => 3,
+    'post__not_in'   => [$post_id],
+    'orderby'        => 'rand',
+    'no_found_rows'  => true,
+];
+if ($categories && !is_wp_error($categories)) {
+    $related_args['tax_query'] = [[
+        'taxonomy' => 'service_category',
+        'field'    => 'term_id',
+        'terms'    => wp_list_pluck($categories, 'term_id'),
+    ]];
+}
+$related = new WP_Query($related_args);
+
+if ($related->post_count < 3 && $related->post_count > 0) {
+    $found_ids   = wp_list_pluck($related->posts, 'ID');
+    $exclude_ids = array_merge([$post_id], $found_ids);
+    $backfill    = new WP_Query([
         'post_type'      => 'service',
-        'posts_per_page' => 3,
-        'post__not_in'   => [$post_id],
+        'posts_per_page' => 3 - $related->post_count,
+        'post__not_in'   => $exclude_ids,
         'orderby'        => 'rand',
         'no_found_rows'  => true,
-    ];
-    if ($categories && !is_wp_error($categories)) {
-        $related_args['tax_query'] = [[
-            'taxonomy' => 'service_category',
-            'field'    => 'term_id',
-            'terms'    => wp_list_pluck($categories, 'term_id'),
-        ]];
+    ]);
+    if ($backfill->have_posts()) {
+        $related->posts      = array_merge($related->posts, $backfill->posts);
+        $related->post_count = count($related->posts);
     }
-    $related = new WP_Query($related_args);
+}
 
-    // Backfill: if same-cat returned fewer than 3, top up with random others
-    if ($related->post_count < 3 && $related->post_count > 0) {
-        $found_ids   = wp_list_pluck($related->posts, 'ID');
-        $exclude_ids = array_merge([$post_id], $found_ids);
-        $backfill    = new WP_Query([
-            'post_type'      => 'service',
-            'posts_per_page' => 3 - $related->post_count,
-            'post__not_in'   => $exclude_ids,
-            'orderby'        => 'rand',
-            'no_found_rows'  => true,
-        ]);
-        if ($backfill->have_posts()) {
-            $related->posts      = array_merge($related->posts, $backfill->posts);
-            $related->post_count = count($related->posts);
-        }
-    }
-    if ($related->have_posts()): ?>
-    <section class="related-services" aria-label="Related treatments">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__label">Explore More</span>
-                <h2 class="section__title">Related Treatments</h2>
-            </div>
-            <div class="related-services__grid reveal">
-                <?php while ($related->have_posts()): $related->the_post();
-                    $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: 'Γ£¿';
-                ?>
-                <a href="<?php the_permalink(); ?>" class="service-card">
-                    <?php if (has_post_thumbnail()): ?>
-                    <div class="service-card__thumb">
-                        <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
-                    </div>
-                    <?php else: ?>
-                    <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($r_icon); ?></div>
-                    <?php endif; ?>
-                    <h3 class="service-card__title"><?php the_title(); ?></h3>
-                    <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-                    <span class="service-card__link">Learn More ΓåÆ</span>
-                </a>
-                <?php endwhile; wp_reset_postdata(); ?>
-            </div>
+if ($related->have_posts()): ?>
+<section class="related-services" aria-label="Related treatments">
+    <div class="section__inner">
+        <div class="section__header reveal">
+            <span class="section__label">Explore More</span>
+            <h2 class="section__title">Related Treatments</h2>
         </div>
-    </section>
-    <?php endif; ?>
-
-
-
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         CTA (Static)
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
-    <section class="cta-section" aria-label="Book a consultation">
-        <div class="cta-section__inner reveal">
-            <span class="cta-section__label">Start Your Journey</span>
-            <h2 class="cta-section__title">Ready to Book<br>Your <?php the_title(); ?>?</h2>
-            <p class="cta-section__text">Schedule a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
-            <div class="cta-section__actions">
-                <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
-                <a href="<?php echo get_post_type_archive_link('service'); ?>" class="btn btn--outline btn--lg">ΓåÉ All Services</a>
-            </div>
+        <div class="related-services__grid reveal">
+            <?php while ($related->have_posts()): $related->the_post();
+                $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+            ?>
+            <a href="<?php the_permalink(); ?>" class="service-card">
+                <?php if (has_post_thumbnail()): ?>
+                <div class="service-card__thumb">
+                    <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                </div>
+                <?php else: ?>
+                <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($r_icon); ?></div>
+                <?php endif; ?>
+                <h3 class="service-card__title"><?php the_title(); ?></h3>
+                <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
+                <span class="service-card__link">Learn More →</span>
+            </a>
+            <?php endwhile; wp_reset_postdata(); ?>
         </div>
-    </section>
+    </div>
+</section>
+<?php endif; ?>
 
-    <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         LIGHTBOX CONTAINER & LOGIC (Vanilla JS)
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const trigger = document.querySelector('.service-bottom-photo__lightbox-trigger');
-        if (!trigger) return;
+<!-- CTA Section -->
+<section class="cta-section" aria-label="Book a consultation">
+    <div class="cta-section__inner reveal">
+        <span class="cta-section__label">Start Your Journey</span>
+        <h2 class="cta-section__title">Ready to Book<br>Your <?php the_title(); ?>?</h2>
+        <p class="cta-section__text">Schedule a complimentary consultation and let our experts create a personalized treatment plan just for you.</p>
+        <div class="cta-section__actions">
+            <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
+            <a href="<?php echo get_post_type_archive_link('service'); ?>" class="btn btn--outline btn--lg">← All Services</a>
+        </div>
+    </div>
+</section>
 
-        // Create overlay element dynamically
+<!-- Lightbox overlay & scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Lightbox logic
+    const trigger = document.querySelector('.service-bottom-photo__lightbox-trigger');
+    if (trigger) {
         const overlay = document.createElement('div');
         overlay.className = 'livia-lightbox-overlay';
         overlay.innerHTML = `
@@ -1271,35 +2217,53 @@ $has_image     = has_post_thumbnail();
         const lightboxImg = overlay.querySelector('.livia-lightbox-image');
         const closeBtn = overlay.querySelector('.livia-lightbox-close');
 
-        // Open lightbox
         trigger.addEventListener('click', function(e) {
             e.preventDefault();
             const imgUrl = this.getAttribute('href');
             lightboxImg.src = imgUrl;
             overlay.classList.add('is-active');
-            document.body.style.overflow = 'hidden'; // block page scroll
+            document.body.style.overflow = 'hidden';
         });
 
-        // Close lightbox
         function closeLightbox() {
             overlay.classList.remove('is-active');
-            document.body.style.overflow = ''; // restore page scroll
-            setTimeout(() => { lightboxImg.src = ''; }, 400); // clear src after animation finishes
+            document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 400);
         }
 
         closeBtn.addEventListener('click', closeLightbox);
         overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                closeLightbox();
-            }
+            if (e.target === overlay) closeLightbox();
         });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && overlay.classList.contains('is-active')) {
-                closeLightbox();
+            if (e.key === 'Escape' && overlay.classList.contains('is-active')) closeLightbox();
+        });
+    }
+
+    // 2. FAQ Accordion logic
+    const faqHeaders = document.querySelectorAll('.faq-accordion__header');
+    faqHeaders.forEach(button => {
+        button.addEventListener('click', () => {
+            const expanded = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', !expanded);
+            
+            const item = button.closest('.faq-accordion__item');
+            const icon = button.querySelector('.faq-accordion__icon');
+            const content = button.nextElementSibling;
+            
+            if (!expanded) {
+                item.classList.add('is-active');
+                icon.textContent = '−';
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                item.classList.remove('is-active');
+                icon.textContent = '+';
+                content.style.maxHeight = '0px';
             }
         });
     });
-    </script>
+});
+</script>
 
 </main>
 
