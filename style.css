@@ -498,13 +498,13 @@ html {
   opacity: 1;
 }
 
-/* Invisible bridge so mega menu doesn't vanish when moving mouse down */
+/* Invisible bridge so mega menu doesn't vanish when moving mouse down or diagonally */
 .nav__item--has-mega>.nav__link::after {
   content: '';
   position: absolute;
   bottom: -45px;
-  left: 0;
-  right: 0;
+  left: -20px;
+  right: -20px;
   height: 45px;
 }
 
@@ -635,7 +635,8 @@ html {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-8px);
-  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+  transition-delay: 0.12s; /* delay hover out to prevent accidental closing */
   z-index: 100;
   /* Invisible top padding acts as hover bridge between nav link and dropdown */
   padding-top: 0.5rem;
@@ -657,6 +658,7 @@ html {
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
+  transition-delay: 0s; /* immediate appearance on hover */
 }
 
 .mega-menu__inner {
