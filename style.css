@@ -502,10 +502,12 @@ html {
 .nav__item--has-mega>.nav__link::after {
   content: '';
   position: absolute;
-  bottom: -45px;
-  left: -20px;
-  right: -20px;
-  height: 45px;
+  bottom: -80px;
+  left: -40px;
+  right: -40px;
+  height: 80px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0); /* Ensure hit-testing registers in all browsers */
 }
 
 /* -- Header Actions ---------------------------------------------- */
