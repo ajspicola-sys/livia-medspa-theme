@@ -332,7 +332,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
 .service-hero-enriched__inner {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
+  align-items: stretch;
   gap: clamp(3rem, 2rem + 4vw, 6rem);
 }
 
@@ -459,6 +459,8 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
 .service-hero-enriched__image-wrap {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-hero-enriched__image {
@@ -466,7 +468,9 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   border-radius: 32px;
   overflow: hidden;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(var(--brand-rgb), 0.06);
-  aspect-ratio: 4 / 3;
+  flex-grow: 1;
+  height: 100%;
+  min-height: 350px;
 }
 
 .service-hero-enriched__img {
@@ -480,6 +484,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   .service-hero-enriched__inner {
     grid-template-columns: 1fr;
     text-align: center;
+    align-items: center;
   }
   .service-hero-enriched__cat, .service-hero-enriched__checklist li, .service-hero-enriched__meta {
     justify-content: center;
@@ -495,6 +500,8 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   }
   .service-hero-enriched__image {
     aspect-ratio: 16 / 10;
+    height: auto;
+    min-height: auto;
   }
 }
 
@@ -507,8 +514,8 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
 
 .service-how-works__grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  align-items: center;
+  grid-template-columns: 0.9fr 1.15fr;
+  align-items: stretch;
   gap: clamp(3rem, 2rem + 4vw, 6rem);
 }
 
@@ -542,12 +549,20 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   gap: 1rem;
 }
 
+.service-how-works__image-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .service-how-works__image {
   position: relative;
   border-radius: 32px;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(var(--brand-rgb), 0.05);
+  flex-grow: 1;
+  height: 100%;
+  min-height: 350px;
 }
 
 .service-how-works__img {
@@ -561,11 +576,17 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   .service-how-works__grid {
     grid-template-columns: 1fr;
     text-align: center;
+    align-items: center;
   }
   .service-how-works__image-wrap {
     max-width: 480px;
     margin: 0 auto;
     width: 100%;
+  }
+  .service-how-works__image {
+    aspect-ratio: 4 / 5;
+    height: auto;
+    min-height: auto;
   }
   .service-how-works__actions {
     justify-content: center;
@@ -761,7 +782,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(3rem, 2rem + 4vw, 6rem);
-  align-items: center;
+  align-items: stretch;
 }
 
 .service-plan__title {
@@ -840,12 +861,20 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   margin: 0;
 }
 
+.service-plan__image-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .service-plan__image {
   position: relative;
   border-radius: 32px;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(var(--brand-rgb), 0.05);
+  flex-grow: 1;
+  height: 100%;
+  min-height: 350px;
 }
 
 .service-plan__img {
@@ -859,12 +888,18 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   .service-plan__grid {
     grid-template-columns: 1fr;
     text-align: center;
+    align-items: center;
   }
   .service-plan__image-wrap {
     order: -1;
     max-width: 480px;
     margin: 0 auto;
     width: 100%;
+  }
+  .service-plan__image {
+    aspect-ratio: 4 / 5;
+    height: auto;
+    min-height: auto;
   }
   .service-credentials-card {
     text-align: left;
