@@ -1986,29 +1986,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
              ENRICHED LAYOUT (State A)
              ========================================================================== -->
 
-        <!-- 1. Breadcrumbs Nav (standalone bar) -->
-        <div class="breadcrumbs-bar">
-            <div class="section__inner">
-                <nav class="breadcrumbs" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-                    <ol class="breadcrumbs__list">
-                        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" itemprop="item" class="breadcrumbs__link"><span itemprop="name">Home</span></a>
-                            <meta itemprop="position" content="1">
-                        </li>
-                        <li class="breadcrumbs__sep" aria-hidden="true">›</li>
-                        <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a href="<?php echo esc_url(get_post_type_archive_link('service')); ?>" itemprop="item" class="breadcrumbs__link"><span itemprop="name">Services</span></a>
-                            <meta itemprop="position" content="2">
-                        </li>
-                        <li class="breadcrumbs__sep" aria-hidden="true">›</li>
-                        <li class="breadcrumbs__item breadcrumbs__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
-                            <span itemprop="name" class="breadcrumbs__current"><?php the_title(); ?></span>
-                            <meta itemprop="position" content="3">
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+
 
         <!-- 2. Section A (Areas Treated / Hero) -->
         <section class="service-hero-enriched" aria-label="Treatment areas" itemscope itemtype="https://schema.org/MedicalProcedure">
@@ -2253,63 +2231,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
             </section>
         <?php endif; ?>
 
-        <!-- 8. Section G (Location & Google Maps Banner) -->
-        <section class="service-location-banner" aria-label="Our location banner">
-            <div class="service-location-banner__info reveal">
-                <span class="service-location-banner__sub">Visit Us</span>
-                <h2 class="service-location-banner__title">Our Tampa Med Spa</h2>
-                
-                <div class="service-location-banner__details">
-                    <!-- Address -->
-                    <div class="service-location-banner__item">
-                        <svg class="service-location-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        <div>
-                            <span class="service-location-banner__label">Address</span>
-                            <p class="service-location-banner__value">10043 N Dale Mabry Hwy<br>Tampa, FL 33618</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Phone -->
-                    <div class="service-location-banner__item">
-                        <svg class="service-location-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <div>
-                            <span class="service-location-banner__label">Phone</span>
-                            <p class="service-location-banner__value"><a href="tel:8132302219">(813) 230-2219</a></p>
-                        </div>
-                    </div>
 
-                    <!-- Hours -->
-                    <div class="service-location-banner__item">
-                        <svg class="service-location-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <div>
-                            <span class="service-location-banner__label">Hours</span>
-                            <p class="service-location-banner__value">
-                                Mon – Wed: 9:00 AM – 7:00 PM<br>
-                                Thu – Sat: 9:00 AM – 4:00 PM<br>
-                                Sun: Closed
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-location-banner__actions">
-                    <a href="#book-now" class="btn btn--primary">Book Appointment</a>
-                    <a href="tel:8132302219" class="btn btn--outline">Call Spa</a>
-                </div>
-            </div>
-            
-            <div class="service-location-banner__map reveal">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3520.081467475141!2d-82.50620852377227!3d28.083049175967664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2c78aef9be245%3A0xe54d92ffb7d5ee4!2sLIVIA%20Med%20Spa!5e0!3m2!1sen!2sus!4v1717646549210!5m2!1sen!2sus"
-                    width="100%"
-                    height="100%"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="LIVIA Med Spa Tampa Florida Location Map">
-                </iframe>
-            </div>
-        </section>
 
     <?php else: ?>
         <!-- ==========================================================================
