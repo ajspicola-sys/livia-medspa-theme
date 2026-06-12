@@ -226,6 +226,87 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         MEDIA TICKER ("As Seen On" scrolling marquee)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="media-ticker" aria-label="Featured media news coverage">
+        <div class="media-ticker__inner">
+            <h3 class="media-ticker__title">As Seen On</h3>
+            <div class="media-ticker__track">
+                <div class="media-ticker__items">
+                    <div class="media-ticker__group">
+                        <div class="media-ticker__logo" aria-label="Associated Press">
+                            <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.02em" fill="currentColor">AP</text>
+                                <text x="36" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="-0.02em" fill="currentColor">NEWS</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Bloomberg">
+                            <svg viewBox="0 0 140 24" width="140" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="-0.04em" fill="currentColor">Bloomberg</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="FOX Business">
+                            <svg viewBox="0 0 145 24" width="145" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="20" letter-spacing="-0.02em" fill="currentColor">FOX</text>
+                                <text x="45" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="400" font-size="12" letter-spacing="0.08em" fill="currentColor">BUSINESS</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Tampa Free Press">
+                            <svg viewBox="0 0 180 24" width="180" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="700" font-size="20" letter-spacing="0.01em" fill="currentColor">Tampa Free Press</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="National Law Review">
+                            <svg viewBox="0 0 240 24" width="240" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="'Times New Roman', Times, 'Didot', Georgia, serif" font-weight="700" font-size="15" letter-spacing="0.06em" fill="currentColor">THE NATIONAL LAW REVIEW</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Florida News Tribune">
+                            <svg viewBox="0 0 210 24" width="210" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="17" fill="currentColor">Florida News Tribune</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="media-ticker__group" aria-hidden="true">
+                        <div class="media-ticker__logo" aria-label="Associated Press">
+                            <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.02em" fill="currentColor">AP</text>
+                                <text x="36" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="-0.02em" fill="currentColor">NEWS</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Bloomberg">
+                            <svg viewBox="0 0 140 24" width="140" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="-0.04em" fill="currentColor">Bloomberg</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="FOX Business">
+                            <svg viewBox="0 0 145 24" width="145" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="20" letter-spacing="-0.02em" fill="currentColor">FOX</text>
+                                <text x="45" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="400" font-size="12" letter-spacing="0.08em" fill="currentColor">BUSINESS</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Tampa Free Press">
+                            <svg viewBox="0 0 180 24" width="180" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="700" font-size="20" letter-spacing="0.01em" fill="currentColor">Tampa Free Press</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="National Law Review">
+                            <svg viewBox="0 0 240 24" width="240" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="'Times New Roman', Times, 'Didot', Georgia, serif" font-weight="700" font-size="15" letter-spacing="0.06em" fill="currentColor">THE NATIONAL LAW REVIEW</text>
+                            </svg>
+                        </div>
+                        <div class="media-ticker__logo" aria-label="Florida News Tribune">
+                            <svg viewBox="0 0 210 24" width="210" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="17" fill="currentColor">Florida News Tribune</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          SERVICES CAROUSEL
          ═══════════════════════════════════════════════════════════════ -->
     <section class="services" id="services" aria-label="Our treatments">
