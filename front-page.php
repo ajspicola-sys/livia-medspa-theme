@@ -146,7 +146,7 @@ get_header(); ?>
                     </div>
                     <div class="hero__stat-divider" aria-hidden="true"></div>
                     <div class="hero__stat">
-                        <span class="hero__stat-num">3+</span>
+                        <span class="hero__stat-num">20+</span>
                         <span class="hero__stat-label">Years Experience</span>
                     </div>
                     <div class="hero__stat-divider" aria-hidden="true"></div>
@@ -530,7 +530,7 @@ get_header(); ?>
                         <span class="why-us__stat-label">5-Star Google Reviews</span>
                     </div>
                     <div class="why-us__stat-card why-us__stat-card--3">
-                        <span class="why-us__stat-number">3+</span>
+                        <span class="why-us__stat-number">20+</span>
                         <span class="why-us__stat-label">Years Experience</span>
                     </div>
                     <div class="why-us__image-placeholder">

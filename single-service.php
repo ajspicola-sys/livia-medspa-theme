@@ -669,107 +669,116 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
   margin-bottom: 0;
 }
 
-/* Section D: Prep & Aftercare columns */
-.service-prep-aftercare {
-  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #ffffff;
-  border-bottom: 1px solid rgba(var(--brand-rgb), 0.05);
+/* Section C: Preparation & Aftercare Glassmorphic Banner styles */
+.service-prep-glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 2rem + 4vw, 4.5rem);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  color: #ffffff;
 }
 
-.service-prep-aftercare__grid {
+.service-prep-glass-card__subtitle {
+  display: block;
+  color: var(--brand-bright);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.service-prep-glass-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 3rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.service-prep-glass-card__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 1.5rem + 3vw, 4rem);
-  margin-top: 3rem;
+  gap: clamp(2.5rem, 2rem + 3vw, 4.5rem);
 }
 
-.service-prep-aftercare__card {
-  background: var(--bg-cream);
-  border: 1px solid rgba(var(--brand-rgb), 0.08);
-  border-radius: 24px;
-  padding: clamp(2rem, 1.5rem + 2vw, 3rem);
-  height: 100%;
-  transition: all 0.4s ease;
-}
-
-.service-prep-aftercare__card--prep {
-  border-top: 4px solid var(--brand);
-}
-
-.service-prep-aftercare__card--after {
-  border-top: 4px solid var(--brand-pink);
-}
-
-.service-prep-aftercare__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(var(--brand-rgb), 0.04);
-  border-color: rgba(var(--brand-rgb), 0.15);
-}
-
-.service-prep-aftercare__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(var(--brand-rgb), 0.06);
-  color: var(--brand);
+.service-prep-glass-card__section-title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.service-prep-aftercare__card--after .service-prep-aftercare__icon {
-  background: rgba(244, 113, 209, 0.08);
-  color: var(--brand-pink);
-}
-
-.service-prep-aftercare__title {
+  gap: 0.75rem;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.6rem;
   font-weight: 500;
-  color: var(--text-dark);
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
-.service-prep-aftercare__subtitle {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-bottom: 1.75rem;
+.service-prep-glass-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-bright);
+  width: 24px;
+  height: 24px;
 }
 
-.service-prep-aftercare__list {
+.service-prep-glass-card__icon svg {
+  display: block;
+}
+
+.service-prep-glass-card__section-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.75rem;
+  line-height: 1.4;
+}
+
+.service-prep-glass-card__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
-.service-prep-aftercare__list li {
+.service-prep-glass-card__list li {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--text-mid);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.service-prep-aftercare__check {
+.service-prep-glass-card__check {
   flex-shrink: 0;
-  color: var(--brand);
+  color: var(--brand-bright);
   margin-top: 0.2rem;
+  width: 14px;
+  height: 14px;
 }
 
-.service-prep-aftercare__card--after .service-prep-aftercare__check {
-  color: var(--brand-pink);
+.service-prep-glass-card__check svg {
+  display: block;
 }
 
 @media (max-width: 768px) {
-  .service-prep-aftercare__grid {
+  .service-prep-glass-card__grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
+
 
 /* Section E: Treatment Plan */
 .service-plan {
@@ -2085,63 +2094,47 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
                 </div>
             </section>
         <?php endif; ?>
-
-        <!-- 4. Section C (What to Expect banner) -->
-        <?php if (!empty($sec_c_desc)): ?>
-            <section class="service-expect-banner" style="background-image: url('<?php echo esc_url($sec_c_img_url); ?>');" aria-label="What to expect">
-                <div class="service-expect-banner__overlay"></div>
-                <div class="service-expect-banner__inner">
-                    <div class="service-expect-card reveal">
-                        <span class="service-expect-card__subtitle">Treatment Comfort</span>
-                        <h2 class="service-expect-card__title"><?php echo esc_html($sec_c_title ?: 'What to Expect'); ?></h2>
-                        <div class="service-expect-card__desc">
-                            <?php echo wp_kses_post(wpautop($sec_c_desc)); ?>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <?php endif; ?>
-
-        <!-- 5. Section D (Preparation & Aftercare columns) -->
-        <section class="service-prep-aftercare" aria-label="Preparation and aftercare guidelines">
-            <div class="section__inner">
-                <div class="section__header reveal">
-                    <span class="section__label">Livia Guidelines</span>
-                    <h2 class="section__title">Preparation &amp; Aftercare Guidelines</h2>
-                </div>
-                
-                <div class="service-prep-aftercare__grid reveal">
-                    <!-- Column 1: Preparation -->
-                    <div class="service-prep-aftercare__col">
-                        <div class="service-prep-aftercare__card service-prep-aftercare__card--prep">
-                            <div class="service-prep-aftercare__icon" aria-hidden="true">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            </div>
-                            <h3 class="service-prep-aftercare__title">Pre-Treatment Advice</h3>
-                            <p class="service-prep-aftercare__subtitle">Before treatment, patients are typically advised to:</p>
-                            <ul class="service-prep-aftercare__list">
+        <!-- 4. Section C (Preparation & Aftercare Banner replacing What to Expect) -->
+        <section class="service-expect-banner" style="background-image: url('<?php echo esc_url($sec_c_img_url); ?>');" aria-label="Preparation and aftercare guidelines">
+            <div class="service-expect-banner__overlay"></div>
+            <div class="service-expect-banner__inner">
+                <div class="service-prep-glass-card reveal">
+                    <span class="service-prep-glass-card__subtitle">Livia Guidelines</span>
+                    <h2 class="service-prep-glass-card__title">Preparation &amp; Aftercare Guidelines</h2>
+                    
+                    <div class="service-prep-glass-card__grid">
+                        <!-- Column 1: Preparation -->
+                        <div class="service-prep-glass-card__col">
+                            <h3 class="service-prep-glass-card__section-title">
+                                <span class="service-prep-glass-card__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </span>
+                                Pre-Treatment Advice
+                            </h3>
+                            <p class="service-prep-glass-card__section-subtitle">Before treatment, patients are typically advised to:</p>
+                            <ul class="service-prep-glass-card__list">
                                 <?php foreach ($prep_guidelines as $item): ?>
                                     <li>
-                                        <svg class="service-prep-aftercare__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <svg class="service-prep-glass-card__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                                         <span><?php echo esc_html($item); ?></span>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                    </div>
-                    
-                    <!-- Column 2: Aftercare -->
-                    <div class="service-prep-aftercare__col">
-                        <div class="service-prep-aftercare__card service-prep-aftercare__card--after">
-                            <div class="service-prep-aftercare__icon" aria-hidden="true">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            </div>
-                            <h3 class="service-prep-aftercare__title">Post-Treatment Advice</h3>
-                            <p class="service-prep-aftercare__subtitle">After treatment, patients should:</p>
-                            <ul class="service-prep-aftercare__list">
+                        
+                        <!-- Column 2: Aftercare -->
+                        <div class="service-prep-glass-card__col">
+                            <h3 class="service-prep-glass-card__section-title">
+                                <span class="service-prep-glass-card__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </span>
+                                Post-Treatment Advice
+                            </h3>
+                            <p class="service-prep-glass-card__section-subtitle">After treatment, patients should:</p>
+                            <ul class="service-prep-glass-card__list">
                                 <?php foreach ($after_guidelines as $item): ?>
                                     <li>
-                                        <svg class="service-prep-aftercare__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <svg class="service-prep-glass-card__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                                         <span><?php echo esc_html($item); ?></span>
                                     </li>
                                 <?php endforeach; ?>

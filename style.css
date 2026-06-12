@@ -10352,54 +10352,107 @@ a.contact-card__text:hover {
   margin-bottom: 0;
 }
 
-/* -- Section 4: Preparation & Aftercare -- */
-.service-prep-aftercare {
-  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
-  background: #fff;
-}
-
-.service-prep-aftercare__inner {
-  max-width: 1280px;
+/* Section C: Preparation & Aftercare Glassmorphic Banner styles */
+.service-prep-glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 2rem + 4vw, 4.5rem);
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 1rem + 2vw, 3rem);
+  color: #ffffff;
 }
 
-.service-prep-aftercare__header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.service-prep-aftercare__label {
-  display: inline-block;
+.service-prep-glass-card__subtitle {
+  display: block;
+  color: var(--brand-bright);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--brand);
+  letter-spacing: 0.15em;
   margin-bottom: 0.75rem;
+  text-align: center;
 }
 
-.service-prep-aftercare__title {
-  font-size: clamp(1.8rem, 1.5rem + 1.5vw, 2.8rem);
+.service-prep-glass-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 1.6rem + 2vw, 3.2rem);
   font-weight: 300;
-  color: var(--text-dark);
+  color: #ffffff;
+  margin-bottom: 3rem;
   line-height: 1.2;
+  text-align: center;
 }
 
-.service-prep-aftercare__grid {
+.service-prep-glass-card__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+  gap: clamp(2.5rem, 2rem + 3vw, 4.5rem);
 }
 
-.service-prep-aftercare__subtitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 1.5rem;
+.service-prep-glass-card__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.service-prep-glass-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-bright);
+  width: 24px;
+  height: 24px;
+}
+
+.service-prep-glass-card__icon svg {
+  display: block;
+}
+
+.service-prep-glass-card__section-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.75rem;
   line-height: 1.4;
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: -0.01em;
+}
+
+.service-prep-glass-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.service-prep-glass-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.service-prep-glass-card__check {
+  flex-shrink: 0;
+  color: var(--brand-bright);
+  margin-top: 0.2rem;
+  width: 14px;
+  height: 14px;
+}
+
+.service-prep-glass-card__check svg {
+  display: block;
 }
 
 /* -- Section 6: FAQ Accordion -- */
@@ -10646,7 +10699,7 @@ a.contact-card__text:hover {
     max-width: 100%;
   }
 
-  .service-prep-aftercare__grid {
+  .service-prep-glass-card__grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
