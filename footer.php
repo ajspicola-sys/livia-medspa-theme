@@ -127,7 +127,7 @@
                         <span>Mon–Wed: 9am–7pm &nbsp;|&nbsp; Thu–Sat: 9am–4pm</span>
                     </div>
                 </div>
-                <a href="#book-now" class="btn btn--primary btn--sm" style="margin-top:1.25rem;">Book Consultation</a>
+                <a href="#book-now" class="btn btn--primary btn--sm footer__book-btn">Book Consultation</a>
             </div>
         </div>
     </div>
@@ -154,7 +154,7 @@
     <!-- Bottom bar -->
     <div class="footer__bottom">
         <div class="footer__inner">
-            <p class="footer__copyright">© <?php echo date('Y'); ?> LIVIA Med Spa. All rights reserved.</p>
+            <p class="footer__copyright">© <?php echo esc_html(wp_date('Y')); ?> LIVIA Med Spa. All rights reserved.</p>
             <div class="footer__legal">
                 <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
                 <a href="<?php echo esc_url(home_url('/cancellation-policy/')); ?>">Cancellation Policy</a>
@@ -696,7 +696,7 @@
         }
 
         // Setup click interaction to trigger the zoom modal
-        var galleryCards = document.querySelectorAll('.gallery-card');
+        // (galleryCards is already declared by the gallery filters block above)
         if (galleryCards.length) {
             galleryCards.forEach(function(card) {
                 var sliderContainer = card.querySelector('.gallery-card__images');

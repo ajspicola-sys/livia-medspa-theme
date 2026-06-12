@@ -784,6 +784,18 @@ html {
   pointer-events: none;
 }
 
+/* Shorter promo panel for the compact (Products/About) mega menus */
+.mega-menu__promo--compact {
+  min-height: 220px;
+}
+
+/* Empty-state message when a mega menu has no items yet */
+.mega-menu__empty {
+  color: #7a7a90;
+  font-size: 0.85rem;
+  padding: 1rem;
+}
+
 
 
 .mega-menu__promo-label {
@@ -1042,6 +1054,11 @@ html {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.mobile-menu__book {
+  width: 100%;
+  justify-content: center;
 }
 
 .mobile-menu__contact-item {
@@ -3791,6 +3808,10 @@ html {
 
 .footer__contact-item a:hover {
   color: var(--brand);
+}
+
+.footer__book-btn {
+  margin-top: 1.25rem;
 }
 
 /* -- Newsletter ---------------------------------------------- */
@@ -6546,6 +6567,11 @@ a.contact-card__text:hover {
   padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
   background: #FFFFFF;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.blog-section__cta {
+  text-align: center;
+  margin-top: 2.5rem;
 }
 
 .blog-card__link {

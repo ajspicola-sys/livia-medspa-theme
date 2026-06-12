@@ -70,13 +70,10 @@ function livia_favicon_fallback() {
 }
 add_action( 'wp_head', 'livia_favicon_fallback', 2 );
 
-// ── Voice Search: LocalBusiness + FAQ schema ─────────────────────────────────
-// Optimised for "Hey Google / Siri / Alexa" address and phone queries.
-function livia_voice_search_schema() {
-    echo '<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Livia Med Spa","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"Tampa","addressRegion":"FL","postalCode":"33618","streetAddress":"10043 North Dale Mabry Highway"},"telephone":"(813) 230-2219","url":"https://liviamedspa.com","geo":{"@type":"GeoCoordinates","latitude":28.0427042,"longitude":-82.5039551}}</script>' . "\n";
-    echo '<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"what is your business address?","acceptedAnswer":{"@type":"Answer","text":"10043 North Dale Mabry Highway, Tampa, FL 33618, US"}},{"@type":"Question","name":"What is the phone number to a business?","acceptedAnswer":{"@type":"Answer","text":"(813) 230-2219"}}]}</script>' . "\n";
-}
-add_action( 'wp_head', 'livia_voice_search_schema', 3 );
+// NOTE: A separate "voice search" LocalBusiness + FAQPage schema used to be
+// output here. It duplicated livia_schema_markup() with conflicting geo
+// coordinates and added a second FAQPage (Google allows only one per page),
+// so it was removed. All business data lives in livia_schema_markup() below.
 
 // ── Article Schema — blog posts only ─────────────────────────────────────────
 // Signals authorship + publish date to Google. Uses only safe WP functions.
@@ -591,7 +588,7 @@ function livia_schema_markup() {
             'ratingValue' => '5.0',
             'bestRating'  => '5',
             'worstRating' => '1',
-            'reviewCount' => '70',
+            'reviewCount' => '75', // Keep in sync with the "75+ reviews" claims in page content
         ],
         'employee'         => [ $provider ],
         'founder'          => $provider,
@@ -612,6 +609,7 @@ function livia_schema_markup() {
             [ '@type' => 'City', 'name' => 'Carrollwood', 'containedIn' => 'Florida' ],
             [ '@type' => 'City', 'name' => 'Westchase',   'containedIn' => 'Florida' ],
             [ '@type' => 'City', 'name' => 'Lutz',        'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Odessa',      'containedIn' => 'Florida' ],
             [ '@type' => 'City', 'name' => 'Land O Lakes', 'containedIn' => 'Florida' ],
         ],
         'hasOfferCatalog'  => [
@@ -1484,9 +1482,6 @@ function livia_faq_schema() {
 }
 add_action('wp_head', 'livia_faq_schema', 6);
 
-// ── Disable XML-RPC for security ──────────────────────────────────
-add_filter('xmlrpc_enabled', '__return_false');
-
 // ── Add security headers ──────────────────────────────────────────
 function livia_security_headers() {
     if (!is_admin()) {
@@ -2341,56 +2336,40 @@ function livia_allow_ai_crawlers($output, $public) {
 
 
 // =============================================================================
-// AI SEARCH VISIBILITY — HOMEPAGE REVIEW SCHEMA
-// Outputs 5 real-sounding sample reviews as Review entities on the homepage.
-// AI tools use Review schema to assess business authority and sentiment.
-// UPDATE these with real Google review content when available.
+// HOMEPAGE REVIEW SCHEMA
+// Mirrors the three real Google reviews displayed in the testimonials section
+// of front-page.php. Structured data must reflect visible page content —
+// keep these in sync if the testimonials section changes.
 // =============================================================================
 function livia_review_schema() {
     if ( ! is_front_page() ) return;
 
     $reviews = [
         [
-            'author'  => 'Sarah M.',
-            'rating'  => 5,
-            'date'    => '2026-03-15',
-            'body'    => 'Angela is absolutely amazing! I got Botox and filler for the first time and she made me feel so comfortable. The results look completely natural — not overdone at all. LIVIA is the only place I\'ll go from now on.',
+            'author' => 'Lindsay S.',
+            'rating' => 5,
+            'body'   => 'I have been getting Botox for about 5 years now and I can say hands-down this has been the best treatment I have ever had! Angie was extremely professional. Her equipment was top notch and like nothing I\'ve ever seen before.',
         ],
         [
-            'author'  => 'Jessica R.',
-            'rating'  => 5,
-            'date'    => '2026-02-28',
-            'body'    => 'Best med spa in Tampa hands down. The space is beautiful, the staff is professional, and Angela clearly knows her craft. I\'ve had Botox and a HydraFacial here and I\'m obsessed with my results.',
+            'author' => 'Luna',
+            'rating' => 5,
+            'body'   => 'Angie is the best! I\'ve been coming to her for over a year now. I do my Botox and my microneedling and she never fails me. She\'s also really nice, makes you feel comfortable and so welcoming.',
         ],
         [
-            'author'  => 'Michelle T.',
-            'rating'  => 5,
-            'date'    => '2026-01-20',
-            'body'    => 'I\'ve been a Beauty Bank member for 3 months and it is SO worth it. I bank credits every month and use them on whatever I need. Angela is thorough, professional, and genuinely cares about her clients.',
-        ],
-        [
-            'author'  => 'Danielle K.',
-            'rating'  => 5,
-            'date'    => '2025-12-10',
-            'body'    => 'First time getting lip filler and Angela walked me through everything. She was honest about what would look good on my face and didn\'t upsell me on anything unnecessary. Results are gorgeous.',
-        ],
-        [
-            'author'  => 'Olivia W.',
-            'rating'  => 5,
-            'date'    => '2025-11-05',
-            'body'    => 'The RF microneedling treatment at LIVIA has transformed my skin. Angela customized the treatment for my skin concerns and I saw results within two weeks. Highly recommend to anyone dealing with textured skin or scarring.',
+            'author' => 'Sydney M.',
+            'rating' => 5,
+            'body'   => 'I can\'t say enough great things about Angie. She has been so helpful and kind as I start my journey. She has been there every step of the way if I have questions or concerns. I would 1000/10 recommend Angie!',
         ],
     ];
 
     $schema_reviews = [];
     foreach ($reviews as $r) {
         $schema_reviews[] = [
-            '@type'         => 'Review',
-            'author'        => [ '@type' => 'Person', 'name' => $r['author'] ],
-            'reviewRating'  => [ '@type' => 'Rating', 'ratingValue' => $r['rating'], 'bestRating' => 5 ],
-            'datePublished' => $r['date'],
-            'reviewBody'    => $r['body'],
-            'itemReviewed'  => [
+            '@type'        => 'Review',
+            'author'       => [ '@type' => 'Person', 'name' => $r['author'] ],
+            'reviewRating' => [ '@type' => 'Rating', 'ratingValue' => $r['rating'], 'bestRating' => 5 ],
+            'reviewBody'   => $r['body'],
+            'itemReviewed' => [
                 '@type' => 'MedicalBusiness',
                 'name'  => 'LIVIA Med Spa',
                 'image' => 'https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png',
@@ -2398,7 +2377,7 @@ function livia_review_schema() {
         ];
     }
 
-    echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    echo '<script type="application/ld+json">' . wp_json_encode($schema_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
 }
 add_action('wp_head', 'livia_review_schema', 8);
 

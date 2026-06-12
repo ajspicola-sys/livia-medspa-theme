@@ -8,90 +8,12 @@ get_header(); ?>
 
 <main class="site-main" id="main-content">
 
-<!-- LocalBusiness Structured Data (JSON-LD) -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
-    "@id": "<?php echo esc_url(home_url('/')); ?>#business",
-    "name": "LIVIA Med Spa",
-    "alternateName": "LIVIA Medical Spa Tampa",
-    "description": "Tampa's premier medical spa offering Botox, dermal fillers, RF microneedling, laser treatments, and medical-grade skincare led by Angela Spicola, APRN.",
-    "url": "<?php echo esc_url(home_url('/')); ?>",
-    "telephone": "+18132302219",
-    "email": "support@liviamedspa.com",
-    "currenciesAccepted": "USD",
-    "paymentAccepted": "Cash, Credit Card, AMEX, Visa, MasterCard",
-    "priceRange": "$$-$$$",
-    "image": "https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png",
-    "logo": "https://liviamedspa.com/wp-content/uploads/2026/03/Livia-Logo-White.png",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "10043 N Dale Mabry Hwy",
-        "addressLocality": "Tampa",
-        "addressRegion": "FL",
-        "postalCode": "33618",
-        "addressCountry": "US"
-    },
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "28.0764",
-        "longitude": "-82.5205"
-    },
-    "areaServed": [
-        { "@type": "City", "name": "Tampa" },
-        { "@type": "City", "name": "Westchase" },
-        { "@type": "City", "name": "Carrollwood" },
-        { "@type": "City", "name": "Lutz" },
-        { "@type": "City", "name": "Odessa" },
-        { "@type": "City", "name": "Land O' Lakes" }
-    ],
-    "openingHoursSpecification": [
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday"],
-            "opens": "09:00",
-            "closes": "19:00"
-        },
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Thursday", "Friday", "Saturday"],
-            "opens": "09:00",
-            "closes": "16:00"
-        }
-    ],
-    "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Medical Spa Services",
-        "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Botox & Neuromodulators", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dermal Fillers", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "RF Microneedling", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laser Hair Removal", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Chemical Peels", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Medical-Grade Facials", "areaServed": "Tampa, FL" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Beauty Bank Membership", "areaServed": "Tampa, FL" } }
-        ]
-    },
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "75",
-        "bestRating": "5",
-        "worstRating": "1"
-    },
-    "sameAs": [
-        "https://www.instagram.com/liviamedspa/",
-        "https://www.facebook.com/p/Livia-Med-Spa-61561610168278/"
-    ],
-    "founder": {
-        "@type": "Person",
-        "name": "Angela Spicola",
-        "jobTitle": "APRN, Board-Certified Aesthetic Provider",
-        "worksFor": { "@id": "<?php echo esc_url(home_url('/')); ?>#business" }
-    }
-}
-</script>
+    <?php
+    // Structured data (MedicalBusiness, WebSite, FAQ, Reviews) is output once
+    // via wp_head() — see livia_schema_markup() and related hooks in functions.php.
+    // Do not add page-level JSON-LD here; duplicate business entities with
+    // conflicting data confuse Google and AI crawlers.
+    ?>
 
     <!-- ═══════════════════════════════════════════════════════════════
          HERO SECTION — above the fold, no lazy loading
@@ -664,7 +586,7 @@ get_header(); ?>
                     </div>
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>
-            <div style="text-align:center; margin-top:2.5rem;">
+            <div class="blog-section__cta">
                 <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="btn btn--outline">View All Posts →</a>
             </div>
         </div>
