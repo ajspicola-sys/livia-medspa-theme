@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "live-site-proxy",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["assets/preview_proxy.py"],
+      "port": 8765
+    }
+  ]
+}

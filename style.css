@@ -1978,6 +1978,11 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.carousel-card__icon svg,
+.carousel-card__placeholder svg {
+  display: block;
+}
+
 .carousel-card__title {
   font-family: 'DM Sans', sans-serif;
   font-size: 1.15rem;
@@ -6798,71 +6803,19 @@ a.contact-card__text:hover {
 }
 
 /* ==========================================================================
-   SOCIAL PROOF NOTIFICATION
-   ========================================================================== */
-.social-proof {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 950;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1.25rem;
-  background: rgba(var(--ink-rgb), 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 14px;
-  border: 1px solid rgba(var(--brand-rgb), 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transform: translateX(-120%);
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  max-width: 320px;
-}
-
-.social-proof.is-visible {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.social-proof__icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.social-proof__content {
-  font-size: 0.78rem;
-  color: rgba(var(--cream-rgb), 0.85);
-  line-height: 1.4;
-}
-
-.social-proof__content strong {
-  color: var(--brand);
-}
-
-.social-proof__content strong:first-child {
-  color: var(--bg-warm);
-}
-
-.social-proof__time {
-  display: block;
-  font-size: 0.65rem;
-  color: rgba(var(--cream-rgb), 0.4);
-  margin-top: 0.15rem;
-}
-
-@media (max-width: 768px) {
-  .social-proof {
-    display: none;
-  }
-}
-
-/* ==========================================================================
    FLOATING MOBILE CTA
    ========================================================================== */
 .floating-cta {
   display: none;
+}
+
+/* Hide floating UI while the mobile menu or a popup locks scrolling —
+   otherwise the Book Now / Call pills render on top of the open menu */
+body.has-scroll-lock .floating-cta,
+body.has-scroll-lock .scroll-top {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 @media (max-width: 768px) {
@@ -8256,8 +8209,7 @@ a.contact-card__text:hover {
   .product-showcase__glow,
   .client-portal__bg-glow,
   .floating-cta,
-  .cookie-banner,
-  .social-proof {
+  .cookie-banner {
     display: none !important;
   }
 

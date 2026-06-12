@@ -141,6 +141,7 @@
                     <p class="newsletter__desc">Get exclusive offers, beauty tips, and early access to new treatments.</p>
                 </div>
                 <form class="newsletter__form" action="#" method="post" id="newsletter-form">
+                    <?php wp_nonce_field('livia_newsletter', 'livia_newsletter_nonce'); ?>
                     <div class="newsletter__input-group">
                         <input type="email" name="newsletter_email" class="newsletter__input" placeholder="Enter your email" required aria-label="Email address">
                         <button type="submit" class="newsletter__btn btn btn--primary">Subscribe</button>
@@ -417,11 +418,26 @@
                 e.preventDefault();
                 var input = this.querySelector('.newsletter__input');
                 var btn   = this.querySelector('.newsletter__btn');
-                if (input && input.value) {
-                    btn.textContent = '✓ Subscribed!'; btn.style.background = '#2d6a4f';
-                    input.value = ''; input.disabled = true;
-                    setTimeout(function() { btn.textContent = 'Subscribe'; btn.style.background = ''; input.disabled = false; }, 3000);
-                }
+                if (!input || !input.value || !btn) return;
+                var originalLabel = btn.textContent;
+                btn.textContent = 'Subscribing…'; btn.disabled = true;
+                var data = new FormData(newsletterForm);
+                data.set('action', 'livia_newsletter_submit');
+                fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', { method: 'POST', body: data, credentials: 'same-origin' })
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (res.success) {
+                            btn.textContent = '✓ Subscribed!'; btn.style.background = '#2d6a4f';
+                            input.value = ''; input.disabled = true;
+                        } else {
+                            btn.textContent = originalLabel; btn.disabled = false;
+                            alert((res.data && res.data.message) ? res.data.message : 'Something went wrong. Please try again.');
+                        }
+                    })
+                    .catch(function() {
+                        btn.textContent = originalLabel; btn.disabled = false;
+                        alert('Connection error. Please try again.');
+                    });
             });
         }
 
@@ -507,6 +523,8 @@
     setTimeout(function() { rIC(function() {
 
         // ── Cookie Consent Banner (injected dynamically — never in HTML to avoid LCP penalty) ──
+        // 12s delay keeps it from stacking on top of the deal popup, which
+        // fires ~5s after load (livia_popup_delay, default 5s).
         if (!localStorage.getItem('livia-cookie-consent')) {
             setTimeout(function() {
                 var banner = document.createElement('div');
@@ -535,7 +553,7 @@
                     banner.classList.remove('is-visible');
                     setTimeout(function() { banner.remove(); }, 400);
                 });
-            }, 5000);
+            }, 12000);
         }
 
 
@@ -717,29 +735,9 @@
             });
         }
 
-        // ── Social Proof Notification ─────────────────────────────
-        if (window.innerWidth > 768) {
-            var proofNames    = ['Sarah M.','Jessica L.','Emily R.','Amanda K.','Lauren B.','Michelle T.','Brittany S.','Courtney H.','Taylor N.','Kayla D.','Madison F.','Rachel W.','Stephanie V.','Megan C.','Olivia P.','Ashley R.','Natalie G.','Danielle M.','Brooke A.','Samantha J.','Christina L.','Vanessa T.','Amber N.','Tiffany K.','Kaitlyn R.','Lindsey M.','Alyssa B.','Savannah C.'];
-            var proofServices = ['Botox','Dermal Fillers','Chemical Peel','Microneedling','IV Therapy','Laser Treatment','Lip Filler','Skincare Consultation','RF Microneedling','Helix CO2 Laser'];
-            var proofTimes    = ['2 minutes','5 minutes','12 minutes','23 minutes','1 hour','just now'];
-            function showSocialProof() {
-                var existing = document.getElementById('social-proof');
-                if (existing) existing.remove();
-                var name    = proofNames[Math.floor(Math.random() * proofNames.length)];
-                var service = proofServices[Math.floor(Math.random() * proofServices.length)];
-                var time    = proofTimes[Math.floor(Math.random() * proofTimes.length)];
-                var el = document.createElement('div');
-                el.id = 'social-proof'; el.className = 'social-proof';
-                el.innerHTML = '<div class="social-proof__icon">✦</div><div class="social-proof__content"><strong>' + name + '</strong> just booked a <strong>' + service + '</strong><span class="social-proof__time">' + time + ' ago</span></div>';
-                document.body.appendChild(el);
-                requestAnimationFrame(function() { el.classList.add('is-visible'); });
-                setTimeout(function() { el.classList.remove('is-visible'); setTimeout(function() { el.remove(); }, 400); }, 5000);
-            }
-            setTimeout(showSocialProof, 8000);
-            setInterval(showSocialProof, 30000);
-        }
-
-
+        // ── Social proof notifications removed ────────────────────
+        // The previous "X just booked Y" popups were randomly generated
+        // fakes. Do not reintroduce without real booking data.
 
     }); }, 200); // end tier 2
 

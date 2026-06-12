@@ -227,6 +227,122 @@
             font-display: swap;
             src: local('DM Sans');
         }
+
+        /* ── JS-toggled state classes (cache-optimizer insurance) ──────────
+           These classes only appear via JavaScript, so LiteSpeed UCSS purges
+           them from the optimized stylesheet (the root cause of the blank-
+           page bug). Inlined here they survive any CSS optimizer. Values
+           mirror style.css exactly — keep both in sync. */
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) translateZ(0);
+            will-change: auto;
+        }
+
+        img[loading="lazy"].is-loaded {
+            opacity: 1;
+        }
+
+        .site-header.is-scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .site-header.is-scrolled::after {
+            opacity: 1;
+        }
+
+        html.has-scroll-lock,
+        body.has-scroll-lock {
+            overflow: hidden !important;
+            overflow-y: hidden !important;
+        }
+
+        .mobile-menu.is-open {
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        .mobile-menu.is-open .mobile-menu__overlay {
+            opacity: 1;
+        }
+
+        .mobile-menu.is-open .mobile-menu__drawer {
+            transform: translateX(0);
+        }
+
+        .scroll-top.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .deal-popup.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .carousel__slide.is-active {
+            opacity: 1;
+            transform: translateX(-50%) scale(1) rotateY(0deg);
+            filter: blur(0);
+            z-index: 5;
+            pointer-events: auto;
+        }
+
+        .carousel__slide.is-prev {
+            opacity: 0.7;
+            transform: translateX(calc(-50% - 105%)) scale(0.88) rotateY(-8deg);
+            filter: blur(0);
+            z-index: 3;
+            pointer-events: auto;
+        }
+
+        .carousel__slide.is-next {
+            opacity: 0.7;
+            transform: translateX(calc(-50% + 105%)) scale(0.88) rotateY(8deg);
+            filter: blur(0);
+            z-index: 3;
+            pointer-events: auto;
+        }
+
+        .carousel__slide.is-far-prev {
+            opacity: 0.25;
+            transform: translateX(calc(-50% - 200%)) scale(0.75) rotateY(-15deg);
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .carousel__slide.is-far-next {
+            opacity: 0.25;
+            transform: translateX(calc(-50% + 200%)) scale(0.75) rotateY(15deg);
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .carousel__dot.is-active {
+            width: 32px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-mid));
+            box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.3);
+        }
+
+        .cookie-banner {
+            display: none !important;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            padding: 1rem;
+            background: rgba(var(--ink-rgb), 0.95);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cookie-banner.is-visible {
+            display: flex !important;
+            transform: translateY(0);
+        }
     </style>
 
     <!-- ═══ Tier A: Head Guard (Instant Document Sanitization) ═══════════════

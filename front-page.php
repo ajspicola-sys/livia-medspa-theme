@@ -171,14 +171,19 @@ get_header(); ?>
                 'update_post_term_cache' => false, // We don't need terms
             ]);
 
+            // Shared sparkle icon — matches the journey section's SVG line-icon
+            // style (replaces the old per-service emoji for a consistent look)
+            $card_icon_svg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>';
+            $card_icon_lg  = str_replace(['width="22"', 'height="22"'], ['width="56"', 'height="56"'], $card_icon_svg);
+
             // Fallback services if none created yet
             $fallback = [
-                ['icon' => '💉', 'title' => 'Botox & Dysport', 'text' => 'Smooth away fine lines and wrinkles with precision neurotoxin injections for a refreshed, youthful look.'],
-                ['icon' => '✨', 'title' => 'Dermal Fillers', 'text' => 'Restore lost volume and sculpt facial contours with premium hyaluronic acid fillers.'],
-                ['icon' => '🔬', 'title' => 'Microneedling', 'text' => 'Stimulate your skin\'s natural collagen production for firmer, smoother, more radiant skin.'],
-                ['icon' => '🧴', 'title' => 'Chemical Peels', 'text' => 'Reveal fresh, glowing skin and reduce discoloration with our medical-grade peel treatments.'],
-                ['icon' => '⚡', 'title' => 'Laser Treatments', 'text' => 'Advanced laser technology for skin resurfacing, pigment correction, and hair removal.'],
-                ['icon' => '💎', 'title' => 'IV Therapy', 'text' => 'Boost vitality from within with custom vitamin drips designed for energy, glow, and wellness.'],
+                ['title' => 'Botox & Dysport', 'text' => 'Smooth away fine lines and wrinkles with precision neurotoxin injections for a refreshed, youthful look.'],
+                ['title' => 'Dermal Fillers', 'text' => 'Restore lost volume and sculpt facial contours with premium hyaluronic acid fillers.'],
+                ['title' => 'Microneedling', 'text' => 'Stimulate your skin\'s natural collagen production for firmer, smoother, more radiant skin.'],
+                ['title' => 'Chemical Peels', 'text' => 'Reveal fresh, glowing skin and reduce discoloration with our medical-grade peel treatments.'],
+                ['title' => 'Laser Treatments', 'text' => 'Advanced laser technology for skin resurfacing, pigment correction, and hair removal.'],
+                ['title' => 'IV Therapy', 'text' => 'Boost vitality from within with custom vitamin drips designed for energy, glow, and wellness.'],
             ];
             ?>
 
@@ -186,7 +191,6 @@ get_header(); ?>
                 <div class="carousel__track">
                     <?php if ($services->have_posts()) : $i = 0; ?>
                         <?php while ($services->have_posts()) : $services->the_post();
-                            $icon  = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
                             $price = get_post_meta(get_the_ID(), '_service_price', true);
                             $thumb = get_the_post_thumbnail_url(get_the_ID(), 'medium_large');
                         ?>
@@ -202,12 +206,12 @@ get_header(); ?>
                                                  height="240">
                                         <?php else : ?>
                                             <div class="carousel-card__placeholder">
-                                                <span><?php echo esc_html($icon); ?></span>
+                                                <span><?php echo $card_icon_lg; ?></span>
                                             </div>
                                         <?php endif; ?>
                                     </div>
                                     <div class="carousel-card__body">
-                                        <div class="carousel-card__icon"><?php echo esc_html($icon); ?></div>
+                                        <div class="carousel-card__icon"><?php echo $card_icon_svg; ?></div>
                                         <h3 class="carousel-card__title"><?php the_title(); ?></h3>
                                         <p class="carousel-card__text"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 20); ?></p>
                                         <?php if ($price) : ?>
@@ -224,11 +228,11 @@ get_header(); ?>
                                 <div class="carousel-card">
                                     <div class="carousel-card__image">
                                         <div class="carousel-card__placeholder">
-                                            <span><?php echo esc_html($svc['icon']); ?></span>
+                                            <span><?php echo $card_icon_lg; ?></span>
                                         </div>
                                     </div>
                                     <div class="carousel-card__body">
-                                        <div class="carousel-card__icon"><?php echo esc_html($svc['icon']); ?></div>
+                                        <div class="carousel-card__icon"><?php echo $card_icon_svg; ?></div>
                                         <h3 class="carousel-card__title"><?php echo esc_html($svc['title']); ?></h3>
                                         <p class="carousel-card__text"><?php echo esc_html($svc['text']); ?></p>
                                         <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--primary btn--sm" aria-label="View Treatment — <?php echo esc_attr($svc['title']); ?>">View Treatment →</a>
@@ -570,7 +574,9 @@ get_header(); ?>
                                 <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('medium_large', ['loading' => 'lazy', 'decoding' => 'async']); ?>
                                 <?php else : ?>
-                                    <div class="blog-card__img--placeholder"><span>📝</span></div>
+                                    <div class="blog-card__img--placeholder">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                             <div class="blog-card__body">
