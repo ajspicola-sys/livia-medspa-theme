@@ -1851,9 +1851,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #7A5C6E;
   opacity: 0.45;
-  filter: grayscale(100%);
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
   height: 24px;
@@ -1861,16 +1859,15 @@ html {
 
 .media-ticker__logo:hover {
   opacity: 0.9;
-  filter: grayscale(0%);
-  color: var(--brand);
   transform: scale(1.03);
 }
 
-.media-ticker__logo svg {
+.media-ticker__logo img {
   height: auto;
   max-height: 100%;
   width: auto;
   display: block;
+  filter: brightness(0);
 }
 
 /* ==========================================================================

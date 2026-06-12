@@ -225,86 +225,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         MEDIA TICKER ("As Seen On" scrolling marquee)
-         ═══════════════════════════════════════════════════════════════ -->
-    <section class="media-ticker" aria-label="Featured media news coverage">
-        <div class="media-ticker__inner">
-            <h3 class="media-ticker__title">As Seen On</h3>
-            <div class="media-ticker__track">
-                <div class="media-ticker__items">
-                    <div class="media-ticker__group">
-                        <div class="media-ticker__logo" aria-label="Associated Press">
-                            <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.02em" fill="currentColor">AP</text>
-                                <text x="36" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="-0.02em" fill="currentColor">NEWS</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Bloomberg">
-                            <svg viewBox="0 0 140 24" width="140" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="-0.04em" fill="currentColor">Bloomberg</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="FOX Business">
-                            <svg viewBox="0 0 145 24" width="145" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="20" letter-spacing="-0.02em" fill="currentColor">FOX</text>
-                                <text x="45" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="400" font-size="12" letter-spacing="0.08em" fill="currentColor">BUSINESS</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Tampa Free Press">
-                            <svg viewBox="0 0 180 24" width="180" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="700" font-size="20" letter-spacing="0.01em" fill="currentColor">Tampa Free Press</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="National Law Review">
-                            <svg viewBox="0 0 240 24" width="240" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="'Times New Roman', Times, 'Didot', Georgia, serif" font-weight="700" font-size="15" letter-spacing="0.06em" fill="currentColor">THE NATIONAL LAW REVIEW</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Florida News Tribune">
-                            <svg viewBox="0 0 210 24" width="210" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="17" fill="currentColor">Florida News Tribune</text>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="media-ticker__group" aria-hidden="true">
-                        <div class="media-ticker__logo" aria-label="Associated Press">
-                            <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.02em" fill="currentColor">AP</text>
-                                <text x="36" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="-0.02em" fill="currentColor">NEWS</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Bloomberg">
-                            <svg viewBox="0 0 140 24" width="140" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="-0.04em" fill="currentColor">Bloomberg</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="FOX Business">
-                            <svg viewBox="0 0 145 24" width="145" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="20" letter-spacing="-0.02em" fill="currentColor">FOX</text>
-                                <text x="45" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="400" font-size="12" letter-spacing="0.08em" fill="currentColor">BUSINESS</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Tampa Free Press">
-                            <svg viewBox="0 0 180 24" width="180" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="700" font-size="20" letter-spacing="0.01em" fill="currentColor">Tampa Free Press</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="National Law Review">
-                            <svg viewBox="0 0 240 24" width="240" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="'Times New Roman', Times, 'Didot', Georgia, serif" font-weight="700" font-size="15" letter-spacing="0.06em" fill="currentColor">THE NATIONAL LAW REVIEW</text>
-                            </svg>
-                        </div>
-                        <div class="media-ticker__logo" aria-label="Florida News Tribune">
-                            <svg viewBox="0 0 210 24" width="210" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="17" fill="currentColor">Florida News Tribune</text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
          SERVICES CAROUSEL
@@ -457,6 +377,53 @@ get_header(); ?>
                     </div>
                     <h3 class="journey-step__title">Glow Up!</h3>
                     <p class="journey-step__text">Walk out feeling radiant and confident with aftercare guidance for lasting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         MEDIA TICKER ("As Seen On" scrolling marquee)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="media-ticker" aria-label="Featured media news coverage">
+        <div class="media-ticker__inner">
+            <h3 class="media-ticker__title">As Seen On</h3>
+            <div class="media-ticker__track">
+                <div class="media-ticker__items">
+                    <div class="media-ticker__group">
+                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Associated Press article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
+                        </a>
+                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Bloomberg article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
+                        </a>
+                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Tampa Free Press article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
+                        </a>
+                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="National Law Review article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
+                        </a>
+                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="The Florida Tribune article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
+                        </a>
+                    </div>
+                    <div class="media-ticker__group" aria-hidden="true">
+                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
+                        </a>
+                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
+                        </a>
+                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
+                        </a>
+                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
+                        </a>
+                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
