@@ -332,6 +332,53 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         MEDIA TICKER ("As Seen On" scrolling marquee)
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="media-ticker" aria-label="Featured media news coverage">
+        <div class="media-ticker__inner">
+            <h3 class="media-ticker__title">As Seen On</h3>
+            <div class="media-ticker__track">
+                <div class="media-ticker__items">
+                    <div class="media-ticker__group">
+                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Associated Press article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
+                        </a>
+                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Bloomberg article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
+                        </a>
+                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Tampa Free Press article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
+                        </a>
+                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="National Law Review article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
+                        </a>
+                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="The Florida Tribune article">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
+                        </a>
+                    </div>
+                    <div class="media-ticker__group" aria-hidden="true">
+                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
+                        </a>
+                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
+                        </a>
+                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
+                        </a>
+                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
+                        </a>
+                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
+                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
     <!-- ═══════════════════════════════════════════════════════════════
@@ -382,52 +429,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════
-         MEDIA TICKER ("As Seen On" scrolling marquee)
-         ═══════════════════════════════════════════════════════════════ -->
-    <section class="media-ticker" aria-label="Featured media news coverage">
-        <div class="media-ticker__inner">
-            <h3 class="media-ticker__title">As Seen On</h3>
-            <div class="media-ticker__track">
-                <div class="media-ticker__items">
-                    <div class="media-ticker__group">
-                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Associated Press article">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
-                        </a>
-                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Bloomberg article">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
-                        </a>
-                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="Tampa Free Press article">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
-                        </a>
-                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="National Law Review article">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
-                        </a>
-                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer" aria-label="The Florida Tribune article">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
-                        </a>
-                    </div>
-                    <div class="media-ticker__group" aria-hidden="true">
-                        <a href="https://apnews.com/press-release/ein-presswire-newsmatics/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments-16bbb49dcc6315ff0372d884fc2d25fb" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/associated-press-logo-png_seeklogo-461696.png" alt="Associated Press Logo" loading="lazy" width="110" height="24">
-                        </a>
-                        <a href="https://www.einpresswire.com/article/906340761/livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/Bloomberg_L.P._logo.svg_.png" alt="Bloomberg Logo" loading="lazy" width="115" height="24">
-                        </a>
-                        <a href="https://www.tampafp.com/category/press-releases/" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/The-Free-Press-Logo-Trans.webp" alt="Tampa Free Press Logo" loading="lazy" width="130" height="24">
-                        </a>
-                        <a href="https://natlawreview.com/press-releases/livia-med-spa-adds-gentlemax-pro-plus-its-suite-advanced-aesthetic" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/national-law-review-scaled.png" alt="National Law Review Logo" loading="lazy" width="140" height="24">
-                        </a>
-                        <a href="https://www.thefloridatribune.com/article/906340761-livia-med-spa-adds-gentlemax-pro-plus-to-its-suite-of-advanced-aesthetic-treatments" class="media-ticker__logo" target="_blank" rel="noopener noreferrer">
-                            <img src="https://liviamedspa.com/wp-content/uploads/2026/06/cropped-FloridaTrib_Tagline.webp" alt="The Florida Tribune Logo" loading="lazy" width="140" height="24">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- ═══════════════════════════════════════════════════════════════
          PRODUCT SHOWCASE

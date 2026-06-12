@@ -1851,14 +1851,14 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.45;
+  opacity: 0.65;
   transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
   height: 24px;
 }
 
 .media-ticker__logo:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   transform: scale(1.03);
 }
 
