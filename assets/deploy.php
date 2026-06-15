@@ -2,15 +2,19 @@
 /**
  * Livia Med Spa — One-Time Git Deploy Script
  * Upload to: /public_html/deploy.php
- * Visit: https://liviamedspa.com/deploy.php?key=LiviaGitDeploy2026
+ * Set the secret in the server environment first, e.g. in .htaccess:
+ *   SetEnv LIVIA_DEPLOY_KEY your-long-random-secret
+ * Then visit: https://liviamedspa.com/deploy.php?key=your-long-random-secret
  * DELETES ITSELF after running for security.
  */
 
-$SECRET_KEY  = 'LiviaGitDeploy2026';
+// Secret is read from the server environment — never hardcode it in version
+// control. If LIVIA_DEPLOY_KEY is unset, the script refuses to run.
+$SECRET_KEY  = getenv( 'LIVIA_DEPLOY_KEY' );
 $THEME_PATH  = __DIR__ . '/wp-content/themes/livia-medspa-theme';
 
-// Auth check
-if ( ! isset( $_GET['key'] ) || $_GET['key'] !== $SECRET_KEY ) {
+// Auth check (timing-safe; denies access when no key is configured)
+if ( empty( $SECRET_KEY ) || ! isset( $_GET['key'] ) || ! hash_equals( $SECRET_KEY, (string) $_GET['key'] ) ) {
     http_response_code( 403 );
     die( 'Forbidden.' );
 }

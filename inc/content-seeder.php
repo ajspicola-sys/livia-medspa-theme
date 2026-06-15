@@ -7,6 +7,24 @@
  * Split out of functions.php; load order is defined there.
  */
 
+// ── Shared helper: fetch a post by exact title ─────────────────────
+// Replaces get_page_by_title(), which WordPress deprecated in 6.2.
+// Returns the first matching WP_Post (any status) or null.
+function livia_get_post_by_title( $title, $post_type = 'page' ) {
+    $query = new WP_Query( [
+        'post_type'              => $post_type,
+        'title'                  => $title,
+        'post_status'            => 'any',
+        'posts_per_page'         => 1,
+        'no_found_rows'          => true,
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ] );
+    return ! empty( $query->posts ) ? $query->posts[0] : null;
+}
+
+
 // ── Auto-create All Pages ──────────────────────────────────────────
 function livia_create_pages() {
     if (get_option('livia_pages_created_v5')) return;
@@ -27,7 +45,7 @@ function livia_create_pages() {
 
     foreach ($pages as $title => $content) {
         // Skip if page already exists
-        $existing = get_page_by_title($title, OBJECT, 'page');
+        $existing = livia_get_post_by_title($title, 'page');
         if ($existing) continue;
 
         $page_id = wp_insert_post([
@@ -59,20 +77,20 @@ function livia_fix_reading_settings() {
     if (get_option('livia_reading_fixed_v2')) return;
 
     // Find the Blog page and set it as posts page
-    $blog_page = get_page_by_title('Blog', OBJECT, 'page');
+    $blog_page = livia_get_post_by_title('Blog', 'page');
     if ($blog_page) {
         update_option('show_on_front', 'page');
         update_option('page_for_posts', $blog_page->ID);
     }
 
     // Find the Home page and set it as front page
-    $home_page = get_page_by_title('Home', OBJECT, 'page');
+    $home_page = livia_get_post_by_title('Home', 'page');
     if ($home_page) {
         update_option('page_on_front', $home_page->ID);
     }
 
     // Auto-create Financing page if it doesn't exist
-    $financing = get_page_by_title('Financing', OBJECT, 'page');
+    $financing = livia_get_post_by_title('Financing', 'page');
     if (!$financing) {
         wp_insert_post([
             'post_title'  => 'Financing',
@@ -314,7 +332,7 @@ function livia_create_blog_posts() {
     ];
 
     foreach ($posts as $post_data) {
-        $existing = get_page_by_title($post_data['title'], OBJECT, 'post');
+        $existing = livia_get_post_by_title($post_data['title'], 'post');
         if ($existing) continue;
 
         $post_id = wp_insert_post([
@@ -480,7 +498,7 @@ function livia_create_services() {
 
     foreach ($services as $service) {
         // Check if service already exists
-        $existing = get_page_by_title($service['title'], OBJECT, 'service');
+        $existing = livia_get_post_by_title($service['title'], 'service');
         if ($existing) {
             // Update category on existing services
             if (isset($cat_ids[$service['category']])) {
@@ -543,7 +561,7 @@ function livia_importer_admin_notice() {
 
     echo '<div class="notice notice-info" style="padding:1rem 1.25rem;display:flex;align-items:center;gap:1.5rem;">';
     echo '<div>';
-    echo '<strong>?? LIVIA Med Spa Theme</strong> � ';
+    echo '<strong>LIVIA Med Spa Theme</strong> — ';
     echo 'Import all services, posts, categories, and custom fields from the bundled demo content?';
     echo '</div>';
     echo '<a href="' . esc_url( $import_url ) . '" class="button button-primary" style="white-space:nowrap;">Import Content Now</a>';
@@ -609,7 +627,7 @@ function livia_run_demo_import() {
         exit;
 
     } else {
-        // WordPress Importer plugin not active � fall back to lightweight WXR parser
+        // WordPress Importer plugin not active — fall back to lightweight WXR parser
         livia_lightweight_wxr_import( $xml_file );
         update_option( 'livia_demo_imported', current_time( 'mysql' ) );
         delete_transient( 'livia_just_activated' );
@@ -648,7 +666,7 @@ function livia_lightweight_wxr_import( $xml_file ) {
     }
 
     // Second pass: import items (posts, pages, CPTs)
-    $post_mapping = []; // old ID ? new ID
+    $post_mapping = []; // old ID -> new ID
 
     foreach ( $xml->channel->item as $item ) {
         $wp = $item->children( $wp_ns );
@@ -732,9 +750,9 @@ add_action( 'admin_notices', 'livia_import_success_notice' );
 function livia_import_success_notice() {
     if ( ! isset( $_GET['livia_imported'] ) ) return;
     echo '<div class="notice notice-success is-dismissible"><p>';
-    echo '? <strong>LIVIA Demo Content imported successfully!</strong> ';
+    echo '<strong>LIVIA Demo Content imported successfully!</strong> ';
     echo 'Your services, posts, and categories have been restored. ';
-    echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services ?</a>';
+    echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=service' ) ) . '">View Services →</a>';
     echo '</p></div>';
 }
 
@@ -757,10 +775,10 @@ function livia_importer_page() {
         'livia_import_nonce'
     );
     echo '<div class="wrap">';
-    echo '<h1>?? LIVIA Demo Content Importer</h1>';
+    echo '<h1>LIVIA Demo Content Importer</h1>';
     if ( $already && $already !== 'dismissed' ) {
         echo '<p>Content was last imported on <strong>' . esc_html( $already ) . '</strong>.</p>';
-        echo '<p>You can re-import at any time � existing posts with the same slug will be skipped.</p>';
+        echo '<p>You can re-import at any time — existing posts with the same slug will be skipped.</p>';
     }
     echo '<p>This will import all services, pages, blog posts, categories, and custom field data from the bundled <code>demo-content/content.xml</code> file.</p>';
     echo '<p><strong>Note:</strong> Images won\'t be re-uploaded automatically unless the WordPress Importer plugin is active and the original URLs are reachable.</p>';
@@ -769,8 +787,9 @@ function livia_importer_page() {
     echo '<script>document.querySelector(".button-primary").addEventListener("click",function(){';
     echo 'if(!confirm("This will import all demo content. Continue?"))event.preventDefault();';
     echo '});</script>';
-    // Reset flag so importer can run again
-    delete_option( 'livia_demo_imported' );
+    // NOTE: the import action (livia_run_demo_import) is not gated on this
+    // option, so re-running works without clearing it. Leaving it intact keeps
+    // the activation notice from reappearing after a completed import.
     echo '</div>';
 }
 
@@ -835,7 +854,7 @@ function livia_create_before_after_items() {
     ];
 
     foreach ($gallery_items as $item) {
-        $existing = get_page_by_title($item['title'], OBJECT, 'before_after');
+        $existing = livia_get_post_by_title($item['title'], 'before_after');
         if ($existing) continue;
 
         $post_id = wp_insert_post([
