@@ -17,8 +17,13 @@ function livia_seo_title( $title_parts ) {
         $title_parts['title'] = get_the_title() . ' in Tampa, FL | LIVIA Med Spa';
         unset( $title_parts['site'] );
     } elseif ( is_singular('product') ) {
-        $title_parts['title'] = get_the_title() . ' | Medical-Grade Skincare | LIVIA Med Spa Tampa';
+        $title_parts['title'] = get_the_title() . ' | LIVIA Med Spa Tampa';
         unset( $title_parts['site'] );
+    } elseif ( is_singular('post') ) {
+        // Keep blog-post titles from overflowing ~60 chars: drop the tagline and
+        // use a short brand suffix instead of the default long site name.
+        $title_parts['site'] = 'LIVIA Med Spa';
+        unset( $title_parts['tagline'] );
     } elseif ( is_post_type_archive('service') ) {
         $title_parts['title'] = 'All Treatments | Tampa Med Spa Services | LIVIA';
         unset( $title_parts['site'] );
@@ -294,7 +299,7 @@ function livia_schema_markup() {
     // Full MedicalBusiness entity
     $business = [
         '@context'         => 'https://schema.org',
-        '@type'            => ['MedicalBusiness', 'MedSpa', 'LocalBusiness'],
+        '@type'            => ['MedicalBusiness', 'HealthAndBeautyBusiness', 'LocalBusiness'],
         '@id'              => esc_url(home_url('/')) . '#livia-med-spa',
         'name'             => 'LIVIA Med Spa',
         'legalName'        => 'Livia Med Spa LLC',
@@ -646,6 +651,7 @@ function livia_review_schema() {
     $schema_reviews = [];
     foreach ($reviews as $r) {
         $schema_reviews[] = [
+            '@context'     => 'https://schema.org',
             '@type'        => 'Review',
             'author'       => [ '@type' => 'Person', 'name' => $r['author'] ],
             'reviewRating' => [ '@type' => 'Rating', 'ratingValue' => $r['rating'], 'bestRating' => 5 ],

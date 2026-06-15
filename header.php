@@ -48,6 +48,17 @@
         $meta_desc = 'LIVIA Med Spa — Tampa\'s premier destination for advanced aesthetics. Botox, fillers, laser treatments, and more in Tampa, FL.';
     }
 
+    // Cap at ~160 chars (on a word boundary) so search engines don't truncate it
+    // and to satisfy SEO audits. Also feeds og:description below.
+    if ( mb_strlen( $meta_desc ) > 160 ) {
+        $meta_desc = mb_substr( $meta_desc, 0, 157 );
+        $last_space = mb_strrpos( $meta_desc, ' ' );
+        if ( $last_space ) {
+            $meta_desc = mb_substr( $meta_desc, 0, $last_space );
+        }
+        $meta_desc = rtrim( $meta_desc, " ,.;:—-" ) . '…';
+    }
+
     // ── Output meta description ONLY when no SEO plugin is handling it ──────
     if ( ! $livia_seo_plugin_active ) : ?>
     <meta name="description" content="<?php echo esc_attr($meta_desc); ?>">
