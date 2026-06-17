@@ -248,7 +248,7 @@ get_header(); ?>
                     <button class="carousel__arrow carousel__arrow--prev" aria-label="Previous slide">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
                     </button>
-                    <div class="carousel__dots" id="carousel-dots" aria-label="Slide indicators"></div>
+                    <div class="carousel__dots" id="carousel-dots" role="group" aria-label="Slide indicators"></div>
                     <button class="carousel__arrow carousel__arrow--next" aria-label="Next slide">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
