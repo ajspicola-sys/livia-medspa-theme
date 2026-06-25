@@ -5682,6 +5682,10 @@ a.contact-card__text:hover {
   transform: translateY(-1px);
 }
 
+.team-member__actions {
+  margin-top: 1.5rem;
+}
+
 /* ==========================================================================
    BEFORE & AFTER GALLERY
    ========================================================================== */

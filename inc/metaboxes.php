@@ -25,6 +25,7 @@ function livia_team_meta_html($post) {
     $role         = get_post_meta($post->ID, '_team_role', true);
     $credentials  = get_post_meta($post->ID, '_team_credentials', true);
     $specialties  = get_post_meta($post->ID, '_team_specialties', true);
+    $website      = get_post_meta($post->ID, '_team_website', true);
     ?>
     <style>
         .livia-team-row { display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap; }
@@ -53,6 +54,13 @@ function livia_team_meta_html($post) {
             <p class="description">Comma-separated specialties shown as tags, e.g. "Botox, Fillers, PRP"</p>
         </div>
     </div>
+    <div class="livia-team-row">
+        <div class="livia-team-field">
+            <label for="team_website">Personal Website (optional)</label>
+            <input type="url" id="team_website" name="team_website" value="<?php echo esc_attr($website); ?>" placeholder="https://example.com">
+            <p class="description">If filled in, a "Visit Website" button appears on this person's team card. Leave blank to hide it.</p>
+        </div>
+    </div>
     <?php
 }
 
@@ -66,6 +74,10 @@ function livia_save_team_meta($post_id) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
         }
+    }
+
+    if (isset($_POST['team_website'])) {
+        update_post_meta($post_id, '_team_website', esc_url_raw(trim($_POST['team_website'])));
     }
 }
 add_action('save_post_team_member', 'livia_save_team_meta');

@@ -35,6 +35,7 @@ get_header(); ?>
                         $role        = get_post_meta(get_the_ID(), '_team_role', true);
                         $credentials = get_post_meta(get_the_ID(), '_team_credentials', true);
                         $specialties = get_post_meta(get_the_ID(), '_team_specialties', true);
+                        $website     = get_post_meta(get_the_ID(), '_team_website', true);
                         $count++;
                         $reverse = ($count % 2 === 0) ? ' team-member--reverse' : '';
 
@@ -87,6 +88,12 @@ get_header(); ?>
                                     <?php foreach ($specs as $spec) : ?>
                                         <span class="team-member__specialty"><?php echo esc_html($spec); ?></span>
                                     <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($website) : ?>
+                                <div class="team-member__actions">
+                                    <a href="<?php echo esc_url($website); ?>" class="btn btn--primary btn--sm" target="_blank" rel="noopener noreferrer">Visit Website →</a>
                                 </div>
                             <?php endif; ?>
                         </div>
