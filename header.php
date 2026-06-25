@@ -450,40 +450,17 @@
                                 ]);
                                 $menu_services = $menu_services_query->posts;
 
-                                $service_cats = get_terms([
-                                    'taxonomy'   => 'service_category',
-                                    'hide_empty' => true,
-                                    'orderby'    => 'name',
-                                    'order'      => 'ASC',
-                                ]);
-
-                                // Build columns: category name => list of service posts.
-                                // A service tagged with two categories appears in both,
-                                // matching the previous per-category query behavior.
+                                // Show ALL services in one flat, un-categorized list,
+                                // split into balanced columns to fit the mega-menu grid
+                                // (no category grouping or headings).
                                 $menu_columns = [];
-                                if (!is_wp_error($service_cats) && !empty($service_cats) && $menu_services) {
-                                    foreach ($service_cats as $cat) {
-                                        $menu_columns[$cat->name] = [];
-                                    }
-                                    foreach ($menu_services as $svc) {
-                                        $svc_terms = get_the_terms($svc->ID, 'service_category');
-                                        if ($svc_terms && !is_wp_error($svc_terms)) {
-                                            foreach ($svc_terms as $svc_term) {
-                                                if (isset($menu_columns[$svc_term->name])) {
-                                                    $menu_columns[$svc_term->name][] = $svc;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    $menu_columns = array_filter($menu_columns);
-                                } elseif ($menu_services) {
-                                    // No categories — show all services in one column
-                                    $menu_columns = ['Our Treatments' => $menu_services];
+                                if ($menu_services) {
+                                    $per_col = (int) ceil(count($menu_services) / 3);
+                                    $menu_columns = array_chunk($menu_services, max(1, $per_col));
                                 }
 
-                                foreach ($menu_columns as $column_heading => $column_services) : ?>
+                                foreach ($menu_columns as $column_services) : ?>
                                     <div class="mega-menu__column">
-                                        <span class="mega-menu__heading"><?php echo esc_html($column_heading); ?></span>
                                         <div class="mega-menu__items">
                                             <?php foreach ($column_services as $svc) :
                                                 $icon     = get_post_meta($svc->ID, '_service_icon', true) ?: '✦';
@@ -492,8 +469,13 @@
                                                 $svc_exc  = wp_strip_all_tags(get_the_excerpt($svc));
                                                 $svc_dur  = get_post_meta($svc->ID, '_service_duration', true);
                                                 $svc_desc = $svc_exc ? wp_trim_words($svc_exc, 6) : ($svc_dur ?: 'Aesthetic treatment');
+                                                // External link (e.g. EllieMD peptides) opens in a new tab;
+                                                // regular services link to their internal page.
+                                                $svc_ext  = get_post_meta($svc->ID, '_service_external_url', true);
+                                                $svc_href = $svc_ext ?: get_permalink($svc);
+                                                $svc_tgt  = $svc_ext ? ' target="_blank" rel="noopener noreferrer"' : '';
                                             ?>
-                                                <a href="<?php echo esc_url(get_permalink($svc)); ?>" class="mega-menu__item">
+                                                <a href="<?php echo esc_url($svc_href); ?>" class="mega-menu__item"<?php echo $svc_tgt; ?>>
                                                     <span class="mega-menu__item-icon" style="background:<?php echo esc_attr($c['bg']); ?>;color:<?php echo esc_attr($c['fg']); ?>;"><?php echo esc_html($icon); ?></span>
                                                     <span class="mega-menu__item-content">
                                                         <span class="mega-menu__item-title"><?php echo esc_html(get_the_title($svc)); ?></span>

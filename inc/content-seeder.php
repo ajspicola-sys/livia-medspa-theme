@@ -1111,3 +1111,95 @@ function livia_migrate_service_data() {
 add_action('admin_init', 'livia_migrate_service_data');
 
 
+// ── EllieMD Peptide Therapy Seeder ─────────────────────────────────
+// Creates a "Peptide Therapy" service category and one service per
+// EllieMD storefront category. Each service stores an external URL in
+// the _service_external_url meta so the nav mega menu and services
+// archive link straight out to EllieMD (target="_blank") instead of an
+// internal service page.
+//
+// IMPORTANT: set $bp to Angie's EllieMD partner slug. The storefront is
+// elliemd.com/angiespicola- and the product attribution param is ?bp=<slug>.
+// If the slug ever changes, edit this one line and bump the option version
+// (livia_peptides_created_v1 -> _v2) to re-seed the URLs.
+function livia_create_peptide_services() {
+    if (get_option('livia_peptides_created_v1')) return;
+
+    $bp = 'angiespicola-'; // EllieMD partner slug — change here if it changes
+
+    // Create / fetch the Peptide Therapy category
+    $cat_name = 'Peptide Therapy';
+    $cat_desc = 'Physician-supervised, ship-to-home peptide therapies powered by EllieMD.';
+    $existing_cat = term_exists($cat_name, 'service_category');
+    if ($existing_cat) {
+        $cat_id = (int) $existing_cat['term_id'];
+    } else {
+        $term = wp_insert_term($cat_name, 'service_category', ['description' => $cat_desc]);
+        $cat_id = (!is_wp_error($term)) ? (int) $term['term_id'] : 0;
+    }
+
+    // EllieMD storefront category links (attribution appended below)
+    $peptides = [
+        [
+            'title'   => 'GLP-1 Weight Loss',
+            'url'     => 'https://elliemd.com/weight-loss/?bp=' . $bp,
+            'excerpt' => 'Physician-supervised GLP-1 therapy for sustainable weight loss, appetite control, and metabolic reset. Ship-to-home with full physician oversight.',
+        ],
+        [
+            'title'   => 'GLP-1 Microdosing',
+            'url'     => 'https://elliemd.com/microdose/?bp=' . $bp,
+            'excerpt' => 'A targeted, lower-dose GLP-1 approach focused on metabolic health, blood sugar stability, and longevity rather than dramatic weight loss.',
+        ],
+        [
+            'title'   => 'Longevity Peptides',
+            'url'     => 'https://elliemd.com/longevity/?bp=' . $bp,
+            'excerpt' => 'Protocols to support healthy aging, cellular energy, hormone balance, recovery, and sleep. Includes KLOW, NAD+, BPC-157, and Sermorelin.',
+        ],
+        [
+            'title'   => 'Skincare Peptides',
+            'url'     => 'https://elliemd.com/product/skincare/?bp=' . $bp,
+            'excerpt' => 'Physician-grade peptide formulations for skin repair, collagen stimulation, and anti-aging, including GHK-Cu.',
+        ],
+        [
+            'title'   => 'Sexual Health Peptides',
+            'url'     => 'https://elliemd.com/sexual-health/?bp=' . $bp,
+            'excerpt' => 'Protocols designed to support sexual desire, arousal, and function for both women and men.',
+        ],
+    ];
+
+    $order = 50; // push peptide items below existing services in menu_order
+    foreach ($peptides as $p) {
+        $existing = livia_get_post_by_title($p['title'], 'service');
+        if ($existing) {
+            // Keep external URL and category in sync on re-runs
+            update_post_meta($existing->ID, '_service_external_url', esc_url_raw($p['url']));
+            if ($cat_id) {
+                wp_set_object_terms($existing->ID, $cat_id, 'service_category');
+            }
+            continue;
+        }
+
+        $post_id = wp_insert_post([
+            'post_title'   => $p['title'],
+            'post_excerpt' => $p['excerpt'],
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'service',
+            'menu_order'   => $order,
+        ]);
+
+        if ($post_id && !is_wp_error($post_id)) {
+            update_post_meta($post_id, '_service_external_url', esc_url_raw($p['url']));
+            if ($cat_id) {
+                wp_set_object_terms($post_id, $cat_id, 'service_category');
+            }
+        }
+        $order++;
+    }
+
+    update_option('livia_peptides_created_v1', true);
+}
+add_action('after_switch_theme', 'livia_create_peptide_services');
+add_action('init', 'livia_create_peptide_services', 20);
+
+
