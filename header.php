@@ -469,8 +469,13 @@
                                                 $svc_exc  = wp_strip_all_tags(get_the_excerpt($svc));
                                                 $svc_dur  = get_post_meta($svc->ID, '_service_duration', true);
                                                 $svc_desc = $svc_exc ? wp_trim_words($svc_exc, 6) : ($svc_dur ?: 'Aesthetic treatment');
+                                                // If an External Link is set on the service, link out in a
+                                                // new tab; otherwise link to the internal service page.
+                                                $svc_ext  = get_post_meta($svc->ID, '_service_external_url', true);
+                                                $svc_href = $svc_ext ?: get_permalink($svc);
+                                                $svc_tgt  = $svc_ext ? ' target="_blank" rel="noopener noreferrer"' : '';
                                             ?>
-                                                <a href="<?php echo esc_url(get_permalink($svc)); ?>" class="mega-menu__item">
+                                                <a href="<?php echo esc_url($svc_href); ?>" class="mega-menu__item"<?php echo $svc_tgt; ?>>
                                                     <span class="mega-menu__item-icon" style="background:<?php echo esc_attr($c['bg']); ?>;color:<?php echo esc_attr($c['fg']); ?>;"><?php echo esc_html($icon); ?></span>
                                                     <span class="mega-menu__item-content">
                                                         <span class="mega-menu__item-title"><?php echo esc_html(get_the_title($svc)); ?></span>

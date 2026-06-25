@@ -406,6 +406,7 @@ function livia_service_sections_html($post) {
     $price = get_post_meta($post->ID, '_service_price', true);
     $duration = get_post_meta($post->ID, '_service_duration', true);
     $video = get_post_meta($post->ID, '_service_video', true);
+    $external_url = get_post_meta($post->ID, '_service_external_url', true);
 
     $sec_a_title = get_post_meta($post->ID, '_service_sec_a_title', true);
     $sec_a_desc = get_post_meta($post->ID, '_service_sec_a_desc', true);
@@ -458,6 +459,11 @@ function livia_service_sections_html($post) {
                     <label class="livia-meta-label" for="service_video">Video URL (Vimeo/YouTube)</label>
                     <input type="text" class="livia-meta-input-text" id="service_video" name="service_video" value="<?php echo esc_attr($video); ?>" placeholder="e.g. https://www.youtube.com/watch?v=...">
                     <div class="livia-meta-help">Will render a looping autoplay video in the hero area.</div>
+                </div>
+                <div class="livia-meta-row" style="grid-column:1 / -1;">
+                    <label class="livia-meta-label" for="service_external_url">External Link (optional)</label>
+                    <input type="url" class="livia-meta-input-text" id="service_external_url" name="service_external_url" value="<?php echo esc_attr($external_url); ?>" placeholder="e.g. https://elliemd.com/weight-loss/?bp=angiespicola">
+                    <div class="livia-meta-help">If filled in, clicking this service (in the menu and on the services page) opens this URL in a new tab instead of the internal service page. Leave blank for a normal service.</div>
                 </div>
             </div>
         </div>
@@ -666,6 +672,7 @@ function livia_save_service_sections($post_id) {
         '_service_price'             => 'text',
         '_service_duration'          => 'text',
         '_service_video'             => 'text',
+        '_service_external_url'      => 'url',
         '_service_sec_a_title'       => 'text',
         '_service_sec_a_desc'        => 'html',
         '_service_sec_a_checklist'   => 'textarea',
@@ -694,6 +701,8 @@ function livia_save_service_sections($post_id) {
             $value = $_POST[$post_key];
             if ($type === 'int') {
                 update_post_meta($post_id, $key, absint($value));
+            } elseif ($type === 'url') {
+                update_post_meta($post_id, $key, esc_url_raw(trim($value)));
             } elseif ($type === 'html') {
                 update_post_meta($post_id, $key, wp_kses_post($value));
             } elseif ($type === 'textarea') {

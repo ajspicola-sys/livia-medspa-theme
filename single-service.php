@@ -136,6 +136,14 @@ if (!function_exists('livia_get_default_prep_aftercare')) {
     }
 }
 
+// If this service has an External Link set, send visitors straight there
+// instead of rendering the (likely empty) internal service page.
+$service_external_url = get_post_meta( get_queried_object_id(), '_service_external_url', true );
+if ( ! empty( $service_external_url ) ) {
+    wp_redirect( esc_url_raw( $service_external_url ), 302 );
+    exit;
+}
+
 get_header();
 
 // Fetch post identifiers & field inputs
