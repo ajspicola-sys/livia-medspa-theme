@@ -77,11 +77,6 @@ $all_cats = get_terms([
                         $price    = get_post_meta( get_the_ID(), '_service_price', true );
                         $duration = get_post_meta( get_the_ID(), '_service_duration', true );
 
-                        // External services (e.g. EllieMD peptides) link out in a new tab.
-                        $ext      = get_post_meta( get_the_ID(), '_service_external_url', true );
-                        $card_href = $ext ?: get_permalink();
-                        $card_tgt  = $ext ? ' target="_blank" rel="noopener noreferrer"' : '';
-
                         // Collect category slugs for filtering
                         $terms      = get_the_terms( get_the_ID(), 'service_category' );
                         $cat_slugs  = '';
@@ -92,7 +87,7 @@ $all_cats = get_terms([
                             $cat_name  = $terms[0]->name;
                         }
                     ?>
-                        <a href="<?php echo esc_url( $card_href ); ?>"<?php echo $card_tgt; ?>
+                        <a href="<?php the_permalink(); ?>"
                            class="service-card reveal"
                            data-cats="<?php echo esc_attr( $cat_slugs ); ?>"
                            itemscope

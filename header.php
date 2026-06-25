@@ -469,13 +469,8 @@
                                                 $svc_exc  = wp_strip_all_tags(get_the_excerpt($svc));
                                                 $svc_dur  = get_post_meta($svc->ID, '_service_duration', true);
                                                 $svc_desc = $svc_exc ? wp_trim_words($svc_exc, 6) : ($svc_dur ?: 'Aesthetic treatment');
-                                                // External link (e.g. EllieMD peptides) opens in a new tab;
-                                                // regular services link to their internal page.
-                                                $svc_ext  = get_post_meta($svc->ID, '_service_external_url', true);
-                                                $svc_href = $svc_ext ?: get_permalink($svc);
-                                                $svc_tgt  = $svc_ext ? ' target="_blank" rel="noopener noreferrer"' : '';
                                             ?>
-                                                <a href="<?php echo esc_url($svc_href); ?>" class="mega-menu__item"<?php echo $svc_tgt; ?>>
+                                                <a href="<?php echo esc_url(get_permalink($svc)); ?>" class="mega-menu__item">
                                                     <span class="mega-menu__item-icon" style="background:<?php echo esc_attr($c['bg']); ?>;color:<?php echo esc_attr($c['fg']); ?>;"><?php echo esc_html($icon); ?></span>
                                                     <span class="mega-menu__item-content">
                                                         <span class="mega-menu__item-title"><?php echo esc_html(get_the_title($svc)); ?></span>
