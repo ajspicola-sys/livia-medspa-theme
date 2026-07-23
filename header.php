@@ -127,8 +127,13 @@
     <?php
     // Preload main stylesheet — fetched at high priority, applied non-blocking.
     // The ?ver= must match livia_enqueue_styles() exactly or the preload is wasted.
-    $theme_ver = filemtime( get_stylesheet_directory() . '/style.css' );
-    echo '<link rel="preload" href="' . esc_url( get_stylesheet_uri() . '?ver=' . $theme_ver ) . '" as="style">' . "\n";
+    // Skipped when LiteSpeed Cache is active: its CSS optimizer rewrites the
+    // stylesheet URL to a minified bundle, so preloading the raw file would
+    // download ~200KB that the page never uses.
+    if ( ! defined( 'LSCWP_V' ) ) {
+        $theme_ver = filemtime( get_stylesheet_directory() . '/style.css' );
+        echo '<link rel="preload" href="' . esc_url( get_stylesheet_uri() . '?ver=' . $theme_ver ) . '" as="style">' . "\n";
+    }
     ?>
 
     <?php wp_head(); ?>

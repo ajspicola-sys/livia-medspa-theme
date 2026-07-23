@@ -198,6 +198,9 @@ add_filter( 'litespeed_ucss_whitelist', function ( $list ) {
         '.cookie-banner',
         '.ba-modal',
         '.gallery-card__expand',
+        // Homepage FAQ <details> open-state (attribute only exists after a
+        // user click, so UCSS would purge these rules from the static scan)
+        '.home-faq__item[open]',
     ] );
 } );
 
@@ -250,6 +253,15 @@ add_action( 'init', function () {
     // 2b. Force UCSS regeneration so stale purged-CSS files are rebuilt
     //     with the litespeed_ucss_whitelist applied (no-op if hook absent)
     do_action( 'litespeed_purge_ucss' );
+
+    // 2c. Purge the minified/combined CSS-JS files themselves. Without this,
+    //     litespeed_purge_all clears the PAGE cache (fresh HTML) but keeps
+    //     serving the pre-deploy minified stylesheet — new sections render
+    //     completely unstyled after every CSS change.
+    do_action( 'litespeed_purge_cssjs' );
+
+    // 2d. Regenerate Critical CSS for the same reason
+    do_action( 'litespeed_purge_ccss' );
 
     // 3. WP Object Cache flush (Redis / Memcached if active)
     if ( function_exists( 'wp_cache_flush' ) ) {
