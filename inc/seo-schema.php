@@ -477,6 +477,53 @@ function livia_schema_markup() {
 add_action('wp_head', 'livia_schema_markup', 5);
 
 
+// ── CareCredit page FAQs — shared by schema and page-carecredit.php ─────────
+// Google requires FAQ structured data to match visible page content, so both
+// the JSON-LD below and the template render from this one source.
+function livia_carecredit_faqs() {
+    return [
+        [
+            'q' => 'Does LIVIA Med Spa accept CareCredit?',
+            'a' => 'Yes. LIVIA Med Spa in Tampa accepts the CareCredit health and wellness credit card for every treatment and product — Botox, dermal fillers, Helix CO2 laser, RF microneedling, GLP-1 weight loss programs, hormone therapy, facials, and medical-grade skincare.',
+        ],
+        [
+            'q' => 'Does prequalifying for CareCredit affect my credit score?',
+            'a' => 'No. Seeing if you prequalify takes seconds and has no impact on your credit score. A full application is only submitted if you choose to move forward.',
+        ],
+        [
+            'q' => 'How do I apply for CareCredit for my LIVIA Med Spa treatment?',
+            'a' => 'Apply online in minutes through LIVIA Med Spa\'s CareCredit link. Once approved, you can use your card immediately at your next visit. Our team at (813) 230-2219 is happy to walk you through the process.',
+        ],
+        [
+            'q' => 'Can I use CareCredit more than once?',
+            'a' => 'Yes. CareCredit is a reusable credit card designed for health and wellness expenses. Once approved, you can use it for future LIVIA Med Spa visits — touch-ups, new treatments, and skincare — and at other participating providers.',
+        ],
+    ];
+}
+
+function livia_carecredit_faq_schema() {
+    if ( ! is_page('carecredit') ) return;
+
+    $schema = [
+        '@context'   => 'https://schema.org',
+        '@type'      => 'FAQPage',
+        'mainEntity' => [],
+    ];
+    foreach ( livia_carecredit_faqs() as $faq ) {
+        $schema['mainEntity'][] = [
+            '@type' => 'Question',
+            'name'  => $faq['q'],
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text'  => $faq['a'],
+            ],
+        ];
+    }
+    echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
+}
+add_action('wp_head', 'livia_carecredit_faq_schema', 6);
+
+
 // ── FAQ Schema for Memberships Page ────────────────────────────────
 function livia_faq_schema() {
     if (!is_page('memberships')) return;
