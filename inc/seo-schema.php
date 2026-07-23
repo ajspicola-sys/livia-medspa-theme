@@ -10,7 +10,7 @@
 // ── SEO: Keyword-rich title tags (fixes "Home - liviamedspa.com" issue) ─────
 function livia_seo_title( $title_parts ) {
     if ( is_front_page() ) {
-        $title_parts['title']   = 'Med Spa Tampa | LIVIA Medical Spa & Aesthetics';
+        $title_parts['title']   = 'Med Spa Tampa, FL | Botox, Fillers & Laser | LIVIA Med Spa';
         unset( $title_parts['tagline'] );
         unset( $title_parts['site'] );
     } elseif ( is_singular('service') ) {
@@ -281,6 +281,43 @@ add_action( 'template_redirect', 'livia_legacy_redirects', 1 );
 // ChatGPT, Perplexity, Bing Copilot, and all AEO signals.
 // ============================================================
 
+// ── availableService list — built from real service posts ────────────────────
+// Every published service gets a MedicalTherapy entry pointing at its own page,
+// so high-revenue treatments (GLP-1, Helix CO2, hormone therapy, PRP, etc.) are
+// individually visible to Google and AI crawlers. Falls back to a static list
+// if no services exist yet.
+function livia_schema_available_services() {
+    $service_posts = get_posts([
+        'post_type'      => 'service',
+        'posts_per_page' => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'post_status'    => 'publish',
+    ]);
+
+    if ( $service_posts ) {
+        $available = [];
+        foreach ( $service_posts as $sp ) {
+            $available[] = [
+                '@type' => 'MedicalTherapy',
+                'name'  => get_the_title( $sp ),
+                'url'   => get_permalink( $sp ),
+            ];
+        }
+        return $available;
+    }
+
+    $fallback = [
+        'Botox & Neuromodulators', 'Dermal Fillers', 'RF Microneedling',
+        'Helix CO2 Laser', 'Laser Skin Resurfacing', 'Medical-Grade Facials',
+        'IV Therapy', 'GLP-1 Weight Loss', 'Hormone Therapy',
+    ];
+    return array_map( function( $name ) {
+        return [ '@type' => 'MedicalTherapy', 'name' => $name, 'url' => esc_url( home_url('/services/') ) ];
+    }, $fallback );
+}
+
+
 // ── 1. MedicalBusiness + WebSite + Person (Angela) ── every page ─────────────
 function livia_schema_markup() {
 
@@ -299,7 +336,7 @@ function livia_schema_markup() {
     // Full MedicalBusiness entity
     $business = [
         '@context'         => 'https://schema.org',
-        '@type'            => ['MedicalBusiness', 'HealthAndBeautyBusiness', 'LocalBusiness'],
+        '@type'            => ['MedicalBusiness', 'MedicalClinic', 'HealthAndBeautyBusiness', 'LocalBusiness'],
         '@id'              => esc_url(home_url('/')) . '#livia-med-spa',
         'name'             => 'LIVIA Med Spa',
         'legalName'        => 'Livia Med Spa LLC',
@@ -350,24 +387,19 @@ function livia_schema_markup() {
         'employee'         => [ $provider ],
         'founder'          => $provider,
         'medicalSpecialty' => 'Dermatology',
-        'availableService' => [
-            [ '@type' => 'MedicalTherapy', 'name' => 'Botox & Neuromodulators', 'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Dermal Fillers',         'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'RF Microneedling',       'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Laser Skin Resurfacing', 'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Medical-Grade Facials',  'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'IV Therapy',             'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Kybella',                'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Helix CO2 Laser',       'url' => esc_url(home_url('/services/')) ],
-            [ '@type' => 'MedicalTherapy', 'name' => 'Weight Loss Programs',   'url' => esc_url(home_url('/services/')) ],
-        ],
+        'availableService' => livia_schema_available_services(),
         'areaServed'       => [
-            [ '@type' => 'City', 'name' => 'Tampa',       'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Carrollwood', 'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Westchase',   'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Lutz',        'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Odessa',      'containedIn' => 'Florida' ],
-            [ '@type' => 'City', 'name' => 'Land O Lakes', 'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Tampa',          'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Carrollwood',    'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Westchase',      'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Lutz',           'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Odessa',         'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Land O Lakes',   'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Brandon',        'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Wesley Chapel',  'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Clearwater',     'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'St. Petersburg', 'containedIn' => 'Florida' ],
+            [ '@type' => 'City', 'name' => 'Riverview',      'containedIn' => 'Florida' ],
         ],
         'hasOfferCatalog'  => [
             '@type' => 'OfferCatalog',
@@ -381,6 +413,12 @@ function livia_schema_markup() {
                 'description' => 'Complimentary aesthetic consultation with our board-certified provider.',
                 'price'       => '0',
                 'priceCurrency' => 'USD',
+                'url'         => esc_url(home_url('/contact/')),
+            ],
+            [
+                '@type'       => 'Offer',
+                'name'        => 'New Client Special — $50 Off First Visit',
+                'description' => '$50 off your first treatment at LIVIA Med Spa for new clients.',
                 'url'         => esc_url(home_url('/contact/')),
             ],
         ],
@@ -472,13 +510,22 @@ add_action('wp_head', 'livia_faq_schema', 6);
 // These Q&As directly feed Google AI Overviews, ChatGPT, and Perplexity
 // when users ask questions about med spas in Tampa.
 // =============================================================================
-function livia_homepage_faq_schema() {
-    if ( ! is_front_page() ) return;
-
-    $faqs = [
+// Shared Q&A source — used by BOTH the FAQPage schema below and the visible
+// FAQ section on front-page.php. Google requires FAQ structured data to match
+// content that is actually visible on the page, so keep them fed from here.
+function livia_homepage_faqs() {
+    return [
         [
             'q' => 'What services does LIVIA Med Spa offer in Tampa?',
-            'a' => 'LIVIA Med Spa in Tampa, FL offers Botox and neuromodulators, dermal fillers (Juvederm, Restylane), RF microneedling, Helix CO2 laser skin resurfacing, medical-grade facials, chemical peels, Kybella, IV therapy, weight loss programs, and a curated selection of medical-grade skincare products.',
+            'a' => 'LIVIA Med Spa in Tampa, FL offers Botox and neuromodulators, dermal fillers (Juvederm, Restylane), RF microneedling, Helix CO2 laser skin resurfacing, medical-grade facials, chemical peels, Kybella, IV therapy, GLP-1 weight loss programs, hormone therapy, PRP treatments, and a curated selection of medical-grade skincare products.',
+        ],
+        [
+            'q' => 'Does LIVIA Med Spa offer GLP-1 weight loss treatments?',
+            'a' => 'Yes. LIVIA Med Spa offers medically supervised GLP-1 weight loss programs, including microdosing protocols, tailored to your health history and goals. Every program is overseen by Angela Spicola, APRN, and begins with a complimentary consultation to determine candidacy.',
+        ],
+        [
+            'q' => 'What is the Helix CO2 laser and why is it unique in Tampa?',
+            'a' => 'The Helix CO2 laser is an advanced fractional skin-resurfacing laser that treats deep wrinkles, acne scars, and sun damage by stimulating collagen at the deepest layers of the skin — and LIVIA Med Spa is the only med spa in Tampa offering it. Most patients see dramatic improvement in skin texture and tone after a single session.',
         ],
         [
             'q' => 'Who is the provider at LIVIA Med Spa?',
@@ -514,9 +561,15 @@ function livia_homepage_faq_schema() {
         ],
         [
             'q' => 'What makes LIVIA Med Spa different from other Tampa med spas?',
-            'a' => 'LIVIA Med Spa stands out for its board-certified APRN provider Angela Spicola, its commitment to natural, personalized results, transparent pricing, and its unique Beauty Bank membership program. They use only FDA-approved products and advanced techniques to deliver safe, effective outcomes.',
+            'a' => 'LIVIA Med Spa stands out for its board-certified APRN provider Angela Spicola, Tampa\'s only Helix CO2 laser, its commitment to natural, personalized results, transparent pricing, and its unique Beauty Bank membership program. They use only FDA-approved products and advanced techniques to deliver safe, effective outcomes.',
         ],
     ];
+}
+
+function livia_homepage_faq_schema() {
+    if ( ! is_front_page() ) return;
+
+    $faqs = livia_homepage_faqs();
 
     $schema = [
         '@context'   => 'https://schema.org',

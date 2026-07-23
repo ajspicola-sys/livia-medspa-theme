@@ -29,7 +29,7 @@
 
     // ── Build meta description (used by fallback AND OG block below) ────────
     if (is_front_page()) {
-        $meta_desc = 'Tampa\'s premier med spa — Botox, fillers, RF microneedling & laser treatments by Angela Spicola, APRN. Serving Tampa, FL. Book your free consultation today.';
+        $meta_desc = 'Tampa med spa for Botox, fillers, Helix CO2 laser, RF microneedling, GLP-1 weight loss & hormone therapy by Angela Spicola, APRN. New clients save $50 — book free.';
     } elseif (is_singular('post')) {
         // Blog posts: use post excerpt for unique, content-specific descriptions
         $post_excerpt = wp_strip_all_tags(get_the_excerpt());
@@ -92,7 +92,7 @@
     $og_img_filetype = wp_check_filetype( $og_img );
     $og_img_mime     = ! empty( $og_img_filetype['type'] ) ? $og_img_filetype['type'] : 'image/png';
 
-    $og_title = is_front_page() ? 'LIVIA Med Spa | Medical Spa in Tampa, FL' : wp_get_document_title();
+    $og_title = is_front_page() ? 'LIVIA Med Spa | Botox, Fillers & Laser in Tampa, FL' : wp_get_document_title();
     $og_desc  = $meta_desc ?: 'Tampa\'s premier boutique medical spa — Botox, fillers, laser, RF microneedling & skincare. Led by Angela Spicola, APRN.';
     $og_url   = is_front_page() ? home_url('/') : (get_permalink() ?: home_url('/'));
     $og_type  = (is_front_page() || is_page()) ? 'website' : 'article';
@@ -462,8 +462,12 @@
                                 foreach ($menu_columns as $column_services) : ?>
                                     <div class="mega-menu__column">
                                         <div class="mega-menu__items">
-                                            <?php foreach ($column_services as $svc) :
-                                                $icon     = get_post_meta($svc->ID, '_service_icon', true) ?: '✦';
+                                            <?php
+                                            // Uniform SVG sparkle icon — replaces the old per-service
+                                            // emoji (_service_icon). Emojis added no keyword signal and
+                                            // polluted crawlable nav anchor text.
+                                            $mega_icon_svg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>';
+                                            foreach ($column_services as $svc) :
                                                 $c        = $icon_colors[$color_index % count($icon_colors)];
                                                 $color_index++;
                                                 $svc_exc  = wp_strip_all_tags(get_the_excerpt($svc));
@@ -476,7 +480,7 @@
                                                 $svc_tgt  = $svc_ext ? ' target="_blank" rel="noopener noreferrer"' : '';
                                             ?>
                                                 <a href="<?php echo esc_url($svc_href); ?>" class="mega-menu__item"<?php echo $svc_tgt; ?>>
-                                                    <span class="mega-menu__item-icon" style="background:<?php echo esc_attr($c['bg']); ?>;color:<?php echo esc_attr($c['fg']); ?>;"><?php echo esc_html($icon); ?></span>
+                                                    <span class="mega-menu__item-icon" style="background:<?php echo esc_attr($c['bg']); ?>;color:<?php echo esc_attr($c['fg']); ?>;"><?php echo $mega_icon_svg; ?></span>
                                                     <span class="mega-menu__item-content">
                                                         <span class="mega-menu__item-title"><?php echo esc_html(get_the_title($svc)); ?></span>
                                                         <span class="mega-menu__item-desc"><?php echo esc_html($svc_desc); ?></span>
@@ -626,6 +630,7 @@
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
+                    <span class="site-header__phone-num">(813) 230-2219</span>
                 </a>
                 <span class="header__divider"></span>
                 <a href="#book-now" class="btn btn--primary btn--sm nav__cta-desktop">Book Now</a>

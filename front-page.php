@@ -41,23 +41,23 @@ get_header(); ?>
         <div class="hero__inner">
             <!-- LEFT: Content -->
             <div class="hero__content">
-                <span class="hero__badge">✦ Tampa's #1 Med Spa</span>
+                <span class="hero__badge">✦ New Client Special — $50 Off Your First Visit</span>
 
                 <h1 class="hero__title">
-                    Tampa's Premier
-                    <em>Med Spa</em>
+                    Tampa's Premier Med Spa for
+                    <em>Botox, Fillers &amp; Laser</em>
                 </h1>
 
                 <div class="hero__divider" aria-hidden="true"></div>
 
-                <p class="hero__subtitle">Advanced aesthetic treatments in Tampa, FL — Botox, fillers, laser & RF microneedling delivered by Angela Spicola, APRN.</p>
+                <p class="hero__subtitle">Botox, dermal fillers, Helix CO2 laser resurfacing, RF microneedling, GLP-1 weight loss & hormone therapy in Tampa, FL — delivered by Angela Spicola, APRN, a board-certified nurse practitioner with 20+ years of clinical experience.</p>
 
                 <div class="hero__actions">
                     <a href="#book-now" class="btn btn--primary btn--lg">
                         Book Consultation
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn--outline btn--lg">View Services</a>
+                    <a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="btn btn--outline btn--lg">See Real Results</a>
                 </div>
 
                 <!-- Stats row -->
@@ -130,7 +130,9 @@ get_header(); ?>
                     <span class="trust-ticker__item">✦ Galderma Partner</span>
                     <span class="trust-ticker__item">✦ Tampa's Only Helix CO2 Laser</span>
                     <span class="trust-ticker__item">✦ Complimentary Consultations</span>
-                    <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
+                    <span class="trust-ticker__item">✦ GLP-1 Weight Loss Programs</span>
+                    <span class="trust-ticker__item">✦ Hormone Therapy &amp; Wellness</span>
+                    <span class="trust-ticker__item">✦ RF Microneedling &amp; Laser Resurfacing</span>
                 </div>
                 <div class="trust-ticker__group" aria-hidden="true">
                     <span class="trust-ticker__item">✦ FDA Approved Products</span>
@@ -141,7 +143,9 @@ get_header(); ?>
                     <span class="trust-ticker__item">✦ Galderma Partner</span>
                     <span class="trust-ticker__item">✦ Tampa's Only Helix CO2 Laser</span>
                     <span class="trust-ticker__item">✦ Complimentary Consultations</span>
-                    <span class="trust-ticker__item">✦ Tampa's #1 Med Spa</span>
+                    <span class="trust-ticker__item">✦ GLP-1 Weight Loss Programs</span>
+                    <span class="trust-ticker__item">✦ Hormone Therapy &amp; Wellness</span>
+                    <span class="trust-ticker__item">✦ RF Microneedling &amp; Laser Resurfacing</span>
                 </div>
             </div>
         </div>
@@ -213,7 +217,7 @@ get_header(); ?>
                                     <div class="carousel-card__body">
                                         <div class="carousel-card__icon"><?php echo $card_icon_svg; ?></div>
                                         <h3 class="carousel-card__title"><?php the_title(); ?></h3>
-                                        <p class="carousel-card__text"><?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), 20); ?></p>
+                                        <p class="carousel-card__text"><?php echo esc_html(wp_strip_all_tags(get_the_excerpt())); ?></p>
                                         <?php if ($price) : ?>
                                             <span class="carousel-card__price">From <?php echo esc_html($price); ?></span>
                                         <?php endif; ?>
@@ -259,6 +263,80 @@ get_header(); ?>
 
 
 
+    <?php
+    // Helper: resolve a service page URL from candidate slugs, falling back to
+    // the services archive. Lets these sections deep-link to real service pages
+    // no matter which slug the service was created under.
+    $livia_service_url = function ($candidates) {
+        foreach ((array) $candidates as $slug) {
+            $p = get_page_by_path($slug, OBJECT, 'service');
+            if ($p && 'publish' === $p->post_status) {
+                return get_permalink($p);
+            }
+        }
+        return home_url('/services/');
+    };
+    ?>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         HELIX CO2 SPOTLIGHT — Tampa-exclusive differentiator
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="helix-spotlight" aria-label="Helix CO2 laser — exclusive to LIVIA in Tampa">
+        <div class="section__inner">
+            <div class="helix-spotlight__layout">
+                <div class="helix-spotlight__content reveal">
+                    <span class="section__label">Tampa Exclusive</span>
+                    <h2 class="section__title">Tampa's Only <em>Helix CO2 Laser</em></h2>
+                    <p class="helix-spotlight__text">LIVIA Med Spa is the only med spa in Tampa offering the Helix CO2 laser — the most advanced fractional skin-resurfacing technology available today. By delivering precise columns of laser energy deep into the skin, Helix triggers your body's own collagen production to visibly reduce deep wrinkles, acne scars, sun damage, and uneven texture. Most patients see dramatic, long-lasting improvement after a single session, with far less downtime than traditional CO2 lasers.</p>
+                    <ul class="helix-spotlight__points">
+                        <li class="helix-spotlight__point">Treats deep wrinkles, acne scars, sun damage &amp; skin laxity</li>
+                        <li class="helix-spotlight__point">Fractional delivery means faster healing than legacy CO2 lasers</li>
+                        <li class="helix-spotlight__point">Performed by Angela Spicola, APRN — board-certified provider</li>
+                    </ul>
+                    <div class="helix-spotlight__actions">
+                        <a href="<?php echo esc_url($livia_service_url(['helix-co2-laser', 'helix-co2', 'co2-laser'])); ?>" class="btn btn--primary btn--lg">Explore Helix CO2 Laser</a>
+                        <a href="<?php echo esc_url(home_url('/before-after/')); ?>" class="btn btn--outline btn--lg">See Before &amp; After</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ADVANCED WELLNESS — GLP-1, hormones, intimate health, IV
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="wellness" aria-label="Weight loss, hormone and wellness treatments">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Beyond Aesthetics</span>
+                <h2 class="section__title">Weight Loss, Hormones &amp; Wellness in Tampa</h2>
+                <p class="section__desc">LIVIA is more than injectables. Our medical wellness programs treat what you feel, not just what you see — all supervised by a board-certified nurse practitioner.</p>
+            </div>
+            <div class="wellness__grid reveal">
+                <a href="<?php echo esc_url($livia_service_url(['glp-1-weight-loss', 'glp1-weight-loss', 'weight-loss'])); ?>" class="wellness-card">
+                    <h3 class="wellness-card__title">GLP-1 Weight Loss</h3>
+                    <p class="wellness-card__text">Medically supervised GLP-1 programs — including microdosing protocols — that curb appetite, improve metabolic health, and deliver sustainable weight loss. Includes ongoing provider check-ins and dose adjustments.</p>
+                    <span class="wellness-card__link">Learn More →</span>
+                </a>
+                <a href="<?php echo esc_url($livia_service_url(['menopause-hormone-therapy', 'hormone-therapy', 'hormone-replacement-therapy'])); ?>" class="wellness-card">
+                    <h3 class="wellness-card__title">Hormone Therapy</h3>
+                    <p class="wellness-card__text">Personalized hormone optimization for menopause and beyond — relief from fatigue, hot flashes, brain fog, and low libido through lab-guided, provider-managed treatment plans.</p>
+                    <span class="wellness-card__link">Learn More →</span>
+                </a>
+                <a href="<?php echo esc_url($livia_service_url(['vaginal-prp', 'penile-prp'])); ?>" class="wellness-card">
+                    <h3 class="wellness-card__title">Intimate Wellness</h3>
+                    <p class="wellness-card__text">Confidential, non-surgical PRP treatments for women and men that use your body's own growth factors to restore sensitivity, function, and confidence. Discreet consultations always.</p>
+                    <span class="wellness-card__link">Learn More →</span>
+                </a>
+                <a href="<?php echo esc_url($livia_service_url(['iv-therapy'])); ?>" class="wellness-card">
+                    <h3 class="wellness-card__title">IV Therapy &amp; Peptides</h3>
+                    <p class="wellness-card__text">Custom IV vitamin infusions and practitioner-guided peptide protocols for energy, immunity, recovery, and longevity — matched to your goals through our EllieMD partner platform.</p>
+                    <span class="wellness-card__link">Learn More →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ═══════════════════════════════════════════════════════════════
          YOUR JOURNEY — 4-step process
          ═══════════════════════════════════════════════════════════════ -->
@@ -267,8 +345,8 @@ get_header(); ?>
         <div class="section__inner">
             <div class="section__header reveal">
                 <span class="section__label">How It Works</span>
-                <h2 class="section__title">Your Botox & Filler Journey in Tampa</h2>
-                <p class="section__desc">From your first free consultation to your final results — our Tampa med spa team makes every step seamless, safe, and luxurious.</p>
+                <h2 class="section__title">Your Treatment Journey at LIVIA</h2>
+                <p class="section__desc">Whether you're here for Botox, fillers, laser resurfacing, GLP-1 weight loss, or hormone therapy — from your first free consultation to your final results, our Tampa med spa team makes every step seamless, safe, and luxurious.</p>
             </div>
             <div class="journey-steps reveal">
                 <div class="journey-step">
@@ -475,6 +553,35 @@ get_header(); ?>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         WAYS TO SAVE — memberships, financing, parties
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="save-strip" aria-label="Memberships, financing and events">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Flexible Ways to Pay &amp; Play</span>
+                <h2 class="section__title">Memberships, Financing &amp; Events</h2>
+            </div>
+            <div class="save-strip__grid reveal">
+                <a href="<?php echo esc_url(home_url('/memberships/')); ?>" class="save-card">
+                    <h3 class="save-card__title">Beauty Bank Membership</h3>
+                    <p class="save-card__text">Bank a monthly deposit (from $50/month) as credits toward any treatment or product. Credits never expire while active, plus members get exclusive pricing and priority booking.</p>
+                    <span class="save-card__link">Explore Memberships →</span>
+                </a>
+                <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="save-card">
+                    <h3 class="save-card__title">Payment Plans via Cherry</h3>
+                    <p class="save-card__text">Split any treatment into manageable monthly payments with fast online approval and no hard credit check to apply — so you never have to wait on the results you want.</p>
+                    <span class="save-card__link">See Financing Options →</span>
+                </a>
+                <a href="<?php echo esc_url(home_url('/parties/')); ?>" class="save-card">
+                    <h3 class="save-card__title">Spa Parties &amp; Events</h3>
+                    <p class="save-card__text">Book a private Botox party, bridal event, or girls' night at LIVIA — group treatments, exclusive event pricing, and a luxury suite all to yourselves.</p>
+                    <span class="save-card__link">Plan Your Event →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          TESTIMONIALS — Split Layout
          ═══════════════════════════════════════════════════════════════ -->
     <section class="testimonials-split" aria-label="Client testimonials">
@@ -600,13 +707,84 @@ get_header(); ?>
     <?php endif; ?>
 
     <!-- ═══════════════════════════════════════════════════════════════
+         SERVICE DIRECTORY — every treatment deep-linked from the homepage
+         ═══════════════════════════════════════════════════════════════ -->
+    <?php
+    $dir_services = get_posts([
+        'post_type'      => 'service',
+        'posts_per_page' => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+        'post_status'    => 'publish',
+    ]);
+    if ($dir_services) :
+        // Group services under their first service_category term (ungrouped
+        // services fall into "More Treatments").
+        $dir_groups = [];
+        foreach ($dir_services as $ds) {
+            $terms = get_the_terms($ds->ID, 'service_category');
+            $group = ($terms && !is_wp_error($terms)) ? $terms[0]->name : 'More Treatments';
+            $dir_groups[$group][] = $ds;
+        }
+    ?>
+    <section class="service-directory" aria-label="All treatments at LIVIA Med Spa">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Complete Menu</span>
+                <h2 class="section__title">Every Treatment We Offer in Tampa</h2>
+                <p class="section__desc">Explore all <?php echo count($dir_services); ?>+ medical spa treatments available at LIVIA — each with its own detailed guide, pricing, and booking.</p>
+            </div>
+            <div class="service-directory__grid reveal">
+                <?php foreach ($dir_groups as $group_name => $group_services) : ?>
+                    <div class="service-directory__group">
+                        <h3 class="service-directory__heading"><?php echo esc_html($group_name); ?></h3>
+                        <ul class="service-directory__list">
+                            <?php foreach ($group_services as $ds) :
+                                $ds_ext  = get_post_meta($ds->ID, '_service_external_url', true);
+                                $ds_href = $ds_ext ?: get_permalink($ds);
+                                $ds_tgt  = $ds_ext ? ' target="_blank" rel="noopener noreferrer"' : '';
+                            ?>
+                                <li><a href="<?php echo esc_url($ds_href); ?>" class="service-directory__link"<?php echo $ds_tgt; ?>><?php echo esc_html(get_the_title($ds)); ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FAQ — visible content backing the FAQPage structured data
+         (livia_homepage_faq_schema() outputs the same Q&As as JSON-LD)
+         ═══════════════════════════════════════════════════════════════ -->
+    <?php if (function_exists('livia_homepage_faqs')) : $home_faqs = livia_homepage_faqs(); ?>
+    <section class="home-faq" id="faq" aria-label="Frequently asked questions">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__label">Good to Know</span>
+                <h2 class="section__title">Tampa Med Spa Questions, Answered</h2>
+            </div>
+            <div class="home-faq__list reveal">
+                <?php foreach ($home_faqs as $faq) : ?>
+                    <details class="home-faq__item">
+                        <summary class="home-faq__question"><?php echo esc_html($faq['q']); ?></summary>
+                        <p class="home-faq__answer"><?php echo esc_html($faq['a']); ?></p>
+                    </details>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ═══════════════════════════════════════════════════════════════
          CTA SECTION
          ═══════════════════════════════════════════════════════════════ -->
     <section class="cta-section" id="book" aria-label="Book a consultation">
         <div class="cta-section__inner reveal">
             <span class="cta-section__label">Start Your Journey</span>
             <h2 class="cta-section__title">Book Your Tampa<br>Med Spa Consultation</h2>
-            <p class="cta-section__text">Start with a free consultation at LIVIA Med Spa — Tampa's #1 rated medical spa on Dale Mabry Hwy. Our providers will build a personalized treatment plan just for you. Serving Carrollwood, Westchase, North Tampa, Hyde Park, and surrounding areas.</p>
+            <p class="cta-section__text">Start with a free consultation at LIVIA Med Spa — Tampa's #1 rated medical spa on Dale Mabry Hwy — and new clients save $50 on their first visit. Our providers will build a personalized treatment plan just for you. Serving Carrollwood, Westchase, North Tampa, Hyde Park, Lutz, Brandon, Wesley Chapel, Clearwater, St. Petersburg, and the greater Tampa Bay area.</p>
             <div class="cta-section__actions">
                 <a href="#book-now" class="btn btn--primary btn--lg">Book a Consultation</a>
                 <a href="tel:8132302219" class="btn btn--outline btn--lg">Call (813) 230-2219</a>

@@ -9471,4 +9471,295 @@ body.has-scroll-lock .scroll-top {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-}
+}
+/* ═══════════════════════════════════════════════════════════════════
+   HOMEPAGE SEO SECTIONS — Helix spotlight, wellness, save strip,
+   service directory, visible FAQ, header phone number
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* -- Header: visible phone number (icon-only pill expands on desktop) -- */
+.site-header__phone {
+  width: auto;
+  padding: 0 0.9rem;
+  border-radius: 19px;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header__phone-num {
+  line-height: 1;
+}
+
+@media (max-width: 1280px) {
+  .site-header__phone {
+    width: 38px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .site-header__phone-num {
+    display: none;
+  }
+}
+
+/* -- Helix CO2 spotlight -- */
+.helix-spotlight {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-lavender);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.helix-spotlight__layout {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.helix-spotlight__text {
+  color: var(--text-body);
+  line-height: 1.75;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.helix-spotlight__points {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.helix-spotlight__point {
+  color: var(--text-mid);
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.helix-spotlight__point::before {
+  content: '\2726';
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+}
+
+.helix-spotlight__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* -- Wellness grid (GLP-1, hormones, intimate, IV) -- */
+.wellness {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-cream);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.wellness__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.wellness-card,
+.save-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 2rem 1.6rem;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.wellness-card:hover,
+.save-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(var(--brand-rgb), 0.12);
+  border-color: rgba(var(--brand-rgb), 0.25);
+}
+
+.wellness-card__title,
+.save-card__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.wellness-card__text,
+.save-card__text {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.wellness-card__link,
+.save-card__link {
+  color: var(--brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* -- Ways to save strip -- */
+.save-strip {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-blush);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.save-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* -- Service directory -- */
+.service-directory {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-cream);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.service-directory__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.service-directory__heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.service-directory__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.service-directory__link {
+  color: var(--text-mid);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+.service-directory__link:hover {
+  color: var(--brand);
+  padding-left: 0.35rem;
+}
+
+/* -- Visible homepage FAQ (native details/summary, no JS) -- */
+.home-faq {
+  padding: clamp(4rem, 3rem + 4vw, 7rem) 0;
+  background: var(--bg-alt);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.home-faq__list {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.home-faq__item {
+  background: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.home-faq__item[open] {
+  border-color: rgba(var(--brand-rgb), 0.3);
+}
+
+.home-faq__question {
+  cursor: pointer;
+  padding: 1.15rem 1.4rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  list-style: none;
+  position: relative;
+  padding-right: 2.75rem;
+}
+
+.home-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.home-faq__question::after {
+  content: '+';
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--brand);
+  font-size: 1.3rem;
+  font-weight: 400;
+  transition: transform 0.3s ease;
+}
+
+.home-faq__item[open] .home-faq__question::after {
+  content: '\2212';
+}
+
+.home-faq__answer {
+  padding: 0 1.4rem 1.25rem;
+  margin: 0;
+  color: var(--text-body);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* -- Responsive -- */
+@media (max-width: 1024px) {
+  .wellness__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .save-strip__grid,
+  .service-directory__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .wellness__grid,
+  .save-strip__grid,
+  .service-directory__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-directory__grid {
+    gap: 1.75rem;
+  }
+}
