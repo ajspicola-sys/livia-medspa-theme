@@ -151,7 +151,7 @@ $post_id          = get_the_ID();
 $post_slug        = get_post($post_id)->post_name;
 
 // Core Meta Schema
-$icon             = get_post_meta($post_id, '_service_icon', true) ?: '✨';
+$icon_svg         = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>';
 $price            = get_post_meta($post_id, '_service_price', true);
 $duration         = get_post_meta($post_id, '_service_duration', true);
 $video            = get_post_meta($post_id, '_service_video', true);
@@ -2012,7 +2012,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
                 <!-- Left Details -->
                 <div class="service-hero-enriched__content reveal">
                     <span class="service-hero-enriched__cat">
-                        <span aria-hidden="true"><?php echo esc_html($icon); ?></span>
+                        <span aria-hidden="true">✦</span>
                         <?php echo esc_html($category_name); ?>
                     </span>
                     
@@ -2270,7 +2270,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
                     </nav>
 
                     <span class="section__label service-hero__cat">
-                        <span aria-hidden="true"><?php echo esc_html($icon); ?></span>
+                        <span aria-hidden="true">✦</span>
                         <?php echo esc_html($category_name); ?>
                     </span>
 
@@ -2335,7 +2335,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
                     <!-- Sticky booking sidebar -->
                     <aside class="service-body__sidebar reveal" aria-label="Quick booking">
                         <div class="service-sidebar">
-                            <div class="service-sidebar__icon" aria-hidden="true"><?php echo esc_html($icon); ?></div>
+                            <div class="service-sidebar__icon" aria-hidden="true"><?php echo $icon_svg; ?></div>
                             <h2 class="service-sidebar__title"><?php the_title(); ?></h2>
 
                             <?php if ($price): ?>
@@ -2525,7 +2525,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
             </div>
             <div class="related-services__grid reveal">
                 <?php while ($related->have_posts()): $related->the_post();
-                    $r_icon = get_post_meta(get_the_ID(), '_service_icon', true) ?: '✨';
+                    
                 ?>
                 <a href="<?php the_permalink(); ?>" class="service-card">
                     <?php if (has_post_thumbnail()): ?>
@@ -2533,7 +2533,7 @@ if (empty($prep_guidelines) && empty($after_guidelines)) {
                         <?php the_post_thumbnail('medium', ['loading' => 'lazy', 'decoding' => 'async']); ?>
                     </div>
                     <?php else: ?>
-                    <div class="service-card__icon" aria-hidden="true"><?php echo esc_html($r_icon); ?></div>
+                    <div class="service-card__icon" aria-hidden="true"><?php echo $icon_svg; ?></div>
                     <?php endif; ?>
                     <h3 class="service-card__title"><?php the_title(); ?></h3>
                     <p class="service-card__text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>

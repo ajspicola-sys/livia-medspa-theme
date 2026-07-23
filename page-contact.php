@@ -81,7 +81,7 @@ get_header(); ?>
 
                     <!-- Form success state -->
                     <div class="contact-form__success" id="form-success">
-                        <div class="contact-form__success-icon">✨</div>
+                        <div class="contact-form__success-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
                         <h3 class="contact-form__success-title">Message Sent!</h3>
                         <p class="contact-form__success-text">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
                     </div>

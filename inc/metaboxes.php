@@ -414,7 +414,7 @@ function livia_service_sections_html($post) {
     wp_nonce_field('livia_service_sections_nonce_action', 'livia_service_sections_nonce');
 
     // Retrieve current values
-    $icon = get_post_meta($post->ID, '_service_icon', true) ?: '✨';
+    $icon = get_post_meta($post->ID, '_service_icon', true);
     $price = get_post_meta($post->ID, '_service_price', true);
     $duration = get_post_meta($post->ID, '_service_duration', true);
     $video = get_post_meta($post->ID, '_service_video', true);
@@ -454,8 +454,8 @@ function livia_service_sections_html($post) {
             <div class="livia-meta-section-body" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
                 <div class="livia-meta-row">
                     <label class="livia-meta-label" for="service_icon">Service Icon</label>
-                    <input type="text" class="livia-meta-input-text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="e.g. ✨">
-                    <div class="livia-meta-help">Emoji icon shown in badges/cards.</div>
+                    <input type="text" class="livia-meta-input-text" id="service_icon" name="service_icon" value="<?php echo esc_attr($icon); ?>" placeholder="unused">
+                    <div class="livia-meta-help">Legacy field — icons now render as brand SVGs; this value is no longer displayed.</div>
                 </div>
                 <div class="livia-meta-row">
                     <label class="livia-meta-label" for="service_price">Price Tag</label>

@@ -55,7 +55,7 @@ get_header(); ?>
                                     ]); ?>
                                 <?php else : ?>
                                     <div class="product-card__placeholder" aria-hidden="true">
-                                        <span>🛍️</span>
+                                        <span><svg width="28" height="44" viewBox="0 0 20 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="1" width="6" height="4" rx="1"/><path d="M7 5C4.5 7 4 9 4 11"/><path d="M13 5C15.5 7 16 9 16 11"/><rect x="4" y="11" width="12" height="18" rx="3"/><line x1="7" y1="17" x2="13" y2="17"/><line x1="7" y1="21" x2="11" y2="21"/></svg></span>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -86,7 +86,7 @@ get_header(); ?>
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
                     <div style="text-align:center; padding:4rem 2rem; grid-column: 1/-1;">
-                        <p style="color:#7a7a90; font-size:1.1rem;">Products coming soon! Add them in <strong>WordPress Admin → 🛍️ Products</strong>.</p>
+                        <p style="color:#7a7a90; font-size:1.1rem;">Products coming soon! Add them in <strong>WordPress Admin → Products</strong>.</p>
                     </div>
                 <?php endif; ?>
 

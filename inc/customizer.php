@@ -7,13 +7,13 @@
  */
 
 // ── Deal Popup — Customizer Controls ───────────────────────────────
-// Client manages all popup content from Appearance → Customize → 🎯 Deal Popup
+// Client manages all popup content from Appearance → Customize → Deal Popup
 // Zero code required. Changes go live on Save & Publish.
 add_action('customize_register', 'livia_popup_customizer');
 function livia_popup_customizer($wp_customize) {
 
     $wp_customize->add_section('livia_popup', [
-        'title'       => '🎯 Deal Popup',
+        'title'       => 'Deal Popup',
         'priority'    => 30,
         'description' => 'Control the promotional popup. Turn it on/off, set the offer text, button, and when it expires. Visitors only see it once every 7 days.',
     ]);

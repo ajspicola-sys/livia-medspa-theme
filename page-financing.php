@@ -10,7 +10,7 @@ get_header(); ?>
     <!-- Hero -->
     <section class="page-hero page-hero--financing" aria-label="Payment Plans">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">💳</span> Flexible Payment Plans</span>
+            <span class="section__label">Flexible Payment Plans</span>
             <h1 class="page-hero__title">Beauty Now,<br><em>Pay Over Time</em></h1>
             <p class="page-hero__desc">Don't let cost hold you back from looking and feeling your best. We offer flexible financing options so you can get the treatments you love — on your terms.</p>
             <div class="hero__actions" style="justify-content:center;">
@@ -45,22 +45,22 @@ get_header(); ?>
             </div>
             <div class="financing-benefits reveal">
                 <div class="financing-benefit">
-                    <div class="financing-benefit__icon" aria-hidden="true">⚡</div>
+                    <div class="financing-benefit__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                     <h3 class="financing-benefit__title">Instant Approval</h3>
                     <p class="financing-benefit__text">Apply in under 30 seconds and get a decision immediately. No lengthy paperwork or waiting periods.</p>
                 </div>
                 <div class="financing-benefit">
-                    <div class="financing-benefit__icon" aria-hidden="true">💰</div>
+                    <div class="financing-benefit__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v2m0 8v2"/></svg></div>
                     <h3 class="financing-benefit__title">0% APR Options</h3>
                     <p class="financing-benefit__text">Qualifying patients can enjoy 0% APR financing on select treatments. Pay over time with zero interest.</p>
                 </div>
                 <div class="financing-benefit">
-                    <div class="financing-benefit__icon" aria-hidden="true">📱</div>
+                    <div class="financing-benefit__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
                     <h3 class="financing-benefit__title">Easy Payments</h3>
                     <p class="financing-benefit__text">Manage your payment plan from your phone. Set up autopay and never miss a payment.</p>
                 </div>
                 <div class="financing-benefit">
-                    <div class="financing-benefit__icon" aria-hidden="true">🔒</div>
+                    <div class="financing-benefit__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
                     <h3 class="financing-benefit__title">No Hidden Fees</h3>
                     <p class="financing-benefit__text">What you see is what you pay. No prepayment penalties, no surprise charges, ever.</p>
                 </div>

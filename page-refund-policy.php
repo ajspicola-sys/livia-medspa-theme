@@ -35,12 +35,12 @@ get_header(); ?>
 
                     <div class="refund-policy-cards">
                         <div class="refund-policy-card">
-                            <div class="refund-policy-card__icon">🚫</div>
+                            <div class="refund-policy-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg></div>
                             <h3>No Refunds on Services</h3>
                             <p>Once services are purchased, they are <strong>non-refundable</strong>.</p>
                         </div>
                         <div class="refund-policy-card refund-policy-card--positive">
-                            <div class="refund-policy-card__icon">✅</div>
+                            <div class="refund-policy-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
                             <h3>Unused Service Values</h3>
                             <p>Any unused service value (the credit equivalent of the remaining amount in a treatment package) may be <strong>applied toward any other service</strong> at LIVIA Med Spa.</p>
                         </div>

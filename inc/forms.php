@@ -33,7 +33,7 @@ function livia_handle_contact_form() {
     if ( empty($recipients) ) $recipients = ['support@liviamedspa.com'];
     $to = $recipients;
 
-    $subject = '✨ New Message — LIVIA Med Spa Website';
+    $subject = 'New Message — LIVIA Med Spa Website';
 
     // ── Prepare substitution values ─────────────────────────────────
     $service_display = $service ? ucwords(str_replace('-', ' ', $service)) : 'Not specified';
@@ -237,7 +237,7 @@ function livia_settings_page_html() {
         $template = wp_unslash($_POST['livia_email_template'] ?? '');
         update_option('livia_email_template', $template);
 
-        echo '<div class="notice notice-success is-dismissible"><p><strong>✅ Settings saved!</strong></p></div>';
+        echo '<div class="notice notice-success is-dismissible"><p><strong>Settings saved!</strong></p></div>';
     }
 
     $current_emails  = get_option('livia_notification_emails', 'support@liviamedspa.com');
@@ -245,7 +245,7 @@ function livia_settings_page_html() {
     ?>
     <div class="wrap">
         <h1 style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
-            <span style="font-size:1.4rem;">✨</span> LIVIA Med Spa — Settings
+            LIVIA Med Spa — Settings
         </h1>
 
         <form method="post">
@@ -253,7 +253,7 @@ function livia_settings_page_html() {
 
             <!-- Section: Recipients -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">📬 Notification Recipients</h2>
+                <h2 style="margin:0 0 6px;font-size:16px;">Notification Recipients</h2>
                 <p style="margin:0 0 20px;color:#666;font-size:13px;">Separate multiple email addresses with commas. All recipients receive every submission.</p>
                 <label for="livia_notification_emails" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">Email Address(es)</label>
                 <input type="text" id="livia_notification_emails" name="livia_notification_emails"
@@ -265,7 +265,7 @@ function livia_settings_page_html() {
 
             <!-- Section: Email Template -->
             <div style="background:#fff;border-radius:10px;padding:28px 32px;max-width:800px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
-                <h2 style="margin:0 0 6px;font-size:16px;">🎨 Email Template (HTML)</h2>
+                <h2 style="margin:0 0 6px;font-size:16px;">Email Template (HTML)</h2>
                 <p style="margin:0 0 16px;color:#666;font-size:13px;">Customize the HTML email that gets sent to your inbox. Use the tags below to insert form data — they'll be replaced automatically.</p>
 
                 <!-- Placeholder Tags Reference -->
@@ -288,14 +288,14 @@ function livia_settings_page_html() {
                                   onclick="insertTag('<?php echo esc_js($tag); ?>')"><?php echo esc_html($tag); ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <p style="margin:10px 0 0;font-size:11px;color:#888;">💡 Click a tag to insert it at your cursor position in the editor below.</p>
+                    <p style="margin:10px 0 0;font-size:11px;color:#888;">Click a tag to insert it at your cursor position in the editor below.</p>
                 </div>
 
                 <label for="livia_email_template" style="display:block;font-weight:600;margin-bottom:6px;font-size:13px;">HTML Template</label>
                 <textarea id="livia_email_template" name="livia_email_template"
                           rows="24"
                           style="width:100%;font-family:'Courier New',monospace;font-size:12px;line-height:1.6;padding:14px;border:1px solid #ddd;border-radius:6px;resize:vertical;background:#1a1a2e;color:#e8e8f0;"><?php echo esc_textarea($current_template); ?></textarea>
-                <p style="margin:8px 0 0;font-size:12px;color:#888;">⚠️ Click "Reset to Default" to restore the original branded template.</p>
+                <p style="margin:8px 0 0;font-size:12px;color:#888;">Click "Reset to Default" to restore the original branded template.</p>
             </div>
 
             <div style="max-width:800px;display:flex;gap:12px;align-items:center;">
@@ -330,7 +330,7 @@ function livia_settings_page_html() {
 function livia_add_settings_menu() {
     add_options_page(
         'LIVIA Med Spa Settings',
-        '✨ LIVIA Settings',
+        'LIVIA Settings',
         'manage_options',
         'livia-settings',
         'livia_settings_page_html'

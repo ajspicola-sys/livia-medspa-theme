@@ -9,7 +9,7 @@ get_header(); ?>
 
     <section class="page-hero" aria-label="Our Mission">
         <div class="page-hero__inner">
-            <span class="section__label"><span aria-hidden="true">🎯</span> What Drives Us</span>
+            <span class="section__label">What Drives Us</span>
             <h1 class="page-hero__title">Our Mission</h1>
             <p class="page-hero__desc">To elevate the standard of aesthetic care through artistry, science, and an unwavering commitment to your natural beauty.</p>
         </div>
@@ -27,17 +27,17 @@ get_header(); ?>
 
             <div class="mission-pillars reveal">
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon" aria-hidden="true">🔬</div>
+                    <div class="mission-pillar__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></div>
                     <h2 class="mission-pillar__title">Science-Backed</h2>
                     <p class="mission-pillar__text">Every treatment we offer is grounded in clinical research and performed using FDA-approved products and technologies. We never compromise on safety or efficacy.</p>
                 </div>
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon" aria-hidden="true">🎨</div>
+                    <div class="mission-pillar__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
                     <h2 class="mission-pillar__title">Artistry-Driven</h2>
                     <p class="mission-pillar__text">Aesthetic medicine is as much art as it is science. Our providers are trained to see the whole picture — balancing proportions, symmetry, and your unique features for naturally stunning results.</p>
                 </div>
                 <div class="mission-pillar">
-                    <div class="mission-pillar__icon" aria-hidden="true">💛</div>
+                    <div class="mission-pillar__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
                     <h2 class="mission-pillar__title">Patient-Centered</h2>
                     <p class="mission-pillar__text">Your goals come first. We listen, educate, and collaborate so you feel confident and empowered in every decision — from your first consultation to your follow-up care.</p>
                 </div>
@@ -56,7 +56,7 @@ get_header(); ?>
     <section class="values-full" aria-label="Our core values">
         <div class="section__inner">
             <div class="section__header reveal">
-                <span class="section__label"><span aria-hidden="true">💎</span> What We Believe</span>
+                <span class="section__label">What We Believe</span>
                 <h2 class="section__title">Our Values</h2>
                 <p class="section__desc">The principles that guide every decision, every treatment, and every interaction at LIVIA Med Spa.</p>
             </div>

@@ -102,7 +102,7 @@ get_header(); ?>
                 <?php endwhile; wp_reset_postdata();
                 else : ?>
                     <div style="text-align:center; padding:4rem 2rem;">
-                        <p style="color:#7a7a90; font-size:1.1rem;">Team members coming soon! Add them in <strong>WordPress Admin → 👩‍⚕️ Team</strong>.</p>
+                        <p style="color:#7a7a90; font-size:1.1rem;">Team members coming soon! Add them in <strong>WordPress Admin → Team</strong>.</p>
                     </div>
                 <?php endif; ?>
 

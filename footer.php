@@ -137,7 +137,7 @@
         <div class="footer__inner">
             <div class="newsletter">
                 <div class="newsletter__text">
-                    <h4 class="newsletter__title">Stay in the Glow ✨</h4>
+                    <h4 class="newsletter__title">Stay in the Glow</h4>
                     <p class="newsletter__desc">Get exclusive offers, beauty tips, and early access to new treatments.</p>
                 </div>
                 <form class="newsletter__form" action="#" method="post" id="newsletter-form">

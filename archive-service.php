@@ -73,8 +73,7 @@ $all_cats = get_terms([
             <?php if ( have_posts() ) : ?>
                 <div class="services__grid" id="services-grid">
                     <?php while ( have_posts() ) : the_post();
-                        $icon     = get_post_meta( get_the_ID(), '_service_icon', true ) ?: '✨';
-                        $price    = get_post_meta( get_the_ID(), '_service_price', true );
+                                                $price    = get_post_meta( get_the_ID(), '_service_price', true );
                         $duration = get_post_meta( get_the_ID(), '_service_duration', true );
 
                         // Services with an External Link open out in a new tab.
@@ -108,7 +107,7 @@ $all_cats = get_terms([
                                     ] ); ?>
                                 </div>
                             <?php else : ?>
-                                <div class="service-card__icon" aria-hidden="true"><?php echo esc_html( $icon ); ?></div>
+                                <div class="service-card__icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
                             <?php endif; ?>
 
                             <div class="service-card__body">

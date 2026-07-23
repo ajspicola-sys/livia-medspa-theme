@@ -384,19 +384,16 @@ function livia_create_services() {
         // ── Injectables (3 services) ──────────────────────────────
         [
             'title'    => 'Botox',
-            'icon'     => '💉',
             'category' => 'Injectables',
             'excerpt'  => 'Smooth away fine lines and wrinkles with the world\'s most trusted neuromodulator, expertly administered for natural-looking results.',
         ],
         [
             'title'    => 'Jeuveau',
-            'icon'     => '✨',
             'category' => 'Injectables',
             'excerpt'  => 'The modern alternative to Botox — Jeuveau delivers smooth, wrinkle-free results with a formula designed specifically for aesthetics.',
         ],
         [
             'title'    => 'Dermal Fillers',
-            'icon'     => '💎',
             'category' => 'Injectables',
             'excerpt'  => 'Restore volume, enhance contours, and achieve a refreshed, youthful appearance with premium hyaluronic acid fillers.',
         ],
@@ -404,37 +401,31 @@ function livia_create_services() {
         // ── Skin & Facials (6 services) ───────────────────────────
         [
             'title'    => 'Chemical Peels',
-            'icon'     => '🧴',
             'category' => 'Skin & Facials',
             'excerpt'  => 'Reveal fresh, radiant skin by removing damaged outer layers with customized chemical peel treatments.',
         ],
         [
             'title'    => 'Microneedling',
-            'icon'     => '🔬',
             'category' => 'Skin & Facials',
             'excerpt'  => 'Stimulate your skin\'s natural collagen production to improve texture, tone, and firmness with precision microneedling.',
         ],
         [
             'title'    => 'Secret RF Microneedling',
-            'icon'     => '⚡',
             'category' => 'Skin & Facials',
             'excerpt'  => 'Combine radiofrequency energy with microneedling for deeper skin tightening and dramatic rejuvenation results.',
         ],
         [
             'title'    => 'PRP Facial',
-            'icon'     => '🌟',
             'category' => 'Skin & Facials',
             'excerpt'  => 'Harness your body\'s own growth factors for natural skin renewal, improved texture, and a radiant glow.',
         ],
         [
             'title'    => 'Glo2Facial',
-            'icon'     => '✦',
             'category' => 'Skin & Facials',
             'excerpt'  => 'A next-generation facial that combines exfoliation, oxygenation, and infusion for an instant, healthy glow.',
         ],
         [
             'title'    => 'Cellis Derma PRP',
-            'icon'     => '🧬',
             'category' => 'Skin & Facials',
             'excerpt'  => 'Advanced PRP therapy combined with cutting-edge Cellis technology for superior skin rejuvenation and healing.',
         ],
@@ -442,55 +433,46 @@ function livia_create_services() {
         // ── Body & Wellness (9 services) ──────────────────────────
         [
             'title'    => 'Helix CO2 Laser',
-            'icon'     => '🔆',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Fractional CO2 laser resurfacing to dramatically reduce scars, wrinkles, and sun damage with precision technology.',
         ],
         [
             'title'    => 'Laser Treatments',
-            'icon'     => '💡',
             'category' => 'Body & Wellness',
             'excerpt'  => 'A range of advanced laser therapies for hair removal, skin tightening, pigmentation correction, and more.',
         ],
         [
             'title'    => 'Butt Lift',
-            'icon'     => '🍑',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Non-surgical butt enhancement to lift, firm, and sculpt for a naturally contoured silhouette.',
         ],
         [
             'title'    => 'Sclerotherapy',
-            'icon'     => '🩺',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Eliminate spider veins and varicose veins with this safe, proven injection-based treatment.',
         ],
         [
             'title'    => 'Weight Loss',
-            'icon'     => '⚖️',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Medically supervised weight loss programs tailored to your goals with proven treatments and ongoing support.',
         ],
         [
             'title'    => 'Hair Restoration',
-            'icon'     => '💆',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Advanced hair restoration treatments to combat thinning and stimulate natural hair growth for fuller, healthier hair.',
         ],
         [
             'title'    => 'IV Therapy',
-            'icon'     => '💧',
             'category' => 'Body & Wellness',
             'excerpt'  => 'Boost hydration, energy, and immunity with custom IV vitamin infusions delivered directly to your bloodstream.',
         ],
         [
             'title'    => 'Vaginal PRP',
-            'icon'     => '🌸',
             'category' => 'Body & Wellness',
             'excerpt'  => 'A confidential, non-surgical treatment using platelet-rich plasma to enhance intimate wellness and rejuvenation.',
         ],
         [
             'title'    => 'Penile PRP',
-            'icon'     => '🔬',
             'category' => 'Body & Wellness',
             'excerpt'  => 'A discreet, non-surgical PRP treatment designed to improve intimate health, sensitivity, and confidence.',
         ],
@@ -516,7 +498,6 @@ function livia_create_services() {
         ]);
 
         if ($post_id && !is_wp_error($post_id)) {
-            update_post_meta($post_id, '_service_icon', $service['icon']);
             if (isset($cat_ids[$service['category']])) {
                 wp_set_object_terms($post_id, (int) $cat_ids[$service['category']], 'service_category');
             }
