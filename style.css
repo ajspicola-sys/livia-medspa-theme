@@ -9810,6 +9810,8 @@ body.has-scroll-lock .scroll-top {
   }
 
   .btn,
+  .btn--sm,
+  .mobile-menu__book,
   .newsletter__btn {
     font-size: 0.8rem;
   }
