@@ -9913,6 +9913,26 @@ body.has-scroll-lock .scroll-top {
    CARECREDIT PAGE v2 — split hero, service chips, CTA banner
    ═══════════════════════════════════════════════════════════════════ */
 
+/* Partner theme: the whole design system runs on CSS variables, so
+   re-mapping the brand palette to CareCredit's greens inside .cc-theme
+   re-colors every component on this page only — buttons, labels, icons,
+   chips, gradients, and section backgrounds. Header/footer keep LIVIA
+   purple because they live outside <main>. */
+.cc-theme {
+  --brand:            #00885B;
+  --brand-dark:       #004B34;
+  --brand-mid:        #009D6A;
+  --brand-bright:     #2FBD8B;
+  --brand-pink:       #3EC493;
+  --brand-pink-mid:   #26A87B;
+  --brand-882:        #006B47;
+  --brand-rgb:        0, 136, 91;
+  --bg-lavender:      #EDF7F2;
+  --bg-lavender-deep: #E1F1E9;
+  --bg-petal:         #D8EDE2;
+  --bg-blush:         #F4FAF7;
+}
+
 .cc-hero {
   padding: clamp(4.5rem, 3rem + 4vw, 7.5rem) 0 clamp(3.5rem, 2.5rem + 3vw, 6rem);
   background: linear-gradient(160deg, var(--bg-lavender) 0%, var(--bg-cream) 65%);

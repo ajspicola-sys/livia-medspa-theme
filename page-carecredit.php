@@ -20,7 +20,7 @@ $cc_service_url = function ($candidates) {
 
 get_header(); ?>
 
-<main class="site-main" id="main-content">
+<main class="site-main cc-theme" id="main-content">
 
     <!-- ═══════════════════════════════════════════════════════════════
          HERO — split layout with official CareCredit artwork
