@@ -9763,3 +9763,54 @@ body.has-scroll-lock .scroll-top {
     gap: 1.75rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE USABILITY — tap-target sizes and legible font floors
+   Google requires touch targets of at least 24x24 CSS px and flags
+   text under 12px. Link lists get vertical padding to grow the touch
+   area (spacing compensated so the visual rhythm doesn't change).
+   ═══════════════════════════════════════════════════════════════════ */
+
+.footer__links a {
+  display: inline-block;
+  padding: 0.3rem 0;
+}
+
+.footer__links li {
+  margin-bottom: 0.15rem;
+}
+
+.service-directory__link {
+  display: inline-block;
+  padding: 0.3rem 0;
+}
+
+.service-directory__list {
+  gap: 0.1rem;
+}
+
+@media (max-width: 768px) {
+  /* Floor decorative/label text at ~12px for mobile legibility */
+  .section__label,
+  .cta-section__label,
+  .hero__badge,
+  .hero__stat-label,
+  .why-us__stat-label,
+  .journey-step__number,
+  .footer__heading,
+  .newsletter__privacy,
+  .blog-card__cat,
+  .blog-card__date,
+  .product-showcase__badge-text,
+  .testimonials-split__badge-text,
+  .supplements__partner-powered,
+  .hero__scroll-text,
+  .client-portal__feature-check {
+    font-size: 0.75rem;
+  }
+
+  .btn,
+  .newsletter__btn {
+    font-size: 0.8rem;
+  }
+}
