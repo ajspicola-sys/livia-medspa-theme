@@ -9933,6 +9933,48 @@ body.has-scroll-lock .scroll-top {
   --bg-blush:         #F4FAF7;
 }
 
+/* "Why CareCredit?" — inverted section in partner greens: dark green
+   gradient background, frosted glass benefit cards, light text. */
+.cc-theme .financing-why {
+  background: linear-gradient(150deg, #004B34 0%, #016B49 55%, #00885B 100%);
+}
+
+.cc-theme .financing-why .section__label {
+  background: rgba(255, 255, 255, 0.14);
+  color: #C9EEDF;
+}
+
+.cc-theme .financing-why .section__title {
+  color: #FFFFFF;
+}
+
+.cc-theme .financing-why .financing-benefit {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.cc-theme .financing-why .financing-benefit:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.26);
+}
+
+.cc-theme .financing-why .financing-benefit__icon {
+  color: #7FDCB6;
+}
+
+.cc-theme .financing-why .financing-benefit__title {
+  color: #FFFFFF;
+}
+
+.cc-theme .financing-why .financing-benefit__text {
+  color: rgba(255, 255, 255, 0.78);
+}
+
 .cc-hero {
   padding: clamp(4.5rem, 3rem + 4vw, 7.5rem) 0 clamp(3.5rem, 2.5rem + 3vw, 6rem);
   background: linear-gradient(160deg, var(--bg-lavender) 0%, var(--bg-cream) 65%);
