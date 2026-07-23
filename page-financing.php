@@ -68,6 +68,19 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- CareCredit cross-link -->
+    <section class="financing-alt" aria-label="Other financing options">
+        <div class="section__inner">
+            <div class="financing-alt__card reveal">
+                <div>
+                    <h2 class="financing-alt__title">Prefer CareCredit?</h2>
+                    <p class="financing-alt__text">We also accept the CareCredit health and wellness credit card — see if you prequalify in seconds with no impact to your credit score.</p>
+                </div>
+                <a href="<?php echo esc_url(home_url('/carecredit/')); ?>" class="btn btn--outline">Explore CareCredit →</a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section" aria-label="Get started">
         <div class="cta-section__inner reveal">

@@ -105,6 +105,26 @@ function livia_fix_reading_settings() {
 add_action('init', 'livia_fix_reading_settings');
 
 
+// ── Auto-create CareCredit page (one-time) ────────────────────────
+// Sister financing page to Cherry; rendered by page-carecredit.php.
+function livia_create_carecredit_page() {
+    if (get_option('livia_carecredit_page_v1')) return;
+
+    if (!get_page_by_path('carecredit', OBJECT, 'page')) {
+        wp_insert_post([
+            'post_title'   => 'CareCredit',
+            'post_name'    => 'carecredit',
+            'post_content' => '',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        ]);
+    }
+
+    update_option('livia_carecredit_page_v1', true);
+}
+add_action('init', 'livia_create_carecredit_page');
+
+
 // ── Shared helper: check if a page with a given slug exists (any status) ──
 function livia_page_slug_exists( $slug ) {
     $q = new WP_Query([

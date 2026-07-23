@@ -40,6 +40,10 @@
         $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: get_the_title() . ' in Tampa, FL at LIVIA Med Spa — board-certified provider, natural results.';
     } elseif (is_singular('product')) {
         $meta_desc = get_the_title() . ' — Medical-grade skincare available at LIVIA Med Spa in Tampa, FL.';
+    } elseif (is_page('carecredit')) {
+        $meta_desc = 'Finance your med spa treatments in Tampa with CareCredit. Prequalify in seconds with no impact to your credit score, then pay over time at LIVIA Med Spa.';
+    } elseif (is_page('financing')) {
+        $meta_desc = 'Flexible med spa payment plans in Tampa via Cherry — instant approval, 0% APR options, no hidden fees. Split any LIVIA Med Spa treatment into monthly payments.';
     } elseif (is_page()) {
         $meta_desc = wp_strip_all_tags(get_the_excerpt()) ?: 'LIVIA Med Spa — Tampa\'s trusted medical spa for advanced aesthetic treatments.';
     } elseif (is_home() || is_category() || is_tag() || is_archive()) {
@@ -621,8 +625,42 @@
                     <li class="nav__item<?php if (is_page('parties')) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/parties/')); ?>" class="nav__link">Parties</a>
                     </li>
-                    <li class="nav__item<?php if (is_page('financing')) echo ' nav__item--active'; ?>">
-                        <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="nav__link">Payment Plans</a>
+                    <!-- Payment Plans with Mega Menu (Cherry + CareCredit) -->
+                    <li class="nav__item nav__item--has-mega<?php if (is_page(['financing', 'carecredit'])) echo ' nav__item--active'; ?>">
+                        <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="nav__link">Payment Plans <span class="nav__arrow">▾</span></a>
+                        <div class="mega-menu">
+                            <div class="mega-menu__inner mega-menu__inner--compact">
+                                <div class="mega-menu__column">
+                                    <span class="mega-menu__heading">Financing Options</span>
+                                    <div class="mega-menu__items">
+                                        <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="mega-menu__item">
+                                            <span class="mega-menu__item-icon" style="background:rgba(172,19,249,0.12);color:#AC13F9;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v2m0 8v2"/></svg></span>
+                                            <span class="mega-menu__item-content">
+                                                <span class="mega-menu__item-title">Cherry Payment Plans</span>
+                                                <span class="mega-menu__item-desc">Instant approval, 0% APR options</span>
+                                            </span>
+                                            <span class="mega-menu__item-arrow">→</span>
+                                        </a>
+                                        <a href="<?php echo esc_url(home_url('/carecredit/')); ?>" class="mega-menu__item">
+                                            <span class="mega-menu__item-icon" style="background:rgba(111,163,214,0.12);color:#6fa3d6;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+                                            <span class="mega-menu__item-content">
+                                                <span class="mega-menu__item-title">CareCredit</span>
+                                                <span class="mega-menu__item-desc">Prequalify with no credit impact</span>
+                                            </span>
+                                            <span class="mega-menu__item-arrow">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu__promo mega-menu__promo--compact">
+                                    <div>
+                                        <span class="mega-menu__promo-label">✦ Financing Available</span>
+                                        <h3 class="mega-menu__promo-title">Beauty Now, Pay Over Time</h3>
+                                        <p class="mega-menu__promo-text">Two flexible ways to split any treatment into manageable monthly payments — apply online in minutes.</p>
+                                    </div>
+                                    <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="mega-menu__promo-cta">Compare Options →</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav__item<?php if (is_page('contact')) echo ' nav__item--active'; ?>">
                         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="nav__link">Contact</a>
@@ -670,7 +708,8 @@
                     <li><a href="<?php echo esc_url(home_url('/team/')); ?>">Meet the Team</a></li>
                     <li><a href="<?php echo esc_url(home_url('/memberships/')); ?>">Memberships</a></li>
                     <li><a href="<?php echo esc_url(home_url('/parties/')); ?>">Parties</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/financing/')); ?>">Payment Plans</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/financing/')); ?>">Payment Plans (Cherry)</a></li>
+                    <li><a href="<?php echo esc_url(home_url('/carecredit/')); ?>">CareCredit Financing</a></li>
                     <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
                 </ul>
             </nav>

@@ -36,6 +36,12 @@ function livia_seo_title( $title_parts ) {
     } elseif ( is_page('memberships') ) {
         $title_parts['title'] = 'Beauty Bank Memberships | LIVIA Med Spa Tampa';
         unset( $title_parts['site'] );
+    } elseif ( is_page('financing') ) {
+        $title_parts['title'] = 'Cherry Payment Plans | Med Spa Financing | LIVIA Tampa';
+        unset( $title_parts['site'] );
+    } elseif ( is_page('carecredit') ) {
+        $title_parts['title'] = 'CareCredit Financing | Med Spa Payment Plans | LIVIA Tampa';
+        unset( $title_parts['site'] );
     } elseif ( is_page('before-after') ) {
         $title_parts['title'] = 'Before & After Results | LIVIA Med Spa Tampa';
         unset( $title_parts['site'] );
@@ -366,7 +372,7 @@ function livia_schema_markup() {
         ],
         'priceRange'       => '$$-$$$',
         'currenciesAccepted' => 'USD',
-        'paymentAccepted'  => 'Cash, Credit Card, Financing via Cherry',
+        'paymentAccepted'  => 'Cash, Credit Card, Financing via Cherry, CareCredit',
         'image'            => [
             'https://liviamedspa.com/wp-content/uploads/2026/03/New-Livia-Logo.png',
             'https://liviamedspa.com/wp-content/uploads/2026/04/Hero-Apirl4.png',

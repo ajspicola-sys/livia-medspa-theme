@@ -568,8 +568,8 @@ get_header(); ?>
                     <span class="save-card__link">Explore Memberships →</span>
                 </a>
                 <a href="<?php echo esc_url(home_url('/financing/')); ?>" class="save-card">
-                    <h3 class="save-card__title">Payment Plans via Cherry</h3>
-                    <p class="save-card__text">Split any treatment into manageable monthly payments with fast online approval and no hard credit check to apply — so you never have to wait on the results you want.</p>
+                    <h3 class="save-card__title">Cherry &amp; CareCredit Financing</h3>
+                    <p class="save-card__text">Split any treatment into manageable monthly payments with Cherry or the CareCredit credit card — fast online approval, 0% APR options, and prequalification with no impact to your credit score.</p>
                     <span class="save-card__link">See Financing Options →</span>
                 </a>
                 <a href="<?php echo esc_url(home_url('/parties/')); ?>" class="save-card">

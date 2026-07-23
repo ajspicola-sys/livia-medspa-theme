@@ -9816,3 +9816,95 @@ body.has-scroll-lock .scroll-top {
     font-size: 0.8rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARECREDIT PAGE — banner, three-step grid, cross-link card
+   ═══════════════════════════════════════════════════════════════════ */
+
+.carecredit-banner {
+  padding: 1rem 0 0;
+  background: var(--bg-cream);
+  text-align: center;
+}
+
+.carecredit-banner__link {
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carecredit-banner__link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.carecredit-banner__link img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.financing-benefits--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.financing-alt {
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0;
+  background: var(--bg-lavender);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.financing-alt__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.25rem 2.5rem;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+}
+
+.financing-alt__title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0 0 0.4rem;
+}
+
+.financing-alt__text {
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.financing-alt__card .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.carecredit-disclaimer {
+  margin-top: 1.75rem;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.carecredit-disclaimer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .financing-benefits--three {
+    grid-template-columns: 1fr;
+  }
+
+  .financing-alt__card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
