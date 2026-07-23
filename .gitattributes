@@ -1,0 +1,14 @@
+# Normalize all text files to LF in the repository; check out with the
+# platform's native line endings (CRLF on Windows via core.autocrlf).
+# This ends the mixed CRLF/LF blobs that were causing whole-file diffs.
+* text=auto
+
+# Binaries — never convert
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
